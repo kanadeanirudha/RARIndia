@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.32929.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RARIndia", "RARIndia\RARIndia.csproj", "{6D47AD44-D959-487D-BB2D-305429E4CA13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RARIndia.BusinessLogicLayer", "RARIndia.BusinessLogicLayer\RARIndia.BusinessLogicLayer.csproj", "{87B50434-0D44-4A6E-BF80-9FE0637208F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RARIndia.DataAccessLayer", "RARIndia.DataAccessLayer\RARIndia.DataAccessLayer.csproj", "{FD54C9F3-3CB4-4A4C-AAE1-DF37AA367DD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RARIndia.Model", "RARIndia.Model\RARIndia.Model.csproj", "{7915CB32-11CB-4FB8-A99B-BA8559E1407C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{6D47AD44-D959-487D-BB2D-305429E4CA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D47AD44-D959-487D-BB2D-305429E4CA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D47AD44-D959-487D-BB2D-305429E4CA13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B50434-0D44-4A6E-BF80-9FE0637208F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B50434-0D44-4A6E-BF80-9FE0637208F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B50434-0D44-4A6E-BF80-9FE0637208F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B50434-0D44-4A6E-BF80-9FE0637208F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD54C9F3-3CB4-4A4C-AAE1-DF37AA367DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD54C9F3-3CB4-4A4C-AAE1-DF37AA367DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD54C9F3-3CB4-4A4C-AAE1-DF37AA367DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD54C9F3-3CB4-4A4C-AAE1-DF37AA367DD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7915CB32-11CB-4FB8-A99B-BA8559E1407C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7915CB32-11CB-4FB8-A99B-BA8559E1407C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7915CB32-11CB-4FB8-A99B-BA8559E1407C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7915CB32-11CB-4FB8-A99B-BA8559E1407C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
