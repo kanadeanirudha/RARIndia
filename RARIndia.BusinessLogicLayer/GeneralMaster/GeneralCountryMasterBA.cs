@@ -16,7 +16,7 @@ namespace RARIndia.BusinessLogicLayer
 
         }
 
-        public GeneralCountryMasterListModel GetGeneralCountryMasterData()
+        public List<GeneralCountryMasterModel> GetGeneralCountryMasterData()
         {
             GeneralCountryMasterDAL generalCountryMasterDAL = new GeneralCountryMasterDAL();
             return generalCountryMasterDAL.GetGeneralCountryMasterData();

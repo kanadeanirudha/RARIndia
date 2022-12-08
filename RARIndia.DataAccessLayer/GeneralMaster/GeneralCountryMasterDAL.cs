@@ -14,26 +14,17 @@ namespace RARIndia.DataAccessLayer
         {
 
         }
-        public GeneralCountryMasterListModel GetGeneralCountryMasterData()
+        public List<GeneralCountryMasterModel> GetGeneralCountryMasterData()
         {
-            GeneralCountryMasterListModel list = new GeneralCountryMasterListModel();
+            List<GeneralCountryMasterModel> list = new List<GeneralCountryMasterModel>();
 
-            list.GeneralCountryMasterList = new List<GeneralCountryMasterModel>();
             GeneralCountryMasterModel model = new GeneralCountryMasterModel()
             {
                 ID = 1,
                 CountryName = "India",
                 CountryCode = "IN"
             };
-            list.GeneralCountryMasterList.Add(model);
-
-            GeneralCountryMasterModel model1 = new GeneralCountryMasterModel();
-            model1.ID = 1;
-            model1.CountryName = "India";
-            model1.CountryCode = "IN";
-
-            list.GeneralCountryMasterList.Add(model1);
-
+            list.Add(model);
             return list;
         }
     }

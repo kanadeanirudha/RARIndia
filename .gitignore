@@ -7,9 +7,10 @@
 /RARIndia/.vs/RARIndia
 /RARIndia/bin
 /RARIndia/obj
-/RARIndia.BusinessLogicLayer/bin/Debug
-/RARIndia.BusinessLogicLayer/obj/Debug
-/RARIndia.DataAccessLayer/bin/Debug
-/RARIndia.DataAccessLayer/obj/Debug
-/RARIndia.Model/bin/Debug
-/RARIndia.Model/obj/Debug
+/RARIndia.BusinessLogicLayer/bin
+/RARIndia.BusinessLogicLayer/obj
+/RARIndia.DataAccessLayer/bin
+/RARIndia.DataAccessLayer/obj
+/RARIndia.Model/bin
+/RARIndia.Model/obj
+
