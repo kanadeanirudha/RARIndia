@@ -3,82 +3,84 @@
 @{
     ViewBag.Title = "";
 }
-<!-- DataTables -->
-<link href="./AdminTheme/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
-<link href="./AdminTheme/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css">
-<!-- Responsive datatable examples -->
-<link href="./AdminTheme/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css">
-<div class="row">
-    <div class="col-sm-12">
-        <div class="page-title-box">
-            <div class="row">
-                <div class="col">
-                    <h4 class="page-title">Country List</h4>
-                </div><!--end col-->
-                <div class="col-auto align-self-center">
-                    <a href="#" class="btn btn-sm btn-outline-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download align-self-center icon-xs">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                    </a>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div><!--end page-title-box-->
-    </div><!--end col-->
-</div><!--end row-->
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                    <h4 class="card-title">Row created callback example</h4>
-                    <p class="text-muted mb-0">
-                        The Buttons extension for DataTables
-                        provides a common set of options, API methods and styling to display
-                        buttons on a page that will interact with a DataTable. The core library
-                        provides the based framework upon which plug-ins can built.
-                    </p>
-                </div><!--end card-header-->
-            <div class="card-body">
-                <div id="row_callback_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            @Html.Partial("~/Views/Shared/Datatable/_DatatableShowResult.cshtml")
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Country List</h3>
+    </div>
+    <div class="content-header-right col-md-6 col-12">
+        @*<div class="media width-250 float-right">
+                <media-left class="media-middle">
+                    <div id="sp-bar-total-sales"><canvas width="152" height="30" style="display: inline-block; width: 152px; height: 30px; vertical-align: top;"></canvas></div>
+                </media-left>
+                <div class="media-body media-right text-right">
+                    <h3 class="m-0">$5,668</h3><span class="text-muted">Sales</span>
+                </div>
+            </div>*@
+    </div>
+</div>
+<div class="content-body">
+    <!-- Column rendering table -->
+    <section id="column">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    @*<div class="card-header">
+                        <h4 class="card-title">Column rendering</h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            @Html.Partial("~/Views/Shared/Datatable/_DatatableSearchData.cshtml")
+                    </div>*@
+                    <div class="card-content collapse show">
+                        <div class="card-body card-dashboard dataTables_wrapper dt-bootstrap">
+                            <div class="table-responsive">
+                                <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            @Html.Partial("~/Views/Shared/Datatable/_DatatableShowResult.cshtml")
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            @Html.Partial("~/Views/Shared/Datatable/_DatatableSearchData.cshtml")
+                                        </div>
+                                    </div><div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-striped table-bordered column-rendering dataTable" id="DataTables_Table_1" role="grid" aria-describedby="DataTables_Table_1_info" style="width: 1223px;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="CountryName: activate to sort column descending" style="width: 40%;">Country Name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CountryCode: activate to sort column ascending" style="width: 40%;">Country Code</th>
+                                                        <th tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width:20%;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{int i = 1;}
+                                                    @foreach (var item in Model.GeneralCountryMasterList)
+                                                    {
+                                                        string className = i % 2 == 0 ? "even" : "odd";
+                                                        <tr class="@className">
+                                                            <td class="sorting_1" tabindex="0">@item.CountryName</td>
+                                                            <td>@item.CountryCode</td>
+                                                            <td class=""></td>
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    @Html.Partial("~/Views/Shared/Datatable/_DatatablePagination.cshtml")
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table id="row_callback" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="row_callback_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting sorting_desc" tabindex="0" aria-controls="row_callback" rowspan="1" colspan="1" style="width:40%;" aria-label="CountryName: activate to sort column ascending" aria-sort="descending">Country Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="row_callback" rowspan="1" colspan="1" style="width: 40%;" aria-label="CountryCode: activate to sort column ascending">Country Code</th>
-                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 20%;">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{int i = 1;}
-                                    @foreach (var item in Model.GeneralCountryMasterList)
-                                    {
-                                        string className = i % 2 == 0 ? "even" : "odd";
-                                        <tr class="@className">
-                                            <td class="sorting_1" tabindex="0">@item.CountryName</td>
-                                            <td>@item.CountryCode</td>
-                                            <td class=""></td>
-                                        </tr>
-                                        i++;
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    @Html.Partial("~/Views/Shared/Datatable/_DatatablePagination.cshtml")
                 </div>
             </div>
         </div>
-    </div> <!-- end col -->
-</div> <!-- end row -->
+    </section>
+    <!-- Column rendering table -->
+</div>
