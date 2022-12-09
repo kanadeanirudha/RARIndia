@@ -215,6 +215,10 @@
       <Project>{7915cb32-11cb-4fb8-a99b-ba8559e1407c}</Project>
       <Name>RARIndia.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RARIndia.Utilities\RARIndia.Utilities.csproj">
+      <Project>{A8672FD6-1531-4A8D-A295-833E8E1C7D35}</Project>
+      <Name>RARIndia.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
