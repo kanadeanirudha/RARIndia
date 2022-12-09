@@ -58,16 +58,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @{int i = 1;}
                                                     @foreach (var item in Model.GeneralCountryMasterList)
                                                     {
-                                                        string className = i % 2 == 0 ? "even" : "odd";
-                                                        <tr class="@className">
-                                                            <td class="sorting_1" tabindex="0">@item.CountryName</td>
+                                                        <tr>
+                                                            <td>@item.CountryName</td>
                                                             <td>@item.CountryCode</td>
-                                                            <td class=""></td>
+                                                            <td></td>
                                                         </tr>
-                                                        i++;
                                                     }
                                                 </tbody>
                                             </table>

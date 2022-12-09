@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +51,732 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCountryMasterDAL.cs" />
+    <Compile Include="DataEntity\ActAccountCenterwise.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActAccountMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActBalsheetMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActBalsheetTypeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActBankDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActBankTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActCategoryMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActCentreOpeningBalance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActChequeBookDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActChequeBookMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActGeneralSettingMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActGroupMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActHeadMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActIndividualOpeningBalance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActNarrationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActSessionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActTransactionDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActTransactionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActTransactionTypeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ActVoucherSettingMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleApplicableDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleCentreRight.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleDomain.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleEntity.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleMenuDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleRightType.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleSpecialRightDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleSpecialRightMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminSnPost.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\BankMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\CustomerBranchMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\CustomerContactDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\CustomerMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\DashboardAllocation.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\DashboardContentDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeeContactDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeeDesignationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeeExperience.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeePictureDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeeQualification.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeeServiceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\EmployeeShiftMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ESICZoneDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\ESICZoneMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralAllocateSaleProcessUnit.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralCity.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralCountryMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralCurrencyMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralDepartmentMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralEducationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralEducationTypeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralExperienceTypeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemAttributeData.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemCategoryMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemCode.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemGeneralData.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemMarchandiseBaseCatgory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemMarchandiseGroup.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemMarchandiseSubCategory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemMerchantiseCategory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemMerchantiseDepartment.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralItemSupliersData.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralJobProfile.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralJobStatu.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralLevelMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralLocationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralMapTypeOfAccount.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralMovementType.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralMovementTypeRule.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralNationalityMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralOrderingDaysCode.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralPeriodTypeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralPolicyDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralPolicyMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralPolicyRule.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralPurchaseGroupMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralReccessMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralRegionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralRelationshipTypeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralRequestMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralRequestTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralRunningNumbersForAccount.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralSectorType.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralSessionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralShipperMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralSupplierMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralSystemSettingMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaskIntiatedDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaskModel.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaskReportingDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaskReportingMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaxGroupMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaxGroupMasterDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaxMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaxTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTemperatureMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTimeZoneMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTitleMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTransactionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTypeOfAccount.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTypeOfAccountMapWithAccount.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralUnit.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralUnitMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralUnitsDomainRelated.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralUnitsStorageLocation.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralUnitType.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralWeekDay.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GenLanguageMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GSTEInvoiceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GSTEInvoiceMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryAttributeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryBrandMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryItemBatchDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryItemBatchMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryItemCodeUnitLevelCustomerSpecificInfo.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryItemCodeUnitLevelSpecificInfo.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryItemStoreLevelSpecificInfo.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryItemStoreSpecificInfo.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryLocationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryPhysicalStockAdjustment.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryPhysicalStockAdjustmentMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryRecipeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryStockMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryTransactionDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InventoryUoMMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InvoiceTrackingDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\InvoiceTrackingMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveApplication.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveApplicationTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveApplicationTransactionHistory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveAttachedDocument.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveAttendanceExemption.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveEmployeeAttendanceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveEmployeeAttendanceFireHistory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveEmployeeAttendanceMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\LeaveSummary.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\NotificationTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationCentrewiseDepartment.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationCentrewiseDepartmentDomain.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationCentrewiseGSTCredential.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationStudyCentreMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationStudyCentrePrintingFormat.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationStudyCentreUniversityApplicable.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationUniversityMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrgApplicationAdminMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrgCentrewiseSession.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PFChalanRemitance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseGRNDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseGRNMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseInvoiceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseInvoiceMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseOrderDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseOrderMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseRequirementDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseRequirementMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseRequisitionDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseRequisitionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseReturnMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\PurchaseReturnTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\RARIndiaEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RARIndiaEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\RARIndiaEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\RARIndiaEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RARIndiaEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalaryAllowanceMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalaryAllowanceRule.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalaryAllowanceSumOf.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalaryDeductionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalaryDeductionRule.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalaryDeductionSumOf.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractArrearsAttendance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractAttendance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractBillingSpan.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractBillingTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractBillingTransactionLog.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractEmployeeAdvance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractEmployeeHistory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractEmployeeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractExtendedHistory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractFixAttendance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractFixItem.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractFixItemRate.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractJobWorkData.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractJobWorkItem.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractMachineAssign.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractMachineAttendance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractMachineMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractManPowerAllowance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractManPowerAllowanceSumOf.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractManPowerAssign.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractManPowerDeduction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractManPowerDeductionSumOf.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractManPowerItem.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractOperationalManagerHistory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractOvertime.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractOvertimeSumOf.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractRequiredType.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractRequirementDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractRequirementDetailsHistory.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractSalaryTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractSalaryTransactionDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractServiceChargeOnManPowerItem.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractServiceChargeOnSalaryHead.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractServiceItemAttendance.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleContractTermDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleEnquiryDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SaleQuotationDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesEnquiryMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesInvoiceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesInvoiceMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesInvoicePendingNotiAccEffect.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesOrderDeliveryDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesOrderDeliveryMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesOrderDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesOrderMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\SalesQuotationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TaskApprovalFormFieldNameDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TaskApprovalFormFieldNameMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TaskNotificationDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TaskNotificationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TempSaleContractBillingTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TempSaleContractSalaryTransaction.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TempSaleContractSalaryTransactionDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TempSalesInvoiceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\TempSalesInvoiceMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserDefinedSequenceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserLock.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserLog.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserLog1.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserMainMenuMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserModuleMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserNotificationCount.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserType.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\VendorContactPersonInfo.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\VendorFinanceDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\VendorReplenishmentInfo.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +787,34 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataAccessLayers\Interface\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataEntity\RARIndiaEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RARIndiaEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="DataEntity\RARIndiaEntity.edmx.diagram">
+      <DependentUpon>RARIndiaEntity.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataEntity\RARIndiaEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RARIndiaEntity.Context.cs</LastGenOutput>
+      <DependentUpon>RARIndiaEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataEntity\RARIndiaEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RARIndiaEntity.edmx</DependentUpon>
+      <LastGenOutput>RARIndiaEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

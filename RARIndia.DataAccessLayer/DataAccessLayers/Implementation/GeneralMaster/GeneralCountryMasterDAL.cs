@@ -1,31 +1,47 @@
-﻿using RARIndia.Model;
+﻿using RARIndia.DataAccessLayer.DataEntity;
+using RARIndia.Model;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RARIndia.DataAccessLayer
 {
     public class GeneralCountryMasterDAL
     {
+        RARIndiaEntities db = null;
         public GeneralCountryMasterDAL()
         {
-
+            db = new RARIndiaEntities();
         }
         public List<GeneralCountryMasterModel> GetGeneralCountryMasterData()
         {
-            List<GeneralCountryMasterModel> list = new List<GeneralCountryMasterModel>();
+            List<GeneralCountryMasterModel> countryList = new List<GeneralCountryMasterModel>();
 
-            GeneralCountryMasterModel model = new GeneralCountryMasterModel()
+            try
             {
-                ID = 1,
-                CountryName = "India",
-                CountryCode = "IN"
-            };
-            list.Add(model);
-            return list;
+                using (db)
+                {
+                    List<GeneralCountryMaster> countryDBList = db.GeneralCountryMasters?.ToList();
+                    if (countryDBList?.Count > 0)
+                    {
+                        foreach (GeneralCountryMaster country in countryDBList)
+                        {
+                            countryList.Add(new GeneralCountryMasterModel()
+                            {
+                                ID = country.ID,
+                                CountryName = country.CountryName,
+                                CountryCode = country.ContryCode
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return countryList;
         }
     }
 }
