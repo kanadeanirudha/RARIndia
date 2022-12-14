@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
 
-namespace RARIndia.Utilities
+namespace RARIndia.Utilities.Helper
 {
     public static class Translator
     {

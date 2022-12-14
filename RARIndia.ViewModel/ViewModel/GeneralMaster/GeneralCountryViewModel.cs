@@ -1,6 +1,8 @@
-﻿namespace RARIndia.ViewModel
+﻿using RARIndia.ViewModels;
+
+namespace RARIndia.ViewModel
 {
-    public class GeneralCountryMasterViewModel
+    public class GeneralCountryViewModel : BaseViewModel
     {
         public short ID { get; set; }
         public string CountryName { get; set; }

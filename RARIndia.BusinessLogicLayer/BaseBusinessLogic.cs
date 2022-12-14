@@ -1,0 +1,98 @@
+﻿using RARIndia.Model;
+using RARIndia.Utilities.Helper;
+using RARIndia.ViewModels;
+
+using System;
+using System.Collections.Specialized;
+
+namespace RARIndia.BusinessLogicLayer
+{
+    public abstract class BaseBusinessLogic
+    {
+
+        protected static NameValueCollection SortingByCreatedDate(string sortBy = RARIndiaConstant.DESCKey)
+        {
+            NameValueCollection sortlist = new NameValueCollection();
+            sortlist.Add(SortKeys.CreatedDate, sortBy);
+            return sortlist;
+        }
+
+        protected static NameValueCollection SortingByModifiedDate(string sortBy = RARIndiaConstant.DESCKey)
+        {
+            NameValueCollection sortlist = new NameValueCollection();
+            sortlist.Add(SortKeys.ModifiedDate, sortBy);
+            return sortlist;
+        }
+
+        protected static NameValueCollection SortingData(string sort, string sortBy)
+        {
+            NameValueCollection sortlist = new NameValueCollection();
+            sortlist.Add(sort, sortBy);
+            return sortlist;
+        }
+        protected void SetListPagingData(BaseViewModel listViewModel, BaseListModel listModel)
+        {
+            listViewModel.Page = Convert.ToInt32(listModel.PageIndex);
+            listViewModel.RecordPerPage = Convert.ToInt32(listModel.PageSize);
+            listViewModel.TotalPages = Convert.ToInt32(listModel.TotalPages);
+            listViewModel.TotalResults = Convert.ToInt32(listModel.TotalResults);
+        }
+
+        #region Session
+        /// <summary>
+        /// Saves an object in session.
+        /// </summary>
+        /// <typeparam name="T">The type of object being saved.</typeparam>
+        /// <param name="key">The key for the session object.</param>
+        /// <param name="value">The value of the session object.</param>
+        protected void SaveInSession<T>(string key, T value)
+        {
+            RARIndiaSessionHelper.SaveDataInSession<T>(key, value);
+        }
+
+        protected T GetFromSession<T>(string key)
+        {
+            return RARIndiaSessionHelper.GetDataFromSession<T>(key);
+        }
+
+        /// <summary>
+        /// Removes an object from session.
+        /// </summary>
+        /// <param name="key">The key of the session object.</param>
+        protected void RemoveInSession(string key)
+        {
+            RARIndiaSessionHelper.RemoveDataFromSession(key);
+        }
+        #endregion
+
+        #region Cookie
+        /// <summary>
+        /// Gets a cookie value.
+        /// </summary>
+        /// <param name="key">The key for the value being retrieved.</param>
+        /// <returns>The value for the key.</returns>
+        protected string GetFromCookie(string key)
+        {
+            string value = RARIndiaCookieHelper.GetCookieValue<string>(key);
+            return RARIndiaHelperUtility.IsNull(value) ? string.Empty : value;
+        }
+
+        /// <summary>
+        /// Saves a cookie value.
+        /// </summary>
+        /// <param name="key">The key for the cookie value.</param>
+        /// <param name="value">The cookie value.</param>
+        protected void SaveInCookie(string key, string value) =>
+            RARIndiaCookieHelper.SetCookie(key, value, RARIndiaConstant.MinutesInAYear);
+
+        ///// <summary>
+        ///// Removes a cookie value.
+        ///// </summary>
+        ///// <param name="key">The key for the cookie value being removed.</param>
+        //protected void RemoveCookie(string key) =>
+        //     RARIndiaCookieHelper.RemoveCookie(key);
+
+        #endregion
+    }
+}
+

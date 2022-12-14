@@ -1,9 +1,6 @@
 ﻿using RARIndia.BusinessLogicLayer;
-using RARIndia.Helper;
-using RARIndia.Model;
 using RARIndia.ViewModel;
 
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace RARIndia.Controllers
@@ -19,8 +16,8 @@ namespace RARIndia.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            GeneralCountryMasterListViewModel list = new GeneralCountryMasterListViewModel();
-            list.GeneralCountryMasterList = generalCountryMasterBA.GetGeneralCountryMasterData();
+            GeneralCountryListViewModel list = new GeneralCountryListViewModel();
+            list = generalCountryMasterBA.GetCountryList(null,null,null,1,10);
             return View("~/Views/GeneralMaster/GeneralCountryMaster/List.cshtml", list);
         }
     }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseBusinessLogic.cs" />
     <Compile Include="GeneralMaster\GeneralCountryMasterBA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +54,17 @@
       <Project>{7915cb32-11cb-4fb8-a99b-ba8559e1407c}</Project>
       <Name>RARIndia.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RARIndia.Utilities\RARIndia.Utilities.csproj">
+      <Project>{a8672fd6-1531-4a8d-a295-833e8e1c7d35}</Project>
+      <Name>RARIndia.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RARIndia.ViewModel\RARIndia.ViewModel.csproj">
+      <Project>{175f4d1e-0f80-439a-bed5-723951b0b477}</Project>
+      <Name>RARIndia.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

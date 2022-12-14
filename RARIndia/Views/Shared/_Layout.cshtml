@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using RARIndia.Utilities.Helper;
+@{
+    string title = System.Convert.ToString(RARIndiaSetting.ProjectTitle);
+}
+<!DOCTYPE html>
 <html class="loaded" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 <head>
@@ -9,54 +13,53 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="PIXINVENT">
-    <title>RAR India | @ViewBag.Title</title>
+    <title>@title | @ViewBag.Title</title>
     @*<link rel="apple-touch-icon" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/app-assets/images/ico/apple-icon-120.png">*@
     @*<link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/app-assets/images/ico/favicon.ico">*@
-    <link href="./AdminTheme/css" rel="stylesheet">
+    <link href="../AdminTheme/css" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="./Content/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="./Content/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/datatables.min.css">
     <!-- END: Vendor CSS-->
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="./Content/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./Content/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css" href="./Content/colors.min.css">
-    <link rel="stylesheet" type="text/css" href="./Content/components.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/components.min.css">
     <!-- END: Theme CSS-->
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="./Content/horizontal-menu.min.css">
-    <link rel="stylesheet" type="text/css" href="./Content/palette-gradient.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/horizontal-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/palette-gradient.min.css">
     <!-- END: Page CSS-->
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="./Content/style.css">
+    <link rel="stylesheet" type="text/css" href="../Content/style.css">
     <!-- END: Custom CSS-->
-
     @*<style type="text/css">
-        .jqstooltip {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            visibility: hidden;
-            background: rgb(0, 0, 0) transparent;
-            background-color: rgba(0,0,0,0.6);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
-            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
-            color: white;
-            font: 10px arial, san serif;
-            text-align: left;
-            white-space: nowrap;
-            padding: 5px;
-            border: 1px solid white;
-            z-index: 10000;
-        }
+            .jqstooltip {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                visibility: hidden;
+                background: rgb(0, 0, 0) transparent;
+                background-color: rgba(0,0,0,0.6);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+                color: white;
+                font: 10px arial, san serif;
+                text-align: left;
+                white-space: nowrap;
+                padding: 5px;
+                border: 1px solid white;
+                z-index: 10000;
+            }
 
-        .jqsfield {
-            color: white;
-            font: 10px arial, san serif;
-            text-align: left;
-        }
-    </style>*@
+            .jqsfield {
+                color: white;
+                font: 10px arial, san serif;
+                text-align: left;
+            }
+        </style>*@
 </head>
 <!-- END: Head-->
 <!-- BEGIN: Body-->
@@ -76,7 +79,7 @@
                     <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
                         <a class="navbar-brand" href="#">
-                            <img class="brand-logo" alt="modern admin logo" src="./Images/logo.png">
+                            <img class="brand-logo" alt="modern admin logo" src="../Images/logo.png">
                             <h3 class="brand-text">Modern</h3>
                         </a>
                     </li>
@@ -243,7 +246,7 @@
                                 <li class="scrollable-container media-list w-100 ps">
                                     <a href="javascript:void(0)">
                                         <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="./Images/avatar-s-19.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="../Images/avatar-s-19.png" alt="avatar"><i></i></span></div>
                                             <div class="media-body">
                                                 <h6 class="media-heading">Margaret Govan</h6>
                                                 <p class="notification-text font-small-3 text-muted">I like your portfolio, let's start.</p><small>
@@ -253,7 +256,7 @@
                                         </div>
                                     </a><a href="javascript:void(0)">
                                         <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="./Images/avatar-s-2.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="../Images/avatar-s-2.png" alt="avatar"><i></i></span></div>
                                             <div class="media-body">
                                                 <h6 class="media-heading">Bret Lezama</h6>
                                                 <p class="notification-text font-small-3 text-muted">I have seen your work, there is</p><small>
@@ -263,7 +266,7 @@
                                         </div>
                                     </a><a href="javascript:void(0)">
                                         <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="./Images/avatar-s-3.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="../Images/avatar-s-3.png" alt="avatar"><i></i></span></div>
                                             <div class="media-body">
                                                 <h6 class="media-heading">Carie Berra</h6>
                                                 <p class="notification-text font-small-3 text-muted">Can we have call in this week ?</p><small>
@@ -273,7 +276,7 @@
                                         </div>
                                     </a><a href="javascript:void(0)">
                                         <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="./Images/avatar-s-6.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="../Images/avatar-s-6.png" alt="avatar"><i></i></span></div>
                                             <div class="media-body">
                                                 <h6 class="media-heading">Eric Alsobrook</h6>
                                                 <p class="notification-text font-small-3 text-muted">We have project party this saturday.</p><small>
@@ -287,7 +290,7 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">John Doe</span><span class="avatar avatar-online"><img src="./Images/avatar-s-19.png" alt="avatar"><i></i></span></a>
+                            <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">John Doe</span><span class="avatar avatar-online"><img src="../Images/avatar-s-19.png" alt="avatar"><i></i></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/html/ltr/horizontal-menu-template-nav/user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/html/ltr/horizontal-menu-template-nav/app-kanban.html"><i class="ft-clipboard"></i> Todo</a><a class="dropdown-item" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/html/ltr/horizontal-menu-template-nav/user-cards.html"><i class="ft-check-square"></i> Task</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/html/ltr/horizontal-menu-template-nav/login-with-bg-image.html"><i class="ft-power"></i> Logout</a>
@@ -1476,33 +1479,33 @@
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light navbar-shadow">
-        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright © @System.DateTime.Now.Year <a class="text-bold-800 grey darken-2" href="#" target="_blank">PIXINVENT</a></span><span class="float-md-right d-none d-lg-block">Hand-crafted &amp; Made with<i class="ft-heart pink"></i><span id="scroll-top" style="display: none;"></span></span></p>
+        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright © @System.DateTime.Now.Year <a class="text-bold-800 grey darken-2" href="#" target="_blank">@title</a></span><span class="float-md-right d-none d-lg-block">Developed By RAR India<span id="scroll-top" style="display: none;"></span></span></p>
     </footer>
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->
-    <script src="./Scripts/Theme/vendors.min.js"></script>
+    <script src="../Scripts/Theme/vendors.min.js"></script>
     <!-- BEGIN Vendor JS-->
     <!-- BEGIN: Page Vendor JS-->
-    <script src="./Scripts/Theme/jquery.sticky.js"></script>
-    <script src="./Scripts/Theme/jquery.sparkline.min.js"></script>
-    <script src="./Scripts/Theme/datatables.min.js"></script>
-    <script src="./Scripts/Theme/dataTables.buttons.min.js"></script>
-    <script src="./Scripts/Theme/buttons.flash.min.js"></script>
-    <script src="./Scripts/Theme/jszip.min.js"></script>
-    <script src="./Scripts/Theme/pdfmake.min.js"></script>
-    <script src="./Scripts/Theme/vfs_fonts.js"></script>
-    <script src="./Scripts/Theme/buttons.html5.min.js"></script>
-    <script src="./Scripts/Theme/buttons.print.min.js"></script>
+    <script src="../Scripts/Theme/jquery.sticky.js"></script>
+    <script src="../Scripts/Theme/jquery.sparkline.min.js"></script>
+    <script src="../Scripts/Theme/datatables.min.js"></script>
+    <script src="../Scripts/Theme/dataTables.buttons.min.js"></script>
+    <script src="../Scripts/Theme/buttons.flash.min.js"></script>
+    <script src="../Scripts/Theme/jszip.min.js"></script>
+    <script src="../Scripts/Theme/pdfmake.min.js"></script>
+    <script src="../Scripts/Theme/vfs_fonts.js"></script>
+    <script src="../Scripts/Theme/buttons.html5.min.js"></script>
+    <script src="../Scripts/Theme/buttons.print.min.js"></script>
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Theme JS-->
-    <script src="./Scripts/Theme/app-menu.min.js"></script>
-    <script src="./Scripts/Theme/app.min.js"></script>
-    <script src="./Scripts/Theme/customizer.min.js"></script>
-    <script src="./Scripts/Theme/footer.min.js"></script>
+    <script src="../Scripts/Theme/app-menu.min.js"></script>
+    <script src="../Scripts/Theme/app.min.js"></script>
+    <script src="../Scripts/Theme/customizer.min.js"></script>
+    <script src="../Scripts/Theme/footer.min.js"></script>
     <!-- END: Theme JS-->
     <!-- BEGIN: Page JS-->
-    <script src="./Scripts/Theme/breadcrumbs-with-stats.min.js"></script>
-    <script src="./Scripts/Theme/datatable-advanced.min.js"></script>
+    <script src="../Scripts/Theme/breadcrumbs-with-stats.min.js"></script>
+    <script src="../Scripts/Theme/datatable-advanced.min.js"></script>
     <!-- END: Page JS-->
 
 </body><!-- END: Body-->

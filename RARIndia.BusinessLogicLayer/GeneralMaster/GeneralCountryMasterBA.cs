@@ -1,26 +1,31 @@
 ﻿using RARIndia.DataAccessLayer;
 using RARIndia.Model;
+using RARIndia.Utilities.Helper;
+using RARIndia.ViewModel;
 
-using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RARIndia.BusinessLogicLayer
 {
-    public class GeneralCountryMasterBA
+    public class GeneralCountryMasterBA : BaseBusinessLogic
     {
+        GeneralCountryMasterDAL generalCountryMasterDAL = null;
         public GeneralCountryMasterBA()
         {
-
+            generalCountryMasterDAL = new GeneralCountryMasterDAL();
         }
 
-        public List<GeneralCountryMasterModel> GetGeneralCountryMasterData()
+        public GeneralCountryListViewModel GetCountryList(FilterCollection filters, string sort, string sortBy, int pageIndex, int pageSize)
         {
-            GeneralCountryMasterDAL generalCountryMasterDAL = new GeneralCountryMasterDAL();
-            return generalCountryMasterDAL.GetGeneralCountryMasterData();
-        }
+            NameValueCollection sortlist = SortingData(sort, sortBy);
 
+            GeneralCountryListModel countryList = generalCountryMasterDAL.GetCountryList(filters, sortlist, pageIndex, pageSize);
+            GeneralCountryListViewModel listViewModel = new GeneralCountryListViewModel { GeneralCountryList = countryList?.GeneralCountryList?.ToViewModel<GeneralCountryViewModel>().ToList() };
+            SetListPagingData(listViewModel, countryList);
+
+            return countryList?.GeneralCountryList?.Count > 0 ? listViewModel : new GeneralCountryListViewModel() { GeneralCountryList = new List<GeneralCountryViewModel>() };
+        }
     }
 }

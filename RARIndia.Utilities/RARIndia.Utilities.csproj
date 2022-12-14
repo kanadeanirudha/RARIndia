@@ -34,8 +34,12 @@
     <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,12 +48,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\RARIndiaConstant.cs" />
+    <Compile Include="Filters\FilterCollection.cs" />
+    <Compile Include="Filters\FilterDataCollection.cs" />
+    <Compile Include="Filters\FilterDataMap.cs" />
+    <Compile Include="Filters\FilterDataTuple.cs" />
+    <Compile Include="Filters\FilterTuple.cs" />
+    <Compile Include="Helper\RARIndiaCookieHelper.cs" />
+    <Compile Include="Helper\RARIndiaHelperUtility.cs" />
+    <Compile Include="Helper\RARIndiaSetting.cs" />
+    <Compile Include="Constants\RARIndiaConstant.cs" />
+    <Compile Include="Helper\RARIndiaSessionHelper.cs" />
     <Compile Include="Helper\Translator.cs" />
+    <Compile Include="Helper\TranslatorExtension.cs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Constants\SortKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RARIndia.ExceptionManager\RARIndia.ExceptionManager.csproj">
+      <Project>{1C75BBB9-8DCB-43CA-A17C-D2543E3AA367}</Project>
+      <Name>RARIndia.ExceptionManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RARIndia.Model\RARIndia.Model.csproj">
+      <Project>{7915cb32-11cb-4fb8-a99b-ba8559e1407c}</Project>
+      <Name>RARIndia.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

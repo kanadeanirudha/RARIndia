@@ -9,7 +9,8 @@ namespace RARIndia
     {
         public static void Execute()
         {
-            Mapper.CreateMap<GeneralCountryMasterModel, GeneralCountryMasterViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralCountryModel, GeneralCountryViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralCountryListModel, GeneralCountryListViewModel>().ReverseMap();
         }
     }
 }

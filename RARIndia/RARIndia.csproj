@@ -134,16 +134,24 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Login\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\TranslatorExtension.cs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\GeneralMaster\GeneralCountryMasterListViewModel.cs" />
-    <Compile Include="ViewModel\GeneralMaster\GeneralCountryMasterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\flat\_all.css" />
+    <Content Include="Content\futurico\futurico.css" />
+    <Content Include="Content\icheck.css" />
+    <Content Include="Content\line\_all.css" />
+    <Content Include="Content\login-register.min.css" />
+    <Content Include="Content\minimal\_all.css" />
+    <Content Include="Content\polaris\polaris.css" />
+    <Content Include="Content\polaris\_all.css" />
+    <Content Include="Content\square\blue.png" />
+    <Content Include="Content\square\_all.css" />
     <Content Include="Images\top.png" />
     <Content Include="Scripts\Theme\app-menu.min.js" />
     <Content Include="Scripts\Theme\app.min.js" />
@@ -166,6 +174,9 @@
     <Content Include="Scripts\Theme\datatables.min.js" />
     <Content Include="Scripts\Theme\footer.min.js" />
     <Content Include="Content\horizontal-menu.min.css" />
+    <Content Include="Scripts\Theme\form-login-register.min.js" />
+    <Content Include="Scripts\Theme\icheck.min.js" />
+    <Content Include="Scripts\Theme\jqBootstrapValidation.js" />
     <Content Include="Scripts\Theme\jquery.sparkline.min.js" />
     <Content Include="Scripts\Theme\jquery.sticky.js" />
     <Content Include="Scripts\Theme\jszip.min.js" />
@@ -204,11 +215,13 @@
     <Content Include="Views\Shared\Datatable\_DatatableShowResult.cshtml" />
     <Content Include="Views\Shared\Datatable\_DatatableSearchData.cshtml" />
     <Content Include="Views\Shared\Datatable\_DatatablePagination.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Helper\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -225,6 +238,10 @@
     <ProjectReference Include="..\RARIndia.Utilities\RARIndia.Utilities.csproj">
       <Project>{A8672FD6-1531-4A8D-A295-833E8E1C7D35}</Project>
       <Name>RARIndia.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RARIndia.ViewModel\RARIndia.ViewModel.csproj">
+      <Project>{175f4d1e-0f80-439a-bed5-723951b0b477}</Project>
+      <Name>RARIndia.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

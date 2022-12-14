@@ -15,3 +15,8 @@
 /RARIndia.Model/obj
 /RARIndia.Utilities/bin
 /RARIndia.Utilities/obj
+/RARIndia.ExceptionManager/bin
+/RARIndia.ExceptionManager/obj
+/RARIndia.ViewModel/bin
+/RARIndia.ViewModel/obj
+/RARIndia.Utilities/RARIndia.Utilities.csproj.user
