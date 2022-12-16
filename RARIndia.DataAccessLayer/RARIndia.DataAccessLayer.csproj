@@ -809,6 +809,10 @@
       <Project>{7915cb32-11cb-4fb8-a99b-ba8559e1407c}</Project>
       <Name>RARIndia.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RARIndia.Resources\RARIndia.Resources.csproj">
+      <Project>{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}</Project>
+      <Name>RARIndia.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RARIndia.Utilities\RARIndia.Utilities.csproj">
       <Project>{A8672FD6-1531-4A8D-A295-833E8E1C7D35}</Project>
       <Name>RARIndia.Utilities</Name>

@@ -62,5 +62,13 @@ namespace RARIndia.Utilities.Helper
             }
         }
 
+
+        public static string NotificationMessagesIsFadeOut
+        {
+            get
+            {
+                return Convert.ToString(settings["NotificationMessagesIsFadeOut"]);
+            }
+        }
     }
 }

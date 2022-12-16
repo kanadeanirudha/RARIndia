@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RARIndia.ExceptionManager",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RARIndia.ViewModel", "RARIndia.ViewModel\RARIndia.ViewModel.csproj", "{175F4D1E-0F80-439A-BED5-723951B0B477}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RARIndia.Resources", "RARIndia.Resources\RARIndia.Resources.csproj", "{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{175F4D1E-0F80-439A-BED5-723951B0B477}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{175F4D1E-0F80-439A-BED5-723951B0B477}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{175F4D1E-0F80-439A-BED5-723951B0B477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

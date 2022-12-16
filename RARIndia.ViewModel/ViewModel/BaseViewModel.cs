@@ -13,5 +13,8 @@
         public int TotalPages { get; set; }
         public string SearchBy { get; set; } = string.Empty;
 
+        public bool HasError { get; set; }
+        public string ErrorMessage { get; set; }
+
     }
 }

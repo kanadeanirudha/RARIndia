@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorCodes.cs" />
     <Compile Include="Model\DebugInformationModel.cs" />
+    <Compile Include="RARIndiaComponents.cs" />
+    <Compile Include="RARIndiaException.cs" />
     <Compile Include="RARIndiaFileLogging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7915CB32-11CB-4FB8-A99B-BA8559E1407C}</ProjectGuid>
+    <ProjectGuid>{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RARIndia.Model</RootNamespace>
-    <AssemblyName>RARIndia.Model</AssemblyName>
+    <RootNamespace>RARIndia.Resources</RootNamespace>
+    <AssemblyName>RARIndia.Resources</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,15 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModel\RARIndiaEntityBaseModel.cs" />
-    <Compile Include="DataModel\View_ReturnBoolean.cs" />
-    <Compile Include="Model\BaseListModel.cs" />
-    <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\GeneralMaster\GeneralCountryMaster\GeneralCountryListModel.cs" />
-    <Compile Include="Model\GeneralMaster\GeneralCountryMaster\GeneralCountryModel.cs" />
-    <Compile Include="Model\MessageBoxModel.cs" />
-    <Compile Include="Model\ParameterModel.cs" />
+    <Compile Include="GeneralResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeneralResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GeneralResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GeneralResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

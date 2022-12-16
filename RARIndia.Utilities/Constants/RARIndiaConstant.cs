@@ -10,5 +10,7 @@
 
         public const string DESCKey = "DESC";
         public const string ASCKey = "ASC";
+
+        public const string Notifications = "Notifications";
     }
 }

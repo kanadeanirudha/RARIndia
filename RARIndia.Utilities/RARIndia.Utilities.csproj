@@ -54,6 +54,7 @@
     <Compile Include="Filters\FilterDataTuple.cs" />
     <Compile Include="Filters\FilterTuple.cs" />
     <Compile Include="Helper\RARIndiaCookieHelper.cs" />
+    <Compile Include="Helper\RARIndiaEntityEnum.cs" />
     <Compile Include="Helper\RARIndiaHelperUtility.cs" />
     <Compile Include="Helper\RARIndiaSetting.cs" />
     <Compile Include="Constants\RARIndiaConstant.cs" />
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\RARIndia.Model\RARIndia.Model.csproj">
       <Project>{7915cb32-11cb-4fb8-a99b-ba8559e1407c}</Project>
       <Name>RARIndia.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RARIndia.ViewModel\RARIndia.ViewModel.csproj">
+      <Project>{175F4D1E-0F80-439A-BED5-723951B0B477}</Project>
+      <Name>RARIndia.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

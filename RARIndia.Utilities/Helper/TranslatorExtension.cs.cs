@@ -1,5 +1,6 @@
 ﻿using RARIndia.Model;
 using RARIndia.Utilities.Filters;
+using RARIndia.ViewModels;
 
 using System.Collections.Generic;
 
@@ -7,52 +8,56 @@ namespace RARIndia.Utilities.Helper
 {
     public static class TranslatorExtension
     {
+        #region Entity
         /// <summary>
         /// Translate Model to Entity
         /// </summary>
         /// <typeparam name="TEntity">Translate Model to TEntity</typeparam>
         /// <param name="modelBase">BaseModel is extended class</param>
         /// <returns></returns>
-        public static TEntity ToEntity<TEntity>(this BaseModel modelBase)
+        public static TEntity FromModelToEntity<TEntity>(this BaseModel modelBase)
             => Translator.Translate<TEntity>(modelBase);
 
         /// <summary>
-        /// Translate Model to Entity
+        /// Transalate Entity to Model
         /// </summary>
-        /// <typeparam name="TEntity">TEntity is a destination model, having contraint TEntity is a RARIndiaEntityBaseModel</typeparam>
-        /// <typeparam name="TModel">TModel is source model</typeparam>
-        /// <param name="Model">model is extended class</param>
+        /// <typeparam name = "TModel" ></ typeparam >
+        /// < param name="Entity"></param>
         /// <returns></returns>
-        public static TEntity ToEntity<TEntity, TModel>(this TModel model) where TEntity : RARIndiaEntityBaseModel
-            => Translator.Translate<TEntity, TModel>(model);
+        public static TModel FromEntityToModel<TModel>(this RARIndiaEntityBaseModel entity)
+            => Translator.Translate<TModel>(entity);
 
-        /// <summary>
-        /// Translate Model collection to Model Entity
-        /// </summary>
-        /// <typeparam name="TEntity">TEntity is a destination model</typeparam>
-        /// <param name="collection">collection is extended BaseModel class list</param>
-        /// <returns></returns>
-        public static IEnumerable<TEntity> ToEntity<TEntity>(this IEnumerable<BaseModel> collection)
-            => Translator.Translate<TEntity>(collection);
+        #endregion
+        ///// <summary>
+        ///// Translate Model to Entity
+        ///// </summary>
+        ///// <typeparam name="TEntity">TEntity is a destination model, having contraint TEntity is a RARIndiaEntityBaseModel</typeparam>
+        ///// <typeparam name="TModel">TModel is source model</typeparam>
+        ///// <param name="Model">model is extended class</param>
+        ///// <returns></returns>
+        //public static TEntity ToEntity<TEntity, TModel>(this TModel model) where TEntity : RARIndiaEntityBaseModel
+        //    => Translator.Translate<TEntity, TModel>(model);
 
-        /// <summary>
-        /// Translate Model collection to Model Entity
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="TModel"></typeparam>
-        /// <param name="collection"></param>
-        /// <returns></returns>
-        public static IEnumerable<TEntity> ToEntity<TEntity, TModel>(this IEnumerable<TModel> collection)
-            => Translator.Translate<TEntity, TModel>(collection);
+        ///// <summary>
+        ///// Translate Model collection to Model Entity
+        ///// </summary>
+        ///// <typeparam name="TEntity">TEntity is a destination model</typeparam>
+        ///// <param name="collection">collection is extended BaseModel class list</param>
+        ///// <returns></returns>
+        //public static IEnumerable<TEntity> ToEntity<TEntity>(this IEnumerable<BaseModel> collection)
+        //    => Translator.Translate<TEntity>(collection);
 
-    /// <summary>
-    /// Transalate Entity to Model
-    /// </summary>
-    /// <typeparam name = "TModel" ></ typeparam >
-    /// < param name="Entity"></param>
-    /// <returns></returns>
-    public static TModel ToModel<TModel>(this RARIndiaEntityBaseModel entity)
-        => Translator.Translate<TModel>(entity);
+        ///// <summary>
+        ///// Translate Model collection to Model Entity
+        ///// </summary>
+        ///// <typeparam name="TEntity"></typeparam>
+        ///// <typeparam name="TModel"></typeparam>
+        ///// <param name="collection"></param>
+        ///// <returns></returns>
+        //public static IEnumerable<TEntity> ToEntity<TEntity, TModel>(this IEnumerable<TModel> collection)
+        //    => Translator.Translate<TEntity, TModel>(collection);       
+
+
 
         /// <summary>
         /// Transalate Entity to Model
@@ -83,6 +88,14 @@ namespace RARIndia.Utilities.Helper
         public static IEnumerable<TModel> ToModel<TModel, TEntity>(this IEnumerable<TEntity> entityCollection)
             => Translator.Translate<TModel, TEntity>(entityCollection);
 
+        /// <summary>
+        /// Transalate View Model to Model
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        public static TModel ToModel<TModel>(this BaseViewModel viewModel)
+            => Translator.Translate<TModel>(viewModel);
         /// <summary>
         /// Translate Model to ViewModel
         /// </summary>

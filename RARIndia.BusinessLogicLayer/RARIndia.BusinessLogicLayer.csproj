@@ -50,9 +50,17 @@
       <Project>{fd54c9f3-3cb4-4a4c-aae1-df37aa367dd2}</Project>
       <Name>RARIndia.DataAccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RARIndia.ExceptionManager\RARIndia.ExceptionManager.csproj">
+      <Project>{1C75BBB9-8DCB-43CA-A17C-D2543E3AA367}</Project>
+      <Name>RARIndia.ExceptionManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RARIndia.Model\RARIndia.Model.csproj">
       <Project>{7915cb32-11cb-4fb8-a99b-ba8559e1407c}</Project>
       <Name>RARIndia.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RARIndia.Resources\RARIndia.Resources.csproj">
+      <Project>{C12B04CC-B8CB-4071-B0BD-914F6818B7DD}</Project>
+      <Name>RARIndia.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\RARIndia.Utilities\RARIndia.Utilities.csproj">
       <Project>{a8672fd6-1531-4a8d-a295-833e8e1c7d35}</Project>

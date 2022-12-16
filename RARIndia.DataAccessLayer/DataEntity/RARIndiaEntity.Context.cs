@@ -13,10 +13,10 @@ namespace RARIndia.DataAccessLayer.DataEntity
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RARIndiaEntities : DbContext
+    public partial class Ver1Entities : DbContext
     {
-        public RARIndiaEntities()
-            : base("name=RARIndiaEntities")
+        public Ver1Entities()
+            : base("name=Ver1Entities")
         {
         }
     

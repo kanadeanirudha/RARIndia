@@ -93,6 +93,19 @@ namespace RARIndia.BusinessLogicLayer
         //     RARIndiaCookieHelper.RemoveCookie(key);
 
         #endregion
+
+        /// <summary>
+        /// Get BaseViewModel with HasError and ErrorMessage set.
+        /// </summary>
+        /// <param name="viewModel">View model to set.</param>
+        /// <param name="errorMessage">Error message to set.</param>
+        /// <returns>Returns BaseViewModel with HasError and ErrorMessage set.</returns>
+        protected BaseViewModel GetViewModelWithErrorMessage(BaseViewModel viewModel, string errorMessage)
+        {
+            viewModel.HasError = true;
+            viewModel.ErrorMessage = errorMessage;
+            return viewModel;
+        }
     }
 }
 
