@@ -52,7 +52,10 @@
                                                         <tr>
                                                             <td>@item.CountryName</td>
                                                             <td>@item.CountryCode</td>
-                                                            <td><a href="../GeneralCountryMaster/Edit/@item.ID"><i class="ft-edit-1"></i></a></td>
+                                                            <td style="text-align:center">
+                                                                <a href="../GeneralCountryMaster/Edit?countryId=@item.CountryId" title="Update"><i class="ft-edit-1"></i></a>  |
+                                                                <a href="../GeneralCountryMaster/Delete?countryIds=@item.CountryId" title="Delete"><i class="ft-delete"></i></a>
+                                                            </td>
                                                         </tr>
                                                     }
                                                 </tbody>

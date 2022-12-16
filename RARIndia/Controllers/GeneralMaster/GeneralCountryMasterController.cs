@@ -58,27 +58,33 @@ namespace RARIndia.Controllers
         {
             if (ModelState.IsValid)
             {
-                SetNotificationMessage(_generalCountryMasterBA.UpdateCountry(generalCountryViewModel).HasError
+                bool status = _generalCountryMasterBA.UpdateCountry(generalCountryViewModel).HasError;
+                SetNotificationMessage(status
                 ? GetErrorNotificationMessage(GeneralResources.UpdateErrorMessage)
                 : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
 
-                return RedirectToAction<GeneralCountryMasterController>(x => x.Edit(generalCountryViewModel.ID));
+                if (!status)
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List());
             }
             return View(createEdit, generalCountryViewModel);
         }
 
         //Delete country.
-        public virtual JsonResult Delete(string countryIds)
+        public virtual ActionResult Delete(string countryIds)
         {
             string message = string.Empty;
             bool status = false;
             if (!string.IsNullOrEmpty(countryIds))
             {
                 status = _generalCountryMasterBA.DeleteCountry(countryIds, out message);
-
-                return Json(new { status = status, message = status ? GeneralResources.DeleteMessage : message }, JsonRequestBehavior.AllowGet);
+                SetNotificationMessage(!status
+                ? GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage)
+                : GetSuccessNotificationMessage(GeneralResources.DeleteMessage));
+                return RedirectToAction<GeneralCountryMasterController>(x => x.List());
             }
-            return Json(new { status = false, message = GeneralResources.DeleteErrorMessage }, JsonRequestBehavior.AllowGet);
+
+            SetNotificationMessage(GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage));
+            return RedirectToAction<GeneralCountryMasterController>(x => x.List());
         }
 
     }

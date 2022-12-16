@@ -1,0 +1,48 @@
+﻿@using RARIndia.Model;
+@model string
+@{
+    Layout = null;
+}
+@if (!string.IsNullOrEmpty(Model))
+{
+    string notificationStyle = "";
+    MessageBoxModel msgObj = string.IsNullOrEmpty(Model) ? null : Newtonsoft.Json.JsonConvert.DeserializeObject<MessageBoxModel>(Model);
+    switch (msgObj.Type)
+    {
+        case "success":
+            notificationStyle = "bg-success";
+            break;
+        case "error":
+            notificationStyle = "bg-danger";
+            break;
+        case "info":
+            notificationStyle = "bg-info ";
+            break;
+        case "warning":
+            notificationStyle = "bg-warning  ";
+            break;
+    }
+    <div class="alert @notificationStyle alert-dismissible mb-2" id="notificationDivId" style="text-align: center">
+        <button type="button" class="close" aria-label="Close" id="notificationCloseId">
+            <span>×</span>
+        </button>
+        @msgObj.Message
+    </div>
+    <script>
+        $(document).ready(function () {
+            debugger;
+            if (@msgObj.IsFadeOut == true) {
+                debugger;
+                setTimeout(function () {
+                    $("#notificationDivId");
+                }, @msgObj.FadeOutMilliSeconds);
+            }
+            $("#notificationCloseId").click(function () {
+                debugger;
+                $("#notificationDivId").fadeOut(@msgObj.FadeOutMilliSeconds);
+            });
+
+            $("#notificationDivId").fadeOut(@msgObj.FadeOutMilliSeconds);
+        });
+    </script>
+}

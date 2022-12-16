@@ -40,7 +40,6 @@ namespace RARIndia.DataAccessLayer
             return listModel;
         }
 
-
         //Create country.
         public GeneralCountryModel CreateCountry(GeneralCountryModel generalCountryModel)
         {

@@ -1,6 +1,9 @@
 ﻿@using RARIndia.Utilities.Helper;
+@using RARIndia.Model;
 @{
     string title = System.Convert.ToString(RARIndiaSetting.ProjectTitle);
+    string messageData = Convert.ToString(TempData["Notifications"]);
+    TempData.Remove("Notifications");
 }
 <!DOCTYPE html>
 <html class="loaded" lang="en" data-textdirection="ltr">
@@ -1464,11 +1467,11 @@
             </div>
         </div>
     </div>
-
     <!-- END: Main Menu-->
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
+        @Html.Partial("~/Views/Shared/_NotificationMessage.cshtml", @messageData)
         <div class="content-wrapper">
             @RenderBody()
         </div>

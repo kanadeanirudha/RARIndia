@@ -18,6 +18,7 @@
     {
         error,
         success,
-        info
+        info,
+        warning
     }
 }
