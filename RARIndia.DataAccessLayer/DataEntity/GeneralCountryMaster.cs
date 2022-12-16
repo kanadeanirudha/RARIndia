@@ -9,10 +9,12 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
+    using RARIndia.Model;
+
     using System;
     using System.Collections.Generic;
     
-    public partial class GeneralCountryMaster
+    public partial class GeneralCountryMaster : RARIndiaEntityBaseModel
     {
         public short ID { get; set; }
         public string CountryName { get; set; }

@@ -38,7 +38,7 @@ namespace RARIndia.Controllers
                 if (!generalCountryViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
-                    return RedirectToAction<GeneralCountryMasterController>(x => x.Edit(generalCountryViewModel.ID));
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List());
                 }
             }
             SetNotificationMessage(GetErrorNotificationMessage(generalCountryViewModel.ErrorMessage));
