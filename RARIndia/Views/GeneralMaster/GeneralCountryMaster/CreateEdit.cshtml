@@ -26,7 +26,6 @@
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
-
                             <li>
                                 @if (Model.CountryId > 0)
                                 {
@@ -34,11 +33,11 @@
                                 }
                                 else
                                 {
-                                    <a href="../@controllerName/Create"><i class="ft-rotate-cw"></i></a>
+                                    <a href="../@controllerName/Create" title="Reset"><i class="ft-rotate-cw"></i></a>
                                 }
                             </li>
-                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                            <li><a href="../@controllerName/List"><i class="ft-x"></i></a></li>
+                            <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
+                            <li><a href="../@controllerName/List" title="Cancle"><i class="ft-x"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +46,7 @@
                         @*<div class="card-text">
                                 <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
                             </div>*@
-                        @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new {@class = "form form-horizontal" }))
+                        @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
                         {
                             @Html.HiddenFor(m => m.CountryId);
                             <div class="form-body">
@@ -58,14 +57,16 @@
                                             @Html.LabelFor(x => x.CountryName, new { @class = "col-md-3 label-control" })
                                             <div class="col-md-9 mx-auto">
                                                 @Html.TextBoxFor(x => x.CountryName, new { @class = "form-control border-primary", @placeholder = "Country Name" })
+                                                @Html.ValidationMessageFor(x => x.CountryName, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.CountryCode, new { @class = "col-md-3 label-control" })
+                                            @Html.LabelFor(x => x.CountryCode, new { @class = "col-md-3 label-control required" })
                                             <div class="col-md-9 mx-auto">
                                                 @Html.TextBoxFor(x => x.CountryCode, new { @class = "form-control border-primary", @placeholder = "Country Code" })
+                                                @Html.ValidationMessageFor(x => x.CountryCode, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
@@ -84,6 +85,7 @@
                                             @Html.LabelFor(x => x.SeqNo, new { @class = "col-md-3 label-control" })
                                             <div class="col-md-9 mx-auto">
                                                 @Html.TextBoxFor(x => x.SeqNo, new { @class = "form-control border-primary", @placeholder = "Sequence Number" })
+                                                @Html.ValidationMessageFor(x => x.SeqNo, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>

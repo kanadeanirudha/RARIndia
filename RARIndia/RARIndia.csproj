@@ -162,6 +162,7 @@
   <ItemGroup>
     <Content Include="Content\custom.css" />
     <Content Include="Content\flat\_all.css" />
+    <Content Include="Content\form-validation.css" />
     <Content Include="Content\futurico\futurico.css" />
     <Content Include="Content\icheck.css" />
     <Content Include="Content\line\_all.css" />
@@ -194,6 +195,7 @@
     <Content Include="Scripts\Theme\footer.min.js" />
     <Content Include="Content\horizontal-menu.min.css" />
     <Content Include="Scripts\Theme\form-login-register.min.js" />
+    <Content Include="Scripts\Theme\form-validation.js" />
     <Content Include="Scripts\Theme\icheck.min.js" />
     <Content Include="Scripts\Theme\jqBootstrapValidation.js" />
     <Content Include="Scripts\Theme\jquery.sparkline.min.js" />
