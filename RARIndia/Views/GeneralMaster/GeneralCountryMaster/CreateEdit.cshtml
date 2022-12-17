@@ -47,7 +47,7 @@
                         @*<div class="card-text">
                                 <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
                             </div>*@
-                        @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @id = "frmEditTax", @class = "form form-horizontal" }))
+                        @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new {@class = "form form-horizontal" }))
                         {
                             @Html.HiddenFor(m => m.CountryId);
                             <div class="form-body">
@@ -92,7 +92,7 @@
 
                             <div class="form-actions text-right">
                                 <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i> Save</button>
-                                <a href="../@controllerName/List" class="btn btn-warning mr-1"><i class="ft-x"></i>Cancel</a>
+                                <a href="../@controllerName/List" class="btn btn-secondary mr-1"><i class="ft-x"></i>Cancel</a>
                             </div>
                         }
                     </div>

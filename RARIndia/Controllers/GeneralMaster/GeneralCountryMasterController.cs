@@ -1,5 +1,6 @@
 ﻿using RARIndia.BusinessLogicLayer;
 using RARIndia.Resources;
+using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
 using System.Web.Mvc;
@@ -16,10 +17,10 @@ namespace RARIndia.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List(string sortByColumn = null, string sortBy = null)
         {
             GeneralCountryListViewModel list = new GeneralCountryListViewModel();
-            list = _generalCountryMasterBA.GetCountryList(null, null, null, 1, 10);
+            list = _generalCountryMasterBA.GetCountryList(null, sortByColumn, sortBy, 1, 10);
             return View("~/Views/GeneralMaster/GeneralCountryMaster/List.cshtml", list);
         }
 
@@ -38,7 +39,7 @@ namespace RARIndia.Controllers
                 if (!generalCountryViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
-                    return RedirectToAction<GeneralCountryMasterController>(x => x.List());
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.CreatedDate, RARIndiaConstant.DESCKey));
                 }
             }
             SetNotificationMessage(GetErrorNotificationMessage(generalCountryViewModel.ErrorMessage));
@@ -64,7 +65,7 @@ namespace RARIndia.Controllers
                 : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
 
                 if (!status)
-                    return RedirectToAction<GeneralCountryMasterController>(x => x.List());
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.ModifiedDate, RARIndiaConstant.DESCKey));
             }
             return View(createEdit, generalCountryViewModel);
         }
@@ -80,11 +81,11 @@ namespace RARIndia.Controllers
                 SetNotificationMessage(!status
                 ? GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage)
                 : GetSuccessNotificationMessage(GeneralResources.DeleteMessage));
-                return RedirectToAction<GeneralCountryMasterController>(x => x.List());
+                return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.CountryName, RARIndiaConstant.ASCKey));
             }
 
             SetNotificationMessage(GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage));
-            return RedirectToAction<GeneralCountryMasterController>(x => x.List());
+            return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.CountryName, RARIndiaConstant.ASCKey));
         }
 
     }

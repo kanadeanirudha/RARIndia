@@ -20,9 +20,9 @@ namespace RARIndia.BusinessLogicLayer
             _generalCountryMasterDAL = new GeneralCountryMasterDAL();
         }
 
-        public GeneralCountryListViewModel GetCountryList(FilterCollection filters, string sort, string sortBy, int pageIndex, int pageSize)
+        public GeneralCountryListViewModel GetCountryList(FilterCollection filters, string sortByColumn, string sortBy, int pageIndex, int pageSize)
         {
-            NameValueCollection sortlist = SortingData(sort, sortBy);
+            NameValueCollection sortlist = SortingData(sortByColumn, sortBy);
 
             GeneralCountryListModel countryList = _generalCountryMasterDAL.GetCountryList(filters, sortlist, pageIndex, pageSize);
             GeneralCountryListViewModel listViewModel = new GeneralCountryListViewModel { GeneralCountryList = countryList?.GeneralCountryList?.ToViewModel<GeneralCountryViewModel>().ToList() };
