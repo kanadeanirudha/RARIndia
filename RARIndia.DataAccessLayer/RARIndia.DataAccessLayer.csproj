@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ProcedureFilterOperators.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCountryMasterDAL.cs" />
     <Compile Include="Constants\StoredProcedureKeys.cs" />
     <Compile Include="DataEntity\GeneralCountryMaster.cs">

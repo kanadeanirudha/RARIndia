@@ -1,7 +1,9 @@
 ﻿using RARIndia.DataAccessLayer;
 using RARIndia.ExceptionManager;
 using RARIndia.Model;
+using RARIndia.Model.Model;
 using RARIndia.Resources;
+using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
@@ -20,13 +22,21 @@ namespace RARIndia.BusinessLogicLayer
             _generalCountryMasterDAL = new GeneralCountryMasterDAL();
         }
 
-        public GeneralCountryListViewModel GetCountryList(FilterCollection filters, string sortByColumn, string sortBy, int pageIndex, int pageSize)
+        public GeneralCountryListViewModel GetCountryList(DataTableModel dataTableModel)
         {
-            NameValueCollection sortlist = SortingData(sortByColumn, sortBy);
+            FilterCollection filters = null;
+            if (!string.IsNullOrEmpty(dataTableModel.SearchBy))
+            {
+                filters = new FilterCollection();
+                filters.Add("CountryName", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
+                filters.Add("ContryCode", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
+            }
 
-            GeneralCountryListModel countryList = _generalCountryMasterDAL.GetCountryList(filters, sortlist, pageIndex, pageSize);
+            NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);
+            GeneralCountryListModel countryList = _generalCountryMasterDAL.GetCountryList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize);
             GeneralCountryListViewModel listViewModel = new GeneralCountryListViewModel { GeneralCountryList = countryList?.GeneralCountryList?.ToViewModel<GeneralCountryViewModel>().ToList() };
-            SetListPagingData(listViewModel, countryList);
+            if (listViewModel?.GeneralCountryList?.Count > 0)
+                SetListPagingData(listViewModel.PageListViewModel, countryList, dataTableModel.SearchBy);
 
             return countryList?.GeneralCountryList?.Count > 0 ? listViewModel : new GeneralCountryListViewModel() { GeneralCountryList = new List<GeneralCountryViewModel>() };
         }

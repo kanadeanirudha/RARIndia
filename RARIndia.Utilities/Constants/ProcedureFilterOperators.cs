@@ -1,4 +1,4 @@
-﻿namespace RARIndia.DataAccessLayer.Constants
+﻿namespace RARIndia.Utilities.Constant
 {
     public struct ProcedureFilterOperators
     {

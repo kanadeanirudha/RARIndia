@@ -1,4 +1,4 @@
-﻿namespace RARIndia.Utilities.Helper
+﻿namespace RARIndia.Utilities.Constant
 {
     public struct RARIndiaConstant
     {

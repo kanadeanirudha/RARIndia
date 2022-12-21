@@ -1,7 +1,14 @@
 ﻿@model string
 @{
     Layout = null;
+    string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    string controllerName = ViewContext.RouteData.Values["controller"].ToString();
 }
 <div id="DataTables_Table_1_filter" class="dataTables_filter">
-    <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_1">@Model</ label >
+    <label>
+        Search:
+        <input id="DataTables_SearchById" type="text" class="form-control form-control-sm" placeholder="search" aria-controls="DataTables_Table_1">
+        <a onclick="RARIndiaDataTable.LoadList('@controllerName','@actionName')" ><i class="ft-search"></i></a>
+    </label>
+
 </div>

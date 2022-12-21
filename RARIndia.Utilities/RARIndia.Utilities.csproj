@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ProcedureFilterOperators.cs" />
     <Compile Include="Filters\FilterCollection.cs" />
     <Compile Include="Filters\FilterDataCollection.cs" />
     <Compile Include="Filters\FilterDataMap.cs" />

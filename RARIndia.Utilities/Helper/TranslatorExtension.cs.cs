@@ -1,6 +1,6 @@
 ﻿using RARIndia.Model;
 using RARIndia.Utilities.Filters;
-using RARIndia.ViewModels;
+using RARIndia.ViewModel;
 
 using System.Collections.Generic;
 

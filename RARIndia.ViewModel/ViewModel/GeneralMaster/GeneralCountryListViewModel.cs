@@ -1,6 +1,4 @@
-﻿using RARIndia.ViewModels;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RARIndia.ViewModel
 {
@@ -8,9 +6,11 @@ namespace RARIndia.ViewModel
     {
        
         public List<GeneralCountryViewModel> GeneralCountryList { get; set; }
+        public PageListViewModel PageListViewModel { get; set; }
         public GeneralCountryListViewModel()
         {
             GeneralCountryList = new List<GeneralCountryViewModel>();
+            PageListViewModel = new PageListViewModel();
         }
     }
 }

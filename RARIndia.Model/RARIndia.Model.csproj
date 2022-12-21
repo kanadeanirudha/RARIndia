@@ -45,6 +45,7 @@
     <Compile Include="DataModel\View_ReturnBoolean.cs" />
     <Compile Include="Model\BaseListModel.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\DataTableModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCountryMaster\GeneralCountryListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCountryMaster\GeneralCountryModel.cs" />
     <Compile Include="Model\MessageBoxModel.cs" />

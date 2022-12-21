@@ -121,9 +121,9 @@ namespace RARIndia.ExceptionManager
                 LogMessage(ex.ToString(), componentName);
 
                 StringWriter textWriter = new StringWriter();
-                XmlSerializer xmlSerializer = new XmlSerializer(objectType);
+                //XmlSerializer xmlSerializer = new XmlSerializer(objectType);
 
-                xmlSerializer.Serialize(textWriter, objectInstance);
+                //xmlSerializer.Serialize(textWriter, objectInstance);
 
                 string todaysDate = DateTime.Now.ToString("yyyy-MM-dd");
                 string filePath = logFilePath.Replace("{yyyy-mm-dd}", todaysDate);

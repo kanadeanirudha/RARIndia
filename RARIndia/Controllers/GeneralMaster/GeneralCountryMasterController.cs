@@ -1,6 +1,6 @@
 ﻿using RARIndia.BusinessLogicLayer;
+using RARIndia.Model.Model;
 using RARIndia.Resources;
-using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
 using System.Web.Mvc;
@@ -16,14 +16,15 @@ namespace RARIndia.Controllers
             _generalCountryMasterBA = new GeneralCountryMasterBA();
         }
 
-        [HttpGet]
-        public ActionResult List(string sortByColumn = null, string sortBy = null)
+        public ActionResult List(DataTableModel dataTableModel)
         {
-            GeneralCountryListViewModel list = new GeneralCountryListViewModel();
-            list = _generalCountryMasterBA.GetCountryList(null, sortByColumn, sortBy, 1, 10);
-            return View("~/Views/GeneralMaster/GeneralCountryMaster/List.cshtml", list);
+            GeneralCountryListViewModel list = _generalCountryMasterBA.GetCountryList(dataTableModel);
+            if (Request.IsAjaxRequest()) {
+                return PartialView("~/Views/GeneralMaster/GeneralCountryMaster/_List.cshtml", list);
+            }
+            return View($"~/Views/GeneralMaster/GeneralCountryMaster/List.cshtml", list);
         }
-
+        
         [HttpGet]
         public ActionResult Create()
         {
@@ -39,7 +40,7 @@ namespace RARIndia.Controllers
                 if (!generalCountryViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
-                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.CreatedDate, RARIndiaConstant.DESCKey));
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
                 }
             }
             SetNotificationMessage(GetErrorNotificationMessage(generalCountryViewModel.ErrorMessage));
@@ -65,7 +66,7 @@ namespace RARIndia.Controllers
                 : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
 
                 if (!status)
-                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.ModifiedDate, RARIndiaConstant.DESCKey));
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
             }
             return View(createEdit, generalCountryViewModel);
         }
@@ -81,11 +82,11 @@ namespace RARIndia.Controllers
                 SetNotificationMessage(!status
                 ? GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage)
                 : GetSuccessNotificationMessage(GeneralResources.DeleteMessage));
-                return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.CountryName, RARIndiaConstant.ASCKey));
+                return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
             }
 
             SetNotificationMessage(GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage));
-            return RedirectToAction<GeneralCountryMasterController>(x => x.List(SortKeys.CountryName, RARIndiaConstant.ASCKey));
+            return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
         }
 
     }

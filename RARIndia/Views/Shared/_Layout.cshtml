@@ -17,9 +17,11 @@
     <meta name="keywords" content="">
     <meta name="author" content="PIXINVENT">
     <title>@ViewBag.Title | @title </title>
+  
     @*<link rel="apple-touch-icon" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/app-assets/images/ico/apple-icon-120.png">*@
     @*<link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/app-assets/images/ico/favicon.ico">*@
-    <link href="../AdminTheme/css" rel="stylesheet">
+    @*<link href="../AdminTheme/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">*@
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="../Content/vendors.min.css">
@@ -34,7 +36,7 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="../Content/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="../Content/palette-gradient.min.css">
-    <link rel="stylesheet" type="text/css" href="./Content/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../Content/form-validation.css">
     <!-- END: Page CSS-->
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="../Content/style.css">
@@ -1495,14 +1497,14 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="../Scripts/Theme/jquery.sticky.js"></script>
     <script src="../Scripts/Theme/jquery.sparkline.min.js"></script>
-    <script src="../Scripts/Theme/datatables.min.js"></script>
-    <script src="../Scripts/Theme/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/Theme/buttons.flash.min.js"></script>
+    @*<script src="../Scripts/Theme/datatables.min.js"></script>*@
+    @*<script src="../Scripts/Theme/dataTables.buttons.min.js"></script>*@
+    @*<script src="../Scripts/Theme/buttons.flash.min.js"></script>*@
     <script src="../Scripts/Theme/jszip.min.js"></script>
     <script src="../Scripts/Theme/pdfmake.min.js"></script>
     <script src="../Scripts/Theme/vfs_fonts.js"></script>
-    <script src="../Scripts/Theme/buttons.html5.min.js"></script>
-    <script src="../Scripts/Theme/buttons.print.min.js"></script>
+    @*<script src="../Scripts/Theme/buttons.html5.min.js"></script>*@
+    @*<script src="../Scripts/Theme/buttons.print.min.js"></script>*@
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Theme JS-->
     <script src="../Scripts/Theme/app-menu.min.js"></script>
@@ -1511,10 +1513,10 @@
     <script src="../Scripts/Theme/footer.min.js"></script>
     <!-- END: Theme JS-->
     <!-- BEGIN: Page JS-->
-    <script src="../Scripts/Theme/breadcrumbs-with-stats.min.js"></script>
-    <script src="../Scripts/Theme/datatable-advanced.min.js"></script>
+    @*<script src="../Scripts/Theme/breadcrumbs-with-stats.min.js"></script>*@
+    @*<script src="../Scripts/Theme/datatable-advanced.min.js"></script>*@
     <script src="../Scripts/Theme/form-validation.js"></script>
     <!-- END: Page JS-->
-
+    <script src="~/Scripts/GeneralScript/RARIndiaDataTable.js"></script>
 </body><!-- END: Body-->
 </html>

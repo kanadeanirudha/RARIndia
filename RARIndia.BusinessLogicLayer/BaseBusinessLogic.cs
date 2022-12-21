@@ -1,6 +1,7 @@
 ﻿using RARIndia.Model;
+using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
-using RARIndia.ViewModels;
+using RARIndia.ViewModel;
 
 using System;
 using System.Collections.Specialized;
@@ -30,12 +31,13 @@ namespace RARIndia.BusinessLogicLayer
             sortlist.Add(sort, sortBy);
             return sortlist;
         }
-        protected void SetListPagingData(BaseViewModel listViewModel, BaseListModel listModel)
+        protected void SetListPagingData(PageListViewModel pageListViewModel, BaseListModel listModel,string SearchBy)
         {
-            listViewModel.Page = Convert.ToInt32(listModel.PageIndex);
-            listViewModel.RecordPerPage = Convert.ToInt32(listModel.PageSize);
-            listViewModel.TotalPages = Convert.ToInt32(listModel.TotalPages);
-            listViewModel.TotalResults = Convert.ToInt32(listModel.TotalResults);
+            pageListViewModel.Page = Convert.ToInt32(listModel.PageIndex);
+            pageListViewModel.RecordPerPage = Convert.ToInt16(listModel.PageSize);
+            pageListViewModel.TotalPages = Convert.ToInt32(listModel.TotalPages);
+            pageListViewModel.TotalResults = Convert.ToInt32(listModel.TotalResults);
+            pageListViewModel.SearchBy= SearchBy?? string.Empty;
         }
 
         #region Session

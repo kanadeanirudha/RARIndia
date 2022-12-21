@@ -1,5 +1,4 @@
-﻿using RARIndia.ViewModels;
-
+﻿
 using System.ComponentModel.DataAnnotations;
 
 namespace RARIndia.ViewModel

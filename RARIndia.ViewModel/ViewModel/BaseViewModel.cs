@@ -1,4 +1,4 @@
-﻿namespace RARIndia.ViewModels
+﻿namespace RARIndia.ViewModel
 {
     public abstract class BaseViewModel
     {
@@ -6,12 +6,6 @@
         public string CreatedDate { get; set; }
         public int ModifiedBy { get; set; }
         public string ModifiedDate { get; set; }
-
-        public int Page { get; set; }
-        public int RecordPerPage { get; set; }
-        public int TotalResults { get; set; }
-        public int TotalPages { get; set; }
-        public string SearchBy { get; set; } = string.Empty;
 
         public bool HasError { get; set; }
         public string ErrorMessage { get; set; }

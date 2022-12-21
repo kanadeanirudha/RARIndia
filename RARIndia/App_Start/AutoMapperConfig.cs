@@ -2,6 +2,7 @@
 
 using RARIndia.DataAccessLayer.DataEntity;
 using RARIndia.Model;
+using RARIndia.Utilities.Filters;
 using RARIndia.ViewModel;
 
 namespace RARIndia
@@ -10,6 +11,8 @@ namespace RARIndia
     {
         public static void Execute()
         {
+            Mapper.CreateMap<FilterTuple, FilterDataTuple>();
+
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryListModel, GeneralCountryListViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryMaster>()
