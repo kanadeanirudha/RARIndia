@@ -36,7 +36,7 @@ namespace RARIndia.BusinessLogicLayer
             GeneralCountryListModel countryList = _generalCountryMasterDAL.GetCountryList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize);
             GeneralCountryListViewModel listViewModel = new GeneralCountryListViewModel { GeneralCountryList = countryList?.GeneralCountryList?.ToViewModel<GeneralCountryViewModel>().ToList() };
             if (listViewModel?.GeneralCountryList?.Count > 0)
-                SetListPagingData(listViewModel.PageListViewModel, countryList, dataTableModel.SearchBy);
+                SetListPagingData(listViewModel.PageListViewModel, countryList, dataTableModel.SearchBy, listViewModel.GeneralCountryList.Count);
 
             return countryList?.GeneralCountryList?.Count > 0 ? listViewModel : new GeneralCountryListViewModel() { GeneralCountryList = new List<GeneralCountryViewModel>() };
         }

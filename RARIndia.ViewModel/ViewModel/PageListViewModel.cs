@@ -4,8 +4,9 @@
     {
         public int Page { get; set; }
         public short RecordPerPage { get; set; }
-        public int TotalResults { get; set; }
-        public int TotalPages { get; set; }
+        public int TotalResults { get; set; } = 0;
+        public int TotalPages { get; set; } = 0;
+        public int TotalRecordCount { get; set; } = 0;
         public string SearchBy { get; set; } = string.Empty;
     }
 }

@@ -31,12 +31,13 @@ namespace RARIndia.BusinessLogicLayer
             sortlist.Add(sort, sortBy);
             return sortlist;
         }
-        protected void SetListPagingData(PageListViewModel pageListViewModel, BaseListModel listModel,string SearchBy)
+        protected void SetListPagingData(PageListViewModel pageListViewModel, BaseListModel listModel,string SearchBy, int totalRecordCount)
         {
             pageListViewModel.Page = Convert.ToInt32(listModel.PageIndex);
             pageListViewModel.RecordPerPage = Convert.ToInt16(listModel.PageSize);
             pageListViewModel.TotalPages = Convert.ToInt32(listModel.TotalPages);
             pageListViewModel.TotalResults = Convert.ToInt32(listModel.TotalResults);
+            pageListViewModel.TotalRecordCount = Convert.ToInt32(totalRecordCount);
             pageListViewModel.SearchBy= SearchBy?? string.Empty;
         }
 
