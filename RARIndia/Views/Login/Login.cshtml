@@ -1,8 +1,10 @@
 ﻿@using RARIndia.ViewModel
+@using RARIndia.Utilities.Helper;
 @model UserLoginViewModel
 @{
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
     ViewBag.Title = "Login";
+    string title = System.Convert.ToString(RARIndiaSetting.ProjectTitle);
 }
 <section class="row flexbox-container">
     <div class="col-12 d-flex align-items-center justify-content-center">
@@ -10,10 +12,12 @@
             <div class="card border-grey border-lighten-3 m-0">
                 <div class="card-header border-0">
                     <div class="card-title text-center">
-                        <div class="p-1"><img src="../Images/logo-dark.png" alt="branding logo"></div>
+                        <div class="p-1">
+                           @title @*<img src="../Images/logo-dark.png" alt="branding logo">*@
+                        </div>
                     </div>
                     <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
-                        <span>Login with Modern</span>
+                        <span>Login</span>
                     </h6>
                 </div>
                 <div class="card-content">
@@ -21,20 +25,20 @@
                         @using (Ajax.BeginForm("Login", "User", null))
                         {
                             @Html.AntiForgeryToken()
-                        <fieldset class="form-group position-relative has-icon-left mb-0">
-                            @Html.TextBoxFor(x => x.EmailAddress, new { @class = "form-control", @placeholder = "Your Email Address" })
-                            @Html.ValidationMessageFor(m => m.EmailAddress, null, new { @class = "validation-error" })
-                            <div class="form-control-position" style="margin-top: 12px;">
-                                <i class="la la-user"></i>
-                            </div>
-                        </fieldset>
-                        <fieldset class="form-group position-relative has-icon-left">
-                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @placeholder = "Enter Password" })
-                            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "validation-error" })
-                            <div class="form-control-position" style="margin-top: 12px;">
-                                <i class="la la-key"></i>
-                            </div>
-                        </fieldset>
+                            <fieldset class="form-group position-relative has-icon-left mb-0">
+                                @Html.TextBoxFor(x => x.EmailAddress, new { @class = "form-control", @placeholder = "Your Email Address" })
+                                @Html.ValidationMessageFor(m => m.EmailAddress, null, new { @class = "red" })
+                                <div class="form-control-position" style="margin-top: 12px;">
+                                    <i class="la la-user"></i>
+                                </div>
+                            </fieldset>
+                            <fieldset class="form-group position-relative has-icon-left">
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Enter Password" })
+                                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "red" })
+                                <div class="form-control-position" style="margin-top: 12px;">
+                                    <i class="la la-key"></i>
+                                </div>
+                            </fieldset>
                             @*<div class="form-group row">
                                     <div class="col-sm-6 col-12 text-center text-sm-left">
                                         <fieldset>

@@ -11,7 +11,6 @@ namespace RARIndia.BusinessLogicLayer
 {
     public abstract class BaseBusinessLogic
     {
-
         protected static NameValueCollection SortingByCreatedDate(string sortBy = RARIndiaConstant.DESCKey)
         {
             NameValueCollection sortlist = new NameValueCollection();

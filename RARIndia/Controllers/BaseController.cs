@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         #region Notification
