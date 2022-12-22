@@ -54,13 +54,12 @@ namespace RARIndia.Controllers
         /// <param name="isFadeOut">bool isFadeOut true/false</param>
         /// <param name="fadeOutMilliSeconds">int fadeOutMilliSeconds</param>
         /// <returns>string Json format of message box</returns>
-        protected string GenerateNotificationMessages(string message, NotificationType type, int fadeOutMilliSeconds = 10000)
+        protected string GenerateNotificationMessages(string message, NotificationType type)
         {
             MessageBoxModel msgObj = new MessageBoxModel();
             msgObj.Message = message;
             msgObj.Type = type.ToString();
             msgObj.IsFadeOut = CheckIsFadeOut();
-            msgObj.FadeOutMilliSeconds = fadeOutMilliSeconds;
             return JsonConvert.SerializeObject(msgObj);
         }
         /// <summary>

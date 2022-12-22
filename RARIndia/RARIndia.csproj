@@ -177,6 +177,7 @@
     <Content Include="Images\sort_both.png" />
     <Content Include="Images\sort_desc.png" />
     <Content Include="Images\top.png" />
+    <Content Include="Scripts\GeneralScript\RARIndiaNotification.js" />
     <Content Include="Scripts\GeneralScript\RARIndiaDataTable.js" />
     <Content Include="Scripts\Theme\app-menu.min.js" />
     <Content Include="Scripts\Theme\app.min.js" />

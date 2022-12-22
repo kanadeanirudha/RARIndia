@@ -4,30 +4,34 @@
     Layout = null;
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    int a = Model.Page == 1 ? Model.Page : ((Model.RecordPerPage * (Model.Page - 1)) + 1);
+    int b = Model.Page == 1 ? Model.TotalRecordCount : ((Model.RecordPerPage * (Model.Page - 1)) + Model.TotalRecordCount);
+    string pointerEventFirstPrevious = Model.Page == 1 ? "pointer-events: none" : "";
+    string pointerEventNextLast = Model.TotalPages == Model.Page ? "pointer-events: none" : "";
 }
 <div class="row">
     @if (Model.TotalResults > 0)
     {
         <div class="col-sm-12 col-md-5">
-            <div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">Showing @Model.Page to @Model.RecordPerPage of @Model.TotalResults entries</div>
+            <div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">Showing @a to @b of @Model.TotalResults entries</div>
         </div>
         <div class="col-sm-12 col-md-7">
             <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
                 <ul class="pagination">
-                    <li class="paginate_button page-item previous" id="DataTables_Table_1_previous">
-                        <a onclick="RARIndiaDataTable.LoadListFirst('@controllerName','@actionName')" aria-controls="DataTables_Table_1" class="page-link"><<</a>
+                    <li>
+                        <a onclick="RARIndiaDataTable.LoadListFirst('@controllerName','@actionName')" style="@pointerEventFirstPrevious" class="page-link"><<</a>
                     </li>
-                    <li class="paginate_button page-item previous" id="DataTables_Table_1_previous">
-                        <a onclick="RARIndiaDataTable.LoadListPrevious('@controllerName','@actionName')" aria-controls="DataTables_Table_1" class="page-link"><</a>
+                    <li>
+                        <a onclick="RARIndiaDataTable.LoadListPrevious('@controllerName','@actionName')" style="@pointerEventFirstPrevious" class="page-link"><</a>
                     </li>
-                    <li class="paginate_button page-item active">
-                        <input id="DataTables_PageIndexId" onchange="RARIndiaDataTable.LoadList('@controllerName','@actionName')" type="text" class="form-control form-control-sm" value="@Model.Page" style="height: 33px; width: 60px; padding: 0px; text-align: center;">
+                    <li>
+                        <input id="DataTables_PageIndexId" onchange="RARIndiaDataTable.LoadList('@controllerName','@actionName')" type="number" class="form-control form-control-sm" value="@Model.Page" style="height: 33px; width: 60px; padding: 0px; text-align: center; border-left: 0; border-radius: 0px;" max="@Model.TotalPages" min="1">
                     </li>
-                    <li class="paginate_button page-item next" id="DataTables_Table_1_next">
-                        <a onclick="RARIndiaDataTable.LoadListNext('@controllerName','@actionName')" aria-controls="DataTables_Table_1" class="page-link">></a>
+                    <li>
+                        <a onclick="RARIndiaDataTable.LoadListNext('@controllerName','@actionName')" style="@pointerEventNextLast" class="page-link">></a>
                     </li>
-                    <li class="paginate_button page-item next" id="DataTables_Table_1_next">
-                        <a onclick="RARIndiaDataTable.LoadListLast('@controllerName', '@actionName', '@Model.TotalPages')" aria-controls="DataTables_Table_1" class="page-link">>></a>
+                    <li>
+                        <a onclick="RARIndiaDataTable.LoadListLast('@controllerName', '@actionName', '@Model.TotalPages')" style="@pointerEventNextLast" class="page-link">>></a>
                     </li>
                 </ul>
             </div>

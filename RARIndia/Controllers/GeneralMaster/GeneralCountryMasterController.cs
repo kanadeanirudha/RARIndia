@@ -1,6 +1,7 @@
 ﻿using RARIndia.BusinessLogicLayer;
 using RARIndia.Model.Model;
 using RARIndia.Resources;
+using RARIndia.Utilities.Constant;
 using RARIndia.ViewModel;
 
 using System.Web.Mvc;
@@ -18,13 +19,15 @@ namespace RARIndia.Controllers
 
         public ActionResult List(DataTableModel dataTableModel)
         {
+            dataTableModel = dataTableModel ?? new DataTableModel();
             GeneralCountryListViewModel list = _generalCountryMasterBA.GetCountryList(dataTableModel);
-            if (Request.IsAjaxRequest()) {
+            if (Request.IsAjaxRequest())
+            {
                 return PartialView("~/Views/GeneralMaster/GeneralCountryMaster/_List.cshtml", list);
             }
             return View($"~/Views/GeneralMaster/GeneralCountryMaster/List.cshtml", list);
         }
-        
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -66,7 +69,7 @@ namespace RARIndia.Controllers
                 : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
 
                 if (!status)
-                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(new DataTableModel() { SortByColumn = SortKeys.ModifiedDate, SortBy = RARIndiaConstant.DESCKey }));
             }
             return View(createEdit, generalCountryViewModel);
         }

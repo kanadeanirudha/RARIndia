@@ -8,5 +8,7 @@
         public int TotalPages { get; set; } = 0;
         public int TotalRecordCount { get; set; } = 0;
         public string SearchBy { get; set; } = string.Empty;
+        public string SortByColumn { get; set; } = string.Empty;
+        public string SortBy { get; set; } = string.Empty;
     }
 }
