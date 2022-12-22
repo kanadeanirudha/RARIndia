@@ -26,7 +26,6 @@
             <tbody>
                 @foreach (var item in Model?.GeneralCountryList)
                 {
-                    @item.GetType().GetField("CountryName")
                     <tr>
                         <td>@item.CountryName</td>
                         <td>@item.CountryCode</td>
