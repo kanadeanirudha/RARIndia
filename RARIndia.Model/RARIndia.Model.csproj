@@ -48,6 +48,8 @@
     <Compile Include="Model\DataTableModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCountryMaster\GeneralCountryListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCountryMaster\GeneralCountryModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralNationalityMaster\GeneralNationalityListModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralNationalityMaster\GeneralNationalityModel.cs" />
     <Compile Include="Model\MessageBoxModel.cs" />
     <Compile Include="Model\ParameterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

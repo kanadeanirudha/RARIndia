@@ -21,6 +21,9 @@ namespace RARIndia
             Mapper.CreateMap<GeneralCountryMaster, GeneralCountryModel>()
                .ForMember(d => d.CountryCode, opt => opt.MapFrom(src => src.ContryCode))
                .ForMember(d => d.CountryId, opt => opt.MapFrom(src => src.ID));
+
+            Mapper.CreateMap<GeneralNationalityModel, GeneralNationalityViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralNationalityListModel, GeneralNationalityListViewModel>().ReverseMap();
         }
     }
 }
