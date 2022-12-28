@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="DataModel\RARIndiaEntityBaseModel.cs" />
     <Compile Include="DataModel\View_ReturnBoolean.cs" />
+    <Compile Include="Model\User\AdminRoleDetails.cs" />
+    <Compile Include="Model\User\UserModel.cs" />
     <Compile Include="Model\BaseListModel.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\DataTableModel.cs" />
@@ -54,5 +56,6 @@
     <Compile Include="Model\ParameterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

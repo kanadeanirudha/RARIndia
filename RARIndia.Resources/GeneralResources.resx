@@ -141,6 +141,12 @@
   <data name="ErrorFailedToDelete" xml:space="preserve">
     <value>Failed to delete the selected record.</value>
   </data>
+  <data name="ErrorMessage_PleaseContactYourAdministrator" xml:space="preserve">
+    <value>Please Contact Your Administrator</value>
+  </data>
+  <data name="ErrorMessage_ThisaccountdoesnotexistEnteravalidemailaddressorpassword" xml:space="preserve">
+    <value>This account does not exist. Enter a valid email address or password</value>
+  </data>
   <data name="IdCanNotBeLessThanOne" xml:space="preserve">
     <value>Id cannot be less than 1.</value>
   </data>

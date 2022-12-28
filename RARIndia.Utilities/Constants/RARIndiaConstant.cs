@@ -12,5 +12,6 @@
         public const string ASCKey = "ASC";
 
         public const string Notifications = "Notifications";
+        public const string UserDataSession = "UserData";
     }
 }

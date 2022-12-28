@@ -6,6 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="96360959c0ac4125b05e631ccb690d9e" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralCountryMaster" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" Width="1.5" PointX="6" PointY="6.125" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMaster" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.UserMaster" Width="1.5" PointX="0.75" PointY="5.75" />
+        <AssociationConnector Association="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

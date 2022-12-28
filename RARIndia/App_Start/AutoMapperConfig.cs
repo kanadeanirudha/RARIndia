@@ -24,6 +24,9 @@ namespace RARIndia
 
             Mapper.CreateMap<GeneralNationalityModel, GeneralNationalityViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralNationalityListModel, GeneralNationalityListViewModel>().ReverseMap();
+
+            Mapper.CreateMap<UserModel, UserLoginViewModel>().ReverseMap();
+            Mapper.CreateMap<UserModel, UserMaster>().ReverseMap();
         }
     }
 }

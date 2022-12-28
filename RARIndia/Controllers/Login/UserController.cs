@@ -1,4 +1,7 @@
-﻿using RARIndia.ViewModel;
+﻿using RARIndia.BusinessLogicLayer;
+using RARIndia.Utilities.Constant;
+using RARIndia.Utilities.Helper;
+using RARIndia.ViewModel;
 
 using System.Web.Mvc;
 using System.Web.Security;
@@ -8,8 +11,11 @@ namespace RARIndia.Controllers
     [AllowAnonymous]
     public class UserController : BaseController
     {
+        UserMasterBA _userMasterBA = null;
+
         public UserController()
         {
+            _userMasterBA = new UserMasterBA();
         }
 
         [HttpGet]
@@ -20,23 +26,26 @@ namespace RARIndia.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(UserLoginViewModel registrationViewModel)
+        public ActionResult Login(UserLoginViewModel userLoginViewModel)
         {
             if (ModelState.IsValid)
             {
-                if (!string.IsNullOrEmpty(registrationViewModel.EmailAddress) && !string.IsNullOrEmpty(registrationViewModel.Password))
+                if (!string.IsNullOrEmpty(userLoginViewModel.EmailID) && !string.IsNullOrEmpty(userLoginViewModel.Password))
                 {
-                    //UserModel model = new GrievanceUserDetailsBusinessLogic().Login(registrationViewModel.EmailAddress, registrationViewModel.Password);
-                    //if (!model.HasError)
-                    if (registrationViewModel.EmailAddress == "admin@rarindia.com" && registrationViewModel.Password == "admin@rarindia.com")
+                    userLoginViewModel = _userMasterBA.Login(userLoginViewModel);
+                    if (!userLoginViewModel.HasError)
                     {
-                        FormsAuthentication.SetAuthCookie(registrationViewModel.EmailAddress, false);
+                        FormsAuthentication.SetAuthCookie(userLoginViewModel.EmailID, false);
                         return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
-                    }  
+                    }
+                    ModelState.AddModelError("ErrorMessage", userLoginViewModel.ErrorMessage);
                 }
             }
-            ModelState.AddModelError("", "Invalid Email Address or Password");
-            return View("~/Views/Login/Login.cshtml", registrationViewModel);
+            else
+            {
+                ModelState.AddModelError("ErrorMessage", "Invalid Email Address or Password");
+            }
+            return View("~/Views/Login/Login.cshtml", userLoginViewModel);
         }
 
         public ActionResult LogOff()
@@ -44,6 +53,7 @@ namespace RARIndia.Controllers
             Session.Clear();
             Session.Abandon();
             FormsAuthentication.SignOut();
+            RARIndiaSessionHelper.RemoveDataFromSession(RARIndiaConstant.UserDataSession);
             return RedirectToAction<UserController>(x => x.Login());
         }
     }

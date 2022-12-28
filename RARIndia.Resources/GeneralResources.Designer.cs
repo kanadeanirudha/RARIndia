@@ -133,6 +133,24 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Contact Your Administrator.
+        /// </summary>
+        public static string ErrorMessage_PleaseContactYourAdministrator {
+            get {
+                return ResourceManager.GetString("ErrorMessage_PleaseContactYourAdministrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account does not exist. Enter a valid email address or password.
+        /// </summary>
+        public static string ErrorMessage_ThisaccountdoesnotexistEnteravalidemailaddressorpassword {
+            get {
+                return ResourceManager.GetString("ErrorMessage_ThisaccountdoesnotexistEnteravalidemailaddressorpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Id cannot be less than 1..
         /// </summary>
         public static string IdCanNotBeLessThanOne {

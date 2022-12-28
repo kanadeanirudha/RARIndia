@@ -58,6 +58,16 @@
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralNationalityMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCountryMasterDAL.cs" />
     <Compile Include="Constants\StoredProcedureKeys.cs" />
+    <Compile Include="DataAccessLayers\Implementation\User\UserMasterDAL.cs" />
+    <Compile Include="DataEntity\AdminRoleApplicableDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleMenuDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\GeneralCountryMaster.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
@@ -78,6 +88,9 @@
       <DependentUpon>RARIndiaEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\RARIndiaEntities.cs" />
+    <Compile Include="DataEntity\UserMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Extensions\PagedList.cs" />
     <Compile Include="Helper\DynamicClauseHelper.cs" />

@@ -13,5 +13,6 @@ namespace RARIndia.ExceptionManager
         public const Int32 NotFound = 6;
         public const Int32 NotPermitted = 7;
         public const Int32 IdLessThanOne = 8;
+        public const Int32 ContactAdministrator =9;
     }
 }

@@ -26,5 +26,9 @@ namespace RARIndia.DataAccessLayer.DataEntity
         }
     
         public virtual DbSet<GeneralCountryMaster> GeneralCountryMasters { get; set; }
+        public virtual DbSet<AdminRoleApplicableDetail> AdminRoleApplicableDetails { get; set; }
+        public virtual DbSet<AdminRoleMaster> AdminRoleMasters { get; set; }
+        public virtual DbSet<AdminRoleMenuDetail> AdminRoleMenuDetails { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
     }
 }

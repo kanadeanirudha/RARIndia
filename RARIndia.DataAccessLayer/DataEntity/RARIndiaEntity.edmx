@@ -5,6 +5,69 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RARIndia.EntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminRoleApplicableDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleCode" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="DesignationID" Type="int" Nullable="false" />
+          <Property Name="WorkFromDate" Type="datetime" />
+          <Property Name="WorkToDate" Type="datetime" />
+          <Property Name="RoleType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdminRoleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="AdminSnPostID" Type="smallint" Nullable="false" />
+          <Property Name="SanctPostName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MonitoringLevel" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="AdminRoleCode" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="OthCentreLevel" Type="nvarchar" MaxLength="30" />
+          <Property Name="IsLoginAllowFromOutside" Type="bit" />
+          <Property Name="IsAttendaceAllowFromOutside" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdminRoleMenuDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleCode" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MenuCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EnableDate" Type="datetime" />
+          <Property Name="DisableDate" Type="datetime" />
+          <Property Name="DisablePurpose" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
         <EntityType Name="GeneralCountryMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -26,8 +89,70 @@
           <Property Name="DeletedBy" Type="int" />
           <Property Name="DeletedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserTypeID" Type="smallint" />
+          <Property Name="UserType" Type="char" MaxLength="1" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="DeviceToken" Type="nvarchar" MaxLength="250" />
+          <Property Name="LastModuleCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterID">
+          <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="1" />
+          <End Role="AdminRoleApplicableDetails" Type="Self.AdminRoleApplicableDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleApplicableDetails">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkAdminRoleMenuDetailsAdminRoleMasterID">
+          <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="1" />
+          <End Role="AdminRoleMenuDetails" Type="Self.AdminRoleMenuDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleMenuDetails">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RARIndiaEntityModelStoreContainer">
+          <EntitySet Name="AdminRoleApplicableDetails" EntityType="Self.AdminRoleApplicableDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleMaster" EntityType="Self.AdminRoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleMenuDetails" EntityType="Self.AdminRoleMenuDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCountryMaster" EntityType="Self.GeneralCountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FkAdminRoleApplicableDetailsAdminRoleMasterID" Association="Self.FkAdminRoleApplicableDetailsAdminRoleMasterID">
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
+            <End Role="AdminRoleApplicableDetails" EntitySet="AdminRoleApplicableDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FkAdminRoleMenuDetailsAdminRoleMasterID" Association="Self.FkAdminRoleMenuDetailsAdminRoleMasterID">
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
+            <End Role="AdminRoleMenuDetails" EntitySet="AdminRoleMenuDetails" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -35,6 +160,18 @@
       <Schema Namespace="RARIndia.EntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Ver1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="GeneralCountryMasters" EntityType="RARIndia.EntityModel.GeneralCountryMaster" />
+          <EntitySet Name="AdminRoleApplicableDetails" EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" />
+          <EntitySet Name="AdminRoleMasters" EntityType="RARIndia.EntityModel.AdminRoleMaster" />
+          <EntitySet Name="AdminRoleMenuDetails" EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" />
+          <EntitySet Name="UserMasters" EntityType="RARIndia.EntityModel.UserMaster" />
+          <AssociationSet Name="FkAdminRoleApplicableDetailsAdminRoleMasterID" Association="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID">
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
+            <End Role="AdminRoleApplicableDetail" EntitySet="AdminRoleApplicableDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FkAdminRoleMenuDetailsAdminRoleMasterID" Association="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID">
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
+            <End Role="AdminRoleMenuDetail" EntitySet="AdminRoleMenuDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="GeneralCountryMaster">
           <Key>
@@ -57,6 +194,123 @@
           <Property Name="DeletedBy" Type="Int32" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="AdminRoleApplicableDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="DesignationID" Type="Int32" Nullable="false" />
+          <Property Name="WorkFromDate" Type="DateTime" Precision="3" />
+          <Property Name="WorkToDate" Type="DateTime" Precision="3" />
+          <Property Name="RoleType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="AdminRoleMaster" Relationship="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID" FromRole="AdminRoleApplicableDetail" ToRole="AdminRoleMaster" />
+        </EntityType>
+        <EntityType Name="AdminRoleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="AdminSnPostID" Type="Int16" Nullable="false" />
+          <Property Name="SanctPostName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MonitoringLevel" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="AdminRoleCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OthCentreLevel" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IsLoginAllowFromOutside" Type="Boolean" />
+          <Property Name="IsAttendaceAllowFromOutside" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="AdminRoleApplicableDetails" Relationship="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID" FromRole="AdminRoleMaster" ToRole="AdminRoleApplicableDetail" />
+          <NavigationProperty Name="AdminRoleMenuDetails" Relationship="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID" FromRole="AdminRoleMaster" ToRole="AdminRoleMenuDetail" />
+        </EntityType>
+        <EntityType Name="AdminRoleMenuDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MenuCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnableDate" Type="DateTime" Precision="3" />
+          <Property Name="DisableDate" Type="DateTime" Precision="3" />
+          <Property Name="DisablePurpose" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="AdminRoleMaster" Relationship="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID" FromRole="AdminRoleMenuDetail" ToRole="AdminRoleMaster" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeID" Type="Int16" />
+          <Property Name="UserType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeviceToken" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastModuleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterID">
+          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleApplicableDetail" Role="AdminRoleApplicableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleApplicableDetail">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkAdminRoleMenuDetailsAdminRoleMasterID">
+          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleMenuDetail" Role="AdminRoleMenuDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleMenuDetail">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -81,6 +335,99 @@
                 <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
                 <ScalarProperty Name="ContryCode" ColumnName="ContryCode" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleApplicableDetails">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleApplicableDetail">
+              <MappingFragment StoreEntitySet="AdminRoleApplicableDetails">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+                <ScalarProperty Name="WorkToDate" ColumnName="WorkToDate" />
+                <ScalarProperty Name="WorkFromDate" ColumnName="WorkFromDate" />
+                <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="AdminRoleCode" ColumnName="AdminRoleCode" />
+                <ScalarProperty Name="AdminRoleMasterID" ColumnName="AdminRoleMasterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleMaster">
+              <MappingFragment StoreEntitySet="AdminRoleMaster">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsAttendaceAllowFromOutside" ColumnName="IsAttendaceAllowFromOutside" />
+                <ScalarProperty Name="IsLoginAllowFromOutside" ColumnName="IsLoginAllowFromOutside" />
+                <ScalarProperty Name="OthCentreLevel" ColumnName="OthCentreLevel" />
+                <ScalarProperty Name="AdminRoleCode" ColumnName="AdminRoleCode" />
+                <ScalarProperty Name="MonitoringLevel" ColumnName="MonitoringLevel" />
+                <ScalarProperty Name="SanctPostName" ColumnName="SanctPostName" />
+                <ScalarProperty Name="AdminSnPostID" ColumnName="AdminSnPostID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleMenuDetails">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleMenuDetail">
+              <MappingFragment StoreEntitySet="AdminRoleMenuDetails">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DisablePurpose" ColumnName="DisablePurpose" />
+                <ScalarProperty Name="DisableDate" ColumnName="DisableDate" />
+                <ScalarProperty Name="EnableDate" ColumnName="EnableDate" />
+                <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
+                <ScalarProperty Name="AdminRoleCode" ColumnName="AdminRoleCode" />
+                <ScalarProperty Name="AdminRoleMasterID" ColumnName="AdminRoleMasterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="LastModuleCode" ColumnName="LastModuleCode" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
