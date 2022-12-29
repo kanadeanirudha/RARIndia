@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralNationalityMasterController.cs" />
     <Compile Include="Controllers\Login\UserController.cs" />
@@ -248,6 +249,12 @@
     <Content Include="Views\GeneralMaster\GeneralNationalityMaster\_List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralNationalityMaster\List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralNationalityMaster\CreateEdit.cshtml" />
+    <Content Include="Views\Shared\_ModuleList.cshtml" />
+    <Content Include="Views\Shared\_RoleTypeList.cshtml" />
+    <Content Include="Views\Shared\_UserProfileList.cshtml" />
+    <Content Include="Views\Shared\_BalanceSheetList.cshtml" />
+    <Content Include="Views\Shared\_MenuList.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

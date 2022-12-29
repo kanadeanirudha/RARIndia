@@ -1,0 +1,20 @@
+﻿@using RARIndia.Model;
+@model UserModel
+@{
+    Layout= null;
+}
+<li class="dropdown dropdown-user nav-item">
+    <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+        <span class="mr-1 user-name text-bold-700">@Model.FirstName @Model.LastName</span>
+        <span class="avatar avatar-online">
+            <img src="../Images/avatar-s-19.png" alt="avatar"><i></i>
+        </span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/html/ltr/horizontal-menu-template-nav/user-profile.html"><i class="ft-user"></i> Edit Profile</a>
+        @*<a class="dropdown-item" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/html/ltr/horizontal-menu-template-nav/app-kanban.html"><i class="ft-clipboard"></i> Todo</a>
+            <a class="dropdown-item" href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/html/ltr/horizontal-menu-template-nav/user-cards.html"><i class="ft-check-square"></i> Task</a>*@
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="~/User/LogOff"><i class="ft-power"></i> Logout</a>
+    </div>
+</li>

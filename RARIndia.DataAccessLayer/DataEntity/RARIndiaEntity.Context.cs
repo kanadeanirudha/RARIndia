@@ -30,5 +30,8 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public virtual DbSet<AdminRoleMaster> AdminRoleMasters { get; set; }
         public virtual DbSet<AdminRoleMenuDetail> AdminRoleMenuDetails { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
+        public virtual DbSet<UserMainMenuMaster> UserMainMenuMasters { get; set; }
+        public virtual DbSet<UserModuleMaster> UserModuleMasters { get; set; }
+        public virtual DbSet<UserNotificationCount> UserNotificationCounts { get; set; }
     }
 }

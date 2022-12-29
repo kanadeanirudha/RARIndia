@@ -1,6 +1,6 @@
 ﻿namespace RARIndia.Model
 {
-    public class AdminRoleDetails : BaseModel
+    public class AdminRoleModel : BaseModel
     {
         public int AdminRoleMasterID { get; set; }
         public string AdminRoleCode { get; set; }

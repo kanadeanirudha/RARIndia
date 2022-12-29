@@ -89,6 +89,36 @@
           <Property Name="DeletedBy" Type="int" />
           <Property Name="DeletedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="UserMainMenuMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ModuleID" Type="tinyint" Nullable="false" />
+          <Property Name="ModuleCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenuCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MenuInnerLevel" Type="smallint" />
+          <Property Name="ParentMenuID" Type="smallint" />
+          <Property Name="MenuDisplaySeqNo" Type="int" />
+          <Property Name="MenuVerNo" Type="nvarchar" MaxLength="60" />
+          <Property Name="MenuInstalledFlag" Type="bit" />
+          <Property Name="MenuLink" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="DisableDate" Type="datetime" />
+          <Property Name="RemarkAboutDisable" Type="nvarchar" MaxLength="100" />
+          <Property Name="MenuToolTip" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentMenuName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ParentMenuCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="MenuIconName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="UserMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -115,6 +145,40 @@
           <Property Name="DeviceToken" Type="nvarchar" MaxLength="250" />
           <Property Name="LastModuleCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="UserModuleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" Nullable="false" />
+          <Property Name="ModuleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModuleName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="ModuleInstalledFlag" Type="bit" />
+          <Property Name="ModuleActiveFlag" Type="bit" />
+          <Property Name="ModuleSeqNumber" Type="int" />
+          <Property Name="ModuleRelatedWith" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModuleTooltip" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModuleIconName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModuleIconPath" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModuleFormName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="ModuleColorClass" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserNotificationCount">
+          <Key>
+            <PropertyRef Name="NotificationCount" />
+          </Key>
+          <Property Name="PersonID" Type="int" />
+          <Property Name="PersonType" Type="nvarchar" MaxLength="1" />
+          <Property Name="NotificationCount" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterID">
           <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="1" />
           <End Role="AdminRoleApplicableDetails" Type="Self.AdminRoleApplicableDetails" Multiplicity="*" />
@@ -139,12 +203,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKUserMainMenuMasterModuleID">
+          <End Role="UserModuleMaster" Type="Self.UserModuleMaster" Multiplicity="1" />
+          <End Role="UserMainMenuMaster" Type="Self.UserMainMenuMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserModuleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserMainMenuMaster">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RARIndiaEntityModelStoreContainer">
           <EntitySet Name="AdminRoleApplicableDetails" EntityType="Self.AdminRoleApplicableDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleMaster" EntityType="Self.AdminRoleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleMenuDetails" EntityType="Self.AdminRoleMenuDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCountryMaster" EntityType="Self.GeneralCountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMainMenuMaster" EntityType="Self.UserMainMenuMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserModuleMaster" EntityType="Self.UserModuleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserNotificationCount" EntityType="Self.UserNotificationCount" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserNotificationCount].[PersonID] AS [PersonID], 
+    [UserNotificationCount].[PersonType] AS [PersonType], 
+    [UserNotificationCount].[NotificationCount] AS [NotificationCount]
+    FROM [dbo].[UserNotificationCount] AS [UserNotificationCount]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FkAdminRoleApplicableDetailsAdminRoleMasterID" Association="Self.FkAdminRoleApplicableDetailsAdminRoleMasterID">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
             <End Role="AdminRoleApplicableDetails" EntitySet="AdminRoleApplicableDetails" />
@@ -153,12 +238,16 @@
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
             <End Role="AdminRoleMenuDetails" EntitySet="AdminRoleMenuDetails" />
           </AssociationSet>
+          <AssociationSet Name="FKUserMainMenuMasterModuleID" Association="Self.FKUserMainMenuMasterModuleID">
+            <End Role="UserModuleMaster" EntitySet="UserModuleMaster" />
+            <End Role="UserMainMenuMaster" EntitySet="UserMainMenuMaster" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RARIndia.EntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Ver1Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RARIndiaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="GeneralCountryMasters" EntityType="RARIndia.EntityModel.GeneralCountryMaster" />
           <EntitySet Name="AdminRoleApplicableDetails" EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" />
           <EntitySet Name="AdminRoleMasters" EntityType="RARIndia.EntityModel.AdminRoleMaster" />
@@ -171,6 +260,13 @@
           <AssociationSet Name="FkAdminRoleMenuDetailsAdminRoleMasterID" Association="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
             <End Role="AdminRoleMenuDetail" EntitySet="AdminRoleMenuDetails" />
+          </AssociationSet>
+          <EntitySet Name="UserMainMenuMasters" EntityType="RARIndia.EntityModel.UserMainMenuMaster" />
+          <EntitySet Name="UserModuleMasters" EntityType="RARIndia.EntityModel.UserModuleMaster" />
+          <EntitySet Name="UserNotificationCounts" EntityType="RARIndia.EntityModel.UserNotificationCount" />
+          <AssociationSet Name="FKUserMainMenuMasterModuleID" Association="RARIndia.EntityModel.FKUserMainMenuMasterModuleID">
+            <End Role="UserModuleMaster" EntitySet="UserModuleMasters" />
+            <End Role="UserMainMenuMaster" EntitySet="UserMainMenuMasters" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="GeneralCountryMaster">
@@ -311,12 +407,88 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserMainMenuMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ModuleID" Type="Byte" Nullable="false" />
+          <Property Name="ModuleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MenuName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MenuInnerLevel" Type="Int16" />
+          <Property Name="ParentMenuID" Type="Int16" />
+          <Property Name="MenuDisplaySeqNo" Type="Int32" />
+          <Property Name="MenuVerNo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="MenuInstalledFlag" Type="Boolean" />
+          <Property Name="MenuLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsEnable" Type="Boolean" />
+          <Property Name="DisableDate" Type="DateTime" Precision="3" />
+          <Property Name="RemarkAboutDisable" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MenuToolTip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentMenuName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ParentMenuCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="MenuIconName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserModuleMaster" Relationship="RARIndia.EntityModel.FKUserMainMenuMasterModuleID" FromRole="UserMainMenuMaster" ToRole="UserModuleMaster" />
+        </EntityType>
+        <EntityType Name="UserModuleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" />
+          <Property Name="ModuleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleInstalledFlag" Type="Boolean" />
+          <Property Name="ModuleActiveFlag" Type="Boolean" />
+          <Property Name="ModuleSeqNumber" Type="Int32" />
+          <Property Name="ModuleRelatedWith" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleTooltip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleIconName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleIconPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleFormName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModuleColorClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserMainMenuMasters" Relationship="RARIndia.EntityModel.FKUserMainMenuMasterModuleID" FromRole="UserModuleMaster" ToRole="UserMainMenuMaster" />
+        </EntityType>
+        <EntityType Name="UserNotificationCount">
+          <Key>
+            <PropertyRef Name="NotificationCount" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" />
+          <Property Name="PersonType" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="NotificationCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FKUserMainMenuMasterModuleID">
+          <End Type="RARIndia.EntityModel.UserModuleMaster" Role="UserModuleMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.UserMainMenuMaster" Role="UserMainMenuMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserModuleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserMainMenuMaster">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RARIndiaEntityModelStoreContainer" CdmEntityContainer="Ver1Entities">
+        <EntityContainerMapping StorageEntityContainer="RARIndiaEntityModelStoreContainer" CdmEntityContainer="RARIndiaEntities">
           <EntitySetMapping Name="GeneralCountryMasters">
             <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralCountryMaster">
               <MappingFragment StoreEntitySet="GeneralCountryMaster">
@@ -429,6 +601,71 @@
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMainMenuMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.UserMainMenuMaster">
+              <MappingFragment StoreEntitySet="UserMainMenuMaster">
+                <ScalarProperty Name="MenuIconName" ColumnName="MenuIconName" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ParentMenuCode" ColumnName="ParentMenuCode" />
+                <ScalarProperty Name="ParentMenuName" ColumnName="ParentMenuName" />
+                <ScalarProperty Name="MenuToolTip" ColumnName="MenuToolTip" />
+                <ScalarProperty Name="RemarkAboutDisable" ColumnName="RemarkAboutDisable" />
+                <ScalarProperty Name="DisableDate" ColumnName="DisableDate" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="MenuLink" ColumnName="MenuLink" />
+                <ScalarProperty Name="MenuInstalledFlag" ColumnName="MenuInstalledFlag" />
+                <ScalarProperty Name="MenuVerNo" ColumnName="MenuVerNo" />
+                <ScalarProperty Name="MenuDisplaySeqNo" ColumnName="MenuDisplaySeqNo" />
+                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+                <ScalarProperty Name="MenuInnerLevel" ColumnName="MenuInnerLevel" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
+                <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserModuleMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.UserModuleMaster">
+              <MappingFragment StoreEntitySet="UserModuleMaster">
+                <ScalarProperty Name="ModuleColorClass" ColumnName="ModuleColorClass" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModuleFormName" ColumnName="ModuleFormName" />
+                <ScalarProperty Name="ModuleIconPath" ColumnName="ModuleIconPath" />
+                <ScalarProperty Name="ModuleIconName" ColumnName="ModuleIconName" />
+                <ScalarProperty Name="ModuleTooltip" ColumnName="ModuleTooltip" />
+                <ScalarProperty Name="ModuleRelatedWith" ColumnName="ModuleRelatedWith" />
+                <ScalarProperty Name="ModuleSeqNumber" ColumnName="ModuleSeqNumber" />
+                <ScalarProperty Name="ModuleActiveFlag" ColumnName="ModuleActiveFlag" />
+                <ScalarProperty Name="ModuleInstalledFlag" ColumnName="ModuleInstalledFlag" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserNotificationCounts">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.UserNotificationCount">
+              <MappingFragment StoreEntitySet="UserNotificationCount">
+                <ScalarProperty Name="NotificationCount" ColumnName="NotificationCount" />
+                <ScalarProperty Name="PersonType" ColumnName="PersonType" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

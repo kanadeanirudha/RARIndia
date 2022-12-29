@@ -1,0 +1,17 @@
+﻿@using RARIndia.Model;
+@model UserModel
+@{
+    Layout= null;
+}
+
+@if (Model.RoleList?.Count == 1)
+{
+    <li class="dropdown dropdown-user nav-item">
+        <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:function() { return false; }" data-toggle="dropdown">
+            <span class="mr-1 user-name text-bold-700">@Model.RoleList.FirstOrDefault().RoleType</span>
+            <!--<span class="avatar avatar-online">-->
+            @*<img src="../Images/avatar-s-19.png" alt="avatar"><i></i>*@
+            <!--</span>-->
+        </a>
+    </li>
+}

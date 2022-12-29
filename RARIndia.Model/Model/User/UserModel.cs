@@ -7,9 +7,12 @@ namespace RARIndia.Model
     {
         public UserModel()
         {
-            RoleList = new List<AdminRoleDetails>();
+            RoleList = new List<AdminRoleModel>();
+            ModuleList = new List<UserModuleModel>();
+            MenuList = new List<UserMenuModel>();
         }
         public int ID { get; set; }
+        public bool IsAdminUser { get; set; }
         public short UserTypeID { get; set; }
         public string UserType { get; set; }
         public string EmailID { get; set; }
@@ -24,6 +27,12 @@ namespace RARIndia.Model
         public string DeviceToken { get; set; }
         public string LastModuleCode { get; set; }
         public int SelectedRoleId { get; set; }
-        public List<AdminRoleDetails> RoleList { get; set; }
+        public string SelectedRoleCode { get; set; }
+        public string SelectedModuleCode { get; set; }
+        public string SelectedModuleName { get; set; } = "Dashboard";
+        public int SelectedMenuCode { get; set; }
+        public List<AdminRoleModel> RoleList { get; set; }
+        public List<UserModuleModel> ModuleList { get; set; }
+        public List<UserMenuModel> MenuList { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace RARIndia
 
             Mapper.CreateMap<UserModel, UserLoginViewModel>().ReverseMap();
             Mapper.CreateMap<UserModel, UserMaster>().ReverseMap();
+            Mapper.CreateMap<UserModuleModel, UserModuleMaster>().ReverseMap();
         }
     }
 }

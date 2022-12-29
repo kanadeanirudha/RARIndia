@@ -1,0 +1,38 @@
+﻿@using RARIndia.Model;
+@model UserModel
+@{
+    Layout = null;
+    List<UserMenuModel> menuList = Model.MenuList.Where(x => x.ModuleCode == Model.SelectedModuleCode)?.ToList();
+}
+
+<div id="sticky-wrapper" class="sticky-wrapper" style="height: 72.7812px;">
+    <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-dark navbar-without-dd-arrow navbar-shadow navbar-brand-center" role="navigation" data-menu="menu-wrapper" data-nav="brand-center" style="width: 1349px;">
+        <div class="navbar-container main-menu-content" data-menu="menu-container">
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle nav-link" href="/Dashboard/Index">
+                        <i class="la la-home"></i><span data-i18n="Dashboard">Dashboard</span>
+                    </a>
+                </li>
+                @foreach (UserMenuModel itemParent in menuList.Where(x => x.ParentMenuID == 0).OrderBy(y => y.MenuDisplaySeqNo))
+                {
+                    <li class="dropdown nav-item" data-menu="dropdown">
+                        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
+                            <i class="la la-home"></i><span data-i18n="Dashboard">@itemParent.MenuName</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach (UserMenuModel itemMenu in menuList.Where(x => x.ParentMenuID == itemParent.ID).OrderBy(y => y.MenuDisplaySeqNo))
+                            {
+                                <li data-menu="">
+                                    <a class="dropdown-item" href="/@itemMenu.MenuLink" data-toggle="">
+                                        <i class="la la-cart-plus"></i><span data-i18n="eCommerce">@itemMenu.MenuName</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -88,7 +88,16 @@
       <DependentUpon>RARIndiaEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\RARIndiaEntities.cs" />
+    <Compile Include="DataEntity\UserMainMenuMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\UserMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserModuleMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserNotificationCount.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EntityExtension.cs" />

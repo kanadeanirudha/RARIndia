@@ -1,4 +1,5 @@
 ﻿using RARIndia.BusinessLogicLayer;
+using RARIndia.Model;
 using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
@@ -36,7 +37,7 @@ namespace RARIndia.Controllers
                     if (!userLoginViewModel.HasError)
                     {
                         FormsAuthentication.SetAuthCookie(userLoginViewModel.EmailID, false);
-                        return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
+                        return RedirectToAction<DashboardController>(x => x.Index());
                     }
                     ModelState.AddModelError("ErrorMessage", userLoginViewModel.ErrorMessage);
                 }
@@ -55,6 +56,15 @@ namespace RARIndia.Controllers
             FormsAuthentication.SignOut();
             RARIndiaSessionHelper.RemoveDataFromSession(RARIndiaConstant.UserDataSession);
             return RedirectToAction<UserController>(x => x.Login());
+        }
+
+        [HttpGet]
+        public ActionResult GetMenuListByModuleCode(string moduleCode, string controllerName, string method)
+        {
+            UserModel userModel = RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession);
+            userModel.SelectedModuleCode = moduleCode;
+            RARIndiaSessionHelper.SaveDataInSession<UserModel>(RARIndiaConstant.UserDataSession, userModel);
+            return RedirectToAction(method, controllerName);
         }
     }
 }
