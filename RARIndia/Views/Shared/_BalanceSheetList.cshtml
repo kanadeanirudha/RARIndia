@@ -9,13 +9,20 @@
 {
     <li class="dropdown dropdown-language nav-item">
         <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="selected-language">@Model.SelectedBalanceSheet</span>
+            <i class="ft-layers"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
             @foreach (UserBalanceSheetModel item in Model.BalanceSheetList)
             {
                 <a class="dropdown-item" href="/user/GetBalanceSheetById?balanceSheetId=@item.BalsheetID&controllerName=@controllerName&method=@actionName">
-                    @item.ActBalsheetHeadDesc
+                    @if (item.BalsheetID == Model.SelectedBalanceId)
+                    {
+                        <i class="ft-check"></i>@item.ActBalsheetHeadDesc
+                    }
+                    else
+                    {
+                        @item.ActBalsheetHeadDesc
+                    }
                 </a>
             }
         </div>

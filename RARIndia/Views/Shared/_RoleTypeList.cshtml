@@ -1,10 +1,10 @@
 ﻿@using RARIndia.Model;
 @model UserModel
 @{
-    Layout= null;
+    Layout = null;
 }
 
-@if (Model.RoleList?.Count == 1)
+@if (Model.RoleList?.Count > 1)
 {
     <li class="dropdown dropdown-user nav-item">
         <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:function() { return false; }" data-toggle="dropdown">
