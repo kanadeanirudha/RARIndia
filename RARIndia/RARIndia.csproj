@@ -255,6 +255,7 @@
     <Content Include="Views\Shared\_BalanceSheetList.cshtml" />
     <Content Include="Views\Shared\_MenuList.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Shared\_NotificationCount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

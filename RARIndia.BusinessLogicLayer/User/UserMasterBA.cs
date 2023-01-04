@@ -47,5 +47,19 @@ namespace RARIndia.BusinessLogicLayer
                 return (UserLoginViewModel)GetViewModelWithErrorMessage(userLoginViewModel, GeneralResources.ErrorMessage_PleaseContactYourAdministrator);
             }
         }
+
+        public int GetNotificationCount(int userId)
+        {
+            try
+            {
+                return _userMasterDAL.GetNotificationCount(userId);
+               
+            }
+            catch (Exception ex)
+            {
+                RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.User.ToString());
+                return 0;
+            }
+        }
     }
 }

@@ -81,10 +81,16 @@ namespace RARIndia.Controllers
             if (IsNotNull(userModel))
             {
                 userModel.SelectedBalanceId = balanceSheetId;
-                userModel.SelectedBalanceSheet =  userModel.BalanceSheetList.FirstOrDefault(x => x.BalsheetID == balanceSheetId)?.ActBalsheetHeadDesc;
+                userModel.SelectedBalanceSheet = userModel.BalanceSheetList.FirstOrDefault(x => x.BalsheetID == balanceSheetId)?.ActBalsheetHeadDesc;
                 RARIndiaSessionHelper.SaveDataInSession<UserModel>(RARIndiaConstant.UserDataSession, userModel);
             }
             return RedirectToAction(method, controllerName);
+        }
+
+        public ActionResult GetNotificationCount(int userId)
+        {
+            int notificationCount = userId > 0 ? _userMasterBA.GetNotificationCount(userId) : 0;
+            return View("~/Views/Shared/_NotificationCount.cshtml", notificationCount);
         }
     }
 }

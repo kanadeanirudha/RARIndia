@@ -111,12 +111,9 @@
                             @Html.Partial("~/Views/Shared/_BalanceSheetList.cshtml", userData)
                         }
                         @Html.Partial("~/Views/Shared/_RoleTypeList.cshtml", userData)
-                        <li class="dropdown dropdown-notification nav-item">
-                            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
-                                <i class="ficon ft-bell"></i>
-                                <span class="badge badge-pill badge-danger badge-up badge-glow">5</span>
-                            </a>
-                        </li>
+                       
+                        @{Html.RenderAction("GetNotificationCount", "User", new { userId = userData.ID});}
+                       
                         @Html.Partial("~/Views/Shared/_UserProfileList.cshtml", userData)
                     </ul>
                 </div>

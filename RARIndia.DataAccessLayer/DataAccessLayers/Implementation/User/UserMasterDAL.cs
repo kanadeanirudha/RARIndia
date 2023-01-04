@@ -68,6 +68,12 @@ namespace RARIndia.DataAccessLayer
             return userModel;
         }
 
+        public int GetNotificationCount(int userId)
+        {
+            int notificationCount = new RARIndiaRepository<UserNotificationCount>().Table.FirstOrDefault(x => x.PersonID == userId).NotificationCount;
+            return notificationCount;
+        }
+
         #endregion
 
         #region Private Method
