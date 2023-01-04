@@ -4,8 +4,11 @@ using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 
 namespace RARIndia.Controllers
 {
@@ -62,8 +65,25 @@ namespace RARIndia.Controllers
         public ActionResult GetMenuListByModuleCode(string moduleCode, string controllerName, string method)
         {
             UserModel userModel = RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession);
-            userModel.SelectedModuleCode = moduleCode;
-            RARIndiaSessionHelper.SaveDataInSession<UserModel>(RARIndiaConstant.UserDataSession, userModel);
+            if (IsNotNull(userModel))
+            {
+                userModel.SelectedModuleCode = moduleCode;
+                userModel.SelectedModuleName = string.Equals(moduleCode, "dashboard", System.StringComparison.InvariantCultureIgnoreCase) ? "Dashboard" : userModel.ModuleList.FirstOrDefault(x => x.ModuleCode == moduleCode)?.ModuleName;
+                RARIndiaSessionHelper.SaveDataInSession<UserModel>(RARIndiaConstant.UserDataSession, userModel);
+            }
+            return RedirectToAction(method, controllerName);
+        }
+
+        [HttpGet]
+        public ActionResult GetBalanceSheetById(int balanceSheetId, string controllerName, string method)
+        {
+            UserModel userModel = RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession);
+            if (IsNotNull(userModel))
+            {
+                userModel.SelectedBalanceId = balanceSheetId;
+                userModel.SelectedBalanceSheet =  userModel.BalanceSheetList.FirstOrDefault(x => x.BalsheetID == balanceSheetId)?.ActBalsheetHeadDesc;
+                RARIndiaSessionHelper.SaveDataInSession<UserModel>(RARIndiaConstant.UserDataSession, userModel);
+            }
             return RedirectToAction(method, controllerName);
         }
     }

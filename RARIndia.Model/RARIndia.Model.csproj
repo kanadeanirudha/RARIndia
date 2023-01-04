@@ -44,6 +44,7 @@
     <Compile Include="DataModel\RARIndiaEntityBaseModel.cs" />
     <Compile Include="DataModel\View_ReturnBoolean.cs" />
     <Compile Include="Model\User\UserMenuModel.cs" />
+    <Compile Include="Model\User\UserBalanceSheetModel.cs" />
     <Compile Include="Model\User\UserModuleModel.cs" />
     <Compile Include="Model\User\AdminRoleModel.cs" />
     <Compile Include="Model\User\UserModel.cs" />

@@ -10,6 +10,7 @@ namespace RARIndia.Model
             RoleList = new List<AdminRoleModel>();
             ModuleList = new List<UserModuleModel>();
             MenuList = new List<UserMenuModel>();
+            BalanceSheetList = new List<UserBalanceSheetModel>();
         }
         public int ID { get; set; }
         public bool IsAdminUser { get; set; }
@@ -28,11 +29,14 @@ namespace RARIndia.Model
         public string LastModuleCode { get; set; }
         public int SelectedRoleId { get; set; }
         public string SelectedRoleCode { get; set; }
-        public string SelectedModuleCode { get; set; }
+        public string SelectedModuleCode { get; set; } = "Dashboard";
         public string SelectedModuleName { get; set; } = "Dashboard";
         public int SelectedMenuCode { get; set; }
+        public string SelectedBalanceSheet { get; set; }
+        public int SelectedBalanceId { get; set; }
         public List<AdminRoleModel> RoleList { get; set; }
         public List<UserModuleModel> ModuleList { get; set; }
         public List<UserMenuModel> MenuList { get; set; }
+        public List<UserBalanceSheetModel> BalanceSheetList { get; set; }
     }
 }

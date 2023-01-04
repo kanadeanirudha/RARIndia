@@ -53,69 +53,20 @@ namespace RARIndia.DataAccessLayer
                 }
                 else
                 {
-                    foreach (AdminRoleMenuDetail item in userRoleMenuList)
-                    {
-                        UserMainMenuMaster userMenuModel = userAllMenuList.FirstOrDefault(x => x.MenuCode == item.MenuCode);
-                        if (IsNotNull(userMenuModel))
-                        {
-                            userModel.MenuList.Add(new UserMenuModel()
-                            {
-                                ID = userMenuModel.ID,
-                                ModuleID = userMenuModel.ModuleID,
-                                ModuleCode = userMenuModel.ModuleCode,
-                                MenuCode = userMenuModel.MenuCode,
-                                MenuName = userMenuModel.MenuName,
-                                ParentMenuID = userMenuModel.ParentMenuID,
-                                MenuDisplaySeqNo = userMenuModel.MenuDisplaySeqNo,
-                                MenuLink = userMenuModel.MenuLink,
-                                MenuToolTip = userMenuModel.MenuToolTip,
-                                MenuIconName = userMenuModel.MenuIconName
-                            });
+                    //Bind Menu And Modules For Admin User
+                    BindMenuAndModulesForNonAdminUser(userModel, userAllModuleList, userAllMenuList, userRoleMenuList);
 
-                            if (!userModel.ModuleList.Any(x => x.ModuleCode == userMenuModel.ModuleCode))
-                            {
-                                userModel.ModuleList.Add(userAllModuleList.FirstOrDefault(x => x.ModuleCode == userMenuModel.ModuleCode).FromEntityToModel<UserModuleModel>());
-                            }
-                        }
-                    }
+                    //Bind Balance Sheet
+                    userModel.BalanceSheetList = BindAccountBalanceSheetByRoleID(userModel);
                 }
             }
             else
             {
-                foreach (UserModuleMaster item in userAllModuleList)
-                {
-                    userModel.ModuleList.Add(new UserModuleModel()
-                    {
-                        ID = item.ID,
-                        ModuleCode = item.ModuleCode,
-                        ModuleName = item.ModuleName,
-                        ModuleSeqNumber = item.ModuleSeqNumber,
-                        ModuleTooltip = item.ModuleTooltip,
-                        ModuleIconName = item.ModuleIconName,
-                        ModuleColorClass = item.ModuleColorClass,
-                    });
-                }
-
-                foreach (UserMainMenuMaster item in userAllMenuList)
-                {
-                    userModel.MenuList.Add(new UserMenuModel()
-                    {
-                        ID = item.ID,
-                        ModuleID = item.ModuleID,
-                        ModuleCode = item.ModuleCode,
-                        MenuCode = item.MenuCode,
-                        MenuName = item.MenuName,
-                        ParentMenuID = item.ParentMenuID,
-                        MenuDisplaySeqNo = item.MenuDisplaySeqNo,
-                        MenuLink = item.MenuLink,
-                        MenuToolTip = item.MenuToolTip,
-                        MenuIconName = item.MenuIconName
-                    });
-                }
+                //Bind Menu And Modules For Non Admin User
+                BindMenuAndModulesForAdminUser(userModel, userAllModuleList, userAllMenuList);
             }
             return userModel;
         }
-
 
         #endregion
 
@@ -148,6 +99,86 @@ namespace RARIndia.DataAccessLayer
             }
         }
 
+        //Bind Menu And Modules For Admin User
+        private void BindMenuAndModulesForAdminUser(UserModel userModel, List<UserModuleMaster> userAllModuleList, List<UserMainMenuMaster> userAllMenuList)
+        {
+            foreach (UserModuleMaster item in userAllModuleList)
+            {
+                userModel.ModuleList.Add(new UserModuleModel()
+                {
+                    ID = item.ID,
+                    ModuleCode = item.ModuleCode,
+                    ModuleName = item.ModuleName,
+                    ModuleSeqNumber = item.ModuleSeqNumber,
+                    ModuleTooltip = item.ModuleTooltip,
+                    ModuleIconName = item.ModuleIconName,
+                    ModuleColorClass = item.ModuleColorClass,
+                });
+            }
+
+            foreach (UserMainMenuMaster item in userAllMenuList)
+            {
+                userModel.MenuList.Add(new UserMenuModel()
+                {
+                    ID = item.ID,
+                    ModuleID = item.ModuleID,
+                    ModuleCode = item.ModuleCode,
+                    MenuCode = item.MenuCode,
+                    MenuName = item.MenuName,
+                    ParentMenuID = item.ParentMenuID,
+                    MenuDisplaySeqNo = item.MenuDisplaySeqNo,
+                    MenuLink = item.MenuLink,
+                    MenuToolTip = item.MenuToolTip,
+                    MenuIconName = item.MenuIconName
+                });
+            }
+        }
+
+        //Bind Menu And Modules For Non Admin User
+        private void BindMenuAndModulesForNonAdminUser(UserModel userModel, List<UserModuleMaster> userAllModuleList, List<UserMainMenuMaster> userAllMenuList, List<AdminRoleMenuDetail> userRoleMenuList)
+        {
+            //Bind Menu & Module for non admin user
+            foreach (AdminRoleMenuDetail item in userRoleMenuList)
+            {
+                UserMainMenuMaster userMenuModel = userAllMenuList.FirstOrDefault(x => x.MenuCode == item.MenuCode);
+                if (IsNotNull(userMenuModel))
+                {
+                    userModel.MenuList.Add(new UserMenuModel()
+                    {
+                        ID = userMenuModel.ID,
+                        ModuleID = userMenuModel.ModuleID,
+                        ModuleCode = userMenuModel.ModuleCode,
+                        MenuCode = userMenuModel.MenuCode,
+                        MenuName = userMenuModel.MenuName,
+                        ParentMenuID = userMenuModel.ParentMenuID,
+                        MenuDisplaySeqNo = userMenuModel.MenuDisplaySeqNo,
+                        MenuLink = userMenuModel.MenuLink,
+                        MenuToolTip = userMenuModel.MenuToolTip,
+                        MenuIconName = userMenuModel.MenuIconName
+                    });
+
+                    if (!userModel.ModuleList.Any(x => x.ModuleCode == userMenuModel.ModuleCode))
+                    {
+                        userModel.ModuleList.Add(userAllModuleList.FirstOrDefault(x => x.ModuleCode == userMenuModel.ModuleCode).FromEntityToModel<UserModuleModel>());
+                    }
+                }
+            }
+        }
+
+        public List<UserBalanceSheetModel> BindAccountBalanceSheetByRoleID(UserModel userModel)
+        {
+            int errorCode = 0;
+            RARIndiaViewRepository<UserBalanceSheetModel> objStoredProc = new RARIndiaViewRepository<UserBalanceSheetModel>();
+            objStoredProc.SetParameter("@iAdminRoleId", userModel.SelectedRoleId, ParameterDirection.Input, DbType.Int32);
+            objStoredProc.SetParameter("@iErrorCode", userModel.ErrorCode, ParameterDirection.Output, DbType.Int32);
+            List<UserBalanceSheetModel> accountBalanceSheetList = objStoredProc.ExecuteStoredProcedureList("USP_GetBalancesheetList @iAdminRoleId,@iErrorCode OUT", 1, out errorCode)?.ToList();
+            if (errorCode == 0 && accountBalanceSheetList?.Count > 0)
+            {
+                userModel.SelectedBalanceId = accountBalanceSheetList.FirstOrDefault().BalsheetID;
+                userModel.SelectedBalanceSheet = accountBalanceSheetList.FirstOrDefault().ActBalsheetHeadDesc;
+            }
+            return accountBalanceSheetList;
+        }
         #endregion
     }
 }
