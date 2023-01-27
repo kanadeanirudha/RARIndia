@@ -7,13 +7,13 @@
     {
         foreach (GeneralDepartmentModel item in Model.GeneralDepartmentList)
         {
-            if (Model.SelectedDepartmentID == item.ID)
+            if (Model.SelectedDepartmentID == item.DepartmentId)
             {
-                <option value="@item.ID" selected>@item.DepartmentName</option>
+                <option value="@item.DepartmentId" selected>@item.DepartmentName</option>
             }
             else
             {
-                <option value="@item.ID">@item.DepartmentName</option>
+                <option value="@item.DepartmentId">@item.DepartmentName</option>
             }
         }
     }

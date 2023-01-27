@@ -54,7 +54,7 @@ namespace RARIndia.BusinessLogicLayer
                 switch (ex.ErrorCode)
                 {
                     case ErrorCodes.AlreadyExist:
-                        return (GeneralCountryViewModel)GetViewModelWithErrorMessage(generalCountryViewModel, GeneralResources.AlreadyExistCode);
+                        return (GeneralCountryViewModel)GetViewModelWithErrorMessage(generalCountryViewModel, ex.ErrorMessage);
                     default:
                         return (GeneralCountryViewModel)GetViewModelWithErrorMessage(generalCountryViewModel, GeneralResources.ErrorFailedToCreate);
                 }

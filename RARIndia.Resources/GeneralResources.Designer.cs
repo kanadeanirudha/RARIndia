@@ -61,15 +61,6 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Code already exists..
-        /// </summary>
-        public static string AlreadyExistCode {
-            get {
-                return ResourceManager.GetString("AlreadyExistCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Already Exists..
         /// </summary>
         public static string AlreadyExists {
@@ -97,20 +88,11 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Country code already exists..
+        ///   Looks up a localized string similar to {0} already exists..
         /// </summary>
-        public static string ErrorCountryCodeExists {
+        public static string ErrorCodeExists {
             get {
-                return ResourceManager.GetString("ErrorCountryCodeExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country Id can not be less than 1..
-        /// </summary>
-        public static string ErrorCountryIdLessThanOne {
-            get {
-                return ResourceManager.GetString("ErrorCountryIdLessThanOne", resourceCulture);
+                return ResourceManager.GetString("ErrorCodeExists", resourceCulture);
             }
         }
         
@@ -133,6 +115,15 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} can not be less than 1..
+        /// </summary>
+        public static string ErrorIdLessThanOne {
+            get {
+                return ResourceManager.GetString("ErrorIdLessThanOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Contact Your Administrator.
         /// </summary>
         public static string ErrorMessage_PleaseContactYourAdministrator {
@@ -147,15 +138,6 @@ namespace RARIndia.Resources {
         public static string ErrorMessage_ThisaccountdoesnotexistEnteravalidemailaddressorpassword {
             get {
                 return ResourceManager.GetString("ErrorMessage_ThisaccountdoesnotexistEnteravalidemailaddressorpassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Id cannot be less than 1..
-        /// </summary>
-        public static string IdCanNotBeLessThanOne {
-            get {
-                return ResourceManager.GetString("IdCanNotBeLessThanOne", resourceCulture);
             }
         }
         

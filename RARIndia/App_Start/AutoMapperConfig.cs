@@ -22,6 +22,14 @@ namespace RARIndia
                .ForMember(d => d.CountryCode, opt => opt.MapFrom(src => src.ContryCode))
                .ForMember(d => d.CountryId, opt => opt.MapFrom(src => src.ID));
 
+            Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralDepartmentListModel, GeneralDepartmentListViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentMaster>()
+                .ForMember(d => d.ID, opt => opt.MapFrom(src => src.DepartmentId));
+            Mapper.CreateMap<GeneralDepartmentMaster, GeneralDepartmentModel>()
+               .ForMember(d => d.DepartmentId, opt => opt.MapFrom(src => src.ID));
+
+
             Mapper.CreateMap<GeneralNationalityModel, GeneralNationalityViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralNationalityListModel, GeneralNationalityListViewModel>().ReverseMap();
 

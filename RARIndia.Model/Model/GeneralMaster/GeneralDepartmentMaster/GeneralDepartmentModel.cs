@@ -2,7 +2,7 @@
 {
     public class GeneralDepartmentModel : BaseModel
     {
-        public short ID { get; set; }
+        public short DepartmentId { get; set; }
         public string DepartmentName { get; set; }
         public string DeptShortCode { get; set; }
         public string PrintShortDesc { get; set; }

@@ -48,7 +48,7 @@ namespace RARIndia.DataAccessLayer
 
             if (IsCodeAlreadyExist(generalCountryModel.CountryCode))
             {
-                throw new RARIndiaException(ErrorCodes.AlreadyExist, GeneralResources.ErrorCountryCodeExists);
+                throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "Country code"));
             }
             GeneralCountryMaster a = generalCountryModel.FromModelToEntity<GeneralCountryMaster>();
             //Create new country and return it.
@@ -69,7 +69,7 @@ namespace RARIndia.DataAccessLayer
         public GeneralCountryModel GetCountry(int countryId)
         {
             if (countryId <= 0)
-                throw new RARIndiaException(ErrorCodes.IdLessThanOne, GeneralResources.ErrorCountryIdLessThanOne);
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "CountryID"));
 
             //Get the country Details based on id.
             GeneralCountryMaster countryData = _generalCountryMasterRepository.Table.FirstOrDefault(x => x.ID == countryId);
@@ -85,7 +85,7 @@ namespace RARIndia.DataAccessLayer
                 throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
             if (generalCountryModel.CountryId < 1)
-                throw new RARIndiaException(ErrorCodes.IdLessThanOne, GeneralResources.IdCanNotBeLessThanOne);
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "CountryID"));
 
             //Update country
             isCountryUpdated = _generalCountryMasterRepository.Update(generalCountryModel.FromModelToEntity<GeneralCountryMaster>());
@@ -101,7 +101,7 @@ namespace RARIndia.DataAccessLayer
         public bool DeleteCountry(ParameterModel parameterModel)
         {
             if (IsNull(parameterModel) || string.IsNullOrEmpty(parameterModel.Ids))
-                throw new RARIndiaException(ErrorCodes.IdLessThanOne, GeneralResources.ErrorCountryIdLessThanOne);
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "CountryID"));
 
             RARIndiaViewRepository<View_ReturnBoolean> objStoredProc = new RARIndiaViewRepository<View_ReturnBoolean>();
             objStoredProc.SetParameter(RARIndiaCountryEnum.CountryId.ToString(), parameterModel.Ids, ParameterDirection.Input, DbType.String);

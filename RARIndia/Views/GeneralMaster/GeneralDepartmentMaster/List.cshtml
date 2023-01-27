@@ -1,13 +1,13 @@
 ﻿@using RARIndia.ViewModel
-@model GeneralCountryListViewModel
+@model GeneralDepartmentListViewModel
 @{
-    ViewBag.Title = "Country List";
+    ViewBag.Title = "Department List";
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
 }
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12">
-        <h3 class="content-header-title">Country List</h3>
+        <h3 class="content-header-title">Department List</h3>
     </div>
 </div>
 <div class="content-body">
@@ -21,7 +21,7 @@
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
-                                <li><a href="../@controllerName/Create" class="btn btn-success btn-sm"><i class="ft-plus white"></i>Add Country</a></li>
+                                <li><a href="../@controllerName/Create" class="btn btn-success btn-sm"><i class="ft-plus white"></i>Add Department</a></li>
                                 <li><a href="../@controllerName/List" title="Reload"><i class="ft-rotate-cw"></i></a></li>
                                 <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
                             </ul>
@@ -39,7 +39,7 @@
                                             @Html.Partial("~/Views/Shared/Datatable/_DatatableSearchData.cshtml", Model.PageListViewModel.SearchBy)
                                         </div>
                                     </div>*@
-                                    @Html.Partial("~/Views/GeneralMaster/GeneralCountryMaster/_List.cshtml", Model)
+                                    @Html.Partial("~/Views/GeneralMaster/GeneralDepartmentMaster/_List.cshtml", Model)
                                 </div>
                             </div>
                         </div>

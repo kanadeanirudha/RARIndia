@@ -1,7 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using RARIndia.Filters;
+
+using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
+    [SessionTimeoutAttribute]
     public class DashboardController : BaseController
     {
         public DashboardController()
