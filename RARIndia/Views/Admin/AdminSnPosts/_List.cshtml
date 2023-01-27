@@ -1,7 +1,6 @@
 ﻿@using RARIndia.ViewModel
-@model GeneralCountryListViewModel
+@model AdminSnPostsListViewModel
 @{
-    Layout = null;
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
 }
@@ -18,20 +17,29 @@
         <table class="table table-striped table-bordered column-rendering dataTable" id="DataTables_Table_1" role="grid" aria-describedby="DataTables_Table_1_info" style="width: 1223px;">
             <thead>
                 <tr role="row">
-                    <th class="sorting" data-columnname="CountryName">Country Name</th>
-                    <th class="sorting" data-columnname="CountryCode">Country Code</th>
+                    <th class="sorting" data-columnname="NomenAdminRoleCode">Role Code</th>
+                    <th class="sorting" data-columnname="SactionedPostDescription">Sactioned Post Description</th>
+                    <th class="sorting" data-columnname="NoOfPosts">No Of Posts</th>
+                    <th class="sorting" data-columnname="IsActive">Is Active</th>
                     <th style="width:10%;">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model?.GeneralCountryList)
+                @foreach (var item in Model?.AdminSnPostsList)
                 {
                     <tr>
-                        <td>@item.CountryName</td>
-                        <td>@item.CountryCode</td>
+                        <td>@item.NomenAdminRoleCode</td>
+                        <td>@item.SactionedPostDescription</td>
+                        <td>@item.NoOfPosts</td>
                         <td style="text-align:center">
-                            <a href="../GeneralCountryMaster/Edit?countryId=@item.CountryId" title="Update"><i class="ft-edit-1"></i></a>  |
-                            <a href="../GeneralCountryMaster/Delete?countryIds=@item.CountryId" title="Delete"><i class="ft-delete"></i></a>
+                            @if (item.IsActive)
+                            {<i class="ft-check-circle"></i>}
+                            else
+                            { <i class="ft-x-circle"></i>}
+                        </td>
+                        <td style="text-align:center">
+                            <a href="../GeneralCountryMaster/Edit?countryId=@item.AdminSnPostsId" title="Update"><i class="ft-edit-1"></i></a>
+                            @*<a href="../GeneralCountryMaster/Delete?countryIds=@item.AdminSnPostsId" title="Delete"><i class="ft-delete"></i></a>*@
                         </td>
                     </tr>
                 }

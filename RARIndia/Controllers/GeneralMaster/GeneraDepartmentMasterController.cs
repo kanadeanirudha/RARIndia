@@ -13,7 +13,7 @@ namespace RARIndia.Controllers
     [SessionTimeoutAttribute]
     public class GeneralDepartmentMasterController : BaseController
     {
-        GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
+        readonly GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
         private const string createEdit = "~/Views/GeneralMaster/GeneralDepartmentMaster/CreateEdit.cshtml";
         public GeneralDepartmentMasterController()
         {

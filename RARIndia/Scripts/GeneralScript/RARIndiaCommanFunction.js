@@ -8,10 +8,12 @@
 
     GetDepartmentByCentreCode: function () {
         var selectedItem = $("#SelectedCentreCode").val();
+        $('#DataTablesDivId tbody').html('');
         if ($("#SelectedCentreCode").val() != "") {
             $.ajax({
                 cache: false,
                 type: "GET",
+                dataType: "html",
                 url: "/GeneralDepartmentMaster/GetDepartmentsByCentreCode",
                 data: { "centreCode": selectedItem },
                 success: function (data) {
@@ -24,7 +26,7 @@
             //$('#btnCreate').hide();
         }
         else {
-            $('#myDataTable tbody').empty();
+            $('#DataTablesDivId tbody').html('');
         }
     },
 }

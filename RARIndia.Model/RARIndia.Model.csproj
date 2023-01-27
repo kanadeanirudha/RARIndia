@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="DataModel\RARIndiaEntityBaseModel.cs" />
     <Compile Include="DataModel\View_ReturnBoolean.cs" />
+    <Compile Include="Model\Admin\AdminSnPosts\AdminSnPostsListModel.cs" />
+    <Compile Include="Model\Admin\AdminSnPosts\AdminSnPostsModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentModel.cs" />
     <Compile Include="Model\User\UserMenuModel.cs" />

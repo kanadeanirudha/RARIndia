@@ -13,6 +13,12 @@ namespace RARIndia
         {
             Mapper.CreateMap<FilterTuple, FilterDataTuple>();
 
+            #region Admin
+            Mapper.CreateMap<AdminSnPostsModel, AdminSnPostsViewModel>().ReverseMap();
+            Mapper.CreateMap<AdminSnPostsListModel, AdminSnPostsListViewModel>().ReverseMap();
+            #endregion
+
+            #region General Master
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryListModel, GeneralCountryListViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryMaster>()
@@ -32,7 +38,7 @@ namespace RARIndia
 
             Mapper.CreateMap<GeneralNationalityModel, GeneralNationalityViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralNationalityListModel, GeneralNationalityListViewModel>().ReverseMap();
-
+            #endregion
             Mapper.CreateMap<UserModel, UserLoginViewModel>().ReverseMap();
             Mapper.CreateMap<UserModel, UserMaster>().ReverseMap();
             Mapper.CreateMap<UserModuleModel, UserModuleMaster>().ReverseMap();

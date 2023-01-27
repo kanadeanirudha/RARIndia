@@ -112,7 +112,7 @@ namespace RARIndia.BusinessLogicLayer
 
         public GeneralDepartmentListModel GetDepartmentsByCentreCode(string centreCode, int departmentID = 0)
         {
-            centreCode = !string.IsNullOrEmpty(centreCode) && centreCode.Contains(":") ? centreCode.Split(':')[0] : centreCode;
+            centreCode = SpiltCentreCode(centreCode);
             GeneralDepartmentListModel list = _generalDepartmentMasterDAL.GetDepartmentsByCentreCode(centreCode);
             list.SelectedDepartmentID = departmentID;
             return list;

@@ -111,6 +111,13 @@ namespace RARIndia.BusinessLogicLayer
             viewModel.ErrorMessage = errorMessage;
             return viewModel;
         }
+
+
+        protected string SpiltCentreCode(string centreCode)
+        {
+            centreCode = !string.IsNullOrEmpty(centreCode) && centreCode.Contains(":") ? centreCode.Split(':')[0] : centreCode;
+            return centreCode;
+        }
     }
 }
 

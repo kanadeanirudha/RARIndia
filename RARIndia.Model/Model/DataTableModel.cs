@@ -7,5 +7,7 @@
         public string SortBy { get; set; }
         public short PageIndex { get; set; } = 1;
         public short PageSize { get; set; } = 10;
+        public string SelectedCentreCode { get; set; } = string.Empty;
+        public int SelectedDepartmentID { get; set; }
     }
 }

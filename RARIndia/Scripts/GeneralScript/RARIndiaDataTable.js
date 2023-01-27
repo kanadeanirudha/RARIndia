@@ -21,6 +21,9 @@
                     $('#DataTablesDivId').html(result);
                     $("#DataTables_PageSizeId").attr("disabled", false)
                     $("#DataTables_SearchById").attr("disabled", false)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    RARIndiaNotification.DisplayNotificationMessage("Failed to display record.", "error")
                 }
             });
     },
@@ -41,6 +44,9 @@
                     $('#DataTablesDivId').html(result);
                     $("#DataTables_PageSizeId").attr("disabled", false)
                     $("#DataTables_SearchById").attr("disabled", false)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    RARIndiaNotification.DisplayNotificationMessage("Failed to display record.", "error")
                 }
             });
     },
@@ -61,6 +67,9 @@
                     $('#DataTablesDivId').html(result);
                     $("#DataTables_PageSizeId").attr("disabled", false)
                     $("#DataTables_SearchById").attr("disabled", false)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    RARIndiaNotification.DisplayNotificationMessage("Failed to display record.", "error")
                 }
             });
     },
@@ -80,6 +89,9 @@
                     $('#DataTablesDivId').html(result);
                     $("#DataTables_PageSizeId").attr("disabled", false)
                     $("#DataTables_SearchById").attr("disabled", false)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    RARIndiaNotification.DisplayNotificationMessage("Failed to display record.", "error")
                 }
             });
     },
@@ -101,6 +113,9 @@
                     $('#DataTablesDivId').html(result);
                     $("#DataTables_PageSizeId").attr("disabled", false)
                     $("#DataTables_SearchById").attr("disabled", false)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    RARIndiaNotification.DisplayNotificationMessage("Failed to display record.", "error")
                 }
             });
     },
@@ -120,18 +135,24 @@
                     $('#DataTablesDivId').html(result);
                     $("#DataTables_PageSizeId").attr("disabled", false)
                     $("#DataTables_SearchById").attr("disabled", false)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    RARIndiaNotification.DisplayNotificationMessage("Failed to display record.", "error")
                 }
             });
     },
 }
 
 function BindDataTableModel(PageIndex) {
+    $("#notificationDivId").hide();
     var dataTableModel = new Object();
     dataTableModel.SearchBy = $('#DataTables_SearchById').val();
     dataTableModel.SortByColumn = "";
     dataTableModel.SortBy = "";
     dataTableModel.PageIndex = PageIndex;
     dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
+    dataTableModel.SelectedCentreCode = $("#SelectedCentreCode").length > 0 ? $("#SelectedCentreCode").val() : "";
+    dataTableModel.SelectedDepartmentID = $("#SelectedDepartmentID").length > 0 ? $("#SelectedDepartmentID").val() : 0;
     $("#DataTables_PageSizeId").attr("disabled", true);
     $("#DataTables_SearchById").attr("disabled", true);
     return dataTableModel;
