@@ -1,0 +1,20 @@
+﻿@using RARIndia.Model;
+@model GeneralDepartmentListModel
+
+<select class="form-control" id="SelectedDepartmentID">
+    <option value="">-----Select Depaerment-----</option>
+    @if (Model.GeneralDepartmentList.Count > 0)
+    {
+        foreach (GeneralDepartmentModel item in Model.GeneralDepartmentList)
+        {
+            if (Model.SelectedDepartmentID == item.ID)
+            {
+                <option value="@item.ID" selected>@item.DepartmentName</option>
+            }
+            else
+            {
+                <option value="@item.ID">@item.DepartmentName</option>
+            }
+        }
+    }
+</select>

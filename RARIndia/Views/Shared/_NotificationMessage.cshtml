@@ -2,33 +2,42 @@
 @model string
 @{
     Layout = null;
-}
-@if (!string.IsNullOrEmpty(Model))
-{
     string notificationStyle = "";
-    MessageBoxModel msgObj = string.IsNullOrEmpty(Model) ? null : Newtonsoft.Json.JsonConvert.DeserializeObject<MessageBoxModel>(Model);
-    if (!string.IsNullOrEmpty(msgObj.Message))
+    MessageBoxModel msgObj = new MessageBoxModel();
+    if (!string.IsNullOrEmpty(Model))
     {
-        switch (msgObj.Type)
+        msgObj = string.IsNullOrEmpty(Model) ? null : Newtonsoft.Json.JsonConvert.DeserializeObject<MessageBoxModel>(Model);
+        if (!string.IsNullOrEmpty(msgObj.Message))
         {
-            case "success":
-                notificationStyle = "bg-success";
-                break;
-            case "error":
-                notificationStyle = "bg-danger";
-                break;
-            case "info":
-                notificationStyle = "bg-info";
-                break;
-            case "warning":
-                notificationStyle = "bg-warning";
-                break;
+            switch (msgObj.Type)
+            {
+                case "success":
+                    notificationStyle = "bg-success";
+                    break;
+                case "error":
+                    notificationStyle = "bg-danger";
+                    break;
+                case "info":
+                    notificationStyle = "bg-info";
+                    break;
+                case "warning":
+                    notificationStyle = "bg-warning";
+                    break;
+            }
+
         }
-        <div class="alert @notificationStyle mb-2" id="notificationDivId" style="text-align: center">
-            <button type="button" class="close" aria-label="Close" id="notificationCloseId">
-                <span>×</span>
-            </button>
-            @msgObj.Message
-        </div>
     }
+
+    string displayMessage = string.IsNullOrEmpty(@msgObj.Message) ? "display:none" : "";
 }
+<style>
+    .nofitication {
+        text-align: center
+    }
+</style>
+<div class="alert nofitication @notificationStyle" id="notificationDivId" style="@displayMessage">
+    <button type="button" class="close" aria-label="Close" id="notificationCloseId">
+        <span>×</span>
+    </button>
+    <span id="notificationMessageId">@msgObj.Message</span>
+</div>

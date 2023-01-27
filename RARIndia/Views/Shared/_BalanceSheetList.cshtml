@@ -14,16 +14,16 @@
         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
             @foreach (UserBalanceSheetModel item in Model.BalanceSheetList)
             {
-                <a class="dropdown-item" href="/user/GetBalanceSheetById?balanceSheetId=@item.BalsheetID&controllerName=@controllerName&method=@actionName">
-                    @if (item.BalsheetID == Model.SelectedBalanceId)
-                    {
-                        <i class="ft-check"></i>@item.ActBalsheetHeadDesc
-                    }
-                    else
-                    {
-                        @item.ActBalsheetHeadDesc
-                    }
-                </a>
+            <a class="dropdown-item" href="/user/GetBalanceSheetById?balanceSheetId=@item.BalsheetID&controllerName=@controllerName&method=@actionName">
+                @if (item.BalsheetID == Model.SelectedBalanceId)
+                {
+                    <i class="ft-check"></i>@item.ActBalsheetHeadDesc
+                }
+                else
+                {
+                    <i class="ft-layers"></i>@item.ActBalsheetHeadDesc
+                }
+            </a>
             }
         </div>
     </li>

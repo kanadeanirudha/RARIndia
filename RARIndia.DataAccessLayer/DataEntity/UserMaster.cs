@@ -14,7 +14,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class UserMaster: RARIndiaEntityBaseModel
+    public partial class UserMaster : RARIndiaEntityBaseModel
     {
         public int ID { get; set; }
         public Nullable<short> UserTypeID { get; set; }
@@ -37,5 +37,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<System.DateTime> DeletedDate { get; set; }
         public string DeviceToken { get; set; }
         public string LastModuleCode { get; set; }
+    
+        public virtual UserType UserType1 { get; set; }
     }
 }

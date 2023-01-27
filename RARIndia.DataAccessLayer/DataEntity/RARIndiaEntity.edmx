@@ -27,6 +27,56 @@
           <Property Name="DeletedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <EntityType Name="AdminRoleCentreRights">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="smallint" Nullable="false" />
+          <Property Name="CentreCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="AdminRoleRightTypeID" Type="smallint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdminRoleDomain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AdminRoleEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="EntityName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="AdminRoleDomainId" Type="tinyint" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="50" />
+          <Property Name="PrimayFieldKeyName" Type="varchar" MaxLength="50" />
+          <Property Name="DisplayFieldName" Type="varchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="AdminRoleMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -68,11 +118,104 @@
           <Property Name="DeletedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <EntityType Name="AdminRoleRightType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="RightName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="AdminRoleDomainId" Type="tinyint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AdminRoleSpecialRightDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleSpecialRightMasterID" Type="smallint" />
+          <Property Name="AdminRoleRightTypeID" Type="smallint" />
+          <Property Name="CentreCode" Type="nvarchar" MaxLength="30" />
+          <Property Name="EnableDate" Type="datetime" />
+          <Property Name="DisableDate" Type="datetime" />
+          <Property Name="DisablePurpose" Type="nvarchar" MaxLength="150" />
+          <Property Name="AdminRoleEntityID" Type="smallint" />
+          <Property Name="SourceID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AdminRoleSpecialRightMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="smallint" />
+          <Property Name="AdminRoleCode" Type="nvarchar" MaxLength="30" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AdminSnPosts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="DesignationID" Type="smallint" Nullable="false" />
+          <Property Name="NoOfPosts" Type="smallint" Nullable="false" />
+          <Property Name="DepartmentID" Type="smallint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CentreCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="DesignationType" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="NomenAdminRoleCode" Type="nvarchar" MaxLength="30" />
+          <Property Name="PostType" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="SactionedPostDescription" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="GeneralCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DefaultFlag" Type="bit" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="RegionCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="IsUserDefined" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="GeneralCountryMaster">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="smallint" Nullable="false" />
           <Property Name="CountryName" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="ContryCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsUserDefined" Type="bit" />
@@ -88,6 +231,192 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="DeletedBy" Type="int" />
           <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GeneralDepartmentMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="DeptShortCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrintShortDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkActivity" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GeneralLocationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DefaultFlag" Type="bit" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="LocationAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostCode" Type="char" MaxLength="10" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Latitude" Type="varchar" MaxLength="20" />
+          <Property Name="Longitude" Type="varchar" MaxLength="20" />
+          <Property Name="IsUserDefined" Type="bit" />
+          <Property Name="IsProviance" Type="bit" />
+          <Property Name="IsTahsil" Type="bit" />
+          <Property Name="Accuracy" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GeneralNationalityMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DefaultFlag" Type="bit" Nullable="false" />
+          <Property Name="IsUserDefined" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrganisationCentrewiseDepartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="DepartmentID" Type="smallint" />
+          <Property Name="CentreCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="ActiveFlag" Type="bit" />
+          <Property Name="DepartmentSeqNo" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrganisationCentrewiseDepartmentDomain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleDomainID" Type="tinyint" Nullable="false" />
+          <Property Name="OrganisationCentrewiseDepartmentID" Type="smallint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="OrganisationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" Nullable="false" />
+          <Property Name="EstablishmentCode" Type="nvarchar" MaxLength="120" />
+          <Property Name="OrgName" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="FoundationDatetime" Type="datetime" Nullable="false" />
+          <Property Name="FounderMember" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="120" />
+          <Property Name="PlotNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="StreetNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="Pincode" Type="nvarchar" MaxLength="15" />
+          <Property Name="EmailID" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="60" />
+          <Property Name="OfficeComment" Type="nvarchar" MaxLength="4000" />
+          <Property Name="MissionStatement" Type="nvarchar" MaxLength="4000" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OfficePhone1" Type="nvarchar" MaxLength="50" />
+          <Property Name="OfficePhone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="OrgCode" Type="nvarchar" MaxLength="35" />
+          <Property Name="PFNumber" Type="nvarchar" MaxLength="35" />
+          <Property Name="ESICNumber" Type="nvarchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="OrganisationStudyCentreMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="CentreCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CentreName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HoCoRoScFlag" Type="varchar" MaxLength="5" />
+          <Property Name="HoID" Type="int" />
+          <Property Name="CoID" Type="int" />
+          <Property Name="RoID" Type="int" />
+          <Property Name="CentreSpecialization" Type="nvarchar" MaxLength="100" />
+          <Property Name="CentreAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="PlotNo" Type="nvarchar" MaxLength="25" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="25" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Pincode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailID" Type="varchar" MaxLength="70" />
+          <Property Name="Url" Type="varchar" MaxLength="30" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumberOffice" Type="nvarchar" MaxLength="50" />
+          <Property Name="CentreEstablishmentDatetime" Type="datetime" />
+          <Property Name="OrganisationID" Type="tinyint" />
+          <Property Name="CentreLoginNumber" Type="int" />
+          <Property Name="InstituteCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="32" />
+          <Property Name="Latitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="CampusArea" Type="float" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CINNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="GSTINNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="PanNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="PFNumber" Type="nvarchar" MaxLength="35" />
+          <Property Name="ESICNumber" Type="nvarchar" MaxLength="35" />
+          <Property Name="WaterMark" Type="nvarchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="OrganisationStudyCentrePrintingFormat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="CentreCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PrintingLine1" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrintingLine2" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrintingLine3" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrintingLine4" Type="nvarchar" MaxLength="100" />
+          <Property Name="Logo" Type="varbinary(max)" />
+          <Property Name="LogoType" Type="varchar" MaxLength="50" />
+          <Property Name="LogoFilename" Type="varchar" MaxLength="50" />
+          <Property Name="LogoFileWidth" Type="varchar" MaxLength="50" />
+          <Property Name="LogoFileHeight" Type="varchar" MaxLength="50" />
+          <Property Name="LogoFileSize" Type="varchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="PrintingLinebelowLogo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="UserMainMenuMaster">
           <Key>
@@ -179,6 +508,23 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="PersonType" Type="nvarchar" MaxLength="1" />
           <Property Name="NotificationCount" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="UserType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="UserDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="RelatedWith" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsCommon" Type="bit" />
+        </EntityType>
         <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterID">
           <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="1" />
           <End Role="AdminRoleApplicableDetails" Type="Self.AdminRoleApplicableDetails" Multiplicity="*" />
@@ -188,6 +534,42 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
             </Principal>
             <Dependent Role="AdminRoleApplicableDetails">
               <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminRoleCentreRightsAdminRoleMasterID">
+          <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="1" />
+          <End Role="AdminRoleCentreRights" Type="Self.AdminRoleCentreRights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleCentreRights">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminRoleCentreRightsAdminRoleRightTypeID">
+          <End Role="AdminRoleRightType" Type="Self.AdminRoleRightType" Multiplicity="1" />
+          <End Role="AdminRoleCentreRights" Type="Self.AdminRoleCentreRights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleRightType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleCentreRights">
+              <PropertyRef Name="AdminRoleRightTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminRoleMasterAdminSnPostID">
+          <End Role="AdminSnPosts" Type="Self.AdminSnPosts" Multiplicity="1" />
+          <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminSnPosts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleMaster">
+              <PropertyRef Name="AdminSnPostID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -203,6 +585,66 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKAdminRoleRightTypeAdminRoleDomainId">
+          <End Role="AdminRoleDomain" Type="Self.AdminRoleDomain" Multiplicity="1" />
+          <End Role="AdminRoleRightType" Type="Self.AdminRoleRightType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleDomain">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleRightType">
+              <PropertyRef Name="AdminRoleDomainId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminSnPostsDepartmentID">
+          <End Role="GeneralDepartmentMaster" Type="Self.GeneralDepartmentMaster" Multiplicity="1" />
+          <End Role="AdminSnPosts" Type="Self.AdminSnPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralDepartmentMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminSnPosts">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKOrganisationCentrewiseDepartmentDepartmentID">
+          <End Role="GeneralDepartmentMaster" Type="Self.GeneralDepartmentMaster" Multiplicity="0..1" />
+          <End Role="OrganisationCentrewiseDepartment" Type="Self.OrganisationCentrewiseDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralDepartmentMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganisationCentrewiseDepartment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKOrganisationStudyCentreMasterCityID">
+          <End Role="GeneralCity" Type="Self.GeneralCity" Multiplicity="0..1" />
+          <End Role="OrganisationStudyCentreMaster" Type="Self.OrganisationStudyCentreMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralCity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganisationStudyCentreMaster">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKOrganisationStudyCentreMasterOrganisationID">
+          <End Role="OrganisationMaster" Type="Self.OrganisationMaster" Multiplicity="0..1" />
+          <End Role="OrganisationStudyCentreMaster" Type="Self.OrganisationStudyCentreMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganisationMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganisationStudyCentreMaster">
+              <PropertyRef Name="OrganisationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKUserMainMenuMasterModuleID">
           <End Role="UserModuleMaster" Type="Self.UserModuleMaster" Multiplicity="1" />
           <End Role="UserMainMenuMaster" Type="Self.UserMainMenuMaster" Multiplicity="*" />
@@ -215,14 +657,43 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKUserMasterUserTypeID">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RARIndiaEntityModelStoreContainer">
           <EntitySet Name="AdminRoleApplicableDetails" EntityType="Self.AdminRoleApplicableDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleCentreRights" EntityType="Self.AdminRoleCentreRights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleDomain" EntityType="Self.AdminRoleDomain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleEntity" EntityType="Self.AdminRoleEntity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleMaster" EntityType="Self.AdminRoleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleMenuDetails" EntityType="Self.AdminRoleMenuDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleRightType" EntityType="Self.AdminRoleRightType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleSpecialRightDetails" EntityType="Self.AdminRoleSpecialRightDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRoleSpecialRightMaster" EntityType="Self.AdminRoleSpecialRightMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminSnPosts" EntityType="Self.AdminSnPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralCity" EntityType="Self.GeneralCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCountryMaster" EntityType="Self.GeneralCountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralDepartmentMaster" EntityType="Self.GeneralDepartmentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralLocationMaster" EntityType="Self.GeneralLocationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralNationalityMaster" EntityType="Self.GeneralNationalityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganisationCentrewiseDepartment" EntityType="Self.OrganisationCentrewiseDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganisationCentrewiseDepartmentDomain" EntityType="Self.OrganisationCentrewiseDepartmentDomain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganisationMaster" EntityType="Self.OrganisationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganisationStudyCentreMaster" EntityType="Self.OrganisationStudyCentreMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganisationStudyCentrePrintingFormat" EntityType="Self.OrganisationStudyCentrePrintingFormat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMainMenuMaster" EntityType="Self.UserMainMenuMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserModuleMaster" EntityType="Self.UserModuleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserNotificationCount" EntityType="Self.UserNotificationCount" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [UserNotificationCount].[PersonID] AS [PersonID], 
@@ -234,13 +705,49 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
             <End Role="AdminRoleApplicableDetails" EntitySet="AdminRoleApplicableDetails" />
           </AssociationSet>
+          <AssociationSet Name="FKAdminRoleCentreRightsAdminRoleMasterID" Association="Self.FKAdminRoleCentreRightsAdminRoleMasterID">
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
+            <End Role="AdminRoleCentreRights" EntitySet="AdminRoleCentreRights" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminRoleCentreRightsAdminRoleRightTypeID" Association="Self.FKAdminRoleCentreRightsAdminRoleRightTypeID">
+            <End Role="AdminRoleRightType" EntitySet="AdminRoleRightType" />
+            <End Role="AdminRoleCentreRights" EntitySet="AdminRoleCentreRights" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminRoleMasterAdminSnPostID" Association="Self.FKAdminRoleMasterAdminSnPostID">
+            <End Role="AdminSnPosts" EntitySet="AdminSnPosts" />
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
+          </AssociationSet>
           <AssociationSet Name="FkAdminRoleMenuDetailsAdminRoleMasterID" Association="Self.FkAdminRoleMenuDetailsAdminRoleMasterID">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
             <End Role="AdminRoleMenuDetails" EntitySet="AdminRoleMenuDetails" />
           </AssociationSet>
+          <AssociationSet Name="FKAdminRoleRightTypeAdminRoleDomainId" Association="Self.FKAdminRoleRightTypeAdminRoleDomainId">
+            <End Role="AdminRoleDomain" EntitySet="AdminRoleDomain" />
+            <End Role="AdminRoleRightType" EntitySet="AdminRoleRightType" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminSnPostsDepartmentID" Association="Self.FKAdminSnPostsDepartmentID">
+            <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMaster" />
+            <End Role="AdminSnPosts" EntitySet="AdminSnPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FKOrganisationCentrewiseDepartmentDepartmentID" Association="Self.FKOrganisationCentrewiseDepartmentDepartmentID">
+            <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMaster" />
+            <End Role="OrganisationCentrewiseDepartment" EntitySet="OrganisationCentrewiseDepartment" />
+          </AssociationSet>
+          <AssociationSet Name="FKOrganisationStudyCentreMasterCityID" Association="Self.FKOrganisationStudyCentreMasterCityID">
+            <End Role="GeneralCity" EntitySet="GeneralCity" />
+            <End Role="OrganisationStudyCentreMaster" EntitySet="OrganisationStudyCentreMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FKOrganisationStudyCentreMasterOrganisationID" Association="Self.FKOrganisationStudyCentreMasterOrganisationID">
+            <End Role="OrganisationMaster" EntitySet="OrganisationMaster" />
+            <End Role="OrganisationStudyCentreMaster" EntitySet="OrganisationStudyCentreMaster" />
+          </AssociationSet>
           <AssociationSet Name="FKUserMainMenuMasterModuleID" Association="Self.FKUserMainMenuMasterModuleID">
             <End Role="UserModuleMaster" EntitySet="UserModuleMaster" />
             <End Role="UserMainMenuMaster" EntitySet="UserMainMenuMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FKUserMasterUserTypeID" Association="Self.FKUserMasterUserTypeID">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="UserMaster" EntitySet="UserMaster" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -248,48 +755,80 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
     <edmx:ConceptualModels>
       <Schema Namespace="RARIndia.EntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RARIndiaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="GeneralCountryMasters" EntityType="RARIndia.EntityModel.GeneralCountryMaster" />
           <EntitySet Name="AdminRoleApplicableDetails" EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" />
+          <EntitySet Name="AdminRoleCentreRights" EntityType="RARIndia.EntityModel.AdminRoleCentreRight" />
+          <EntitySet Name="AdminRoleDomains" EntityType="RARIndia.EntityModel.AdminRoleDomain" />
+          <EntitySet Name="AdminRoleEntities" EntityType="RARIndia.EntityModel.AdminRoleEntity" />
           <EntitySet Name="AdminRoleMasters" EntityType="RARIndia.EntityModel.AdminRoleMaster" />
           <EntitySet Name="AdminRoleMenuDetails" EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" />
+          <EntitySet Name="AdminRoleRightTypes" EntityType="RARIndia.EntityModel.AdminRoleRightType" />
+          <EntitySet Name="AdminRoleSpecialRightDetails" EntityType="RARIndia.EntityModel.AdminRoleSpecialRightDetail" />
+          <EntitySet Name="AdminRoleSpecialRightMasters" EntityType="RARIndia.EntityModel.AdminRoleSpecialRightMaster" />
+          <EntitySet Name="AdminSnPosts" EntityType="RARIndia.EntityModel.AdminSnPost" />
+          <EntitySet Name="GeneralCities" EntityType="RARIndia.EntityModel.GeneralCity" />
+          <EntitySet Name="GeneralCountryMasters" EntityType="RARIndia.EntityModel.GeneralCountryMaster" />
+          <EntitySet Name="GeneralDepartmentMasters" EntityType="RARIndia.EntityModel.GeneralDepartmentMaster" />
+          <EntitySet Name="GeneralLocationMasters" EntityType="RARIndia.EntityModel.GeneralLocationMaster" />
+          <EntitySet Name="GeneralNationalityMasters" EntityType="RARIndia.EntityModel.GeneralNationalityMaster" />
+          <EntitySet Name="OrganisationCentrewiseDepartments" EntityType="RARIndia.EntityModel.OrganisationCentrewiseDepartment" />
+          <EntitySet Name="OrganisationCentrewiseDepartmentDomains" EntityType="RARIndia.EntityModel.OrganisationCentrewiseDepartmentDomain" />
+          <EntitySet Name="OrganisationMasters" EntityType="RARIndia.EntityModel.OrganisationMaster" />
+          <EntitySet Name="OrganisationStudyCentreMasters" EntityType="RARIndia.EntityModel.OrganisationStudyCentreMaster" />
+          <EntitySet Name="OrganisationStudyCentrePrintingFormats" EntityType="RARIndia.EntityModel.OrganisationStudyCentrePrintingFormat" />
+          <EntitySet Name="UserMainMenuMasters" EntityType="RARIndia.EntityModel.UserMainMenuMaster" />
           <EntitySet Name="UserMasters" EntityType="RARIndia.EntityModel.UserMaster" />
+          <EntitySet Name="UserModuleMasters" EntityType="RARIndia.EntityModel.UserModuleMaster" />
+          <EntitySet Name="UserTypes" EntityType="RARIndia.EntityModel.UserType" />
+          <EntitySet Name="UserNotificationCounts" EntityType="RARIndia.EntityModel.UserNotificationCount" />
           <AssociationSet Name="FkAdminRoleApplicableDetailsAdminRoleMasterID" Association="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
             <End Role="AdminRoleApplicableDetail" EntitySet="AdminRoleApplicableDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminRoleCentreRightsAdminRoleMasterID" Association="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleMasterID">
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
+            <End Role="AdminRoleCentreRight" EntitySet="AdminRoleCentreRights" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminRoleCentreRightsAdminRoleRightTypeID" Association="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleRightTypeID">
+            <End Role="AdminRoleRightType" EntitySet="AdminRoleRightTypes" />
+            <End Role="AdminRoleCentreRight" EntitySet="AdminRoleCentreRights" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminRoleRightTypeAdminRoleDomainId" Association="RARIndia.EntityModel.FKAdminRoleRightTypeAdminRoleDomainId">
+            <End Role="AdminRoleDomain" EntitySet="AdminRoleDomains" />
+            <End Role="AdminRoleRightType" EntitySet="AdminRoleRightTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminRoleMasterAdminSnPostID" Association="RARIndia.EntityModel.FKAdminRoleMasterAdminSnPostID">
+            <End Role="AdminSnPost" EntitySet="AdminSnPosts" />
+            <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
           </AssociationSet>
           <AssociationSet Name="FkAdminRoleMenuDetailsAdminRoleMasterID" Association="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
             <End Role="AdminRoleMenuDetail" EntitySet="AdminRoleMenuDetails" />
           </AssociationSet>
-          <EntitySet Name="UserMainMenuMasters" EntityType="RARIndia.EntityModel.UserMainMenuMaster" />
-          <EntitySet Name="UserModuleMasters" EntityType="RARIndia.EntityModel.UserModuleMaster" />
-          <EntitySet Name="UserNotificationCounts" EntityType="RARIndia.EntityModel.UserNotificationCount" />
+          <AssociationSet Name="FKAdminSnPostsDepartmentID" Association="RARIndia.EntityModel.FKAdminSnPostsDepartmentID">
+            <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMasters" />
+            <End Role="AdminSnPost" EntitySet="AdminSnPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FKOrganisationStudyCentreMasterCityID" Association="RARIndia.EntityModel.FKOrganisationStudyCentreMasterCityID">
+            <End Role="GeneralCity" EntitySet="GeneralCities" />
+            <End Role="OrganisationStudyCentreMaster" EntitySet="OrganisationStudyCentreMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FKOrganisationCentrewiseDepartmentDepartmentID" Association="RARIndia.EntityModel.FKOrganisationCentrewiseDepartmentDepartmentID">
+            <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMasters" />
+            <End Role="OrganisationCentrewiseDepartment" EntitySet="OrganisationCentrewiseDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FKOrganisationStudyCentreMasterOrganisationID" Association="RARIndia.EntityModel.FKOrganisationStudyCentreMasterOrganisationID">
+            <End Role="OrganisationMaster" EntitySet="OrganisationMasters" />
+            <End Role="OrganisationStudyCentreMaster" EntitySet="OrganisationStudyCentreMasters" />
+          </AssociationSet>
           <AssociationSet Name="FKUserMainMenuMasterModuleID" Association="RARIndia.EntityModel.FKUserMainMenuMasterModuleID">
             <End Role="UserModuleMaster" EntitySet="UserModuleMasters" />
             <End Role="UserMainMenuMaster" EntitySet="UserMainMenuMasters" />
           </AssociationSet>
+          <AssociationSet Name="FKUserMasterUserTypeID" Association="RARIndia.EntityModel.FKUserMasterUserTypeID">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="UserMaster" EntitySet="UserMasters" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="GeneralCountryMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="ContryCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsUserDefined" Type="Boolean" />
-          <Property Name="DefaultFlag" Type="Boolean" />
-          <Property Name="SeqNo" Type="Int32" />
-          <Property Name="CurrencyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="currencySymbol" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CountryFlag" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="DeletedBy" Type="Int32" />
-          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="AdminRoleApplicableDetail">
           <Key>
             <PropertyRef Name="ID" />
@@ -313,6 +852,59 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="AdminRoleMaster" Relationship="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID" FromRole="AdminRoleApplicableDetail" ToRole="AdminRoleMaster" />
         </EntityType>
+        <EntityType Name="AdminRoleCentreRight">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="Int16" Nullable="false" />
+          <Property Name="CentreCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="AdminRoleRightTypeID" Type="Int16" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="AdminRoleMaster" Relationship="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleMasterID" FromRole="AdminRoleCentreRight" ToRole="AdminRoleMaster" />
+          <NavigationProperty Name="AdminRoleRightType" Relationship="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleRightTypeID" FromRole="AdminRoleCentreRight" ToRole="AdminRoleRightType" />
+        </EntityType>
+        <EntityType Name="AdminRoleDomain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdminRoleRightTypes" Relationship="RARIndia.EntityModel.FKAdminRoleRightTypeAdminRoleDomainId" FromRole="AdminRoleDomain" ToRole="AdminRoleRightType" />
+        </EntityType>
+        <EntityType Name="AdminRoleEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="EntityName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="AdminRoleDomainId" Type="Byte" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimayFieldKeyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayFieldName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="AdminRoleMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -334,6 +926,8 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="AdminRoleApplicableDetails" Relationship="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID" FromRole="AdminRoleMaster" ToRole="AdminRoleApplicableDetail" />
+          <NavigationProperty Name="AdminRoleCentreRights" Relationship="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleMasterID" FromRole="AdminRoleMaster" ToRole="AdminRoleCentreRight" />
+          <NavigationProperty Name="AdminSnPost" Relationship="RARIndia.EntityModel.FKAdminRoleMasterAdminSnPostID" FromRole="AdminRoleMaster" ToRole="AdminSnPost" />
           <NavigationProperty Name="AdminRoleMenuDetails" Relationship="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID" FromRole="AdminRoleMaster" ToRole="AdminRoleMenuDetail" />
         </EntityType>
         <EntityType Name="AdminRoleMenuDetail">
@@ -357,21 +951,36 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="AdminRoleMaster" Relationship="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID" FromRole="AdminRoleMenuDetail" ToRole="AdminRoleMaster" />
         </EntityType>
-        <EntityType Name="UserMaster">
+        <EntityType Name="AdminRoleRightType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="UserTypeID" Type="Int16" />
-          <Property Name="UserType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PersonID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="Boolean" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="RightName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="AdminRoleDomainId" Type="Byte" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdminRoleCentreRights" Relationship="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleRightTypeID" FromRole="AdminRoleRightType" ToRole="AdminRoleCentreRight" />
+          <NavigationProperty Name="AdminRoleDomain" Relationship="RARIndia.EntityModel.FKAdminRoleRightTypeAdminRoleDomainId" FromRole="AdminRoleRightType" ToRole="AdminRoleDomain" />
+        </EntityType>
+        <EntityType Name="AdminRoleSpecialRightDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleSpecialRightMasterID" Type="Int16" />
+          <Property Name="AdminRoleRightTypeID" Type="Int16" />
+          <Property Name="CentreCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EnableDate" Type="DateTime" Precision="3" />
+          <Property Name="DisableDate" Type="DateTime" Precision="3" />
+          <Property Name="DisablePurpose" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AdminRoleEntityID" Type="Int16" />
+          <Property Name="SourceID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
@@ -380,33 +989,279 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="DeletedBy" Type="Int32" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
-          <Property Name="DeviceToken" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="LastModuleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterID">
-          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
-          <End Type="RARIndia.EntityModel.AdminRoleApplicableDetail" Role="AdminRoleApplicableDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdminRoleMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AdminRoleApplicableDetail">
-              <PropertyRef Name="AdminRoleMasterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FkAdminRoleMenuDetailsAdminRoleMasterID">
-          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
-          <End Type="RARIndia.EntityModel.AdminRoleMenuDetail" Role="AdminRoleMenuDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdminRoleMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AdminRoleMenuDetail">
-              <PropertyRef Name="AdminRoleMasterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="AdminRoleSpecialRightMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleMasterID" Type="Int16" />
+          <Property Name="AdminRoleCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AdminSnPost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="DesignationID" Type="Int16" Nullable="false" />
+          <Property Name="NoOfPosts" Type="Int16" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int16" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CentreCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DesignationType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="NomenAdminRoleCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PostType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SactionedPostDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="AdminRoleMasters" Relationship="RARIndia.EntityModel.FKAdminRoleMasterAdminSnPostID" FromRole="AdminSnPost" ToRole="AdminRoleMaster" />
+          <NavigationProperty Name="GeneralDepartmentMaster" Relationship="RARIndia.EntityModel.FKAdminSnPostsDepartmentID" FromRole="AdminSnPost" ToRole="GeneralDepartmentMaster" />
+        </EntityType>
+        <EntityType Name="GeneralCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DefaultFlag" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="IsUserDefined" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrganisationStudyCentreMasters" Relationship="RARIndia.EntityModel.FKOrganisationStudyCentreMasterCityID" FromRole="GeneralCity" ToRole="OrganisationStudyCentreMaster" />
+        </EntityType>
+        <EntityType Name="GeneralCountryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ContryCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsUserDefined" Type="Boolean" />
+          <Property Name="DefaultFlag" Type="Boolean" />
+          <Property Name="SeqNo" Type="Int32" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="currencySymbol" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CountryFlag" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GeneralDepartmentMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="DeptShortCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrintShortDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkActivity" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdminSnPosts" Relationship="RARIndia.EntityModel.FKAdminSnPostsDepartmentID" FromRole="GeneralDepartmentMaster" ToRole="AdminSnPost" />
+          <NavigationProperty Name="OrganisationCentrewiseDepartments" Relationship="RARIndia.EntityModel.FKOrganisationCentrewiseDepartmentDepartmentID" FromRole="GeneralDepartmentMaster" ToRole="OrganisationCentrewiseDepartment" />
+        </EntityType>
+        <EntityType Name="GeneralLocationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DefaultFlag" Type="Boolean" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="LocationAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsUserDefined" Type="Boolean" />
+          <Property Name="IsProviance" Type="Boolean" />
+          <Property Name="IsTahsil" Type="Boolean" />
+          <Property Name="Accuracy" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GeneralNationalityMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultFlag" Type="Boolean" Nullable="false" />
+          <Property Name="IsUserDefined" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrganisationCentrewiseDepartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int16" />
+          <Property Name="CentreCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFlag" Type="Boolean" />
+          <Property Name="DepartmentSeqNo" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GeneralDepartmentMaster" Relationship="RARIndia.EntityModel.FKOrganisationCentrewiseDepartmentDepartmentID" FromRole="OrganisationCentrewiseDepartment" ToRole="GeneralDepartmentMaster" />
+        </EntityType>
+        <EntityType Name="OrganisationCentrewiseDepartmentDomain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleDomainID" Type="Byte" Nullable="false" />
+          <Property Name="OrganisationCentrewiseDepartmentID" Type="Int16" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="OrganisationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" />
+          <Property Name="EstablishmentCode" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="OrgName" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="FoundationDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FounderMember" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="PlotNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StreetNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="Pincode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="MissionStatement" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OfficePhone1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OfficePhone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="OrgCode" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="PFNumber" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="ESICNumber" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrganisationStudyCentreMasters" Relationship="RARIndia.EntityModel.FKOrganisationStudyCentreMasterOrganisationID" FromRole="OrganisationMaster" ToRole="OrganisationStudyCentreMaster" />
+        </EntityType>
+        <EntityType Name="OrganisationStudyCentreMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="CentreCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CentreName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HoCoRoScFlag" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="HoID" Type="Int32" />
+          <Property Name="CoID" Type="Int32" />
+          <Property Name="RoID" Type="Int32" />
+          <Property Name="CentreSpecialization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CentreAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PlotNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="StreetName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberOffice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CentreEstablishmentDatetime" Type="DateTime" Precision="3" />
+          <Property Name="OrganisationID" Type="Byte" />
+          <Property Name="CentreLoginNumber" Type="Int32" />
+          <Property Name="InstituteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeZone" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="CampusArea" Type="Double" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CINNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="GSTINNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PanNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PFNumber" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="ESICNumber" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="WaterMark" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GeneralCity" Relationship="RARIndia.EntityModel.FKOrganisationStudyCentreMasterCityID" FromRole="OrganisationStudyCentreMaster" ToRole="GeneralCity" />
+          <NavigationProperty Name="OrganisationMaster" Relationship="RARIndia.EntityModel.FKOrganisationStudyCentreMasterOrganisationID" FromRole="OrganisationStudyCentreMaster" ToRole="OrganisationMaster" />
+        </EntityType>
+        <EntityType Name="OrganisationStudyCentrePrintingFormat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="CentreCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PrintingLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrintingLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrintingLine3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrintingLine4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LogoType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LogoFilename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LogoFileWidth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LogoFileHeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LogoFileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="PrintingLinebelowLogo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="UserMainMenuMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -438,6 +1293,33 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="MenuIconName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserModuleMaster" Relationship="RARIndia.EntityModel.FKUserMainMenuMasterModuleID" FromRole="UserMainMenuMaster" ToRole="UserModuleMaster" />
         </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeID" Type="Int16" />
+          <Property Name="UserType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeviceToken" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastModuleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserType1" Relationship="RARIndia.EntityModel.FKUserMasterUserTypeID" FromRole="UserMaster" ToRole="UserType" />
+        </EntityType>
         <EntityType Name="UserModuleMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -463,6 +1345,24 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="ModuleColorClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UserMainMenuMasters" Relationship="RARIndia.EntityModel.FKUserMainMenuMasterModuleID" FromRole="UserModuleMaster" ToRole="UserMainMenuMaster" />
         </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="UserType1" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RelatedWith" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsCommon" Type="Boolean" />
+          <NavigationProperty Name="UserMasters" Relationship="RARIndia.EntityModel.FKUserMasterUserTypeID" FromRole="UserType" ToRole="UserMaster" />
+        </EntityType>
         <EntityType Name="UserNotificationCount">
           <Key>
             <PropertyRef Name="NotificationCount" />
@@ -471,6 +1371,126 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="PersonType" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="NotificationCount" Type="Int32" Nullable="false" />
         </EntityType>
+        <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterID">
+          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleApplicableDetail" Role="AdminRoleApplicableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleApplicableDetail">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminRoleCentreRightsAdminRoleMasterID">
+          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleCentreRight" Role="AdminRoleCentreRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleCentreRight">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminRoleCentreRightsAdminRoleRightTypeID">
+          <End Type="RARIndia.EntityModel.AdminRoleRightType" Role="AdminRoleRightType" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleCentreRight" Role="AdminRoleCentreRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleRightType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleCentreRight">
+              <PropertyRef Name="AdminRoleRightTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminRoleRightTypeAdminRoleDomainId">
+          <End Type="RARIndia.EntityModel.AdminRoleDomain" Role="AdminRoleDomain" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleRightType" Role="AdminRoleRightType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleDomain">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleRightType">
+              <PropertyRef Name="AdminRoleDomainId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminRoleMasterAdminSnPostID">
+          <End Type="RARIndia.EntityModel.AdminSnPost" Role="AdminSnPost" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminSnPost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleMaster">
+              <PropertyRef Name="AdminSnPostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkAdminRoleMenuDetailsAdminRoleMasterID">
+          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleMenuDetail" Role="AdminRoleMenuDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminRoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminRoleMenuDetail">
+              <PropertyRef Name="AdminRoleMasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAdminSnPostsDepartmentID">
+          <End Type="RARIndia.EntityModel.GeneralDepartmentMaster" Role="GeneralDepartmentMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminSnPost" Role="AdminSnPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralDepartmentMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminSnPost">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKOrganisationStudyCentreMasterCityID">
+          <End Type="RARIndia.EntityModel.GeneralCity" Role="GeneralCity" Multiplicity="0..1" />
+          <End Type="RARIndia.EntityModel.OrganisationStudyCentreMaster" Role="OrganisationStudyCentreMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralCity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganisationStudyCentreMaster">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKOrganisationCentrewiseDepartmentDepartmentID">
+          <End Type="RARIndia.EntityModel.GeneralDepartmentMaster" Role="GeneralDepartmentMaster" Multiplicity="0..1" />
+          <End Type="RARIndia.EntityModel.OrganisationCentrewiseDepartment" Role="OrganisationCentrewiseDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralDepartmentMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganisationCentrewiseDepartment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKOrganisationStudyCentreMasterOrganisationID">
+          <End Type="RARIndia.EntityModel.OrganisationMaster" Role="OrganisationMaster" Multiplicity="0..1" />
+          <End Type="RARIndia.EntityModel.OrganisationStudyCentreMaster" Role="OrganisationStudyCentreMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganisationMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganisationStudyCentreMaster">
+              <PropertyRef Name="OrganisationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKUserMainMenuMasterModuleID">
           <End Type="RARIndia.EntityModel.UserModuleMaster" Role="UserModuleMaster" Multiplicity="1" />
           <End Type="RARIndia.EntityModel.UserMainMenuMaster" Role="UserMainMenuMaster" Multiplicity="*" />
@@ -483,34 +1503,24 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FKUserMasterUserTypeID">
+          <End Type="RARIndia.EntityModel.UserType" Role="UserType" Multiplicity="0..1" />
+          <End Type="RARIndia.EntityModel.UserMaster" Role="UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RARIndiaEntityModelStoreContainer" CdmEntityContainer="RARIndiaEntities">
-          <EntitySetMapping Name="GeneralCountryMasters">
-            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralCountryMaster">
-              <MappingFragment StoreEntitySet="GeneralCountryMaster">
-                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="CountryFlag" ColumnName="CountryFlag" />
-                <ScalarProperty Name="currencySymbol" ColumnName="currencySymbol" />
-                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
-                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
-                <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
-                <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
-                <ScalarProperty Name="ContryCode" ColumnName="ContryCode" />
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AdminRoleApplicableDetails">
             <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleApplicableDetail">
               <MappingFragment StoreEntitySet="AdminRoleApplicableDetails">
@@ -530,6 +1540,59 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="AdminRoleCode" ColumnName="AdminRoleCode" />
                 <ScalarProperty Name="AdminRoleMasterID" ColumnName="AdminRoleMasterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleCentreRights">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleCentreRight">
+              <MappingFragment StoreEntitySet="AdminRoleCentreRights">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AdminRoleRightTypeID" ColumnName="AdminRoleRightTypeID" />
+                <ScalarProperty Name="CentreCode" ColumnName="CentreCode" />
+                <ScalarProperty Name="AdminRoleMasterID" ColumnName="AdminRoleMasterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleDomains">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleDomain">
+              <MappingFragment StoreEntitySet="AdminRoleDomain">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleEntities">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleEntity">
+              <MappingFragment StoreEntitySet="AdminRoleEntity">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DisplayFieldName" ColumnName="DisplayFieldName" />
+                <ScalarProperty Name="PrimayFieldKeyName" ColumnName="PrimayFieldKeyName" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="AdminRoleDomainId" ColumnName="AdminRoleDomainId" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -577,11 +1640,25 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserMasters">
-            <EntityTypeMapping TypeName="RARIndia.EntityModel.UserMaster">
-              <MappingFragment StoreEntitySet="UserMaster">
-                <ScalarProperty Name="LastModuleCode" ColumnName="LastModuleCode" />
-                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+          <EntitySetMapping Name="AdminRoleRightTypes">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleRightType">
+              <MappingFragment StoreEntitySet="AdminRoleRightType">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AdminRoleDomainId" ColumnName="AdminRoleDomainId" />
+                <ScalarProperty Name="RightName" ColumnName="RightName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleSpecialRightDetails">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleSpecialRightDetail">
+              <MappingFragment StoreEntitySet="AdminRoleSpecialRightDetails">
                 <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -590,16 +1667,289 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="AdminRoleEntityID" ColumnName="AdminRoleEntityID" />
+                <ScalarProperty Name="DisablePurpose" ColumnName="DisablePurpose" />
+                <ScalarProperty Name="DisableDate" ColumnName="DisableDate" />
+                <ScalarProperty Name="EnableDate" ColumnName="EnableDate" />
+                <ScalarProperty Name="CentreCode" ColumnName="CentreCode" />
+                <ScalarProperty Name="AdminRoleRightTypeID" ColumnName="AdminRoleRightTypeID" />
+                <ScalarProperty Name="AdminRoleSpecialRightMasterID" ColumnName="AdminRoleSpecialRightMasterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminRoleSpecialRightMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminRoleSpecialRightMaster">
+              <MappingFragment StoreEntitySet="AdminRoleSpecialRightMaster">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AdminRoleCode" ColumnName="AdminRoleCode" />
+                <ScalarProperty Name="AdminRoleMasterID" ColumnName="AdminRoleMasterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminSnPosts">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminSnPost">
+              <MappingFragment StoreEntitySet="AdminSnPosts">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SactionedPostDescription" ColumnName="SactionedPostDescription" />
+                <ScalarProperty Name="PostType" ColumnName="PostType" />
+                <ScalarProperty Name="NomenAdminRoleCode" ColumnName="NomenAdminRoleCode" />
+                <ScalarProperty Name="DesignationType" ColumnName="DesignationType" />
+                <ScalarProperty Name="CentreCode" ColumnName="CentreCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="NoOfPosts" ColumnName="NoOfPosts" />
+                <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralCities">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralCity">
+              <MappingFragment StoreEntitySet="GeneralCity">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralCountryMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralCountryMaster">
+              <MappingFragment StoreEntitySet="GeneralCountryMaster">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CountryFlag" ColumnName="CountryFlag" />
+                <ScalarProperty Name="currencySymbol" ColumnName="currencySymbol" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
+                <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
+                <ScalarProperty Name="ContryCode" ColumnName="ContryCode" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralDepartmentMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralDepartmentMaster">
+              <MappingFragment StoreEntitySet="GeneralDepartmentMaster">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="WorkActivity" ColumnName="WorkActivity" />
+                <ScalarProperty Name="PrintShortDesc" ColumnName="PrintShortDesc" />
+                <ScalarProperty Name="DeptShortCode" ColumnName="DeptShortCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralLocationMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralLocationMaster">
+              <MappingFragment StoreEntitySet="GeneralLocationMaster">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+                <ScalarProperty Name="IsTahsil" ColumnName="IsTahsil" />
+                <ScalarProperty Name="IsProviance" ColumnName="IsProviance" />
+                <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralNationalityMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralNationalityMaster">
+              <MappingFragment StoreEntitySet="GeneralNationalityMaster">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
+                <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganisationCentrewiseDepartments">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.OrganisationCentrewiseDepartment">
+              <MappingFragment StoreEntitySet="OrganisationCentrewiseDepartment">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DepartmentSeqNo" ColumnName="DepartmentSeqNo" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="CentreCode" ColumnName="CentreCode" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganisationCentrewiseDepartmentDomains">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.OrganisationCentrewiseDepartmentDomain">
+              <MappingFragment StoreEntitySet="OrganisationCentrewiseDepartmentDomain">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrganisationCentrewiseDepartmentID" ColumnName="OrganisationCentrewiseDepartmentID" />
+                <ScalarProperty Name="AdminRoleDomainID" ColumnName="AdminRoleDomainID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganisationMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.OrganisationMaster">
+              <MappingFragment StoreEntitySet="OrganisationMaster">
+                <ScalarProperty Name="ESICNumber" ColumnName="ESICNumber" />
+                <ScalarProperty Name="PFNumber" ColumnName="PFNumber" />
+                <ScalarProperty Name="OrgCode" ColumnName="OrgCode" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OfficePhone2" ColumnName="OfficePhone2" />
+                <ScalarProperty Name="OfficePhone1" ColumnName="OfficePhone1" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="MissionStatement" ColumnName="MissionStatement" />
+                <ScalarProperty Name="OfficeComment" ColumnName="OfficeComment" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+                <ScalarProperty Name="PlotNumber" ColumnName="PlotNumber" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="FounderMember" ColumnName="FounderMember" />
+                <ScalarProperty Name="FoundationDatetime" ColumnName="FoundationDatetime" />
+                <ScalarProperty Name="OrgName" ColumnName="OrgName" />
+                <ScalarProperty Name="EstablishmentCode" ColumnName="EstablishmentCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganisationStudyCentreMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.OrganisationStudyCentreMaster">
+              <MappingFragment StoreEntitySet="OrganisationStudyCentreMaster">
+                <ScalarProperty Name="WaterMark" ColumnName="WaterMark" />
+                <ScalarProperty Name="ESICNumber" ColumnName="ESICNumber" />
+                <ScalarProperty Name="PFNumber" ColumnName="PFNumber" />
+                <ScalarProperty Name="PanNumber" ColumnName="PanNumber" />
+                <ScalarProperty Name="GSTINNumber" ColumnName="GSTINNumber" />
+                <ScalarProperty Name="CINNumber" ColumnName="CINNumber" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CampusArea" ColumnName="CampusArea" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="InstituteCode" ColumnName="InstituteCode" />
+                <ScalarProperty Name="CentreLoginNumber" ColumnName="CentreLoginNumber" />
+                <ScalarProperty Name="OrganisationID" ColumnName="OrganisationID" />
+                <ScalarProperty Name="CentreEstablishmentDatetime" ColumnName="CentreEstablishmentDatetime" />
+                <ScalarProperty Name="PhoneNumberOffice" ColumnName="PhoneNumberOffice" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="PlotNo" ColumnName="PlotNo" />
+                <ScalarProperty Name="CentreAddress" ColumnName="CentreAddress" />
+                <ScalarProperty Name="CentreSpecialization" ColumnName="CentreSpecialization" />
+                <ScalarProperty Name="RoID" ColumnName="RoID" />
+                <ScalarProperty Name="CoID" ColumnName="CoID" />
+                <ScalarProperty Name="HoID" ColumnName="HoID" />
+                <ScalarProperty Name="HoCoRoScFlag" ColumnName="HoCoRoScFlag" />
+                <ScalarProperty Name="CentreName" ColumnName="CentreName" />
+                <ScalarProperty Name="CentreCode" ColumnName="CentreCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganisationStudyCentrePrintingFormats">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.OrganisationStudyCentrePrintingFormat">
+              <MappingFragment StoreEntitySet="OrganisationStudyCentrePrintingFormat">
+                <ScalarProperty Name="PrintingLinebelowLogo" ColumnName="PrintingLinebelowLogo" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LogoFileSize" ColumnName="LogoFileSize" />
+                <ScalarProperty Name="LogoFileHeight" ColumnName="LogoFileHeight" />
+                <ScalarProperty Name="LogoFileWidth" ColumnName="LogoFileWidth" />
+                <ScalarProperty Name="LogoFilename" ColumnName="LogoFilename" />
+                <ScalarProperty Name="LogoType" ColumnName="LogoType" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="PrintingLine4" ColumnName="PrintingLine4" />
+                <ScalarProperty Name="PrintingLine3" ColumnName="PrintingLine3" />
+                <ScalarProperty Name="PrintingLine2" ColumnName="PrintingLine2" />
+                <ScalarProperty Name="PrintingLine1" ColumnName="PrintingLine1" />
+                <ScalarProperty Name="CentreCode" ColumnName="CentreCode" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -635,6 +1985,33 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="LastModuleCode" ColumnName="LastModuleCode" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserModuleMasters">
             <EntityTypeMapping TypeName="RARIndia.EntityModel.UserModuleMaster">
               <MappingFragment StoreEntitySet="UserModuleMaster">
@@ -656,6 +2033,24 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
                 <ScalarProperty Name="ModuleInstalledFlag" ColumnName="ModuleInstalledFlag" />
                 <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
                 <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="IsCommon" ColumnName="IsCommon" />
+                <ScalarProperty Name="RelatedWith" ColumnName="RelatedWith" />
+                <ScalarProperty Name="UserDescription" ColumnName="UserDescription" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserType1" ColumnName="UserType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

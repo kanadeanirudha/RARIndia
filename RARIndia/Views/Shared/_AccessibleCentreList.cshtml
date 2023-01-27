@@ -1,0 +1,42 @@
+﻿@using RARIndia.Model;
+@using RARIndia.Utilities.Helper;
+@model string
+@{
+    Layout = null;
+    List<UserAccessibleCentreModel> AccessibleCentreList = RARIndiaHelperUtility.AccessibleCentreList();
+    string[] data = Model.Split('~');
+}
+@if (data.Length > 1 && data[1] == "department")
+{
+    <select class="form-control" id="SelectedCentreCode" onchange="RARIndiaCommanFunction.GetDepartmentByCentreCode()">
+        <option value="">-----Select Centre-----</option>
+        @foreach (UserAccessibleCentreModel item in AccessibleCentreList)
+        {
+            if (data[0] == item.CentreCode)
+            {
+                <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
+            }
+            else
+            {
+                <option value="@item.CentreCode:@item.ScopeIdentity">@item.CentreName</option>
+            }
+        }
+    </select>
+}
+else
+{
+    <select class="form-control" id="SelectedCentreCode">
+        <option value="">-----Select Centre-----</option>
+        @foreach (UserAccessibleCentreModel item in AccessibleCentreList)
+        {
+            if (data[0] == item.CentreCode)
+            {
+                <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
+            }
+            else
+            {
+                <option value="@item.CentreCode:@item.ScopeIdentity">@item.CentreName</option>
+            }
+        }
+    </select>
+}

@@ -1,4 +1,5 @@
 ﻿using RARIndia.BusinessLogicLayer;
+using RARIndia.Filters;
 using RARIndia.Model.Model;
 using RARIndia.Resources;
 using RARIndia.Utilities.Constant;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
+    [SessionTimeoutAttribute]
     public class GeneralCountryMasterController : BaseController
     {
         GeneralCountryMasterBA _generalCountryMasterBA = null;

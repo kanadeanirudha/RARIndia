@@ -11,6 +11,7 @@ namespace RARIndia.Model
             ModuleList = new List<UserModuleModel>();
             MenuList = new List<UserMenuModel>();
             BalanceSheetList = new List<UserBalanceSheetModel>();
+            AccessibleCentreList = new List<UserAccessibleCentreModel>();
         }
         public int ID { get; set; }
         public bool IsAdminUser { get; set; }
@@ -38,5 +39,6 @@ namespace RARIndia.Model
         public List<UserModuleModel> ModuleList { get; set; }
         public List<UserMenuModel> MenuList { get; set; }
         public List<UserBalanceSheetModel> BalanceSheetList { get; set; }
+        public List<UserAccessibleCentreModel> AccessibleCentreList { get; set; }
     }
 }

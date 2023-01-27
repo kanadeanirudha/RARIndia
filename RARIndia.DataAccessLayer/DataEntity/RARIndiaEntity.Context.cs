@@ -25,13 +25,30 @@ namespace RARIndia.DataAccessLayer.DataEntity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<GeneralCountryMaster> GeneralCountryMasters { get; set; }
         public virtual DbSet<AdminRoleApplicableDetail> AdminRoleApplicableDetails { get; set; }
+        public virtual DbSet<AdminRoleCentreRight> AdminRoleCentreRights { get; set; }
+        public virtual DbSet<AdminRoleDomain> AdminRoleDomains { get; set; }
+        public virtual DbSet<AdminRoleEntity> AdminRoleEntities { get; set; }
         public virtual DbSet<AdminRoleMaster> AdminRoleMasters { get; set; }
         public virtual DbSet<AdminRoleMenuDetail> AdminRoleMenuDetails { get; set; }
-        public virtual DbSet<UserMaster> UserMasters { get; set; }
+        public virtual DbSet<AdminRoleRightType> AdminRoleRightTypes { get; set; }
+        public virtual DbSet<AdminRoleSpecialRightDetail> AdminRoleSpecialRightDetails { get; set; }
+        public virtual DbSet<AdminRoleSpecialRightMaster> AdminRoleSpecialRightMasters { get; set; }
+        public virtual DbSet<AdminSnPost> AdminSnPosts { get; set; }
+        public virtual DbSet<GeneralCity> GeneralCities { get; set; }
+        public virtual DbSet<GeneralCountryMaster> GeneralCountryMasters { get; set; }
+        public virtual DbSet<GeneralDepartmentMaster> GeneralDepartmentMasters { get; set; }
+        public virtual DbSet<GeneralLocationMaster> GeneralLocationMasters { get; set; }
+        public virtual DbSet<GeneralNationalityMaster> GeneralNationalityMasters { get; set; }
+        public virtual DbSet<OrganisationCentrewiseDepartment> OrganisationCentrewiseDepartments { get; set; }
+        public virtual DbSet<OrganisationCentrewiseDepartmentDomain> OrganisationCentrewiseDepartmentDomains { get; set; }
+        public virtual DbSet<OrganisationMaster> OrganisationMasters { get; set; }
+        public virtual DbSet<OrganisationStudyCentreMaster> OrganisationStudyCentreMasters { get; set; }
+        public virtual DbSet<OrganisationStudyCentrePrintingFormat> OrganisationStudyCentrePrintingFormats { get; set; }
         public virtual DbSet<UserMainMenuMaster> UserMainMenuMasters { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<UserModuleMaster> UserModuleMasters { get; set; }
+        public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<UserNotificationCount> UserNotificationCounts { get; set; }
     }
 }

@@ -59,19 +59,30 @@ namespace RARIndia.DataAccessLayer
                     //Bind Balance Sheet
                     userModel.BalanceSheetList = BindAccountBalanceSheetByRoleID(userModel);
                 }
+
             }
             else
             {
                 //Bind Menu And Modules For Non Admin User
                 BindMenuAndModulesForAdminUser(userModel, userAllModuleList, userAllMenuList);
+                List<OrganisationStudyCentreMaster> centreList = new RARIndiaRepository<OrganisationStudyCentreMaster>().Table.ToList();
+                foreach (OrganisationStudyCentreMaster item in centreList)
+                {
+                    userModel.AccessibleCentreList.Add(new UserAccessibleCentreModel()
+                    {
+                        CentreCode = item.CentreCode,
+                        CentreName = item.CentreName,
+                        ScopeIdentity = "Centre"
+                    });
+                }
             }
             return userModel;
         }
 
         public int GetNotificationCount(int userId)
         {
-            int notificationCount = new RARIndiaRepository<UserNotificationCount>().Table.FirstOrDefault(x => x.PersonID == userId).NotificationCount;
-            return notificationCount;
+            int? notificationCount = new RARIndiaRepository<UserNotificationCount>().Table.FirstOrDefault(x => x.PersonID == userId)?.NotificationCount;
+            return notificationCount != null && notificationCount > 0 ? (int)notificationCount : 0;
         }
 
         #endregion

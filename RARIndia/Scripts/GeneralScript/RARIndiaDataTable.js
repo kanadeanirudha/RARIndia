@@ -7,14 +7,7 @@
 
     // LoadList method is used to load List page
     LoadList: function (controllerName, methodName) {
-        var dataTableModel = new Object();
-        dataTableModel.SearchBy = $('#DataTables_SearchById').val();
-        dataTableModel.SortByColumn = "";
-        dataTableModel.SortBy = "";
-        dataTableModel.PageIndex = $('#DataTables_PageIndexId').val();
-        dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
-        $("#DataTables_PageSizeId").attr("disabled", true)
-        $("#DataTables_SearchById").attr("disabled", true)
+        var dataTableModel = BindDataTableModel($('#DataTables_PageIndexId').val());
         $.ajax(
             {
                 cache: false,
@@ -34,15 +27,7 @@
 
     // LoadList method is used to load List page
     LoadListFirst: function (controllerName, methodName) {
-        debugger
-        var dataTableModel = new Object();
-        dataTableModel.SearchBy = $('#DataTables_SearchById').val();
-        dataTableModel.SortByColumn = "";
-        dataTableModel.SortBy = "";
-        dataTableModel.PageIndex = 1;
-        dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
-        $("#DataTables_PageSizeId").attr("disabled", true)
-        $("#DataTables_SearchById").attr("disabled", true)
+        var dataTableModel = BindDataTableModel(1);
         $.ajax(
             {
                 cache: false,
@@ -61,15 +46,8 @@
     },
 
     LoadListPrevious: function (controllerName, methodName) {
-        debugger
-        var dataTableModel = new Object();
-        dataTableModel.SearchBy = $('#DataTables_SearchById').val();
-        dataTableModel.SortByColumn = "";
-        dataTableModel.SortBy = "";
-        dataTableModel.PageIndex = $('#DataTables_PageIndexId').val() == "1" ? 1 : dataTableModel.PageIndex = parseInt($('#DataTables_PageIndexId').val()) - 1;
-        dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
-        $("#DataTables_PageSizeId").attr("disabled", true)
-        $("#DataTables_SearchById").attr("disabled", true)
+        var PageIndex = $('#DataTables_PageIndexId').val() == "1" ? 1 : dataTableModel.PageIndex = parseInt($('#DataTables_PageIndexId').val()) - 1;
+        var dataTableModel = BindDataTableModel(PageIndex);
         $.ajax(
             {
                 cache: false,
@@ -88,14 +66,7 @@
     },
     // LoadList method is used to load List page
     LoadListLast: function (controllerName, methodName, pageSize) {
-        var dataTableModel = new Object();
-        dataTableModel.SearchBy = $('#DataTables_SearchById').val();
-        dataTableModel.SortByColumn = "";
-        dataTableModel.SortBy = "";
-        dataTableModel.PageIndex = pageSize;
-        dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
-        $("#DataTables_PageSizeId").attr("disabled", true)
-        $("#DataTables_SearchById").attr("disabled", true)
+        var dataTableModel = BindDataTableModel(pageSize);
         $.ajax(
             {
                 cache: false,
@@ -114,14 +85,9 @@
     },
 
     LoadListNext: function (controllerName, methodName) {
-        var dataTableModel = new Object();
-        dataTableModel.SearchBy = $('#DataTables_SearchById').val();
-        dataTableModel.SortByColumn = "";
-        dataTableModel.SortBy = "";
-        dataTableModel.PageIndex = parseInt($('#DataTables_PageIndexId').val()) + 1;
-        dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
-        $("#DataTables_PageSizeId").attr("disabled", true)
-        $("#DataTables_SearchById").attr("disabled", true)
+        var PageIndex = parseInt($('#DataTables_PageIndexId').val()) + 1;
+        var dataTableModel = BindDataTableModel(PageIndex);
+
         $.ajax(
             {
                 cache: false,
@@ -140,15 +106,7 @@
     },
 
     LoadListSortBy: function (controllerName, methodName, e) {
-        debugger
-        var dataTableModel = new Object();
-        dataTableModel.SearchBy = $('#DataTables_SearchById').val();
-        dataTableModel.SortByColumn = "";
-        dataTableModel.SortBy = "";
-        dataTableModel.PageIndex = $('#DataTables_PageIndexId').val();
-        dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
-        $("#DataTables_PageSizeId").attr("disabled", true)
-        $("#DataTables_SearchById").attr("disabled", true)
+        var dataTableModel = BindDataTableModel($('#DataTables_PageIndexId').val());
         $.ajax(
             {
                 cache: false,
@@ -165,4 +123,16 @@
                 }
             });
     },
+}
+
+function BindDataTableModel(PageIndex) {
+    var dataTableModel = new Object();
+    dataTableModel.SearchBy = $('#DataTables_SearchById').val();
+    dataTableModel.SortByColumn = "";
+    dataTableModel.SortBy = "";
+    dataTableModel.PageIndex = PageIndex;
+    dataTableModel.PageSize = $('#DataTables_PageSizeId').val();
+    $("#DataTables_PageSizeId").attr("disabled", true);
+    $("#DataTables_SearchById").attr("disabled", true);
+    return dataTableModel;
 }

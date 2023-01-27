@@ -12,7 +12,6 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
-    [Authorize]
     public class BaseController : Controller
     {
         #region Notification
@@ -177,5 +176,10 @@ namespace RARIndia.Controllers
             return ControllerExtensions.RedirectToAction(this, action);
         }
 
+        protected bool IsAdminUser()
+        {
+            UserModel userModel = RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession);
+            return userModel != null ? userModel.IsAdminUser : false;
+        }
     }
 }

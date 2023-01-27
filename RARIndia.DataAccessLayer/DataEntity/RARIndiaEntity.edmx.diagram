@@ -4,18 +4,44 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="96360959c0ac4125b05e631ccb690d9e" Name="Diagram1" ZoomLevel="83">
-        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralCountryMaster" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" Width="1.5" PointX="6" PointY="6.125" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMaster" Width="1.5" PointX="3.75" PointY="3.75" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" Width="1.5" PointX="6" PointY="1.25" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.UserMaster" Width="1.5" PointX="0.75" PointY="5.75" />
+      <Diagram DiagramId="96360959c0ac4125b05e631ccb690d9e" Name="Diagram1" ZoomLevel="76">
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" Width="1.5" PointX="7.5" PointY="5.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleCentreRight" Width="1.5" PointX="10.5" PointY="8.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleDomain" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleEntity" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMaster" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" Width="1.5" PointX="7.5" PointY="15.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleRightType" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleSpecialRightDetail" Width="1.5" PointX="2.75" PointY="2.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleSpecialRightMaster" Width="1.5" PointX="7.75" PointY="11.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminSnPost" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralCity" Width="1.5" PointX="9.75" PointY="16.625" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralCountryMaster" Width="1.5" PointX="14.75" PointY="17.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralDepartmentMaster" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralLocationMaster" Width="1.5" PointX="16.75" PointY="17.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralNationalityMaster" Width="1.5" PointX="17.75" PointY="2.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationCentrewiseDepartment" Width="1.5" PointX="3" PointY="15.875" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationCentrewiseDepartmentDomain" Width="1.5" PointX="9.75" PointY="5.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationMaster" Width="1.5" PointX="9.75" PointY="21.125" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationStudyCentreMaster" Width="1.5" PointX="12" PointY="14" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationStudyCentrePrintingFormat" Width="1.5" PointX="0.75" PointY="20.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.UserMainMenuMaster" Width="1.5" PointX="17" PointY="9.875" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.UserMaster" Width="1.5" PointX="15" PointY="2.875" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.UserModuleMaster" Width="1.5" PointX="14.75" PointY="10.5" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.UserType" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.UserNotificationCount" Width="1.5" PointX="4.75" PointY="5.5" />
         <AssociationConnector Association="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleMasterID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleRightTypeID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKAdminRoleRightTypeAdminRoleDomainId" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKAdminRoleMasterAdminSnPostID" />
         <AssociationConnector Association="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterID" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.UserMainMenuMaster" Width="1.5" PointX="10.625" PointY="1.125" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.UserModuleMaster" Width="1.5" PointX="8.375" PointY="1.75" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.UserNotificationCount" Width="1.5" PointX="8.375" PointY="8.75" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKAdminSnPostsDepartmentID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKOrganisationStudyCentreMasterCityID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKOrganisationCentrewiseDepartmentDepartmentID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKOrganisationStudyCentreMasterOrganisationID" />
         <AssociationConnector Association="RARIndia.EntityModel.FKUserMainMenuMasterModuleID" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKUserMasterUserTypeID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

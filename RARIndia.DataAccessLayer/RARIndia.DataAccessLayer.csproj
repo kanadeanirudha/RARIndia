@@ -55,11 +55,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralDepartmentMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralNationalityMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCountryMasterDAL.cs" />
     <Compile Include="Constants\StoredProcedureKeys.cs" />
     <Compile Include="DataAccessLayers\Implementation\User\UserMasterDAL.cs" />
     <Compile Include="DataEntity\AdminRoleApplicableDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleCentreRight.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleDomain.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleEntity.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\AdminRoleMaster.cs">
@@ -68,10 +78,49 @@
     <Compile Include="DataEntity\AdminRoleMenuDetail.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataEntity\AdminRoleRightType.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleSpecialRightDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminRoleSpecialRightMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\AdminSnPost.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralCity.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\GeneralCountryMaster.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataEntity\GeneralDepartmentMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralLocationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralNationalityMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\IDBContext.cs" />
+    <Compile Include="DataEntity\OrganisationCentrewiseDepartment.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationCentrewiseDepartmentDomain.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationStudyCentreMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationStudyCentrePrintingFormat.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\RARIndiaEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,6 +147,9 @@
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\UserNotificationCount.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\UserType.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EntityExtension.cs" />

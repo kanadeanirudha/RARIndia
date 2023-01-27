@@ -150,11 +150,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Admin\AdminSnPostsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GeneralMaster\GeneraDepartmentMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralNationalityMasterController.cs" />
     <Compile Include="Controllers\Login\UserController.cs" />
+    <Compile Include="Filters\SessionTimeoutAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +181,7 @@
     <Content Include="Images\sort_both.png" />
     <Content Include="Images\sort_desc.png" />
     <Content Include="Images\top.png" />
+    <Content Include="Scripts\GeneralScript\RARIndiaCommanFunction.js" />
     <Content Include="Scripts\GeneralScript\RARIndiaNotification.js" />
     <Content Include="Scripts\GeneralScript\RARIndiaDataTable.js" />
     <Content Include="Scripts\Theme\app-menu.min.js" />
@@ -256,6 +260,13 @@
     <Content Include="Views\Shared\_MenuList.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_NotificationCount.cshtml" />
+    <Content Include="Views\Admin\AdminSnPosts\List.cshtml" />
+    <Content Include="Views\Admin\AdminSnPosts\_List.cshtml" />
+    <Content Include="Views\Shared\_AccessibleCentreList.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\_List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\CreateEdit.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\List.cshtml" />
+    <Content Include="Views\Shared\_DepartmentDropdown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

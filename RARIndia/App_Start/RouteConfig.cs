@@ -14,6 +14,12 @@ namespace RARIndia
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "GeneralCountryMaster-List",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "GeneralCountryMaster", action = "List", id = UrlParameter.Optional }
+           );
         }
     }
 }

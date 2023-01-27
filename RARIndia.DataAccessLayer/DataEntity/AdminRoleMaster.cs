@@ -14,12 +14,13 @@ namespace RARIndia.DataAccessLayer.DataEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminRoleMaster: RARIndiaEntityBaseModel
+    public partial class AdminRoleMaster : RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AdminRoleMaster()
         {
             this.AdminRoleApplicableDetails = new HashSet<AdminRoleApplicableDetail>();
+            this.AdminRoleCentreRights = new HashSet<AdminRoleCentreRight>();
             this.AdminRoleMenuDetails = new HashSet<AdminRoleMenuDetail>();
         }
     
@@ -42,6 +43,9 @@ namespace RARIndia.DataAccessLayer.DataEntity
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleApplicableDetail> AdminRoleApplicableDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AdminRoleCentreRight> AdminRoleCentreRights { get; set; }
+        public virtual AdminSnPost AdminSnPost { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleMenuDetail> AdminRoleMenuDetails { get; set; }
     }

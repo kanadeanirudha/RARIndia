@@ -1,10 +1,12 @@
 ﻿using RARIndia.BusinessLogicLayer;
+using RARIndia.Filters;
 using RARIndia.Model.Model;
 using RARIndia.ViewModel;
 using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
+    [SessionTimeoutAttribute]
     public class GeneralNationalityMasterController : BaseController
     {
         GeneralNationalityMasterBA _generalNationalityMasterBA = null;
