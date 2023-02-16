@@ -70,6 +70,15 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to delete the record..
         /// </summary>
         public static string DeleteErrorMessage {
@@ -142,6 +151,24 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Centre.
+        /// </summary>
+        public static string LabelCentre {
+            get {
+                return ResourceManager.GetString("LabelCentre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Departments.
+        /// </summary>
+        public static string LabelDepartments {
+            get {
+                return ResourceManager.GetString("LabelDepartments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Model can not be null..
         /// </summary>
         public static string ModelNotNull {
@@ -174,6 +201,15 @@ namespace RARIndia.Resources {
         public static string RecordSavedSuccessMessage {
             get {
                 return ResourceManager.GetString("RecordSavedSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaveButton {
+            get {
+                return ResourceManager.GetString("SaveButton", resourceCulture);
             }
         }
         

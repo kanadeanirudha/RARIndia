@@ -5,17 +5,17 @@
     constructor: function () {
     },
 
-
     GetDepartmentByCentreCode: function () {
         var selectedItem = $("#SelectedCentreCode").val();
         $('#DataTablesDivId tbody').html('');
-        if ($("#SelectedCentreCode").val() != "") {
+        if (selectedItem != "") {
             $.ajax({
                 cache: false,
                 type: "GET",
                 dataType: "html",
-                url: "/GeneralDepartmentMaster/GetDepartmentsByCentreCode",
+                url: "/GeneralCommanData/GetDepartmentsByCentreCode",
                 data: { "centreCode": selectedItem },
+                contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     $("#SelectedDepartmentID").html("").html(data);
                 },

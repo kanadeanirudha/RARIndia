@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BaseBusinessLogic.cs" />
     <Compile Include="Admin\AdminSnPostsBA.cs" />
+    <Compile Include="GeneralMaster\GeneralDesignationMasterBA.cs" />
     <Compile Include="GeneralMaster\GeneralDepartmentMasterBA.cs" />
     <Compile Include="GeneralMaster\GeneralNationalityMasterBA.cs" />
     <Compile Include="GeneralMaster\GeneralCountryMasterBA.cs" />

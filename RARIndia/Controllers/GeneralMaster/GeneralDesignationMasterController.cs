@@ -94,10 +94,5 @@ namespace RARIndia.Controllers
             SetNotificationMessage(GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage));
             return RedirectToAction<GeneralDepartmentMasterController>(x => x.List(null));
         }
-        public ActionResult GetDepartmentsByCentreCode(string centreCode = null)
-        {
-            GeneralDepartmentListModel list = _generalDepartmentMasterBA.GetDepartmentsByCentreCode(centreCode);
-            return PartialView($"~/Views/Shared/_DepartmentDropdown.cshtml", list);
-        }
     }
 }

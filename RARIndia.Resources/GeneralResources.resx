@@ -120,6 +120,9 @@
   <data name="AlreadyExists" xml:space="preserve">
     <value>Already Exists.</value>
   </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="DeleteErrorMessage" xml:space="preserve">
     <value>Failed to delete the record.</value>
   </data>
@@ -144,6 +147,12 @@
   <data name="ErrorMessage_ThisaccountdoesnotexistEnteravalidemailaddressorpassword" xml:space="preserve">
     <value>This account does not exist. Enter a valid email address or password</value>
   </data>
+  <data name="LabelCentre" xml:space="preserve">
+    <value>Centre</value>
+  </data>
+  <data name="LabelDepartments" xml:space="preserve">
+    <value>Departments</value>
+  </data>
   <data name="ModelNotNull" xml:space="preserve">
     <value>Model can not be null.</value>
   </data>
@@ -155,6 +164,9 @@
   </data>
   <data name="RecordSavedSuccessMessage" xml:space="preserve">
     <value>Record saved successfully.</value>
+  </data>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="UpdateErrorMessage" xml:space="preserve">
     <value>Failed to update record.</value>

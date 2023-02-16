@@ -35,10 +35,9 @@ namespace RARIndia.BusinessLogicLayer
             NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);
             GeneralNationalityListModel nationalityList = _generalNationalityMasterDAL.GetNationalityList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize);
             GeneralNationalityListViewModel listViewModel = new GeneralNationalityListViewModel { GeneralNationalityList = nationalityList?.GeneralNationalityList?.ToViewModel<GeneralNationalityViewModel>().ToList() };
-            if (listViewModel?.GeneralNationalityList?.Count > 0)
-                SetListPagingData(listViewModel.PageListViewModel, nationalityList, dataTableModel, listViewModel.GeneralNationalityList.Count);
+            SetListPagingData(listViewModel.PageListViewModel, nationalityList, dataTableModel, listViewModel.GeneralNationalityList.Count);
 
-            return nationalityList?.GeneralNationalityList?.Count > 0 ? listViewModel : new GeneralNationalityListViewModel() { GeneralNationalityList = new List<GeneralNationalityViewModel>() };
+            return listViewModel;
         }
 
         ////Create country.

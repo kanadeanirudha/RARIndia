@@ -1,21 +1,15 @@
-﻿@using RARIndia.ViewModel
+﻿@using RARIndia.ViewModel;
+@using RARIndia.Model;
 @using RARIndia.Resources;
-@model GeneralCountryViewModel
+@model AdminSnPostsViewModel
 @{
-    ViewBag.Title = "Add Country";
+    ViewBag.Title = "Add Admin Sn Post";
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
 }
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        @if (Model.CountryId > 0)
-        {
-            <h3 class="content-header-title">Update Country</h3>
-        }
-        else
-        {
-            <h3 class="content-header-title">Add Country</h3>
-        }
+        <h3 class="content-header-title">Add Admin Sn Post</h3>
     </div>
 </div>
 <div class="content-body">
@@ -27,16 +21,7 @@
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
-                            <li>
-                                @if (Model.CountryId > 0)
-                                {
-                                    <a href="../@controllerName/Edit?countryId=@Model.CountryId"><i class="ft-rotate-cw"></i></a>
-                                }
-                                else
-                                {
-                                    <a href="../@controllerName/Create" title="Reset"><i class="ft-rotate-cw"></i></a>
-                                }
-                            </li>
+                            <li><a href="../@controllerName/Create" title="Reset"><i class="ft-rotate-cw"></i></a></li>
                             <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
                             <li><a href="../@controllerName/List" title="Cancle"><i class="ft-x"></i></a></li>
                         </ul>
@@ -49,25 +34,25 @@
                             </div>*@
                         @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
                         {
-                            @Html.HiddenFor(m => m.CountryId);
+                            @Html.HiddenFor(m => m.AdminSnPostsId);
                             <div class="form-body">
                                 @*<h4 class="form-section"><i class="la la-eye"></i> About User</h4>*@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.CountryName, new { @class = "col-md-3 label-control" })
+                                            @Html.LabelFor(x => x.SelectedCentreCode, new { @class = "col-md-3 label-control" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.CountryName, new { @class = "form-control border-primary", @placeholder = "Country Name" })
-                                                @Html.ValidationMessageFor(x => x.CountryName, null, new { @class = "red" })
+                                                @Html.Partial("~/Views/Shared/_AccessibleCentreList.cshtml", string.Concat(Model.SelectedCentreCode, "~", "department"))
+                                                @Html.ValidationMessageFor(x => x.SelectedCentreCode, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.CountryCode, new { @class = "col-md-3 label-control required" })
+                                            @Html.LabelFor(x => x.SelectedDepartmentID, new { @class = "col-md-3 label-control required" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.CountryCode, new { @class = "form-control border-primary", @placeholder = "Country Code" })
-                                                @Html.ValidationMessageFor(x => x.CountryCode, null, new { @class = "red" })
+                                                @Html.Partial("~/Views/Shared/_DepartmentDropdown.cshtml", Model.GeneralDepartmentList)
+                                                @Html.ValidationMessageFor(x => x.SelectedDepartmentID, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
@@ -75,22 +60,44 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.DefaultFlag, new { @class = "col-md-3 label-control" })
+                                            @Html.LabelFor(x => x.DesignationID, new { @class = "col-md-3 label-control" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.CheckBoxFor(x => x.DefaultFlag, new { @class = "border-primary", @placeholder = "Is Default" })
+                                                @Html.Partial("~/Views/Shared/_DesignationDropdown.cshtml", Model.DesignationID)
+                                                @Html.ValidationMessageFor(x => x.DesignationID, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.SeqNo, new { @class = "col-md-3 label-control" })
+                                            @Html.LabelFor(x => x.NoOfPosts, new { @class = "col-md-3 label-control required" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.SeqNo, new { @class = "form-control border-primary", @placeholder = "Sequence Number" })
-                                                @Html.ValidationMessageFor(x => x.SeqNo, null, new { @class = "red" })
+                                                @Html.TextBoxFor(x => x.NoOfPosts, new { @class = "form-control border-primary", @placeholder = "Number Of Posts", @maxLength="5" })
+                                                @Html.ValidationMessageFor(x => x.NoOfPosts, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.PostType, new { @class = "col-md-3 label-control required" })
+                                                <div class="col-md-9 mx-auto">
+                                                    @Html.DropDownList("PostType", ViewData["PostType"] as List<SelectListItem>, new { style = "", @class = "form-control" })
+                                                    @Html.ValidationMessageFor(x => x.PostType, null, new { @class = "red" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.DesignationType, new { @class = "col-md-3 label-control required" })
+                                                <div class="col-md-9 mx-auto">
+                                                    @Html.DropDownList("DesignationType", ViewData["DesignationType"] as List<SelectListItem>, new { style = "", @class = "form-control" })
+                                                    @Html.ValidationMessageFor(x => x.DesignationType, null, new { @class = "red" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
 
                             <div class="form-actions text-right">
@@ -104,3 +111,4 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

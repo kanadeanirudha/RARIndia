@@ -1,4 +1,5 @@
 ﻿@using RARIndia.ViewModel
+@using RARIndia.Resources;
 @model AdminSnPostsListViewModel
 @{
     ViewBag.Title = "Admin Saction Post";
@@ -21,13 +22,13 @@
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
                         <div class="row">
                             <div class="col-md-1">
-                                <label>Centre</label>
+                                <label>@GeneralResources.LabelCentre</label>
                             </div>
                             <div class="col-md-3">
                                 @Html.Partial("~/Views/Shared/_AccessibleCentreList.cshtml", string.Concat(Model.SelectedCentreCode, "~", "department"))
                             </div>
                             <div class="col-md-1">
-                                <label>Departments</label>
+                                <label>@GeneralResources.LabelDepartments</label>
                             </div>
                             <div class="col-md-3">
                                 @Html.Partial("~/Views/Shared/_DepartmentDropdown.cshtml", Model.GeneralDepartmentList)

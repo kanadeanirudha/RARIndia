@@ -35,10 +35,10 @@ namespace RARIndia.BusinessLogicLayer
             NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);
             GeneralDepartmentListModel DepartmentList = _generalDepartmentMasterDAL.GetDepartmentList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize);
             GeneralDepartmentListViewModel listViewModel = new GeneralDepartmentListViewModel { GeneralDepartmentList = DepartmentList?.GeneralDepartmentList?.ToViewModel<GeneralDepartmentViewModel>().ToList() };
-            if (listViewModel?.GeneralDepartmentList?.Count > 0)
-                SetListPagingData(listViewModel.PageListViewModel, DepartmentList, dataTableModel, listViewModel.GeneralDepartmentList.Count);
 
-            return DepartmentList?.GeneralDepartmentList?.Count > 0 ? listViewModel : new GeneralDepartmentListViewModel() { GeneralDepartmentList = new List<GeneralDepartmentViewModel>() };
+            SetListPagingData(listViewModel.PageListViewModel, DepartmentList, dataTableModel, listViewModel.GeneralDepartmentList.Count);
+
+            return listViewModel;
         }
 
         //Create Department.
@@ -110,11 +110,11 @@ namespace RARIndia.BusinessLogicLayer
             }
         }
 
-        public GeneralDepartmentListModel GetDepartmentsByCentreCode(string centreCode, int departmentID = 0)
+        public GeneralDepartmentListModel GetDepartmentsByCentreCode(string centreCode, string selectedDepartmentID = null)
         {
             centreCode = SpiltCentreCode(centreCode);
             GeneralDepartmentListModel list = _generalDepartmentMasterDAL.GetDepartmentsByCentreCode(centreCode);
-            list.SelectedDepartmentID = departmentID;
+            list.SelectedDepartmentID = selectedDepartmentID;
             return list;
         }
 

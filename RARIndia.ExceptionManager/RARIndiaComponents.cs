@@ -7,6 +7,8 @@
             Country = 1,
             User = 2,
             Department = 3,
+            Designation = 4,
+            AdminSnPosts = 5,
         }
     }
 }

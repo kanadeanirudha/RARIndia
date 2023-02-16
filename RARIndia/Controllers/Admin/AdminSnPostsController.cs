@@ -1,8 +1,10 @@
 ﻿using RARIndia.BusinessLogicLayer;
 using RARIndia.Filters;
 using RARIndia.Model.Model;
+using RARIndia.Resources;
 using RARIndia.ViewModel;
 
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace RARIndia.Controllers
@@ -12,7 +14,7 @@ namespace RARIndia.Controllers
     {
         readonly GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
         readonly AdminSnPostsBA _adminSnPostsBA = null;
-        
+        private const string createEdit = "~/Views/Admin/AdminSnPosts/CreateEdit.cshtml";
         public AdminSnPostsController()
         {
             _generalDepartmentMasterBA = new GeneralDepartmentMasterBA();
@@ -24,7 +26,7 @@ namespace RARIndia.Controllers
             dataTableModel = dataTableModel ?? new DataTableModel();
 
             AdminSnPostsListViewModel viewModel = new AdminSnPostsListViewModel();
-            
+
             if (!string.IsNullOrEmpty(dataTableModel.SelectedCentreCode) && dataTableModel.SelectedDepartmentID > 0)
             {
                 viewModel = _adminSnPostsBA.GetAdminSnPostsList(dataTableModel, dataTableModel.SelectedCentreCode, dataTableModel.SelectedDepartmentID);
@@ -43,5 +45,50 @@ namespace RARIndia.Controllers
             }
             return View("~/Views/Admin/AdminSnPosts/List.cshtml", viewModel);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            AdminSnPostsViewModel adminSnPostsViewModel = new AdminSnPostsViewModel();
+            BindDropdown(adminSnPostsViewModel);
+            return View(createEdit, adminSnPostsViewModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Create(AdminSnPostsViewModel adminSnPostsViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                adminSnPostsViewModel = _adminSnPostsBA.CreateAdminSnPosts(adminSnPostsViewModel);
+                if (!adminSnPostsViewModel.HasError)
+                {
+                    SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
+                    return RedirectToAction<AdminSnPostsController>(x => x.List(null));
+                }
+            }
+
+            BindDropdown(adminSnPostsViewModel);
+            SetNotificationMessage(GetErrorNotificationMessage(adminSnPostsViewModel.ErrorMessage));
+            return View(createEdit, adminSnPostsViewModel);
+        }
+
+        #region Private
+        private void BindDropdown(AdminSnPostsViewModel adminSnPostsViewModel)
+        {
+
+            if (!string.IsNullOrEmpty(adminSnPostsViewModel.SelectedCentreCode))
+                adminSnPostsViewModel.GeneralDepartmentList = _generalDepartmentMasterBA.GetDepartmentsByCentreCode(adminSnPostsViewModel.SelectedCentreCode, adminSnPostsViewModel.SelectedDepartmentID);
+
+            List<SelectListItem> postTypeList = new List<SelectListItem>();
+            postTypeList.Add(new SelectListItem { Text = "Temporary", Value = "Temporary" });
+            postTypeList.Add(new SelectListItem { Text = "Permanent", Value = "Permanent" });
+            ViewData["PostType"] = postTypeList;
+
+            List<SelectListItem> designationTypeList = new List<SelectListItem>();
+            designationTypeList.Add(new SelectListItem { Text = "Regular", Value = "Regular" });
+            designationTypeList.Add(new SelectListItem { Text = "AddOn", Value = "AddOn" });
+            ViewData["DesignationType"] = designationTypeList;
+        }
+        #endregion
     }
 }

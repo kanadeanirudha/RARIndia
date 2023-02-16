@@ -1,0 +1,21 @@
+﻿@using RARIndia.Model;
+@using RARIndia.DropdownHelper;
+@model Int16
+@{
+    Layout = null;
+    GeneralDesignationListModel designationList = RARIndiaDropdownHelper.DesignationList(Model);
+}
+<select class="form-control" id="DesignationId" name="DesignationId">
+    <option value="">-----Select Designation-----</option>
+    @foreach (GeneralDesignationModel item in designationList?.GeneralDesignationList)
+    {
+        if (item.DesignationId == Model)
+        {
+            <option value="@item.DesignationId" selected>@item.Description</option>
+        }
+        else
+        {
+            <option value="@item.DesignationId">@item.Description</option>
+        }
+    }
+</select>

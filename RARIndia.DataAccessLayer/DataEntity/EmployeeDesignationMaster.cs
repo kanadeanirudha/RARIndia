@@ -14,24 +14,23 @@ namespace RARIndia.DataAccessLayer.DataEntity
     using System;
     using System.Collections.Generic;
 
-    public partial class AdminSnPost : RARIndiaEntityBaseModel
+    public partial class EmployeeDesignationMaster: RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdminSnPost()
+        public EmployeeDesignationMaster()
         {
-            this.AdminRoleMasters = new HashSet<AdminRoleMaster>();
+            this.AdminSnPosts = new HashSet<AdminSnPost>();
         }
     
         public short ID { get; set; }
-        public short DesignationID { get; set; }
-        public short NoOfPosts { get; set; }
-        public short DepartmentID { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> DesignationLevel { get; set; }
+        public Nullable<int> Grade { get; set; }
+        public string ShortCode { get; set; }
+        public Nullable<int> CollegeID { get; set; }
+        public string EmpDesigType { get; set; }
+        public string RelatedWith { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public string CentreCode { get; set; }
-        public string DesignationType { get; set; }
-        public string NomenAdminRoleCode { get; set; }
-        public string PostType { get; set; }
-        public string SactionedPostDescription { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
@@ -41,8 +40,6 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminRoleMaster> AdminRoleMasters { get; set; }
-        public virtual GeneralDepartmentMaster GeneralDepartmentMaster { get; set; }
-        public virtual EmployeeDesignationMaster EmployeeDesignationMaster { get; set; }
+        public virtual ICollection<AdminSnPost> AdminSnPosts { get; set; }
     }
 }

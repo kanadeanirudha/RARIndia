@@ -1,8 +1,4 @@
-﻿using RARIndia.Model;
-using RARIndia.Utilities.Constant;
-
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace RARIndia.Utilities.Helper
@@ -31,11 +27,6 @@ namespace RARIndia.Utilities.Helper
                 hash.Append(bytes[i].ToString("x2"));
             }
             return hash.ToString();
-        }
-
-        public static List<UserAccessibleCentreModel> AccessibleCentreList()
-        {
-            return RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession)?.AccessibleCentreList;
         }
     }
 }

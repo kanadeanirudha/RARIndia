@@ -35,36 +35,39 @@ namespace RARIndia.BusinessLogicLayer
             NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);
             AdminSnPostsListModel adminSnPostsList = _adminSnPostsDAL.GetAdminSnPostsList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize, centreCode, departmentId);
             AdminSnPostsListViewModel listViewModel = new AdminSnPostsListViewModel { AdminSnPostsList = adminSnPostsList?.AdminSnPostsList?.ToViewModel<AdminSnPostsViewModel>().ToList() };
-            if (listViewModel?.AdminSnPostsList?.Count > 0)
-                SetListPagingData(listViewModel.PageListViewModel, adminSnPostsList, dataTableModel, listViewModel.AdminSnPostsList.Count);
+            SetListPagingData(listViewModel.PageListViewModel, adminSnPostsList, dataTableModel, listViewModel.AdminSnPostsList.Count);
 
-            return adminSnPostsList?.AdminSnPostsList?.Count > 0 ? listViewModel : new AdminSnPostsListViewModel() { AdminSnPostsList = new List<AdminSnPostsViewModel>() };
+            return listViewModel;
         }
 
-        ////Create AdminSnPosts.
-        //public AdminSnPostsViewModel CreateAdminSnPosts(AdminSnPostsViewModel generalAdminSnPostsViewModel)
-        //{
-        //    try
-        //    {
-        //        AdminSnPostsModel generalAdminSnPostsModel = _adminSnPostsDAL.CreateAdminSnPosts(generalAdminSnPostsViewModel.ToModel<AdminSnPostsModel>());
-        //        return RARIndiaHelperUtility.IsNotNull(generalAdminSnPostsModel) ? generalAdminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : new AdminSnPostsViewModel();
-        //    }
-        //    catch (RARIndiaException ex)
-        //    {
-        //        switch (ex.ErrorCode)
-        //        {
-        //            case ErrorCodes.AlreadyExist:
-        //                return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(generalAdminSnPostsViewModel, ex.ErrorMessage);
-        //            default:
-        //                return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(generalAdminSnPostsViewModel, Resources.ErrorFailedToCreate);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.AdminSnPosts.ToString());
-        //        return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(generalAdminSnPostsViewModel, Resources.ErrorFailedToCreate);
-        //    }
-        //}
+        //Create AdminSnPosts.
+        public AdminSnPostsViewModel CreateAdminSnPosts(AdminSnPostsViewModel adminSnPostsViewModel)
+        {
+            try
+            {
+                adminSnPostsViewModel.CentreCode = SpiltCentreCode(adminSnPostsViewModel.SelectedCentreCode);
+                adminSnPostsViewModel.DepartmentID = Convert.ToInt16(adminSnPostsViewModel.SelectedDepartmentID);
+                adminSnPostsViewModel.IsActive = true;
+                adminSnPostsViewModel.CreatedBy = LoginUserId();
+                AdminSnPostsModel adminSnPostsModel = _adminSnPostsDAL.CreateAdminSnPosts(adminSnPostsViewModel.ToModel<AdminSnPostsModel>());
+                return RARIndiaHelperUtility.IsNotNull(adminSnPostsModel) ? adminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : new AdminSnPostsViewModel();
+            }
+            catch (RARIndiaException ex)
+            {
+                switch (ex.ErrorCode)
+                {
+                    case ErrorCodes.AlreadyExist:
+                        return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(adminSnPostsViewModel, ex.ErrorMessage);
+                    default:
+                        return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(adminSnPostsViewModel, GeneralResources.ErrorFailedToCreate);
+                }
+            }
+            catch (Exception ex)
+            {
+                RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.AdminSnPosts.ToString());
+                return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(adminSnPostsViewModel, GeneralResources.ErrorFailedToCreate);
+            }
+        }
 
         ////Get AdminSnPosts by AdminSnPosts id.
         //public AdminSnPostsViewModel GetAdminSnPosts(int AdminSnPostsId)

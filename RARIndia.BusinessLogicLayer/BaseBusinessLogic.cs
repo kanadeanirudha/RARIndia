@@ -38,7 +38,7 @@ namespace RARIndia.BusinessLogicLayer
             pageListViewModel.TotalPages = Convert.ToInt32(listModel.TotalPages);
             pageListViewModel.TotalResults = Convert.ToInt32(listModel.TotalResults);
             pageListViewModel.TotalRecordCount = Convert.ToInt32(totalRecordCount);
-            pageListViewModel.SearchBy= dataTableModel.SearchBy ?? string.Empty;
+            pageListViewModel.SearchBy = dataTableModel.SearchBy ?? string.Empty;
             pageListViewModel.SortByColumn = dataTableModel.SortByColumn ?? string.Empty;
             pageListViewModel.SortBy = dataTableModel.SortBy ?? string.Empty;
         }
@@ -112,12 +112,13 @@ namespace RARIndia.BusinessLogicLayer
             return viewModel;
         }
 
-
         protected string SpiltCentreCode(string centreCode)
         {
             centreCode = !string.IsNullOrEmpty(centreCode) && centreCode.Contains(":") ? centreCode.Split(':')[0] : centreCode;
             return centreCode;
         }
+
+        protected int LoginUserId() => RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession).ID;
     }
 }
 

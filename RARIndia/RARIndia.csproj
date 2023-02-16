@@ -153,7 +153,8 @@
     <Compile Include="Controllers\Admin\AdminSnPostsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\GeneralMaster\GeneraDepartmentMasterController.cs" />
+    <Compile Include="Controllers\GeneralCommanDataController.cs" />
+    <Compile Include="Controllers\GeneralMaster\GeneralDepartmentMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralNationalityMasterController.cs" />
     <Compile Include="Controllers\Login\UserController.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\RARIndiaDropdownHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,16 +265,17 @@
     <Content Include="Views\Shared\_NotificationCount.cshtml" />
     <Content Include="Views\Admin\AdminSnPosts\List.cshtml" />
     <Content Include="Views\Admin\AdminSnPosts\_List.cshtml" />
-    <Content Include="Views\Shared\_AccessibleCentreList.cshtml" />
+    <Content Include="Views\Shared\_DesignationDropdown.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\_List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\CreateEdit.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\List.cshtml" />
     <Content Include="Views\Shared\_DepartmentDropdown.cshtml" />
+    <Content Include="Views\Admin\AdminSnPosts\CreateEdit.cshtml" />
+    <Content Include="Views\Shared\_AccessibleCentreList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Organisation\" />
-    <Folder Include="Helper\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,6 @@ namespace RARIndia.Model
             GeneralDepartmentList = new List<GeneralDepartmentModel>();
         }
 
-        public int SelectedDepartmentID { get; set; }
+        public string SelectedDepartmentID { get; set; }
     }
 }

@@ -42,6 +42,8 @@
         <AssociationConnector Association="RARIndia.EntityModel.FKOrganisationStudyCentreMasterOrganisationID" />
         <AssociationConnector Association="RARIndia.EntityModel.FKUserMainMenuMasterModuleID" />
         <AssociationConnector Association="RARIndia.EntityModel.FKUserMasterUserTypeID" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.EmployeeDesignationMaster" Width="1.5" PointX="19.375" PointY="7" />
+        <AssociationConnector Association="RARIndia.EntityModel.FKAdminSnPostsDesignationID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

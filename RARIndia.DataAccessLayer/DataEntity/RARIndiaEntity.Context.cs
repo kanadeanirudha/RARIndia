@@ -50,5 +50,6 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public virtual DbSet<UserModuleMaster> UserModuleMasters { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<UserNotificationCount> UserNotificationCounts { get; set; }
+        public virtual DbSet<EmployeeDesignationMaster> EmployeeDesignationMasters { get; set; }
     }
 }

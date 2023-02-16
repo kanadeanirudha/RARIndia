@@ -40,7 +40,14 @@ namespace RARIndia.Controllers
                     if (!userLoginViewModel.HasError)
                     {
                         FormsAuthentication.SetAuthCookie(userLoginViewModel.EmailID, false);
-                        return RedirectToAction<DashboardController>(x => x.Index());
+                        if (!string.IsNullOrEmpty(Request.Form["ReturnUrl"]))
+                        {
+                            return RedirectToAction(Request.Form["ReturnUrl"].Split('/')[2]);
+                        }
+                        else
+                        {
+                            return RedirectToAction<DashboardController>(x => x.Index());
+                        }
                     }
                     ModelState.AddModelError("ErrorMessage", userLoginViewModel.ErrorMessage);
                 }

@@ -35,10 +35,10 @@ namespace RARIndia.BusinessLogicLayer
             NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);
             GeneralCountryListModel countryList = _generalCountryMasterDAL.GetCountryList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize);
             GeneralCountryListViewModel listViewModel = new GeneralCountryListViewModel { GeneralCountryList = countryList?.GeneralCountryList?.ToViewModel<GeneralCountryViewModel>().ToList() };
-            if (listViewModel?.GeneralCountryList?.Count > 0)
-                SetListPagingData(listViewModel.PageListViewModel, countryList, dataTableModel, listViewModel.GeneralCountryList.Count);
+            
+            SetListPagingData(listViewModel.PageListViewModel, countryList, dataTableModel, listViewModel.GeneralCountryList.Count);
 
-            return countryList?.GeneralCountryList?.Count > 0 ? listViewModel : new GeneralCountryListViewModel() { GeneralCountryList = new List<GeneralCountryViewModel>() };
+            return listViewModel;
         }
 
         //Create country.

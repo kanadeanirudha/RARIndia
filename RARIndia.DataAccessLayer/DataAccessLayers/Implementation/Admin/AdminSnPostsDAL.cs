@@ -42,61 +42,67 @@ namespace RARIndia.DataAccessLayer
             return listModel;
         }
 
-        ////Create adminSnPosts.
-        //public AdminSnPostsModel CreateAdminSnPosts(AdminSnPostsModel generalAdminSnPostsModel)
-        //{
-        //    if (RARIndiaHelperUtility.IsNull(generalAdminSnPostsModel))
-        //        throw new RARIndiaException(ErrorCodes.NullModel, Resources.ModelNotNull);
+        //Create adminSnPosts.
+        public AdminSnPostsModel CreateAdminSnPosts(AdminSnPostsModel adminSnPostsModel)
+        {
+            if (RARIndiaHelperUtility.IsNull(adminSnPostsModel))
+                throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
-        //    if (IsCodeAlreadyExist(generalAdminSnPostsModel.AdminSnPostsCode))
-        //    {
-        //        throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(Resources.ErrorCodeExists, "AdminSnPosts code"));
-        //    }
-        //    AdminSnPosts a = generalAdminSnPostsModel.FromModelToEntity<AdminSnPosts>();
-        //    //Create new adminSnPosts and return it.
-        //    AdminSnPosts adminSnPostsData = _adminSnPostsRepository.Insert(a);
-        //    if (adminSnPostsData?.ID > 0)
-        //    {
-        //        generalAdminSnPostsModel.AdminSnPostsId = adminSnPostsData.ID;
-        //    }
-        //    else
-        //    {
-        //        generalAdminSnPostsModel.HasError = true;
-        //        generalAdminSnPostsModel.ErrorMessage = Resources.ErrorFailedToCreate;
-        //    }
-        //    return generalAdminSnPostsModel;
-        //}
+            if (IsCodeAlreadyExist(adminSnPostsModel))
+            {
+                throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "AdminSnPosts code"));
+            }
 
-        ////Get adminSnPosts by adminSnPosts id.
-        //public AdminSnPostsModel GetAdminSnPosts(int adminSnPostsId)
-        //{
-        //    if (adminSnPostsId <= 0)
-        //        throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(Resources.ErrorIdLessThanOne, "AdminSnPostsID"));
+            EmployeeDesignationMaster employeeDesignationMaster = new RARIndiaRepository<EmployeeDesignationMaster>().GetById(adminSnPostsModel.DesignationID);
+            GeneralDepartmentMaster generalDepartmentMaster = new RARIndiaRepository<GeneralDepartmentMaster>().GetById(adminSnPostsModel.DepartmentID);
 
-        //    //Get the adminSnPosts Details based on id.
-        //    AdminSnPosts adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.ID == adminSnPostsId);
-        //    AdminSnPostsModel generalAdminSnPostsModel = adminSnPostsData.FromEntityToModel<AdminSnPostsModel>();
-        //    return generalAdminSnPostsModel;
-        //}
+            adminSnPostsModel.NomenAdminRoleCode = $"{employeeDesignationMaster.ShortCode}-{generalDepartmentMaster.DeptShortCode}-{adminSnPostsModel.CentreCode}";
+            adminSnPostsModel.SactionedPostDescription = $"{employeeDesignationMaster.Description}-{generalDepartmentMaster.DepartmentName}-{adminSnPostsModel.PostType}-{adminSnPostsModel.DesignationType}";
+            AdminSnPost adminSnPostEntity = adminSnPostsModel.FromModelToEntity<AdminSnPost>();
+            //Create new adminSnPosts and return it.
+            AdminSnPost adminSnPostsData = _adminSnPostsRepository.Insert(adminSnPostEntity);
+            if (adminSnPostsData?.ID > 0)
+            {
+                adminSnPostsModel.AdminSnPostsId = adminSnPostsData.ID;
+            }
+            else
+            {
+                adminSnPostsModel.HasError = true;
+                adminSnPostsModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+            }
+            return adminSnPostsModel;
+        }
+
+        //Get adminSnPosts by adminSnPosts id.
+        public AdminSnPostsModel GetAdminSnPosts(int adminSnPostsId)
+        {
+            if (adminSnPostsId <= 0)
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminSnPostsID"));
+
+            //Get the adminSnPosts Details based on id.
+            AdminSnPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.ID == adminSnPostsId);
+            AdminSnPostsModel adminSnPostsModel = adminSnPostsData.FromEntityToModel<AdminSnPostsModel>();
+            return adminSnPostsModel;
+        }
 
         ////Update adminSnPosts.
-        //public AdminSnPostsModel UpdateAdminSnPosts(AdminSnPostsModel generalAdminSnPostsModel)
+        //public AdminSnPostsModel UpdateAdminSnPosts(AdminSnPostsModel adminSnPostsModel)
         //{
         //    bool isAdminSnPostsUpdated = false;
-        //    if (RARIndiaHelperUtility.IsNull(generalAdminSnPostsModel))
+        //    if (RARIndiaHelperUtility.IsNull(adminSnPostsModel))
         //        throw new RARIndiaException(ErrorCodes.InvalidData, Resources.ModelNotNull);
 
-        //    if (generalAdminSnPostsModel.AdminSnPostsId < 1)
+        //    if (adminSnPostsModel.AdminSnPostsId < 1)
         //        throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(Resources.ErrorIdLessThanOne, "AdminSnPostsID"));
 
         //    //Update adminSnPosts
-        //    isAdminSnPostsUpdated = _adminSnPostsRepository.Update(generalAdminSnPostsModel.FromModelToEntity<AdminSnPosts>());
+        //    isAdminSnPostsUpdated = _adminSnPostsRepository.Update(adminSnPostsModel.FromModelToEntity<AdminSnPosts>());
         //    if (!isAdminSnPostsUpdated)
         //    {
-        //        generalAdminSnPostsModel.HasError = true;
-        //        generalAdminSnPostsModel.ErrorMessage = Resources.ErrorFailedToCreate;
+        //        adminSnPostsModel.HasError = true;
+        //        adminSnPostsModel.ErrorMessage = Resources.ErrorFailedToCreate;
         //    }
-        //    return generalAdminSnPostsModel;
+        //    return adminSnPostsModel;
         //}
 
         ////Delete adminSnPosts.
@@ -114,11 +120,11 @@ namespace RARIndia.DataAccessLayer
         //    return status == 1 ? true : false;
         //}
 
-        //#region Private Method
+        #region Private Method
 
-        ////Check if adminSnPosts code is already present or not.
-        //private bool IsCodeAlreadyExist(string adminSnPostsCode)
-        // => _adminSnPostsRepository.Table.Any(x => x.ContryCode == adminSnPostsCode);
-        //#endregion
+        //Check if adminSnPosts code is already present or not.
+        private bool IsCodeAlreadyExist(AdminSnPostsModel adminSnPostsModel)
+         => _adminSnPostsRepository.Table.Any(x => x.CentreCode == adminSnPostsModel.CentreCode && x.DepartmentID == adminSnPostsModel.DepartmentID && x.DesignationID == adminSnPostsModel.DesignationID);
+        #endregion
     }
 }

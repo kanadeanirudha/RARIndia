@@ -193,6 +193,27 @@
           <Property Name="DeletedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <EntityType Name="EmployeeDesignationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="DesignationLevel" Type="int" />
+          <Property Name="Grade" Type="int" />
+          <Property Name="ShortCode" Type="varchar" MaxLength="10" />
+          <Property Name="CollegeID" Type="int" />
+          <Property Name="EmpDesigType" Type="varchar" MaxLength="7" />
+          <Property Name="RelatedWith" Type="varchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
         <EntityType Name="GeneralCity">
           <Key>
             <PropertyRef Name="ID" />
@@ -609,6 +630,18 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKAdminSnPostsDesignationID">
+          <End Role="EmployeeDesignationMaster" Type="Self.EmployeeDesignationMaster" Multiplicity="1" />
+          <End Role="AdminSnPosts" Type="Self.AdminSnPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDesignationMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminSnPosts">
+              <PropertyRef Name="DesignationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKOrganisationCentrewiseDepartmentDepartmentID">
           <End Role="GeneralDepartmentMaster" Type="Self.GeneralDepartmentMaster" Multiplicity="0..1" />
           <End Role="OrganisationCentrewiseDepartment" Type="Self.OrganisationCentrewiseDepartment" Multiplicity="*" />
@@ -680,6 +713,7 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <EntitySet Name="AdminRoleSpecialRightDetails" EntityType="Self.AdminRoleSpecialRightDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleSpecialRightMaster" EntityType="Self.AdminRoleSpecialRightMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminSnPosts" EntityType="Self.AdminSnPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeDesignationMaster" EntityType="Self.EmployeeDesignationMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCity" EntityType="Self.GeneralCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCountryMaster" EntityType="Self.GeneralCountryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralDepartmentMaster" EntityType="Self.GeneralDepartmentMaster" Schema="dbo" store:Type="Tables" />
@@ -727,6 +761,10 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           </AssociationSet>
           <AssociationSet Name="FKAdminSnPostsDepartmentID" Association="Self.FKAdminSnPostsDepartmentID">
             <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMaster" />
+            <End Role="AdminSnPosts" EntitySet="AdminSnPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FKAdminSnPostsDesignationID" Association="Self.FKAdminSnPostsDesignationID">
+            <End Role="EmployeeDesignationMaster" EntitySet="EmployeeDesignationMaster" />
             <End Role="AdminSnPosts" EntitySet="AdminSnPosts" />
           </AssociationSet>
           <AssociationSet Name="FKOrganisationCentrewiseDepartmentDepartmentID" Association="Self.FKOrganisationCentrewiseDepartmentDepartmentID">
@@ -827,6 +865,11 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <AssociationSet Name="FKUserMasterUserTypeID" Association="RARIndia.EntityModel.FKUserMasterUserTypeID">
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="UserMaster" EntitySet="UserMasters" />
+          </AssociationSet>
+          <EntitySet Name="EmployeeDesignationMasters" EntityType="RARIndia.EntityModel.EmployeeDesignationMaster" />
+          <AssociationSet Name="FKAdminSnPostsDesignationID" Association="RARIndia.EntityModel.FKAdminSnPostsDesignationID">
+            <End Role="EmployeeDesignationMaster" EntitySet="EmployeeDesignationMasters" />
+            <End Role="AdminSnPost" EntitySet="AdminSnPosts" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdminRoleApplicableDetail">
@@ -1029,6 +1072,7 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="AdminRoleMasters" Relationship="RARIndia.EntityModel.FKAdminRoleMasterAdminSnPostID" FromRole="AdminSnPost" ToRole="AdminRoleMaster" />
           <NavigationProperty Name="GeneralDepartmentMaster" Relationship="RARIndia.EntityModel.FKAdminSnPostsDepartmentID" FromRole="AdminSnPost" ToRole="GeneralDepartmentMaster" />
+          <NavigationProperty Name="EmployeeDesignationMaster" Relationship="RARIndia.EntityModel.FKAdminSnPostsDesignationID" FromRole="AdminSnPost" ToRole="EmployeeDesignationMaster" />
         </EntityType>
         <EntityType Name="GeneralCity">
           <Key>
@@ -1512,6 +1556,40 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
             </Principal>
             <Dependent Role="UserMaster">
               <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmployeeDesignationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DesignationLevel" Type="Int32" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="ShortCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CollegeID" Type="Int32" />
+          <Property Name="EmpDesigType" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="RelatedWith" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="AdminSnPosts" Relationship="RARIndia.EntityModel.FKAdminSnPostsDesignationID" FromRole="EmployeeDesignationMaster" ToRole="AdminSnPost" />
+        </EntityType>
+        <Association Name="FKAdminSnPostsDesignationID">
+          <End Type="RARIndia.EntityModel.EmployeeDesignationMaster" Role="EmployeeDesignationMaster" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminSnPost" Role="AdminSnPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDesignationMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdminSnPost">
+              <PropertyRef Name="DesignationID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2061,6 +2139,28 @@ warning 6002: The table/view 'Ver1.dbo.UserNotificationCount' does not have a pr
                 <ScalarProperty Name="NotificationCount" ColumnName="NotificationCount" />
                 <ScalarProperty Name="PersonType" ColumnName="PersonType" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeDesignationMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.EmployeeDesignationMaster">
+              <MappingFragment StoreEntitySet="EmployeeDesignationMaster">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RelatedWith" ColumnName="RelatedWith" />
+                <ScalarProperty Name="EmpDesigType" ColumnName="EmpDesigType" />
+                <ScalarProperty Name="CollegeID" ColumnName="CollegeID" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="DesignationLevel" ColumnName="DesignationLevel" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

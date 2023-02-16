@@ -42,13 +42,13 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public new int SaveChanges() => SaveChanges(0);
 
         //Override Method to Insert/Update the Created/Modified Date for the Entity.
-        public int SaveChanges(int loginUserAccountId, int createdBy = 0, int modifiedBy = 0)
+        public int SaveChanges(int createdBy = 0, int modifiedBy = 0)
         {
             try
             {
                 foreach (var ent in this.ChangeTracker.Entries().Where(p => Equals(p.State, EntityState.Added) || Equals(p.State, EntityState.Deleted) || Equals(p.State, EntityState.Modified)))
                 {
-                    SetDataIntoEntity(ent, loginUserAccountId, createdBy, modifiedBy);
+                    SetDataIntoEntity(ent, createdBy, modifiedBy);
                 }
                 return base.SaveChanges();
             }
@@ -109,12 +109,12 @@ namespace RARIndia.DataAccessLayer.DataEntity
 
         #region Private Method
         //Set the Created/Modified Date for the existing Entity.
-        public void SetDataIntoEntity(DbEntityEntry dbEntry, int loginUserAccountId, int createdBy = 0, int modifiedBy = 0)
+        public void SetDataIntoEntity(DbEntityEntry dbEntry, int createdBy = 0, int modifiedBy = 0)
         {
             if (Equals(dbEntry.State, EntityState.Added))
             {
-                dbEntry.Entity.SetPropertyValue(CreatedBy, (createdBy > 0) ? createdBy : loginUserAccountId);
-                dbEntry.Entity.SetPropertyValue(ModifiedBy, (modifiedBy > 0) ? modifiedBy : loginUserAccountId);
+                dbEntry.Entity.SetPropertyValue(CreatedBy, createdBy);
+                dbEntry.Entity.SetPropertyValue(ModifiedBy, modifiedBy);
 
                 dbEntry.Entity.SetPropertyValue(CreatedDate, HelperMethods.GetEntityDateTime());
                 dbEntry.Entity.SetPropertyValue(ModifiedDate, HelperMethods.GetEntityDateTime());
@@ -131,13 +131,9 @@ namespace RARIndia.DataAccessLayer.DataEntity
                         {
                             dbEntry.Entity.SetPropertyValue(CreatedDate, OriginalValue);
                         }
-                        if (loginUserAccountId > 0 && Equals(propertyName, CreatedBy))
-                        {
-                            dbEntry.Entity.SetPropertyValue(CreatedBy, OriginalValue);
-                        }
                     }
                 }
-                dbEntry.Entity.SetPropertyValue(ModifiedBy, modifiedBy > 0 ? modifiedBy : loginUserAccountId);
+                dbEntry.Entity.SetPropertyValue(ModifiedBy, modifiedBy);
                 dbEntry.Entity.SetPropertyValue(ModifiedDate, HelperMethods.GetEntityDateTime());
             }
         }

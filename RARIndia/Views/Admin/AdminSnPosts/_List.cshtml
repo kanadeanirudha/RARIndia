@@ -31,11 +31,11 @@
                         <td>@item.NomenAdminRoleCode</td>
                         <td>@item.SactionedPostDescription</td>
                         <td>@item.NoOfPosts</td>
-                        <td style="text-align:center">
+                        <td style="text-align:center;">
                             @if (item.IsActive)
-                            {<i class="ft-check-circle"></i>}
+                            {<i class="ft-check-circle grid-checked-icon"></i>}
                             else
-                            { <i class="ft-x-circle"></i>}
+                            { <i class="ft-x-circle grid-unchecked-icon"></i>}
                         </td>
                         <td style="text-align:center">
                             <a href="../GeneralCountryMaster/Edit?countryId=@item.AdminSnPostsId" title="Update"><i class="ft-edit-1"></i></a>
