@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDataAccessLogic.cs" />
     <Compile Include="DataAccessLayers\Implementation\Admin\AdminSnPostsDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralDesignationMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralDepartmentMasterDAL.cs" />

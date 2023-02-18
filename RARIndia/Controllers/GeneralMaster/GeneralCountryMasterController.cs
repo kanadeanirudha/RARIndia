@@ -21,7 +21,9 @@ namespace RARIndia.Controllers
 
         public ActionResult List(DataTableModel dataTableModel)
         {
-            dataTableModel = dataTableModel ?? new DataTableModel();
+            DataTableModel tempDataTable = TempData["dataTableModel"] as DataTableModel;
+            dataTableModel = tempDataTable == null ? dataTableModel ?? new DataTableModel() : tempDataTable;
+            
             GeneralCountryListViewModel list = _generalCountryMasterBA.GetCountryList(dataTableModel);
             if (Request.IsAjaxRequest())
             {
@@ -45,6 +47,7 @@ namespace RARIndia.Controllers
                 if (!generalCountryViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
+                    TempData["dataTableModel"] = CreateActionDataTable();
                     return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
                 }
             }
@@ -71,7 +74,10 @@ namespace RARIndia.Controllers
                 : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
 
                 if (!status)
-                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(new DataTableModel() { SortByColumn = SortKeys.ModifiedDate, SortBy = RARIndiaConstant.DESCKey }));
+                {
+                    TempData["dataTableModel"] = UpdateActionDataTable();
+                    return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
+                }
             }
             return View(createEdit, generalCountryViewModel);
         }

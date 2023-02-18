@@ -8,20 +8,24 @@
 }
 @if (data.Length > 1 && data[1] == "department")
 {
-    <select class="form-control" id="SelectedCentreCode" name="SelectedCentreCode" onchange="RARIndiaCommanFunction.GetDepartmentByCentreCode()">
-        <option value="">-----Select Centre-----</option>
-        @foreach (UserAccessibleCentreModel item in AccessibleCentreList)
+<select class="form-control" id="SelectedCentreCode" name="SelectedCentreCode" onchange="RARIndiaCommanFunction.GetDepartmentByCentreCode()">
+    <option value="">-----Select Centre-----</option>
+    @foreach (UserAccessibleCentreModel item in AccessibleCentreList)
+    {
+        if (data[0] == string.Concat(item.CentreCode, ":", item.ScopeIdentity))
         {
-            if (data[0] == string.Concat(item.CentreCode,":",item.ScopeIdentity))
-            {
-                <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
-            }
-            else
-            {
-                <option value="@item.CentreCode:@item.ScopeIdentity">@item.CentreName</option>
-            }
+            <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
         }
-    </select>
+        else if (data[0] == item.CentreCode)
+        {
+            <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
+        }
+        else
+        {
+            <option value="@item.CentreCode:@item.ScopeIdentity">@item.CentreName</option>
+        }
+    }
+</select>
 }
 else
 {

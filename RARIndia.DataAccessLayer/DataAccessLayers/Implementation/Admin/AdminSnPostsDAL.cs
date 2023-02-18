@@ -14,7 +14,7 @@ using System.Linq;
 using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.DataAccessLayer
 {
-    public class AdminSnPostsDAL
+    public class AdminSnPostsDAL: BaseDataAccessLogic
     {
         private readonly IRARIndiaRepository<AdminSnPost> _adminSnPostsRepository;
         public AdminSnPostsDAL()
@@ -53,8 +53,8 @@ namespace RARIndia.DataAccessLayer
                 throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "AdminSnPosts code"));
             }
 
-            EmployeeDesignationMaster employeeDesignationMaster = new RARIndiaRepository<EmployeeDesignationMaster>().GetById(adminSnPostsModel.DesignationID);
-            GeneralDepartmentMaster generalDepartmentMaster = new RARIndiaRepository<GeneralDepartmentMaster>().GetById(adminSnPostsModel.DepartmentID);
+            EmployeeDesignationMaster employeeDesignationMaster = GetDesignationDetails(adminSnPostsModel.DesignationID);
+            GeneralDepartmentMaster generalDepartmentMaster = GetDepartmentDetails(adminSnPostsModel.DepartmentID);
 
             adminSnPostsModel.NomenAdminRoleCode = $"{employeeDesignationMaster.ShortCode}-{generalDepartmentMaster.DeptShortCode}-{adminSnPostsModel.CentreCode}";
             adminSnPostsModel.SactionedPostDescription = $"{employeeDesignationMaster.Description}-{generalDepartmentMaster.DepartmentName}-{adminSnPostsModel.PostType}-{adminSnPostsModel.DesignationType}";
@@ -82,28 +82,40 @@ namespace RARIndia.DataAccessLayer
             //Get the adminSnPosts Details based on id.
             AdminSnPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.ID == adminSnPostsId);
             AdminSnPostsModel adminSnPostsModel = adminSnPostsData.FromEntityToModel<AdminSnPostsModel>();
+            if (IsNotNull(adminSnPostsModel))
+            {
+                adminSnPostsModel.CentreName = GetOrganisationCentreDetails(adminSnPostsModel.CentreCode)?.CentreName;
+                adminSnPostsModel.DepartmentName = GetDepartmentDetails(adminSnPostsModel.DepartmentID)?.DepartmentName;
+                adminSnPostsModel.DesignationName = GetDesignationDetails(adminSnPostsModel.DesignationID)?.Description;
+            }
             return adminSnPostsModel;
         }
 
-        ////Update adminSnPosts.
-        //public AdminSnPostsModel UpdateAdminSnPosts(AdminSnPostsModel adminSnPostsModel)
-        //{
-        //    bool isAdminSnPostsUpdated = false;
-        //    if (RARIndiaHelperUtility.IsNull(adminSnPostsModel))
-        //        throw new RARIndiaException(ErrorCodes.InvalidData, Resources.ModelNotNull);
+        //Update adminSnPosts.
+        public AdminSnPostsModel UpdateAdminSnPosts(AdminSnPostsModel adminSnPostsModel)
+        {
+            bool isAdminSnPostsUpdated = false;
+            if (RARIndiaHelperUtility.IsNull(adminSnPostsModel))
+                throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
-        //    if (adminSnPostsModel.AdminSnPostsId < 1)
-        //        throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(Resources.ErrorIdLessThanOne, "AdminSnPostsID"));
+            if (adminSnPostsModel.AdminSnPostsId < 1)
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminSnPostsID"));
 
-        //    //Update adminSnPosts
-        //    isAdminSnPostsUpdated = _adminSnPostsRepository.Update(adminSnPostsModel.FromModelToEntity<AdminSnPosts>());
-        //    if (!isAdminSnPostsUpdated)
-        //    {
-        //        adminSnPostsModel.HasError = true;
-        //        adminSnPostsModel.ErrorMessage = Resources.ErrorFailedToCreate;
-        //    }
-        //    return adminSnPostsModel;
-        //}
+            AdminSnPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.ID == adminSnPostsModel.AdminSnPostsId);
+            adminSnPostsData.NoOfPosts = adminSnPostsModel.NoOfPosts;
+            adminSnPostsData.IsActive = adminSnPostsModel.IsActive;
+            adminSnPostsData.ModifiedBy = adminSnPostsModel.ModifiedBy;
+
+           
+            //Update adminSnPosts
+            isAdminSnPostsUpdated = _adminSnPostsRepository.Update(adminSnPostsData);
+            if (!isAdminSnPostsUpdated)
+            {
+                adminSnPostsModel.HasError = true;
+                adminSnPostsModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+            }
+            return adminSnPostsModel;
+        }
 
         ////Delete adminSnPosts.
         //public bool DeleteAdminSnPosts(ParameterModel parameterModel)

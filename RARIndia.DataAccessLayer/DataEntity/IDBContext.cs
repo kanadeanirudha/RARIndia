@@ -19,12 +19,12 @@ namespace RARIndia.DataAccessLayer.DataEntity
         /// <returns></returns>
         int SaveChanges();
 
-        ///// <summary>
-        ///// Save changes
-        ///// </summary>
-        ///// <param name="loginUserAccountId">Login User Account Id</param>
-        ///// <returns></returns>
-        //int SaveChanges(int loginUserAccountId, int createdBy = 0, int modifiedBy = 0);
+        /// <summary>
+        /// Save changes
+        /// </summary>
+        /// <param name="loginUserAccountId">Login User Account Id</param>
+        /// <returns></returns>
+        int SaveChanges(int createdBy = 0, int modifiedBy = 0);
 
         /// <summary>
         /// Save changes Asynchronously

@@ -85,7 +85,7 @@
                                         <div class="form-group row">
                                             @Html.LabelFor(x => x.SeqNo, new { @class = "col-md-3 label-control" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.SeqNo, new { @class = "form-control border-primary", @placeholder = "Sequence Number" })
+                                                @Html.TextBoxFor(x => x.SeqNo, new { @class = "form-control border-primary", @placeholder = "Sequence Number", @maxLength = "3", @type = "number" })
                                                 @Html.ValidationMessageFor(x => x.SeqNo, null, new { @class = "red" })
                                             </div>
                                         </div>

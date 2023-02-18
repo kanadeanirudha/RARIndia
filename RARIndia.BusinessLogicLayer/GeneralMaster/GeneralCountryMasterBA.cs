@@ -46,6 +46,8 @@ namespace RARIndia.BusinessLogicLayer
         {
             try
             {
+                generalCountryViewModel.CreatedBy = LoginUserId();
+
                 GeneralCountryModel generalCountryModel = _generalCountryMasterDAL.CreateCountry(generalCountryViewModel.ToModel<GeneralCountryModel>());
                 return RARIndiaHelperUtility.IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : new GeneralCountryViewModel();
             }
@@ -75,6 +77,7 @@ namespace RARIndia.BusinessLogicLayer
         {
             try
             {
+                generalCountryViewModel.ModifiedBy = LoginUserId();
                 GeneralCountryModel generalCountryModel = _generalCountryMasterDAL.UpdateCountry(generalCountryViewModel.ToModel<GeneralCountryModel>());
                 return RARIndiaHelperUtility.IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : (GeneralCountryViewModel)GetViewModelWithErrorMessage(new GeneralCountryListViewModel(), GeneralResources.UpdateErrorMessage);
             }

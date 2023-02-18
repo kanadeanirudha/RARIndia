@@ -232,7 +232,9 @@ namespace RARIndia.DataAccessLayer.DataEntity
                 //Map the Modified property values to the original database entity. To update only those modified values.
                 UpdateEntity(entity);
                 //bool _result = _context.SaveChanges(HelperMethods.GetLoginUserId()) > 0;
-                bool _result = _context.SaveChanges() > 0;
+                int createdBy = Convert.ToInt32(entity.GetProperty("CreatedBy"));
+                int modifiedBy = Convert.ToInt32(entity.GetProperty("ModifiedBy"));
+                bool _result = _context.SaveChanges(createdBy, modifiedBy) > 0;
                 //if (_result)
                 //{
                 //    var _initializer = new Initializer<T>(entity, "Update");

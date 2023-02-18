@@ -270,8 +270,9 @@
     <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\CreateEdit.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralDepartmentMaster\List.cshtml" />
     <Content Include="Views\Shared\_DepartmentDropdown.cshtml" />
-    <Content Include="Views\Admin\AdminSnPosts\CreateEdit.cshtml" />
+    <Content Include="Views\Admin\AdminSnPosts\Create.cshtml" />
     <Content Include="Views\Shared\_AccessibleCentreList.cshtml" />
+    <Content Include="Views\Admin\AdminSnPosts\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

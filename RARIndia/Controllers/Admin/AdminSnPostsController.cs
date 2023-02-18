@@ -4,6 +4,7 @@ using RARIndia.Model.Model;
 using RARIndia.Resources;
 using RARIndia.ViewModel;
 
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -14,7 +15,7 @@ namespace RARIndia.Controllers
     {
         readonly GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
         readonly AdminSnPostsBA _adminSnPostsBA = null;
-        private const string createEdit = "~/Views/Admin/AdminSnPosts/CreateEdit.cshtml";
+
         public AdminSnPostsController()
         {
             _generalDepartmentMasterBA = new GeneralDepartmentMasterBA();
@@ -23,7 +24,9 @@ namespace RARIndia.Controllers
 
         public ActionResult List(DataTableModel dataTableModel)
         {
-            dataTableModel = dataTableModel ?? new DataTableModel();
+            DataTableModel tempDataTable = TempData["dataTableModel"] as DataTableModel;
+
+            dataTableModel = tempDataTable == null ? dataTableModel ?? new DataTableModel() : tempDataTable;
 
             AdminSnPostsListViewModel viewModel = new AdminSnPostsListViewModel();
 
@@ -32,7 +35,8 @@ namespace RARIndia.Controllers
                 viewModel = _adminSnPostsBA.GetAdminSnPostsList(dataTableModel, dataTableModel.SelectedCentreCode, dataTableModel.SelectedDepartmentID);
                 if (!Request.IsAjaxRequest())
                 {
-                    viewModel.GeneralDepartmentList = _generalDepartmentMasterBA.GetDepartmentsByCentreCode(dataTableModel.SelectedCentreCode);
+                    viewModel.GeneralDepartmentList = _generalDepartmentMasterBA.GetDepartmentsByCentreCode(dataTableModel.SelectedCentreCode, Convert.ToString(dataTableModel.SelectedDepartmentID));
+
                 }
             }
 
@@ -51,7 +55,7 @@ namespace RARIndia.Controllers
         {
             AdminSnPostsViewModel adminSnPostsViewModel = new AdminSnPostsViewModel();
             BindDropdown(adminSnPostsViewModel);
-            return View(createEdit, adminSnPostsViewModel);
+            return View("~/Views/Admin/AdminSnPosts/Create.cshtml", adminSnPostsViewModel);
         }
 
         [HttpPost]
@@ -63,13 +67,47 @@ namespace RARIndia.Controllers
                 if (!adminSnPostsViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
+                    TempData["dataTableModel"] = CreateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
                     return RedirectToAction<AdminSnPostsController>(x => x.List(null));
                 }
             }
 
             BindDropdown(adminSnPostsViewModel);
             SetNotificationMessage(GetErrorNotificationMessage(adminSnPostsViewModel.ErrorMessage));
-            return View(createEdit, adminSnPostsViewModel);
+            return View("~/Views/Admin/AdminSnPosts/Create.cshtml", adminSnPostsViewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int adminSnPostsId)
+        {
+            AdminSnPostsViewModel adminSnPostsViewModel = _adminSnPostsBA.GetAdminSnPosts(adminSnPostsId);
+            adminSnPostsViewModel.SelectedCentreCode = adminSnPostsViewModel.CentreCode;
+            adminSnPostsViewModel.SelectedDepartmentID = System.Convert.ToString(adminSnPostsViewModel.DepartmentID);
+            return View("~/Views/Admin/AdminSnPosts/Edit.cshtml", adminSnPostsViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(AdminSnPostsViewModel adminSnPostsViewModel)
+        {
+            ModelState.Remove("PostType");
+            ModelState.Remove("DesignationType");
+
+            if (ModelState.IsValid)
+            {
+                bool status = _adminSnPostsBA.UpdateAdminSnPosts(adminSnPostsViewModel).HasError;
+                SetNotificationMessage(status
+                ? GetErrorNotificationMessage(GeneralResources.UpdateErrorMessage)
+                : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
+
+                if (!status)
+                {
+                    TempData["dataTableModel"] = UpdateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
+                    return RedirectToAction<AdminSnPostsController>(x => x.List(null));
+                }
+            }
+
+            SetNotificationMessage(GetErrorNotificationMessage(adminSnPostsViewModel.ErrorMessage));
+            return View("~/Views/Admin/AdminSnPosts/Edit.cshtml", adminSnPostsViewModel);
         }
 
         #region Private

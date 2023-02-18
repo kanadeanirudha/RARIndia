@@ -3,6 +3,7 @@
 using Newtonsoft.Json;
 
 using RARIndia.Model;
+using RARIndia.Model.Model;
 using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
 
@@ -180,6 +181,28 @@ namespace RARIndia.Controllers
         {
             UserModel userModel = RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession);
             return userModel != null ? userModel.IsAdminUser : false;
+        }
+
+        protected DataTableModel CreateActionDataTable(string centreCode = null, int selectedDepartmentID = 0)
+        {
+            return new DataTableModel()
+            {
+                SortByColumn = SortKeys.CreatedDate,
+                SortBy = RARIndiaConstant.DESCKey,
+                SelectedCentreCode = centreCode,
+                SelectedDepartmentID = selectedDepartmentID
+            };
+        }
+
+        protected DataTableModel UpdateActionDataTable(string centreCode = null, int selectedDepartmentID = 0)
+        {
+            return new DataTableModel()
+            {
+                SortByColumn = SortKeys.ModifiedDate,
+                SortBy = RARIndiaConstant.DESCKey,
+                SelectedCentreCode = centreCode,
+                SelectedDepartmentID = selectedDepartmentID
+            };
         }
     }
 }

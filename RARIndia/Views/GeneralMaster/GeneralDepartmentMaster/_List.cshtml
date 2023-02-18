@@ -32,8 +32,8 @@
                     <td>@item.DeptShortCode</td>
                     <td>@item.PrintShortDesc</td>
                     <td style="text-align:center">
-                        <a href="../GeneralDepartmentMaster/Edit?departmentId=@item.DepartmentId" title="Update"><i class="ft-edit-1"></i></a>  |
-                        <a href="../GeneralDepartmentMaster/Delete?departmentIds=@item.DepartmentId" title="Delete"><i class="ft-delete"></i></a>
+                        <a href="../@controllerName/Edit?departmentId=@item.DepartmentId" title="Update"><i class="ft-edit-1"></i></a>  |
+                        <a href="../@controllerName/Delete?departmentIds=@item.DepartmentId" title="Delete"><i class="ft-delete"></i></a>
                     </td>
                 </tr>
                 }

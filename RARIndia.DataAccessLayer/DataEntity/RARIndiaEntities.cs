@@ -39,7 +39,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
         //Provides access to the Database configuration of  the Context.
         public Database GetDatabase() => base.Database;
 
-        public new int SaveChanges() => SaveChanges(0);
+        public new int SaveChanges() => SaveChanges();
 
         //Override Method to Insert/Update the Created/Modified Date for the Entity.
         public int SaveChanges(int createdBy = 0, int modifiedBy = 0)

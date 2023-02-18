@@ -8,7 +8,6 @@ using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
@@ -69,24 +68,25 @@ namespace RARIndia.BusinessLogicLayer
             }
         }
 
-        ////Get AdminSnPosts by AdminSnPosts id.
-        //public AdminSnPostsViewModel GetAdminSnPosts(int AdminSnPostsId)
-        //    => _adminSnPostsDAL.GetAdminSnPosts(AdminSnPostsId).ToViewModel<AdminSnPostsViewModel>();
+        //Get AdminSnPosts by AdminSnPosts id.
+        public AdminSnPostsViewModel GetAdminSnPosts(int adminSnPostsId)
+            => _adminSnPostsDAL.GetAdminSnPosts(adminSnPostsId).ToViewModel<AdminSnPostsViewModel>();
 
-        ////Update AdminSnPosts.
-        //public AdminSnPostsViewModel UpdateAdminSnPosts(AdminSnPostsViewModel generalAdminSnPostsViewModel)
-        //{
-        //    try
-        //    {
-        //        AdminSnPostsModel generalAdminSnPostsModel = _adminSnPostsDAL.UpdateAdminSnPosts(generalAdminSnPostsViewModel.ToModel<AdminSnPostsModel>());
-        //        return RARIndiaHelperUtility.IsNotNull(generalAdminSnPostsModel) ? generalAdminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : (AdminSnPostsViewModel)GetViewModelWithErrorMessage(new AdminSnPostsListViewModel(), Resources.UpdateErrorMessage);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.AdminSnPosts.ToString());
-        //        return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(generalAdminSnPostsViewModel, Resources.UpdateErrorMessage);
-        //    }
-        //}
+        //Update AdminSnPosts.
+        public AdminSnPostsViewModel UpdateAdminSnPosts(AdminSnPostsViewModel adminSnPostsViewModel)
+        {
+            try
+            {
+                adminSnPostsViewModel.ModifiedBy = LoginUserId();
+                AdminSnPostsModel adminSnPostsModel = _adminSnPostsDAL.UpdateAdminSnPosts(adminSnPostsViewModel.ToModel<AdminSnPostsModel>());
+                return RARIndiaHelperUtility.IsNotNull(adminSnPostsModel) ? adminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : (AdminSnPostsViewModel)GetViewModelWithErrorMessage(new AdminSnPostsListViewModel(), GeneralResources.UpdateErrorMessage);
+            }
+            catch (Exception ex)
+            {
+                RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.AdminSnPosts.ToString());
+                return (AdminSnPostsViewModel)GetViewModelWithErrorMessage(adminSnPostsViewModel, GeneralResources.UpdateErrorMessage);
+            }
+        }
 
         ////Delete AdminSnPosts.
         //public bool DeleteAdminSnPosts(string AdminSnPostsIds, out string errorMessage)

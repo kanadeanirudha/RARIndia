@@ -36,5 +36,11 @@ namespace RARIndia.ViewModel
         [Display(Name = "Designation Type")]
         public string DesignationType { get; set; }
         public bool IsActive { get; set; }
+
+        [Display(Name = "LabelDepartments", ResourceType = typeof(GeneralResources))]
+        public string DesignationName { get; set; }
+        public string DepartmentName { get; set; }
+        [Display(Name = "LabelCentre", ResourceType = typeof(GeneralResources))]
+        public string CentreName { get; set; }
     }
 }

@@ -30,8 +30,8 @@
                         <td>@item.Description</td>
                         <td>@item.DefaultFlag</td>
                         <td style="text-align:center">
-                            <a href="../GeneralNationalitMaster/Edit?nationalityId=@item.NationalityId" title="Update"><i class="ft-edit-1"></i></a>  |
-                            <a href="../GeneralNationalitMaster/Delete?nationalityIds=@item.NationalityId" title="Delete"><i class="ft-delete"></i></a>
+                            <a href="../@controllerName/Edit?nationalityId=@item.NationalityId" title="Update"><i class="ft-edit-1"></i></a>  |
+                            <a href="../@controllerName/Delete?nationalityIds=@item.NationalityId" title="Delete"><i class="ft-delete"></i></a>
                         </td>
                     </tr>
                 }

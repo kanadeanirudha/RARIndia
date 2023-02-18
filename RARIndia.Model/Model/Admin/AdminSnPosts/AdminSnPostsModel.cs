@@ -14,5 +14,9 @@ namespace RARIndia.Model
         public string PostType { get; set; }
         public string DesignationType { get; set; }
         public bool IsActive { get; set; }
+        public string DesignationName { get; set; }
+        public string DepartmentName { get; set; }
+        public string CentreName { get; set; }
+
     }
 }
