@@ -1,11 +1,11 @@
 ﻿@using RARIndia.Model;
 @model UserModel
 @{
-    Layout= null;
+    Layout = null;
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
 }
-<li class="dropdown nav-item mega-dropdown d-none d-lg-block">
+@*<li class="dropdown nav-item mega-dropdown d-none d-lg-block">
     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">@Model.SelectedModuleName</a>
     <ul class="mega-dropdown-menu dropdown-menu row p-1">
         <li class="col-md-12 px-2">
@@ -22,4 +22,19 @@
             </ul>
         </li>
     </ul>
-</li>
+</li>*@
+
+<li class="has-submenu">
+    <a href="#">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home align-self-center hori-menu-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            @Model.SelectedModuleName
+        </span>
+    </a>
+    <ul class="submenu">
+        @foreach (UserModuleModel item in Model?.ModuleList)
+        {
+            <li><a href="/user/GetMenuListByModuleCode?moduleCode=@item.ModuleCode&controllerName=@controllerName&method=@actionName"><i class="ti ti-minus"></i>@item.ModuleName</a></li>
+        }
+    </ul><!--end submenu-->
+</li><!--end has-submenu-->

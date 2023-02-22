@@ -30,7 +30,7 @@
 
     string displayMessage = string.IsNullOrEmpty(@msgObj.Message) ? "display:none" : "";
 }
-<style>
+@*<style>
     .nofitication {
         text-align: center
     }
@@ -40,4 +40,11 @@
         <span>×</span>
     </button>
     <span id="notificationMessageId">@msgObj.Message</span>
+</div>*@
+
+<div class="toast align-items-center text-white @notificationStyle border-0 fade show" role="alert" aria-live="assertive" aria-atomic="true" style="@displayMessage">
+    <div class="toast-body">
+        <span id="notificationMessageId">@msgObj.Message</span>
+    </div>
+    <button type="button" class="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
 </div>

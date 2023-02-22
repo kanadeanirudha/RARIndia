@@ -7,24 +7,26 @@
 }
 @if (Model.SelectedModuleCode.Trim() == "ACCOUNTS" || Model.SelectedModuleCode.Trim() == "INVENTORY" || Model.SelectedModuleCode.Trim() == "PURCHASE")
 {
-    <li class="dropdown dropdown-language nav-item">
-        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ft-layers"></i>
+    <li class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            BL <i class="la la-angle-down"></i>
         </a>
-        <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             @foreach (UserBalanceSheetModel item in Model.BalanceSheetList)
             {
-            <a class="dropdown-item" href="/user/GetBalanceSheetById?balanceSheetId=@item.BalsheetID&controllerName=@controllerName&method=@actionName">
-                @if (item.BalsheetID == Model.SelectedBalanceId)
-                {
-                    <i class="ft-check"></i>@item.ActBalsheetHeadDesc
-                }
-                else
-                {
-                    <i class="ft-layers"></i>@item.ActBalsheetHeadDesc
-                }
-            </a>
+                <li>
+                    <a class="dropdown-item" href="/user/GetBalanceSheetById?balanceSheetId=@item.BalsheetID&controllerName=@controllerName&method=@actionName">
+                        @if (item.BalsheetID == Model.SelectedBalanceId)
+                        {
+                            @*<i class="ft-check"></i>*@@item.ActBalsheetHeadDesc
+                        }
+                        else
+                        {
+                            @*<i class="ft-layers"></i>*@@item.ActBalsheetHeadDesc
+                        }
+                    </a>
+                </li>
             }
-        </div>
+        </ul>
     </li>
 }

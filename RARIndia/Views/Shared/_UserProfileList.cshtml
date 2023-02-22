@@ -3,18 +3,15 @@
 @{
     Layout= null;
 }
-<li class="dropdown dropdown-user nav-item">
-    <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-        <span class="mr-1 user-name text-bold-700">@Model.FirstName @Model.LastName</span>
-        <span class="avatar avatar-online">
-            <img src="../Images/avatar-s-19.png" alt="avatar"><i></i>
-        </span>
+<li class="dropdown">
+    <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="https://mannatthemes.com/dastone/default/horizontal-top-dark.html#" role="button" aria-haspopup="false" aria-expanded="false">
+        <span class="ms-1 nav-user-name hidden-sm">@Model.FirstName @Model.LastName</span>
+        <img src="~/Images/user-5.jpg" alt="profile-user" class="rounded-circle thumb-sm">
     </a>
-    <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a>
-        @*<a class="dropdown-item" href="#"><i class="ft-clipboard"></i> Todo</a>
-            <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>*@
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="~/User/LogOff"><i class="ft-power"></i> Logout</a>
+    <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user align-self-center icon-xs icon-dual me-1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
+        @*<a class="dropdown-item" href="https://mannatthemes.com/dastone/default/horizontal-top-dark.html#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings align-self-center icon-xs icon-dual me-1"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</a>*@
+        <div class="dropdown-divider mb-0"></div>
+        <a class="dropdown-item" href="~/User/LogOff"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power align-self-center icon-xs icon-dual me-1"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg> Logout</a>
     </div>
 </li>
