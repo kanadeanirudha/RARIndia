@@ -12,6 +12,8 @@ namespace RARIndia.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            string[] excludeFromName = new string[] { "generalcommandata", "dashboard" };
+
             HttpContext ctx = HttpContext.Current;
             UserModel userModel = RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession);
             if (userModel == null)
@@ -20,7 +22,7 @@ namespace RARIndia.Filters
                 return;
             }
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName?.ToLower();
-            if (!userModel.MenuList.Any(x => x.MenuLink?.ToLower() == controllerName) && controllerName != "dashboard")
+            if (!excludeFromName.Any(x => x == controllerName) && !userModel.MenuList.Any(x => x.MenuLink == controllerName))
             {
                 filterContext.Result = new RedirectResult("~/User/Unauthorized");
                 return;

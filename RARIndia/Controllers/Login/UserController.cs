@@ -99,5 +99,10 @@ namespace RARIndia.Controllers
             int notificationCount = userId > 0 ? _userMasterBA.GetNotificationCount(userId) : 0;
             return View("~/Views/Shared/_NotificationCount.cshtml", notificationCount);
         }
+
+        public ActionResult Unauthorized()
+        {
+            return View("~/Views/Shared/Unauthorized.cshtml");
+        }
     }
 }

@@ -144,7 +144,7 @@ namespace RARIndia.DataAccessLayer
                     MenuName = item.MenuName,
                     ParentMenuID = item.ParentMenuID,
                     MenuDisplaySeqNo = item.MenuDisplaySeqNo,
-                    MenuLink = item.MenuLink,
+                    MenuLink = item.MenuLink?.ToLower(),
                     MenuToolTip = item.MenuToolTip,
                     MenuIconName = item.MenuIconName
                 });
@@ -169,7 +169,7 @@ namespace RARIndia.DataAccessLayer
                         MenuName = userMenuModel.MenuName,
                         ParentMenuID = userMenuModel.ParentMenuID,
                         MenuDisplaySeqNo = userMenuModel.MenuDisplaySeqNo,
-                        MenuLink = userMenuModel.MenuLink,
+                        MenuLink = userMenuModel.MenuLink?.ToLower(),
                         MenuToolTip = userMenuModel.MenuToolTip,
                         MenuIconName = userMenuModel.MenuIconName
                     });

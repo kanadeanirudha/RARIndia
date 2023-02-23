@@ -273,6 +273,7 @@
     <Content Include="Views\Admin\AdminSnPosts\Create.cshtml" />
     <Content Include="Views\Shared\_AccessibleCentreList.cshtml" />
     <Content Include="Views\Admin\AdminSnPosts\Edit.cshtml" />
+    <Content Include="Views\Shared\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

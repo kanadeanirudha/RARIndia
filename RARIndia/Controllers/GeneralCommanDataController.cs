@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
-    //[SessionTimeoutAttribute]
+    [SessionTimeoutAttribute]
     public class GeneralCommanDataController : BaseController
     {
         readonly GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
