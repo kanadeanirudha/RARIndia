@@ -13,7 +13,7 @@ using System.Linq;
 using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.DataAccessLayer
 {
-    public class UserMasterDAL
+    public class UserMasterDAL: BaseDataAccessLogic
     {
         private readonly IRARIndiaRepository<AdminRoleApplicableDetail> _adminRoleApplicableDetailsRepository;
         private readonly IRARIndiaRepository<UserMaster> _userMasterRepository;
@@ -65,19 +65,11 @@ namespace RARIndia.DataAccessLayer
             {
                 //Bind Menu And Modules For Non Admin User
                 BindMenuAndModulesForAdminUser(userModel, userAllModuleList, userAllMenuList);
-                List<OrganisationStudyCentreMaster> centreList = new RARIndiaRepository<OrganisationStudyCentreMaster>().Table.ToList();
-                foreach (OrganisationStudyCentreMaster item in centreList)
-                {
-                    userModel.AccessibleCentreList.Add(new UserAccessibleCentreModel()
-                    {
-                        CentreCode = item.CentreCode,
-                        CentreName = item.CentreName,
-                        ScopeIdentity = "Centre"
-                    });
-                }
+                userModel.AccessibleCentreList =  OrganisationCentreList();
             }
             return userModel;
         }
+
 
         public int GetNotificationCount(int userId)
         {

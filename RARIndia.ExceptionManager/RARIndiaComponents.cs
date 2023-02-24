@@ -9,6 +9,7 @@
             Department = 3,
             Designation = 4,
             AdminSnPosts = 5,
+            AdminRoleMaster=6
         }
     }
 }

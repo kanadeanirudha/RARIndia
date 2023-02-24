@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Admin\AdminRoleMaster\AdminRoleMasterListViewModel.cs" />
+    <Compile Include="ViewModel\Admin\AdminRoleMaster\AdminRoleMasterViewModel.cs" />
     <Compile Include="ViewModel\Admin\AdminSnPosts\AdminSnPostsListViewModel.cs" />
     <Compile Include="ViewModel\Admin\AdminSnPosts\AdminSnPostsViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralDesignationMaster\GeneralDesignationListViewModel.cs" />

@@ -150,6 +150,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Admin\AdminRoleMasterController.cs" />
     <Compile Include="Controllers\Admin\AdminSnPostsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -178,6 +179,7 @@
     <Content Include="Content\polaris\_all.css" />
     <Content Include="Content\square\blue.png" />
     <Content Include="Content\square\_all.css" />
+    <Content Include="Content\style\bootstrap-multiselect.css" />
     <Content Include="fonts\flag-icon-css\flags\gb.svg" />
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />
@@ -186,6 +188,7 @@
     <Content Include="Scripts\GeneralScript\RARIndiaCommanFunction.js" />
     <Content Include="Scripts\GeneralScript\RARIndiaNotification.js" />
     <Content Include="Scripts\GeneralScript\RARIndiaDataTable.js" />
+    <Content Include="Scripts\RARIndia\AdminRoleMaster.js" />
     <Content Include="Scripts\RARIndia\AdminSnPosts.js" />
     <Content Include="Scripts\Theme\app-menu.min.js" />
     <Content Include="Scripts\Theme\app.min.js" />
@@ -213,6 +216,7 @@
     <Content Include="Scripts\Theme\form-validation.js" />
     <Content Include="Scripts\Theme\icheck.min.js" />
     <Content Include="Scripts\Theme\jqBootstrapValidation.js" />
+    <Content Include="Scripts\Theme\bootstrap-multiselect.js" />
     <Content Include="Scripts\Theme\jquery.sparkline.min.js" />
     <Content Include="Scripts\Theme\jquery.sticky.js" />
     <Content Include="Scripts\Theme\jszip.min.js" />
@@ -274,6 +278,9 @@
     <Content Include="Views\Shared\_AccessibleCentreList.cshtml" />
     <Content Include="Views\Admin\AdminSnPosts\Edit.cshtml" />
     <Content Include="Views\Shared\Unauthorized.cshtml" />
+    <Content Include="Views\Admin\AdminRoleMaster\_List.cshtml" />
+    <Content Include="Views\Admin\AdminRoleMaster\Edit.cshtml" />
+    <Content Include="Views\Admin\AdminRoleMaster\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

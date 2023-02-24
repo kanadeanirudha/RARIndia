@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
-    [SessionTimeoutAttribute]
+	[SessionTimeoutAttribute]
     public class GeneralCountryMasterController : BaseController
     {
         GeneralCountryMasterBA _generalCountryMasterBA = null;
@@ -21,7 +21,7 @@ namespace RARIndia.Controllers
 
         public ActionResult List(DataTableModel dataTableModel)
         {
-            DataTableModel tempDataTable = TempData["dataTableModel"] as DataTableModel;
+            DataTableModel tempDataTable = TempData[RARIndiaConstant.DataTableModel] as DataTableModel;
             dataTableModel = tempDataTable == null ? dataTableModel ?? new DataTableModel() : tempDataTable;
             
             GeneralCountryListViewModel list = _generalCountryMasterBA.GetCountryList(dataTableModel);
@@ -47,7 +47,7 @@ namespace RARIndia.Controllers
                 if (!generalCountryViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
-                    TempData["dataTableModel"] = CreateActionDataTable();
+                    TempData[RARIndiaConstant.DataTableModel] = CreateActionDataTable();
                     return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
                 }
             }
@@ -75,7 +75,7 @@ namespace RARIndia.Controllers
 
                 if (!status)
                 {
-                    TempData["dataTableModel"] = UpdateActionDataTable();
+                    TempData[RARIndiaConstant.DataTableModel] = UpdateActionDataTable();
                     return RedirectToAction<GeneralCountryMasterController>(x => x.List(null));
                 }
             }

@@ -21,6 +21,16 @@ namespace RARIndia
                 .ForMember(d => d.ID, opt => opt.MapFrom(src => src.AdminSnPostsId));
             Mapper.CreateMap<AdminSnPost, AdminSnPostsModel>()
                .ForMember(d => d.AdminSnPostsId, opt => opt.MapFrom(src => src.ID));
+
+            Mapper.CreateMap<AdminRoleMasterModel, AdminRoleMasterViewModel>().ReverseMap();
+            Mapper.CreateMap<AdminRoleMasterListModel, AdminRoleMasterListViewModel>().ReverseMap();
+
+            Mapper.CreateMap<AdminRoleMasterModel, AdminRoleMaster>()
+                .ForMember(d => d.ID, opt => opt.MapFrom(src => src.AdminRoleMasterId))
+                .ForMember(d => d.SanctPostName, opt => opt.MapFrom(src => src.SactionedPostDescription));
+            Mapper.CreateMap<AdminRoleMaster, AdminRoleMasterModel>()
+               .ForMember(d => d.AdminRoleMasterId, opt => opt.MapFrom(src => src.ID))
+               .ForMember(d => d.SactionedPostDescription, opt => opt.MapFrom(src => src.SanctPostName));
             #endregion
 
             #region General Master
@@ -44,6 +54,7 @@ namespace RARIndia
             Mapper.CreateMap<GeneralNationalityModel, GeneralNationalityViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralNationalityListModel, GeneralNationalityListViewModel>().ReverseMap();
             #endregion
+
             Mapper.CreateMap<UserModel, UserLoginViewModel>().ReverseMap();
             Mapper.CreateMap<UserModel, UserMaster>().ReverseMap();
             Mapper.CreateMap<UserModuleModel, UserModuleMaster>().ReverseMap();

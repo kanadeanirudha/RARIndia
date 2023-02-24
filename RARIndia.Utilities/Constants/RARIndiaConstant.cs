@@ -13,5 +13,8 @@
 
         public const string Notifications = "Notifications";
         public const string UserDataSession = "UserData";
+        public const string Self = "Self";
+        public const string Other = "Other";
+        public const string DataTableModel = "dataTableModel";
     }
 }

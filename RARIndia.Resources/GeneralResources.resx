@@ -147,11 +147,17 @@
   <data name="ErrorMessage_ThisaccountdoesnotexistEnteravalidemailaddressorpassword" xml:space="preserve">
     <value>This account does not exist. Enter a valid email address or password</value>
   </data>
+  <data name="LabelAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
   <data name="LabelCentre" xml:space="preserve">
     <value>Centre</value>
   </data>
   <data name="LabelDepartments" xml:space="preserve">
     <value>Departments</value>
+  </data>
+  <data name="LabelIsActive" xml:space="preserve">
+    <value>Is Active</value>
   </data>
   <data name="ModelNotNull" xml:space="preserve">
     <value>Model can not be null.</value>

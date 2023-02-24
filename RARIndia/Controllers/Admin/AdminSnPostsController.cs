@@ -2,6 +2,7 @@
 using RARIndia.Filters;
 using RARIndia.Model.Model;
 using RARIndia.Resources;
+using RARIndia.Utilities.Constant;
 using RARIndia.ViewModel;
 
 using System;
@@ -10,7 +11,7 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
-    [SessionTimeoutAttribute]
+	[SessionTimeoutAttribute]
     public class AdminSnPostsController : BaseController
     {
         readonly GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
@@ -24,7 +25,7 @@ namespace RARIndia.Controllers
 
         public ActionResult List(DataTableModel dataTableModel)
         {
-            DataTableModel tempDataTable = TempData["dataTableModel"] as DataTableModel;
+            DataTableModel tempDataTable = TempData[RARIndiaConstant.DataTableModel] as DataTableModel;
 
             dataTableModel = tempDataTable == null ? dataTableModel ?? new DataTableModel() : tempDataTable;
 
@@ -67,7 +68,7 @@ namespace RARIndia.Controllers
                 if (!adminSnPostsViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
-                    TempData["dataTableModel"] = CreateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
+                    TempData[RARIndiaConstant.DataTableModel] = CreateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
                     return RedirectToAction<AdminSnPostsController>(x => x.List(null));
                 }
             }
@@ -101,7 +102,7 @@ namespace RARIndia.Controllers
 
                 if (!status)
                 {
-                    TempData["dataTableModel"] = UpdateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
+                    TempData[RARIndiaConstant.DataTableModel] = UpdateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
                     return RedirectToAction<AdminSnPostsController>(x => x.List(null));
                 }
             }

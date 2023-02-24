@@ -151,6 +151,15 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string LabelAction {
+            get {
+                return ResourceManager.GetString("LabelAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Centre.
         /// </summary>
         public static string LabelCentre {
@@ -165,6 +174,15 @@ namespace RARIndia.Resources {
         public static string LabelDepartments {
             get {
                 return ResourceManager.GetString("LabelDepartments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Active.
+        /// </summary>
+        public static string LabelIsActive {
+            get {
+                return ResourceManager.GetString("LabelIsActive", resourceCulture);
             }
         }
         

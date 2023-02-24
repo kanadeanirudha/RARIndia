@@ -1,0 +1,62 @@
+﻿@using RARIndia.ViewModel
+@using RARIndia.Resources;
+@model AdminRoleMasterListViewModel
+@{
+    ViewBag.Title = "Admin Role";
+    string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title">Admin Role List</h3>
+    </div>
+</div>
+<div class="content-body">
+    <!-- Column rendering table -->
+    <section id="column">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header" style="padding-bottom: 0px;">
+                        @*<h4 class="card-title">Column rendering</h4>
+                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
+                        <div class="row">
+                            <div class="col-md-1">
+                                <label>@GeneralResources.LabelCentre</label>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Partial("~/Views/Shared/_AccessibleCentreList.cshtml", string.Concat(Model.SelectedCentreCode, "~", "department"))
+                            </div>
+                            <div class="col-md-1">
+                                <label>@GeneralResources.LabelDepartments</label>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Partial("~/Views/Shared/_DepartmentDropdown.cshtml", Model.GeneralDepartmentList)
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" class="btn btn-success" value="Show" id="ShowDataId" onclick="AdminRoleMaster.LoadList('@controllerName','@actionName')" />
+                            </div>
+                        </div>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a href="../@controllerName/List" title="Reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body card-dashboard dataTables_wrapper dt-bootstrap">
+                            <div class="table-responsive">
+                                <div id="DataTablesDivId" class="dataTables_wrapper dt-bootstrap4">
+                                    @Html.Partial("~/Views/Admin/AdminRoleMaster/_List.cshtml", Model)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Column rendering table -->
+</div>
+<script src="~/Scripts/RARIndia/AdminRoleMaster.js"></script>

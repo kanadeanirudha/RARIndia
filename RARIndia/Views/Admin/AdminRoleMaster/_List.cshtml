@@ -1,5 +1,5 @@
 ﻿@using RARIndia.ViewModel
-@model AdminSnPostsListViewModel
+@model AdminRoleMasterListViewModel
 @{
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
@@ -18,19 +18,19 @@
             <thead>
                 <tr role="row">
                     <th class="sorting" data-columnname="NomenAdminRoleCode">Role Code</th>
-                    <th class="sorting" data-columnname="SactionedPostDescription">Sactioned Post Description</th>
-                    <th class="sorting" data-columnname="NoOfPosts">No Of Posts</th>
+                    <th class="sorting" data-columnname="SactionedPostDescription">Description</th>
+                    <th class="sorting" data-columnname="MonitoringLevel">Monitoring Level</th>
                     <th class="sorting" data-columnname="IsActive">@GeneralResources.LabelIsActive</th>
                     <th style="width:10%;">@GeneralResources.LabelAction</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model?.AdminSnPostsList)
+                @foreach (var item in Model?.AdminRoleMasterList)
                 {
                     <tr>
-                        <td>@item.NomenAdminRoleCode</td>
+                        <td>@item.AdminRoleCode</td>
                         <td>@item.SactionedPostDescription</td>
-                        <td>@item.NoOfPosts</td>
+                        <td>@item.MonitoringLevel</td>
                         <td style="text-align:center;">
                             @if (item.IsActive)
                             {<i class="ft-check-circle grid-checked-icon"></i>}
@@ -38,7 +38,7 @@
                             { <i class="ft-x-circle grid-unchecked-icon"></i>}
                         </td>
                         <td style="text-align:center">
-                            <a href="../@controllerName/Edit?adminSnPostsId=@item.AdminSnPostsId" title="Update"><i class="ft-edit-1"></i></a>
+                            <a href="../@controllerName/Edit?adminRoleMasterId=@item.AdminRoleMasterId&selectedCentreCode=@Model.SelectedCentreCode&selectedDepartmentID=@Model.SelectedDepartmentID" title="Update"><i class="ft-edit-1"></i></a>
                             @*<a href="../GeneralCountryMaster/Delete?countryIds=@item.AdminSnPostsId" title="Delete"><i class="ft-delete"></i></a>*@
                         </td>
                     </tr>
