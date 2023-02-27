@@ -84,7 +84,7 @@
                                         <div class="form-group row">
                                             @Html.LabelFor(x => x.MonitoringLevel, new { @class = "col-md-5 label-control required" })
                                             <div class="col-md-7 mx-auto">
-                                                @Html.DropDownListFor(m => m.MonitoringLevel, ViewData["MonitoringLevel"] as List<SelectListItem>, new { style = "", @class = "form-control" })
+                                                @Html.DropDownListFor(m => m.MonitoringLevel, new SelectList(Model.MonitoringLevelList, "Value", "Text"), new { style = "", @class = "form-control" })
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@
                                                     @Html.DisplayFor(m => m.SelectedCentreNameForSelf)
                                                 </div>
                                                 <div class="col-md-7 mx-auto" id="SelectedRoleWiseCentresDivId" style="display:none">
-                                                    @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, ViewData["RoleWiseCentreList"] as List<SelectListItem>)
+                                                    @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, new SelectList(Model.AllCentreList, "CentreCode", "CentreName"))
                                                 </div>
                                             }
                                             else
@@ -106,7 +106,7 @@
                                                     @Html.DisplayFor(m => m.SelectedCentreNameForSelf)
                                                 </div>
                                                 <div class="col-md-7 mx-auto" id="SelectedRoleWiseCentresDivId">
-                                                    @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, ViewData["RoleWiseCentreList"] as List<SelectListItem>)
+                                                    @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, new SelectList(Model.AllCentreList, "CentreCode", "CentreName"))
                                                 </div>
                                             }
                                         </div>

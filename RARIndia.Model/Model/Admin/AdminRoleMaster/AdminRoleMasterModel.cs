@@ -14,6 +14,6 @@ namespace RARIndia.Model
         public bool IsAttendaceAllowFromOutside { get; set; }
         public List<string> SelectedRoleWiseCentres { get; set; }
         public string SelectedCentreCodeForSelf { get; set; }
-        public List<UserAccessibleCentreModel> SelectedRoleWiseCentreList { get; set; }
+        public List<UserAccessibleCentreModel> AllCentreList { get; set; }
     }
 }

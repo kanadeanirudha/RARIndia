@@ -2,7 +2,6 @@
 @model UserModel
 @{
     Layout= null;
-    string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
 }
 <li class="dropdown nav-item mega-dropdown d-none d-lg-block">
@@ -13,7 +12,7 @@
                 @foreach (UserModuleModel item in Model?.ModuleList)
                 {
                     <li class="col-6 col-xl-2">
-                        <a class="text-center mb-2 mb-xl-3" href="/user/GetMenuListByModuleCode?moduleCode=@item.ModuleCode&controllerName=@controllerName&method=@actionName">
+                        <a class="text-center mb-2 mb-xl-3" href="/user/GetMenuListByModuleCode?moduleCode=@item.ModuleCode&controllerName=@controllerName&method=List">
                             <i class="la la-shopping-cart font-large-1 mr-0"></i>
                             <p class="font-medium-1 mt-25 mb-0">@item.ModuleName</p>
                         </a>

@@ -54,9 +54,9 @@ namespace RARIndia.DataAccessLayer
 			//Get the adminRoleMaster Details based on id.
 			AdminRoleMaster adminRoleMasterData = _adminRoleMasterRepository.Table.FirstOrDefault(x => x.ID == adminRoleMasterId);
 			AdminRoleMasterModel adminRoleMasterModel = adminRoleMasterData.FromEntityToModel<AdminRoleMasterModel>();
-			adminRoleMasterModel.SelectedRoleWiseCentres = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterID == adminRoleMasterId)?.Select(y => y.CentreCode)?.Distinct().ToList();
+			adminRoleMasterModel.SelectedRoleWiseCentres = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterID == adminRoleMasterId && x.IsActive == true)?.Select(y => y.CentreCode)?.Distinct().ToList();
 			adminRoleMasterModel.SelectedCentreCodeForSelf = _adminSnPostsRepository.GetById(adminRoleMasterData.AdminSnPostID).CentreCode;
-			adminRoleMasterModel.SelectedRoleWiseCentreList = OrganisationCentreList();
+			adminRoleMasterModel.AllCentreList = OrganisationCentreList();
 			return adminRoleMasterModel;
 		}
 
@@ -80,7 +80,51 @@ namespace RARIndia.DataAccessLayer
 
 			//Update adminRoleMaster
 			isAdminRoleMasterUpdated = _adminRoleMasterRepository.Update(adminRoleMasterData);
-			if (!isAdminRoleMasterUpdated)
+			if (isAdminRoleMasterUpdated)
+			{
+				List<AdminRoleCentreRight> adminRoleCentreRightList = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterID == adminRoleMasterModel.AdminRoleMasterId && x.CentreCode != adminRoleMasterModel.SelectedCentreCodeForSelf)?.ToList();
+
+				if (adminRoleMasterModel.MonitoringLevel == RARIndiaConstant.Self || (adminRoleMasterModel.MonitoringLevel == RARIndiaConstant.Other && adminRoleMasterModel?.SelectedRoleWiseCentres?.Count == 0))
+				{
+					adminRoleCentreRightList.ForEach(x => { x.IsActive = false; x.ModifiedBy = adminRoleMasterModel.ModifiedBy; });
+					_adminRoleCentreRightsRepository.BatchUpdate(adminRoleCentreRightList);
+				}
+				else
+				{
+					adminRoleMasterModel.AllCentreList = OrganisationCentreList();
+					foreach (UserAccessibleCentreModel item in adminRoleMasterModel?.AllCentreList?.Where(x=>x.CentreCode != adminRoleMasterModel.SelectedCentreCodeForSelf))
+					{
+						string selectedCentreCode = adminRoleMasterModel?.SelectedRoleWiseCentres?.FirstOrDefault(x => x == item.CentreCode);
+						AdminRoleCentreRight adminRoleCentreRight = adminRoleCentreRightList?.FirstOrDefault(x => x.CentreCode == item.CentreCode);
+
+						if (adminRoleCentreRight == null && !string.IsNullOrEmpty( selectedCentreCode))
+						{
+							 adminRoleCentreRight = new AdminRoleCentreRight()
+							{
+								AdminRoleMasterID = adminRoleMasterModel.AdminRoleMasterId,
+								CentreCode = selectedCentreCode,
+								AdminRoleRightTypeID = 0,
+								IsActive = true,
+								CreatedBy = adminRoleMasterModel.CreatedBy,
+								ModifiedBy = adminRoleMasterModel.ModifiedBy
+							 };
+							_adminRoleCentreRightsRepository.Insert(adminRoleCentreRight);
+						}
+						else if (adminRoleCentreRight?.CentreCode == selectedCentreCode && adminRoleCentreRight?.IsActive == false)
+						{
+							adminRoleCentreRight.IsActive = true;
+							adminRoleCentreRight.ModifiedBy = adminRoleMasterModel.ModifiedBy;
+							_adminRoleCentreRightsRepository.Update(adminRoleCentreRight);
+						}
+						else if (selectedCentreCode ==null && adminRoleCentreRight?.IsActive == true)
+						{
+							adminRoleCentreRight.IsActive = false;
+							adminRoleCentreRight.ModifiedBy = adminRoleMasterModel.ModifiedBy;
+							_adminRoleCentreRightsRepository.Update(adminRoleCentreRight);
+						}
+					}
+				}
+			}
 			{
 				adminRoleMasterModel.HasError = true;
 				adminRoleMasterModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;

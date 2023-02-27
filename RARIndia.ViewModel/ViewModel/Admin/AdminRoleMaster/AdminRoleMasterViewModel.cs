@@ -4,6 +4,7 @@ using RARIndia.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace RARIndia.ViewModel
 {
@@ -25,6 +26,8 @@ namespace RARIndia.ViewModel
         public string AdminRoleCode { get; set; }
         [Display(Name = "Role Description")]
         public string SactionedPostDescription { get; set; }
+
+        public List<SelectListItem> MonitoringLevelList { get; set; }
         [Display(Name = "Monitoring Level")]
         public string MonitoringLevel { get; set; }
         public bool IsActive { get; set; }
@@ -37,6 +40,6 @@ namespace RARIndia.ViewModel
         public List<string> SelectedRoleWiseCentres { get; set; }
         public string SelectedCentreCodeForSelf { get; set; }
         public string SelectedCentreNameForSelf { get; set; }
-        public List<UserAccessibleCentreModel> SelectedRoleWiseCentreList { get; set; }
+        public List<UserAccessibleCentreModel> AllCentreList { get; set; }
     }
 }

@@ -78,6 +78,7 @@ namespace RARIndia.Controllers
 				}
 			}
 
+			BindDropdown(adminRoleMasterViewModel);
 			SetNotificationMessage(GetErrorNotificationMessage(adminRoleMasterViewModel.ErrorMessage));
 			return View("~/Views/Admin/AdminRoleMaster/Edit.cshtml", adminRoleMasterViewModel);
 		}
@@ -85,19 +86,22 @@ namespace RARIndia.Controllers
 		#region Private
 		private void BindDropdown(AdminRoleMasterViewModel adminRoleMasterViewModel)
 		{
-			List<SelectListItem> monitoringLevelList = new List<SelectListItem>();
-			monitoringLevelList.Add(new SelectListItem { Text = RARIndiaConstant.Self, Value = RARIndiaConstant.Self, Selected = adminRoleMasterViewModel.MonitoringLevel == RARIndiaConstant.Self ? true : false });
-			monitoringLevelList.Add(new SelectListItem { Text = RARIndiaConstant.Other, Value = RARIndiaConstant.Other, Selected = adminRoleMasterViewModel.MonitoringLevel == RARIndiaConstant.Other ? true : false });
-			ViewData["MonitoringLevel"] = monitoringLevelList;
-
-			List<SelectListItem> roleWiseCentreList = new List<SelectListItem>();
-			foreach (var item in adminRoleMasterViewModel.SelectedRoleWiseCentreList)
+			adminRoleMasterViewModel.MonitoringLevelList = new List<SelectListItem>();
+			adminRoleMasterViewModel.MonitoringLevelList.Add(new SelectListItem { Text = RARIndiaConstant.Self, Value = RARIndiaConstant.Self });
+			if (adminRoleMasterViewModel?.AllCentreList?.Count > 0)
 			{
-				roleWiseCentreList.Add(new SelectListItem { Text = item.CentreName, Value = item.CentreCode });
+				adminRoleMasterViewModel.MonitoringLevelList.Add(new SelectListItem { Text = RARIndiaConstant.Other, Value = RARIndiaConstant.Other });
 			}
-			ViewData["RoleWiseCentreList"] = roleWiseCentreList;
 
-			adminRoleMasterViewModel.SelectedCentreNameForSelf = adminRoleMasterViewModel.SelectedRoleWiseCentreList?.FirstOrDefault(x => x.CentreCode == adminRoleMasterViewModel.SelectedCentreCodeForSelf)?.CentreName;
+			if (adminRoleMasterViewModel?.AllCentreList == null || adminRoleMasterViewModel?.AllCentreList?.Count == 0)
+			{
+				AdminRoleMasterViewModel viewModel = _adminRoleMasterBA.GetAdminRoleMasterDetailsById(adminRoleMasterViewModel.AdminRoleMasterId);
+				adminRoleMasterViewModel.AllCentreList = viewModel.AllCentreList;
+				adminRoleMasterViewModel.AdminRoleCode = viewModel.AdminRoleCode;
+				adminRoleMasterViewModel.SactionedPostDescription = viewModel.SactionedPostDescription;
+			}
+			adminRoleMasterViewModel.SelectedCentreNameForSelf = adminRoleMasterViewModel.AllCentreList?.FirstOrDefault(x => x.CentreCode == adminRoleMasterViewModel.SelectedCentreCodeForSelf)?.CentreName;
+			adminRoleMasterViewModel?.AllCentreList?.RemoveAll(x => x.CentreCode == adminRoleMasterViewModel.SelectedCentreCodeForSelf);
 		}
 		#endregion
 	}
