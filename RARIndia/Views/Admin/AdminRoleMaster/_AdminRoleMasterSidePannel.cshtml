@@ -1,0 +1,26 @@
+﻿@using RARIndia.ViewModel;
+@using RARIndia.Resources;
+@model AdminRoleMasterViewModel
+@{
+    Layout = null;
+}
+<div class="col-md-2 float-left">
+    @*<div class="content-header row">
+        <div class="content-header-left col-md-12 col-12 mb-12">
+            <br /><br /><br />
+        </div>
+    </div>*@
+    <div class="content-body">
+        <div class="card">
+            <div class="card-header pb-0 pr-0">
+                <a href="/adminrolemaster/Edit?adminRoleMasterId=@Model.AdminRoleMasterId&selectedCentreCode=@Model.SelectedCentreCode&selectedDepartmentID=@Model.SelectedDepartmentID">Admin Role Details</a>
+            </div>
+            <div class="card-header pb-0 pr-0">
+                <a href="/adminrolemaster/AllocateAccessRights?adminRoleMasterId=@Model.AdminRoleMasterId&selectedCentreCode=@Model.SelectedCentreCode&selectedDepartmentID=@Model.SelectedDepartmentID">Allocate Access Rights</a>
+            </div>
+            <div class="card-header pr-0">
+                <a href="/adminrolemaster/AllocateRoleToUser?adminRoleMasterId=@Model.AdminRoleMasterId&selectedCentreCode=@Model.SelectedCentreCode&selectedDepartmentID=@Model.SelectedDepartmentID">Allocate Role To User</a>
+            </div>
+        </div>
+    </div>
+</div>

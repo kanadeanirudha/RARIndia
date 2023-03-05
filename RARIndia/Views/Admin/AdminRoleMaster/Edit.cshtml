@@ -7,129 +7,132 @@
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
 }
-
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
         <h3 class="content-header-title">Update Admin Role</h3>
     </div>
 </div>
-<div class="content-body">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    @*<h4 class="card-title" id="horz-layout-colored-controls">Add Country</h4>
-                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li><a href="../@controllerName/Edit?adminRoleMasterId=@Model.AdminRoleMasterId" title="Reset"><i class="ft-rotate-cw"></i></a></li>
-                            <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
-                            <li><a href="../@controllerName/List" title="Cancle"><i class="ft-x"></i></a></li>
-                        </ul>
+@Html.Partial("~/Views/Admin/AdminRoleMaster/_AdminRoleMasterSidePannel.cshtml", Model)
+<div class="col-md-10 float-right">
+
+    <div class="content-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        @*<h4 class="card-title" id="horz-layout-colored-controls">Add Country</h4>
+                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a href="../@controllerName/Edit?adminRoleMasterId=@Model.AdminRoleMasterId" title="Reset"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
+                                <li><a href="../@controllerName/List" title="Cancle"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="card-content collpase show">
-                    <div class="card-body">
-                        @*<div class="card-text">
-                                <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
-                            </div>*@
-                        @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
-                        {
-                            @Html.HiddenFor(m => m.AdminRoleMasterId);
-                            @Html.HiddenFor(m => m.SelectedCentreCode);
-                            @Html.HiddenFor(m => m.SelectedDepartmentID);
-                            @Html.HiddenFor(m => m.SelectedCentreCodeForSelf);
-                            <div class="form-body">
-                                @*<h4 class="form-section"><i class="la la-eye"></i> About User</h4>*@
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.AdminRoleCode, new { @class = "col-md-5 label-control" })
-                                            <div class="col-md-7 mx-auto">
-                                                @Html.DisplayFor(x => x.AdminRoleCode)
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            @*<div class="card-text">
+                                    <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
+                                </div>*@
+                            @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
+                            {
+                                @Html.HiddenFor(m => m.AdminRoleMasterId);
+                                @Html.HiddenFor(m => m.SelectedCentreCode);
+                                @Html.HiddenFor(m => m.SelectedDepartmentID);
+                                @Html.HiddenFor(m => m.SelectedCentreCodeForSelf);
+                                <div class="form-body">
+                                    @*<h4 class="form-section"><i class="la la-eye"></i> About User</h4>*@
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.AdminRoleCode, new { @class = "col-md-5 label-control" })
+                                                <div class="col-md-7 mx-auto">
+                                                    @Html.DisplayFor(x => x.AdminRoleCode)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.SactionedPostDescription, new { @class = "col-md-5 label-control required" })
+                                                <div class="col-md-7 mx-auto">
+                                                    @Html.DisplayFor(x => x.SactionedPostDescription)
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.SactionedPostDescription, new { @class = "col-md-5 label-control required" })
-                                            <div class="col-md-7 mx-auto">
-                                                @Html.DisplayFor(x => x.SactionedPostDescription)
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.IsLoginAllowFromOutside, new { @class = "col-md-5 label-control" })
+                                                <div class="col-md-7 mx-auto">
+                                                    @Html.CheckBoxFor(x => x.IsLoginAllowFromOutside, new { @class = "border-primary", @placeholder = "Is Login Allow From Out side" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.IsAttendaceAllowFromOutside, new { @class = "col-md-5 label-control required" })
+                                                <div class="col-md-7 mx-auto">
+                                                    @Html.CheckBoxFor(x => x.IsAttendaceAllowFromOutside, new { @class = "border-primary", @placeholder = "Is Attendace Allow From Out side" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.MonitoringLevel, new { @class = "col-md-5 label-control required" })
+                                                <div class="col-md-7 mx-auto">
+                                                    @Html.DropDownListFor(m => m.MonitoringLevel, new SelectList(Model.MonitoringLevelList, "Value", "Text"), new { style = "", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.SelectedRoleWiseCentres, new { @class = "col-md-5 label-control required" })
+                                                @if (Model.MonitoringLevel == RARIndiaConstant.Self)
+                                                {
+                                                    <div class="col-md-7 mx-auto" id="SelectedCentreNameForSelfDivId">
+                                                        @Html.DisplayFor(m => m.SelectedCentreNameForSelf)
+                                                    </div>
+                                                    <div class="col-md-7 mx-auto" id="SelectedRoleWiseCentresDivId" style="display:none">
+                                                        @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, new SelectList(Model.AllCentreList, "CentreCode", "CentreName"))
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-md-7 mx-auto" id="SelectedCentreNameForSelfDivId" style="display:none">
+                                                        @Html.DisplayFor(m => m.SelectedCentreNameForSelf)
+                                                    </div>
+                                                    <div class="col-md-7 mx-auto" id="SelectedRoleWiseCentresDivId">
+                                                        @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, new SelectList(Model.AllCentreList, "CentreCode", "CentreName"))
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(x => x.IsActive, new { @class = "col-md-5 label-control required" })
+                                                <div class="col-md-7 mx-auto">
+                                                    @Html.CheckBoxFor(x => x.IsActive, new { @class = "border-primary" })
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.IsLoginAllowFromOutside, new { @class = "col-md-5 label-control" })
-                                            <div class="col-md-7 mx-auto">
-                                                @Html.CheckBoxFor(x => x.IsLoginAllowFromOutside, new { @class = "border-primary", @placeholder = "Is Login Allow From Out side" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.IsAttendaceAllowFromOutside, new { @class = "col-md-5 label-control required" })
-                                            <div class="col-md-7 mx-auto">
-                                                @Html.CheckBoxFor(x => x.IsAttendaceAllowFromOutside, new { @class = "border-primary", @placeholder = "Is Attendace Allow From Out side" })
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-actions text-right">
+                                    <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i>@GeneralResources.SaveButton</button>
+                                    <a href="../@controllerName/List" class="btn btn-secondary mr-1"><i class="ft-x"></i>@GeneralResources.CancelButton</a>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.MonitoringLevel, new { @class = "col-md-5 label-control required" })
-                                            <div class="col-md-7 mx-auto">
-                                                @Html.DropDownListFor(m => m.MonitoringLevel, new SelectList(Model.MonitoringLevelList, "Value", "Text"), new { style = "", @class = "form-control" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.SelectedRoleWiseCentres, new { @class = "col-md-5 label-control required" })
-                                            @if (Model.MonitoringLevel == RARIndiaConstant.Self)
-                                            {
-                                                <div class="col-md-7 mx-auto" id="SelectedCentreNameForSelfDivId">
-                                                    @Html.DisplayFor(m => m.SelectedCentreNameForSelf)
-                                                </div>
-                                                <div class="col-md-7 mx-auto" id="SelectedRoleWiseCentresDivId" style="display:none">
-                                                    @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, new SelectList(Model.AllCentreList, "CentreCode", "CentreName"))
-                                                </div>
-                                            }
-                                            else
-                                            {
-                                                <div class="col-md-7 mx-auto" id="SelectedCentreNameForSelfDivId" style="display:none">
-                                                    @Html.DisplayFor(m => m.SelectedCentreNameForSelf)
-                                                </div>
-                                                <div class="col-md-7 mx-auto" id="SelectedRoleWiseCentresDivId">
-                                                    @Html.ListBoxFor(m => m.SelectedRoleWiseCentres, new SelectList(Model.AllCentreList, "CentreCode", "CentreName"))
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.IsActive, new { @class = "col-md-5 label-control required" })
-                                            <div class="col-md-7 mx-auto">
-                                                @Html.CheckBoxFor(x => x.IsActive, new { @class = "border-primary" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-actions text-right">
-                                <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i>@GeneralResources.SaveButton</button>
-                                <a href="../@controllerName/List" class="btn btn-secondary mr-1"><i class="ft-x"></i>@GeneralResources.CancelButton</a>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

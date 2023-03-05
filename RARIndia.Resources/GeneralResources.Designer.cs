@@ -232,6 +232,15 @@ namespace RARIndia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to -----Select Centre-----.
+        /// </summary>
+        public static string SelectCentre {
+            get {
+                return ResourceManager.GetString("SelectCentre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to update record..
         /// </summary>
         public static string UpdateErrorMessage {

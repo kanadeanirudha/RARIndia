@@ -3,6 +3,7 @@
 @{
     Layout= null;
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    string actionName = controllerName?.ToLower() == "dashboard" ?"Index":"List"; 
 }
 <li class="dropdown nav-item mega-dropdown d-none d-lg-block">
     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">@Model.SelectedModuleName</a>
@@ -12,7 +13,7 @@
                 @foreach (UserModuleModel item in Model?.ModuleList)
                 {
                     <li class="col-6 col-xl-2">
-                        <a class="text-center mb-2 mb-xl-3" href="/user/GetMenuListByModuleCode?moduleCode=@item.ModuleCode&controllerName=@controllerName&method=List">
+                        <a class="text-center mb-2 mb-xl-3" href="/user/GetMenuListByModuleCode?moduleCode=@item.ModuleCode&controllerName=@controllerName&method=@actionName">
                             <i class="la la-shopping-cart font-large-1 mr-0"></i>
                             <p class="font-medium-1 mt-25 mb-0">@item.ModuleName</p>
                         </a>

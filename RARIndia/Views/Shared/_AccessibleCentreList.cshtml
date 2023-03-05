@@ -1,45 +1,56 @@
 ﻿@using RARIndia.Model;
 @using RARIndia.DropdownHelper;
+@using RARIndia.Resources;
 @model string
 @{
     Layout = null;
-    List<UserAccessibleCentreModel> AccessibleCentreList = RARIndiaDropdownHelper.AccessibleCentreList();
+    List<UserAccessibleCentreModel> accessibleCentreList = RARIndiaDropdownHelper.AccessibleCentreList();
     string[] data = Model.Split('~');
 }
 @if (data.Length > 1 && data[1] == "department")
 {
-<select class="form-control" id="SelectedCentreCode" name="SelectedCentreCode" onchange="RARIndiaCommanFunction.GetDepartmentByCentreCode()">
-    <option value="">-----Select Centre-----</option>
-    @foreach (UserAccessibleCentreModel item in AccessibleCentreList)
-    {
-        if (data[0] == string.Concat(item.CentreCode, ":", item.ScopeIdentity))
+    <select class="form-control" id="SelectedCentreCode" name="SelectedCentreCode" onchange="RARIndiaCommanFunction.GetDepartmentByCentreCode()">
+        @if (accessibleCentreList?.Count == 1)
         {
-            <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
-        }
-        else if (data[0] == item.CentreCode)
-        {
-            <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
+            <option value="@accessibleCentreList[0].CentreCode" selected>@accessibleCentreList[0].CentreName</option>
         }
         else
         {
-            <option value="@item.CentreCode:@item.ScopeIdentity">@item.CentreName</option>
+            <option value="">@GeneralResources.SelectCentre</option>
+            foreach (UserAccessibleCentreModel item in accessibleCentreList)
+            {
+                if (data[0] == item.CentreCode)
+                {
+                    <option value="@item.CentreCode" selected>@item.CentreName</option>
+                }
+                else
+                {
+                    <option value="@item.CentreCode">@item.CentreName</option>
+                }
+            }
         }
-    }
-</select>
+    </select>
 }
 else
 {
     <select class="form-control" id="SelectedCentreCode" name="SelectedCentreCode">
-        <option value="">-----Select Centre-----</option>
-        @foreach (UserAccessibleCentreModel item in AccessibleCentreList)
+        @if (accessibleCentreList?.Count == 1)
         {
-            if (data[0] == item.CentreCode)
+            <option value="@accessibleCentreList[0].CentreCode" selected>@accessibleCentreList[0].CentreName</option>
+        }
+        else
+        {
+            <option value="">@GeneralResources.SelectCentre</option>
+            foreach (UserAccessibleCentreModel item in accessibleCentreList)
             {
-                <option value="@item.CentreCode:@item.ScopeIdentity" selected>@item.CentreName</option>
-            }
-            else
-            {
-                <option value="@item.CentreCode:@item.ScopeIdentity">@item.CentreName</option>
+                if (data[0] == item.CentreCode)
+                {
+                    <option value="@item.CentreCode" selected>@item.CentreName</option>
+                }
+                else
+                {
+                    <option value="@item.CentreCode">@item.CentreName</option>
+                }
             }
         }
     </select>

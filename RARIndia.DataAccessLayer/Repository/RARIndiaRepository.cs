@@ -261,8 +261,8 @@ namespace RARIndia.DataAccessLayer.DataEntity
 
                 //Map the Modified property values to the original database entity. To update only those modified values.
                 UpdateEntities(entities);
-                //return _context.SaveChanges(HelperMethods.GetLoginUserId()) > 0;
-                return _context.SaveChanges() > 0;
+                return _context.SaveChanges(HelperMethods.GetLoginUserId()) > 0;
+                //return _context.SaveChanges() > 0;
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException e)
             {

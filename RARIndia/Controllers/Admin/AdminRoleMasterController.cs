@@ -83,6 +83,16 @@ namespace RARIndia.Controllers
 			return View("~/Views/Admin/AdminRoleMaster/Edit.cshtml", adminRoleMasterViewModel);
 		}
 
+		[HttpGet]
+		public ActionResult AllocateAccessRights(int adminRoleMasterId, string selectedCentreCode, string selectedDepartmentID)
+		{
+			AdminRoleMasterViewModel adminRoleMasterViewModel = _adminRoleMasterBA.GetAdminRoleMasterDetailsById(adminRoleMasterId);
+			adminRoleMasterViewModel.SelectedCentreCode = selectedCentreCode;
+			adminRoleMasterViewModel.SelectedDepartmentID = selectedDepartmentID;
+			BindDropdown(adminRoleMasterViewModel);
+			return View("~/Views/Admin/AdminRoleMaster/Edit.cshtml", adminRoleMasterViewModel);
+		}
+
 		#region Private
 		private void BindDropdown(AdminRoleMasterViewModel adminRoleMasterViewModel)
 		{

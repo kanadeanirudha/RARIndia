@@ -24,7 +24,7 @@
                             @foreach (UserMenuModel itemMenu in menuList.Where(x => x.ParentMenuID == itemParent.ID).OrderBy(y => y.MenuDisplaySeqNo))
                             {
                                 <li data-menu="">
-                                    <a class="dropdown-item" href="/@itemMenu.MenuLink" data-toggle="">
+                                    <a class="dropdown-item" href="/@itemMenu.MenuLink/list" data-toggle="">
                                         <i class="la la-cart-plus"></i><span data-i18n="eCommerce">@itemMenu.MenuName</span>
                                     </a>
                                 </li>

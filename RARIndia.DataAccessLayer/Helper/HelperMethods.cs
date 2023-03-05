@@ -13,7 +13,7 @@ namespace RARIndia.DataAccessLayer.Helpers
         /// <returns>Login User Id</returns>
         public static int GetLoginUserId()
         {
-            int userId = 0;
+            int userId = 1;
             var headers = HttpContext.Current.Request.Headers;
 
             int.TryParse(headers["RARIndia-UserId"], out userId);
