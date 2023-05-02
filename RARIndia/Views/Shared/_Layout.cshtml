@@ -113,7 +113,7 @@
                         }
                         @Html.Partial("~/Views/Shared/_RoleTypeList.cshtml", userData)
 
-                        @{Html.RenderAction("GetNotificationCount", "User", new { userId = userData.ID });}
+                        @{Html.RenderAction("GetNotificationCount", "User", new { userId = userData.UserId });}
 
                         @Html.Partial("~/Views/Shared/_UserProfileList.cshtml", userData)
                     </ul>

@@ -9,24 +9,21 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
-
-    public partial class AdminRoleEntity : RARIndiaEntityBaseModel
+    using System.Collections.Generic;
+    
+    public partial class GeneralTaxGroupMasterDetail : RARIndiaEntityBaseModel
     {
-        public short ID { get; set; }
-        public string EntityName { get; set; }
-        public byte AdminRoleDomainId { get; set; }
-        public string TableName { get; set; }
-        public string PrimayFieldKeyName { get; set; }
-        public string DisplayFieldName { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public short GeneralTaxGroupMasterDetailsId { get; set; }
+        public byte GenTaxGroupMasterId { get; set; }
+        public short GenTaxMasterId { get; set; }
+        public bool IsOtherState { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
+    
+        public virtual GeneralTaxGroupMaster GeneralTaxGroupMaster { get; set; }
+        public virtual GeneralTaxMaster GeneralTaxMaster { get; set; }
     }
 }

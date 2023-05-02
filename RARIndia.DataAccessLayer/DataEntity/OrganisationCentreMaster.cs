@@ -9,52 +9,47 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
-    public partial class OrganisationStudyCentreMaster : RARIndiaEntityBaseModel
+    public partial class OrganisationCentreMaster : RARIndiaEntityBaseModel
     {
-        public short ID { get; set; }
+        public short OrganisationCentreMasterId { get; set; }
         public string CentreCode { get; set; }
         public string CentreName { get; set; }
         public string HoCoRoScFlag { get; set; }
-        public Nullable<int> HoID { get; set; }
-        public Nullable<int> CoID { get; set; }
-        public Nullable<int> RoID { get; set; }
+        public Nullable<int> HoId { get; set; }
+        public Nullable<int> CoId { get; set; }
+        public Nullable<int> RoId { get; set; }
         public string CentreSpecialization { get; set; }
         public string CentreAddress { get; set; }
         public string PlotNo { get; set; }
         public string StreetName { get; set; }
-        public Nullable<int> CityID { get; set; }
+        public int CityId { get; set; }
         public string Pincode { get; set; }
-        public string EmailID { get; set; }
+        public string EmailId { get; set; }
         public string Url { get; set; }
         public string CellPhone { get; set; }
         public string FaxNumber { get; set; }
         public string PhoneNumberOffice { get; set; }
         public Nullable<System.DateTime> CentreEstablishmentDatetime { get; set; }
-        public Nullable<byte> OrganisationID { get; set; }
+        public byte OrganisationId { get; set; }
         public Nullable<int> CentreLoginNumber { get; set; }
         public string InstituteCode { get; set; }
         public string TimeZone { get; set; }
         public Nullable<decimal> Latitude { get; set; }
         public Nullable<decimal> Longitude { get; set; }
         public Nullable<double> CampusArea { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<int> ModifiedBy { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
         public string CINNumber { get; set; }
         public string GSTINNumber { get; set; }
         public string PanNumber { get; set; }
         public string PFNumber { get; set; }
         public string ESICNumber { get; set; }
         public string WaterMark { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
     
         public virtual GeneralCity GeneralCity { get; set; }
         public virtual OrganisationMaster OrganisationMaster { get; set; }

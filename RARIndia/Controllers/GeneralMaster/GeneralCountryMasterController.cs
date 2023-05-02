@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
-	[SessionTimeoutAttribute]
+	//[SessionTimeoutAttribute]
     public class GeneralCountryMasterController : BaseController
     {
         GeneralCountryMasterBA _generalCountryMasterBA = null;

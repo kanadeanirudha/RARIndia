@@ -5,7 +5,7 @@ namespace RARIndia.ViewModel
 {
     public class GeneralCountryViewModel : BaseViewModel
     {
-        public short CountryId { get; set; }
+        public short GeneralCountryMasterId { get; set; }
         [Required]
         [Display(Name = "Country Name")]
         public string CountryName { get; set; }

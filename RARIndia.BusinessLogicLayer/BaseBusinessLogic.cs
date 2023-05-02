@@ -118,7 +118,7 @@ namespace RARIndia.BusinessLogicLayer
             return centreCode;
         }
 
-        protected int LoginUserId() => RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession).ID;
+        protected int LoginUserId() => RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession).UserId;
     }
 }
 

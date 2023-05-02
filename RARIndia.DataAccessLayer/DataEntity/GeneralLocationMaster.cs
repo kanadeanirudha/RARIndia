@@ -9,19 +9,17 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
     public partial class GeneralLocationMaster : RARIndiaEntityBaseModel
     {
-        public int ID { get; set; }
+        public int GeneralLocationMasterId { get; set; }
         public Nullable<bool> DefaultFlag { get; set; }
-        public Nullable<int> RegionID { get; set; }
+        public Nullable<int> RegionId { get; set; }
         public string LocationAddress { get; set; }
         public string PostCode { get; set; }
-        public Nullable<int> CityID { get; set; }
+        public Nullable<int> CityId { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public Nullable<bool> IsUserDefined { get; set; }

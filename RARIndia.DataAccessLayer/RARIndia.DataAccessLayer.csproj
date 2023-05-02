@@ -70,28 +70,13 @@
     <Compile Include="DataEntity\AdminRoleCentreRight.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataEntity\AdminRoleDomain.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity\AdminRoleEntity.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataEntity\AdminRoleMaster.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\AdminRoleMenuDetail.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataEntity\AdminRoleRightType.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity\AdminRoleSpecialRightDetail.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity\AdminRoleSpecialRightMaster.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity\AdminSnPost.cs">
+    <Compile Include="DataEntity\AdminSactionPost.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\EmployeeDesignationMaster.cs">
@@ -112,20 +97,32 @@
     <Compile Include="DataEntity\GeneralNationalityMaster.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataEntity\GeneralRegionMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaxGroupMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaxGroupMasterDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTaxMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GeneralTitleMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\IDBContext.cs" />
+    <Compile Include="DataEntity\OrganisationCentreMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\OrganisationCentrePrintingFormat.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\OrganisationCentrewiseDepartment.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataEntity\OrganisationCentrewiseDepartmentDomain.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataEntity\OrganisationMaster.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity\OrganisationStudyCentreMaster.cs">
-      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity\OrganisationStudyCentrePrintingFormat.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\RARIndiaEntity.Context.cs">

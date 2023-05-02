@@ -9,35 +9,27 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
     public partial class UserMaster : RARIndiaEntityBaseModel
     {
-        public int ID { get; set; }
-        public Nullable<short> UserTypeID { get; set; }
+        public int UserMasterId { get; set; }
         public string UserType { get; set; }
-        public string EmailID { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
-        public int PersonID { get; set; }
+        public string EmailId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public bool Gender { get; set; }
         public System.DateTime DateOfBirth { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsActive { get; set; }
+        public string DeviceToken { get; set; }
+        public string LastModuleCode { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public string DeviceToken { get; set; }
-        public string LastModuleCode { get; set; }
-    
-        public virtual UserType UserType1 { get; set; }
     }
 }

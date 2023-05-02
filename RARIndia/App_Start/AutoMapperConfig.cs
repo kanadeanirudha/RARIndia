@@ -16,41 +16,19 @@ namespace RARIndia
             #region Admin
             Mapper.CreateMap<AdminSnPostsModel, AdminSnPostsViewModel>().ReverseMap();
             Mapper.CreateMap<AdminSnPostsListModel, AdminSnPostsListViewModel>().ReverseMap();
-
-            Mapper.CreateMap<AdminSnPostsModel, AdminSnPost>()
-                .ForMember(d => d.ID, opt => opt.MapFrom(src => src.AdminSnPostsId));
-            Mapper.CreateMap<AdminSnPost, AdminSnPostsModel>()
-               .ForMember(d => d.AdminSnPostsId, opt => opt.MapFrom(src => src.ID));
-
+            Mapper.CreateMap<AdminSnPostsModel, AdminSactionPost>().ReverseMap();
             Mapper.CreateMap<AdminRoleMasterModel, AdminRoleMasterViewModel>().ReverseMap();
             Mapper.CreateMap<AdminRoleMasterListModel, AdminRoleMasterListViewModel>().ReverseMap();
-
-            Mapper.CreateMap<AdminRoleMasterModel, AdminRoleMaster>()
-                .ForMember(d => d.ID, opt => opt.MapFrom(src => src.AdminRoleMasterId))
-                .ForMember(d => d.SanctPostName, opt => opt.MapFrom(src => src.SactionedPostDescription));
-            Mapper.CreateMap<AdminRoleMaster, AdminRoleMasterModel>()
-               .ForMember(d => d.AdminRoleMasterId, opt => opt.MapFrom(src => src.ID))
-               .ForMember(d => d.SactionedPostDescription, opt => opt.MapFrom(src => src.SanctPostName));
+            Mapper.CreateMap<AdminRoleMasterModel, AdminRoleMaster>().ReverseMap();
             #endregion
 
             #region General Master
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryListModel, GeneralCountryListViewModel>().ReverseMap();
-            Mapper.CreateMap<GeneralCountryModel, GeneralCountryMaster>()
-                .ForMember(d => d.ContryCode, opt => opt.MapFrom(src => src.CountryCode))
-                .ForMember(d => d.ID, opt => opt.MapFrom(src => src.CountryId));
-            Mapper.CreateMap<GeneralCountryMaster, GeneralCountryModel>()
-               .ForMember(d => d.CountryCode, opt => opt.MapFrom(src => src.ContryCode))
-               .ForMember(d => d.CountryId, opt => opt.MapFrom(src => src.ID));
-
+            Mapper.CreateMap<GeneralCountryModel, GeneralCountryMaster>().ReverseMap();
             Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralDepartmentListModel, GeneralDepartmentListViewModel>().ReverseMap();
-            Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentMaster>()
-                .ForMember(d => d.ID, opt => opt.MapFrom(src => src.DepartmentId));
-            Mapper.CreateMap<GeneralDepartmentMaster, GeneralDepartmentModel>()
-               .ForMember(d => d.DepartmentId, opt => opt.MapFrom(src => src.ID));
-
-
+            Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentMaster>().ReverseMap();
             Mapper.CreateMap<GeneralNationalityModel, GeneralNationalityViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralNationalityListModel, GeneralNationalityListViewModel>().ReverseMap();
             #endregion
@@ -61,3 +39,4 @@ namespace RARIndia
         }
     }
 }
+

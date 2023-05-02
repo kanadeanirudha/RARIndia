@@ -9,20 +9,12 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
     public partial class UserModuleMaster : RARIndiaEntityBaseModel
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserModuleMaster()
-        {
-            this.UserMainMenuMasters = new HashSet<UserMainMenuMaster>();
-        }
-    
-        public byte ID { get; set; }
+        public byte UserModuleMasterId { get; set; }
         public string ModuleCode { get; set; }
         public string ModuleName { get; set; }
         public Nullable<bool> ModuleInstalledFlag { get; set; }
@@ -33,16 +25,10 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public string ModuleIconName { get; set; }
         public string ModuleIconPath { get; set; }
         public string ModuleFormName { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public string ModuleColorClass { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public string ModuleColorClass { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserMainMenuMaster> UserMainMenuMasters { get; set; }
     }
 }

@@ -9,31 +9,26 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
-
-    public partial class AdminRoleDomain : RARIndiaEntityBaseModel
+    
+    public partial class GeneralTaxGroupMaster : RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdminRoleDomain()
+        public GeneralTaxGroupMaster()
         {
-            this.AdminRoleRightTypes = new HashSet<AdminRoleRightType>();
+            this.GeneralTaxGroupMasterDetails = new HashSet<GeneralTaxGroupMasterDetail>();
         }
     
-        public byte ID { get; set; }
-        public string Name { get; set; }
-        public string Code { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public byte GeneralTaxGroupMasterId { get; set; }
+        public string TaxGroupName { get; set; }
+        public Nullable<decimal> TaxGroupRate { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminRoleRightType> AdminRoleRightTypes { get; set; }
+        public virtual ICollection<GeneralTaxGroupMasterDetail> GeneralTaxGroupMasterDetails { get; set; }
     }
 }

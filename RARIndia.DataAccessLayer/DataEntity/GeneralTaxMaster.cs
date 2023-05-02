@@ -9,32 +9,30 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminRoleRightType : RARIndiaEntityBaseModel
+    public partial class GeneralTaxMaster : RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdminRoleRightType()
+        public GeneralTaxMaster()
         {
-            this.AdminRoleCentreRights = new HashSet<AdminRoleCentreRight>();
+            this.GeneralTaxGroupMasterDetails = new HashSet<GeneralTaxGroupMasterDetail>();
         }
     
-        public short ID { get; set; }
-        public string RightName { get; set; }
-        public byte AdminRoleDomainId { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public short GeneralTaxMasterId { get; set; }
+        public string TaxName { get; set; }
+        public Nullable<decimal> TaxRate { get; set; }
+        public Nullable<int> SalesGLAccount { get; set; }
+        public Nullable<int> PurchasingGLAccount { get; set; }
+        public Nullable<bool> IsCompoundTax { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
+        public Nullable<bool> IsOtherState { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminRoleCentreRight> AdminRoleCentreRights { get; set; }
-        public virtual AdminRoleDomain AdminRoleDomain { get; set; }
+        public virtual ICollection<GeneralTaxGroupMasterDetail> GeneralTaxGroupMasterDetails { get; set; }
     }
 }

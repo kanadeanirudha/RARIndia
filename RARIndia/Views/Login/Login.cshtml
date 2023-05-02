@@ -27,8 +27,8 @@
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary(true, Model.ErrorMessage, new { @class = "red" })
                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                @Html.TextBoxFor(x => x.EmailID, new { @class = "form-control", @placeholder = "Your Email Address" })
-                                @Html.ValidationMessageFor(m => m.EmailID, null, new { @class = "red" })
+                                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "User name" })
+                                @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "red" })
                                 <div class="form-control-position" style="margin-top: 12px;">
                                     <i class="la la-user"></i>
                                 </div>

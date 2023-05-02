@@ -9,36 +9,31 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
-
-    public partial class AdminSnPost : RARIndiaEntityBaseModel
+    
+    public partial class AdminSactionPost : RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdminSnPost()
+        public AdminSactionPost()
         {
             this.AdminRoleMasters = new HashSet<AdminRoleMaster>();
         }
     
-        public short ID { get; set; }
-        public short DesignationID { get; set; }
-        public short NoOfPosts { get; set; }
-        public short DepartmentID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public short AdminSactionPostId { get; set; }
+        public short DesignationId { get; set; }
+        public short NoOfPost { get; set; }
+        public short DepartmentId { get; set; }
+        public bool IsActive { get; set; }
         public string CentreCode { get; set; }
         public string DesignationType { get; set; }
-        public string NomenAdminRoleCode { get; set; }
+        public string SactionPostCode { get; set; }
         public string PostType { get; set; }
         public string SactionedPostDescription { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleMaster> AdminRoleMasters { get; set; }

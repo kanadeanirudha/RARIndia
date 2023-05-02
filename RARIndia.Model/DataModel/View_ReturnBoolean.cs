@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RARIndia.DataAccessLayer.DataEntity;
+
+using System;
 
 namespace RARIndia.Model
 {

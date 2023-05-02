@@ -9,8 +9,6 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
@@ -19,25 +17,22 @@ namespace RARIndia.DataAccessLayer.DataEntity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GeneralDepartmentMaster()
         {
-            this.AdminSnPosts = new HashSet<AdminSnPost>();
+            this.AdminSactionPosts = new HashSet<AdminSactionPost>();
             this.OrganisationCentrewiseDepartments = new HashSet<OrganisationCentrewiseDepartment>();
         }
     
-        public short ID { get; set; }
+        public short GeneralDepartmentMasterId { get; set; }
         public string DepartmentName { get; set; }
-        public string DeptShortCode { get; set; }
+        public string DepartmentShortCode { get; set; }
         public string PrintShortDesc { get; set; }
         public Nullable<bool> WorkActivity { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminSnPost> AdminSnPosts { get; set; }
+        public virtual ICollection<AdminSactionPost> AdminSactionPosts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrganisationCentrewiseDepartment> OrganisationCentrewiseDepartments { get; set; }
     }

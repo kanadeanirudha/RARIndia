@@ -9,28 +9,23 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminRoleMenuDetail: RARIndiaEntityBaseModel
+    public partial class AdminRoleMenuDetail : RARIndiaEntityBaseModel
     {
-        public int ID { get; set; }
-        public short AdminRoleMasterID { get; set; }
+        public int AdminRoleMenuDetailId { get; set; }
+        public short AdminRoleMasterId { get; set; }
         public string AdminRoleCode { get; set; }
         public string MenuCode { get; set; }
         public Nullable<System.DateTime> EnableDate { get; set; }
         public Nullable<System.DateTime> DisableDate { get; set; }
         public string DisablePurpose { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual AdminRoleMaster AdminRoleMaster { get; set; }
     }

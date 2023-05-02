@@ -9,23 +9,18 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminRoleSpecialRightMaster : RARIndiaEntityBaseModel
+    public partial class GeneralTitleMaster : RARIndiaEntityBaseModel
     {
-        public short ID { get; set; }
-        public Nullable<short> AdminRoleMasterID { get; set; }
-        public string AdminRoleCode { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
-        public int CreatedBy { get; set; }
-        public System.DateTime CreatedDate { get; set; }
+        public int GeneralTitleMasterId { get; set; }
+        public string Description { get; set; }
+        public string NameTitle { get; set; }
+        public string Gender { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
     }
 }

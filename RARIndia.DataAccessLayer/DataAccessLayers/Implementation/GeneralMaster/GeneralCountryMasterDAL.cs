@@ -53,9 +53,9 @@ namespace RARIndia.DataAccessLayer
             GeneralCountryMaster a = generalCountryModel.FromModelToEntity<GeneralCountryMaster>();
             //Create new country and return it.
             GeneralCountryMaster countryData = _generalCountryMasterRepository.Insert(a);
-            if (countryData?.ID > 0)
+            if (countryData?.GeneralCountryMasterId > 0)
             {
-                generalCountryModel.CountryId = countryData.ID;
+                generalCountryModel.GeneralCountryMasterId = countryData.GeneralCountryMasterId;
             }
             else
             {
@@ -72,7 +72,7 @@ namespace RARIndia.DataAccessLayer
                 throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "CountryID"));
 
             //Get the country Details based on id.
-            GeneralCountryMaster countryData = _generalCountryMasterRepository.Table.FirstOrDefault(x => x.ID == countryId);
+            GeneralCountryMaster countryData = _generalCountryMasterRepository.Table.FirstOrDefault(x => x.GeneralCountryMasterId == countryId);
             GeneralCountryModel generalCountryModel = countryData.FromEntityToModel<GeneralCountryModel>();
             return generalCountryModel;
         }
@@ -84,7 +84,7 @@ namespace RARIndia.DataAccessLayer
             if (RARIndiaHelperUtility.IsNull(generalCountryModel))
                 throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
-            if (generalCountryModel.CountryId < 1)
+            if (generalCountryModel.GeneralCountryMasterId < 1)
                 throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "CountryID"));
 
             //Update country
@@ -116,7 +116,7 @@ namespace RARIndia.DataAccessLayer
 
         //Check if country code is already present or not.
         private bool IsCodeAlreadyExist(string countryCode)
-         => _generalCountryMasterRepository.Table.Any(x => x.ContryCode == countryCode);
+         => _generalCountryMasterRepository.Table.Any(x => x.CountryCode == countryCode);
         #endregion
     }
 }

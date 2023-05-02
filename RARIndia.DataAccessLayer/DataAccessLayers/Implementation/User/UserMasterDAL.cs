@@ -4,6 +4,7 @@ using RARIndia.DataAccessLayer.Repository;
 using RARIndia.ExceptionManager;
 using RARIndia.Model;
 using RARIndia.Resources;
+using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
 
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Linq;
 using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.DataAccessLayer
 {
-    public class UserMasterDAL: BaseDataAccessLogic
+    public class UserMasterDAL : BaseDataAccessLogic
     {
         private readonly IRARIndiaRepository<AdminRoleApplicableDetail> _adminRoleApplicableDetailsRepository;
         private readonly IRARIndiaRepository<UserMaster> _userMasterRepository;
@@ -29,7 +30,7 @@ namespace RARIndia.DataAccessLayer
             if (IsNull(userModel))
                 throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
-            UserMaster userMasterData = _userMasterRepository.Table.FirstOrDefault(x => x.EmailID == userModel.EmailID && x.Password == userModel.Password);
+            UserMaster userMasterData = _userMasterRepository.Table.FirstOrDefault(x => x.UserName == userModel.UserName && x.Password == userModel.Password);
 
             if (IsNull(userMasterData))
                 throw new RARIndiaException(ErrorCodes.NotFound, null);
@@ -42,11 +43,11 @@ namespace RARIndia.DataAccessLayer
             BindRoleTypes(userModel);
 
             List<UserModuleMaster> userAllModuleList = new RARIndiaRepository<UserModuleMaster>().Table.Where(x => x.ModuleActiveFlag == true)?.ToList();
-            List<UserMainMenuMaster> userAllMenuList = new RARIndiaRepository<UserMainMenuMaster>().Table.Where(x => x.IsEnable == true && x.IsDeleted == false)?.ToList();
+            List<UserMainMenuMaster> userAllMenuList = new RARIndiaRepository<UserMainMenuMaster>().Table.Where(x => x.IsEnable == true)?.ToList();
             List<AdminRoleMenuDetail> userRoleMenuList = new List<AdminRoleMenuDetail>();
             if (!userModel.IsAdminUser)
             {
-                userRoleMenuList = new RARIndiaRepository<AdminRoleMenuDetail>().Table.Where(x => x.IsActive == true && x.AdminRoleMasterID == userModel.SelectedRoleId)?.ToList();
+                userRoleMenuList = new RARIndiaRepository<AdminRoleMenuDetail>().Table.Where(x => x.IsActive == true && x.AdminRoleMasterId == userModel.SelectedRoleId)?.ToList();
                 if (userRoleMenuList?.Count == 0)
                 {
                     throw new RARIndiaException(ErrorCodes.ContactAdministrator, null);
@@ -59,13 +60,12 @@ namespace RARIndia.DataAccessLayer
                     //Bind Balance Sheet
                     userModel.BalanceSheetList = BindAccountBalanceSheetByRoleID(userModel);
                 }
-
             }
             else
             {
                 //Bind Menu And Modules For Non Admin User
                 BindMenuAndModulesForAdminUser(userModel, userAllModuleList, userAllMenuList);
-                userModel.AccessibleCentreList =  OrganisationCentreList();
+                userModel.AccessibleCentreList = OrganisationCentreList();
             }
             return userModel;
         }
@@ -73,7 +73,7 @@ namespace RARIndia.DataAccessLayer
 
         public int GetNotificationCount(int userId)
         {
-            int? notificationCount = new RARIndiaRepository<UserNotificationCount>().Table.FirstOrDefault(x => x.PersonID == userId)?.NotificationCount;
+            int? notificationCount = new RARIndiaRepository<UserNotificationCount>().Table.FirstOrDefault(x => x.UserId == userId)?.NotificationCount;
             return notificationCount != null && notificationCount > 0 ? (int)notificationCount : 0;
         }
 
@@ -86,22 +86,21 @@ namespace RARIndia.DataAccessLayer
         {
             if (!userModel.IsAdminUser)
             {
-                List<AdminRoleApplicableDetail> roleList = _adminRoleApplicableDetailsRepository.Table.Where(x => x.EmployeeID == userModel.ID && x.IsActive == true)?.ToList();
+                List<AdminRoleApplicableDetail> roleList = _adminRoleApplicableDetailsRepository.Table.Where(x => x.EmployeeId == userModel.UserId && x.IsActive)?.ToList();
                 if (roleList?.Count() == 0)
                 {
                     throw new RARIndiaException(ErrorCodes.ContactAdministrator, null);
                 }
                 else
                 {
-                    userModel.SelectedRoleId = roleList.FirstOrDefault().AdminRoleMasterID;
-                    userModel.SelectedRoleCode = roleList.FirstOrDefault().AdminRoleCode;
+                    userModel.SelectedRoleId = roleList.FirstOrDefault(x => x.RoleType == RARIndiaConstant.Regular).AdminRoleMasterId;
+                    //userModel.SelectedRoleCode = roleList.FirstOrDefault(x => x.RoleType == RARIndiaConstant.Regular). AdminRoleCode;
                     foreach (AdminRoleApplicableDetail item in roleList)
                     {
                         userModel.RoleList.Add(new AdminRoleModel()
                         {
-                            AdminRoleMasterID = item.AdminRoleMasterID,
-                            AdminRoleCode = item.AdminRoleCode,
-                            RoleType = item.RoleType
+                            AdminRoleMasterID = item.AdminRoleMasterId,
+                            RoleType= item.RoleType,
                         });
                     }
                 }
@@ -115,7 +114,7 @@ namespace RARIndia.DataAccessLayer
             {
                 userModel.ModuleList.Add(new UserModuleModel()
                 {
-                    ID = item.ID,
+                    UserModuleMasterId = item.UserModuleMasterId,
                     ModuleCode = item.ModuleCode,
                     ModuleName = item.ModuleName,
                     ModuleSeqNumber = item.ModuleSeqNumber,
@@ -129,14 +128,15 @@ namespace RARIndia.DataAccessLayer
             {
                 userModel.MenuList.Add(new UserMenuModel()
                 {
-                    ID = item.ID,
-                    ModuleID = item.ModuleID,
+                    UserMainMenuMasterId = item.UserMainMenuMasterId,
                     ModuleCode = item.ModuleCode,
                     MenuCode = item.MenuCode,
                     MenuName = item.MenuName,
-                    ParentMenuID = item.ParentMenuID,
+                    ParentMenuID = item.ParentMenuId,
                     MenuDisplaySeqNo = item.MenuDisplaySeqNo,
-                    MenuLink = item.MenuLink?.ToLower(),
+                    ControllerName = item.ControllerName?.ToLower(),
+                    ActionName = item.ActionName?.ToLower(),
+                    MenuLink = item.ControllerName?.ToLower() + "/" + item.ActionName?.ToLower(),
                     MenuToolTip = item.MenuToolTip,
                     MenuIconName = item.MenuIconName
                 });
@@ -154,14 +154,15 @@ namespace RARIndia.DataAccessLayer
                 {
                     userModel.MenuList.Add(new UserMenuModel()
                     {
-                        ID = userMenuModel.ID,
-                        ModuleID = userMenuModel.ModuleID,
+                        UserMainMenuMasterId = userMenuModel.UserMainMenuMasterId,
                         ModuleCode = userMenuModel.ModuleCode,
                         MenuCode = userMenuModel.MenuCode,
                         MenuName = userMenuModel.MenuName,
-                        ParentMenuID = userMenuModel.ParentMenuID,
+                        ParentMenuID = userMenuModel.ParentMenuId,
                         MenuDisplaySeqNo = userMenuModel.MenuDisplaySeqNo,
-                        MenuLink = userMenuModel.MenuLink?.ToLower(),
+                        ControllerName = userMenuModel.ControllerName?.ToLower(),
+                        ActionName = userMenuModel.ActionName?.ToLower(),
+                        MenuLink = userMenuModel.ControllerName?.ToLower() + "/" + userMenuModel.ActionName?.ToLower(),
                         MenuToolTip = userMenuModel.MenuToolTip,
                         MenuIconName = userMenuModel.MenuIconName
                     });

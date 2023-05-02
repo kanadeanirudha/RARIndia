@@ -4,9 +4,9 @@ namespace RARIndia.Model
 {
     public class AdminSnPostsModel : BaseModel
     {
-        public Int16 AdminSnPostsId { get; set; }
-        public Int16 DesignationID { get; set; }
-        public Int16 DepartmentID { get; set; }
+        public Int16 AdminSactionPostId { get; set; }
+        public Int16 DesignationId { get; set; }
+        public Int16 DepartmentId { get; set; }
         public string CentreCode { get; set; }
         public string NomenAdminRoleCode { get; set; }
         public string SactionedPostDescription { get; set; }
@@ -17,6 +17,5 @@ namespace RARIndia.Model
         public string DesignationName { get; set; }
         public string DepartmentName { get; set; }
         public string CentreName { get; set; }
-
     }
 }

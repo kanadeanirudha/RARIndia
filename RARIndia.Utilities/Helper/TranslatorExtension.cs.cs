@@ -1,4 +1,5 @@
-﻿using RARIndia.Model;
+﻿using RARIndia.DataAccessLayer.DataEntity;
+using RARIndia.Model;
 using RARIndia.Utilities.Filters;
 using RARIndia.ViewModel;
 

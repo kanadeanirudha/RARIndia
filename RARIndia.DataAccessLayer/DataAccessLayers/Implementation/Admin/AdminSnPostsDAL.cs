@@ -17,13 +17,13 @@ namespace RARIndia.DataAccessLayer
 {
 	public class AdminSnPostsDAL : BaseDataAccessLogic
 	{
-		private readonly IRARIndiaRepository<AdminSnPost> _adminSnPostsRepository;
+		private readonly IRARIndiaRepository<AdminSactionPost> _adminSnPostsRepository;
 		private readonly IRARIndiaRepository<AdminRoleMaster> _adminRoleMasterRepository;
 		private readonly IRARIndiaRepository<AdminRoleCentreRight> _adminRoleCentreRightsRepository;
 
 		public AdminSnPostsDAL()
 		{
-			_adminSnPostsRepository = new RARIndiaRepository<AdminSnPost>();
+			_adminSnPostsRepository = new RARIndiaRepository<AdminSactionPost>();
 			_adminRoleMasterRepository = new RARIndiaRepository<AdminRoleMaster>();
 			_adminRoleCentreRightsRepository = new RARIndiaRepository<AdminRoleCentreRight>();
 		}
@@ -59,20 +59,20 @@ namespace RARIndia.DataAccessLayer
 				throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "AdminSnPosts code"));
 			}
 
-			EmployeeDesignationMaster employeeDesignationMaster = GetDesignationDetails(adminSnPostsModel.DesignationID);
-			GeneralDepartmentMaster generalDepartmentMaster = GetDepartmentDetails(adminSnPostsModel.DepartmentID);
+			EmployeeDesignationMaster employeeDesignationMaster = GetDesignationDetails(adminSnPostsModel.DesignationId);
+			GeneralDepartmentMaster generalDepartmentMaster = GetDepartmentDetails(adminSnPostsModel.DepartmentId);
 
-			adminSnPostsModel.NomenAdminRoleCode = $"{employeeDesignationMaster.ShortCode}-{generalDepartmentMaster.DeptShortCode}-{adminSnPostsModel.CentreCode}";
+			adminSnPostsModel.NomenAdminRoleCode = $"{employeeDesignationMaster.ShortCode}-{generalDepartmentMaster.DepartmentShortCode}-{adminSnPostsModel.CentreCode}";
 			adminSnPostsModel.SactionedPostDescription = $"{employeeDesignationMaster.Description}-{generalDepartmentMaster.DepartmentName}-{adminSnPostsModel.PostType}-{adminSnPostsModel.DesignationType}";
-			AdminSnPost adminSnPostEntity = adminSnPostsModel.FromModelToEntity<AdminSnPost>();
+			AdminSactionPost adminSnPostEntity = adminSnPostsModel.FromModelToEntity<AdminSactionPost>();
 			//Create new adminSnPosts and return it.
-			AdminSnPost adminSnPostsData = _adminSnPostsRepository.Insert(adminSnPostEntity);
-			if (adminSnPostsData?.ID > 0)
+			AdminSactionPost adminSnPostsData = _adminSnPostsRepository.Insert(adminSnPostEntity);
+			if (adminSnPostsData?.AdminSactionPostId > 0)
 			{
-				adminSnPostsModel.AdminSnPostsId = adminSnPostsData.ID;
+				adminSnPostsModel.AdminSactionPostId = adminSnPostsData.AdminSactionPostId;
 				AdminRoleMaster adminRoleMaster = new AdminRoleMaster()
 				{
-					AdminSnPostID = adminSnPostsModel.AdminSnPostsId,
+					AdminSactionPostId = adminSnPostsModel.AdminSactionPostId,
 					SanctPostName = adminSnPostsModel.SactionedPostDescription,
 					MonitoringLevel = RARIndiaConstant.Self,
 					AdminRoleCode = adminSnPostsModel.NomenAdminRoleCode,
@@ -85,9 +85,8 @@ namespace RARIndia.DataAccessLayer
 
 				AdminRoleCentreRight adminRoleCentreRight = new AdminRoleCentreRight()
 				{
-					AdminRoleMasterID = adminRoleMaster.ID,
+					AdminRoleMasterId = adminRoleMaster.AdminRoleMasterId,
 					CentreCode = adminSnPostsModel.CentreCode,
-					AdminRoleRightTypeID = 0,
 					IsActive = true,
 					CreatedBy = adminSnPostsModel.CreatedBy
 				};
@@ -104,19 +103,19 @@ namespace RARIndia.DataAccessLayer
 		}
 
 		//Get adminSnPosts by adminSnPosts id.
-		public AdminSnPostsModel GetAdminSnPosts(int adminSnPostsId)
+		public AdminSnPostsModel GetAdminSnPosts(int adminSactionPostId)
 		{
-			if (adminSnPostsId <= 0)
+			if (adminSactionPostId <= 0)
 				throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminSnPostsID"));
 
 			//Get the adminSnPosts Details based on id.
-			AdminSnPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.ID == adminSnPostsId);
+			AdminSactionPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.AdminSactionPostId == adminSactionPostId);
 			AdminSnPostsModel adminSnPostsModel = adminSnPostsData.FromEntityToModel<AdminSnPostsModel>();
 			if (IsNotNull(adminSnPostsModel))
 			{
 				adminSnPostsModel.CentreName = GetOrganisationCentreDetails(adminSnPostsModel.CentreCode)?.CentreName;
-				adminSnPostsModel.DepartmentName = GetDepartmentDetails(adminSnPostsModel.DepartmentID)?.DepartmentName;
-				adminSnPostsModel.DesignationName = GetDesignationDetails(adminSnPostsModel.DesignationID)?.Description;
+				adminSnPostsModel.DepartmentName = GetDepartmentDetails(adminSnPostsModel.DepartmentId)?.DepartmentName;
+				adminSnPostsModel.DesignationName = GetDesignationDetails(adminSnPostsModel.DesignationId)?.Description;
 			}
 			return adminSnPostsModel;
 		}
@@ -128,11 +127,11 @@ namespace RARIndia.DataAccessLayer
 			if (RARIndiaHelperUtility.IsNull(adminSnPostsModel))
 				throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
-			if (adminSnPostsModel.AdminSnPostsId < 1)
+			if (adminSnPostsModel.AdminSactionPostId < 1)
 				throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminSnPostsID"));
 
-			AdminSnPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.ID == adminSnPostsModel.AdminSnPostsId);
-			adminSnPostsData.NoOfPosts = adminSnPostsModel.NoOfPosts;
+			AdminSactionPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.AdminSactionPostId == adminSnPostsModel.AdminSactionPostId);
+			adminSnPostsData.NoOfPost = adminSnPostsModel.NoOfPosts;
 			adminSnPostsData.IsActive = adminSnPostsModel.IsActive;
 			adminSnPostsData.ModifiedBy = adminSnPostsModel.ModifiedBy;
 
@@ -150,7 +149,7 @@ namespace RARIndia.DataAccessLayer
 
 		//Check if adminSnPosts code is already present or not.
 		private bool IsCodeAlreadyExist(AdminSnPostsModel adminSnPostsModel)
-		 => _adminSnPostsRepository.Table.Any(x => x.CentreCode == adminSnPostsModel.CentreCode && x.DepartmentID == adminSnPostsModel.DepartmentID && x.DesignationID == adminSnPostsModel.DesignationID);
+		 => _adminSnPostsRepository.Table.Any(x => x.CentreCode == adminSnPostsModel.CentreCode && x.DepartmentId == adminSnPostsModel.DepartmentId && x.DesignationId == adminSnPostsModel.DesignationId);
 		#endregion
 	}
 }

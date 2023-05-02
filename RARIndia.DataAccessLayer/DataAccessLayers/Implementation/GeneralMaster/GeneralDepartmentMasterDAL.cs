@@ -53,9 +53,9 @@ namespace RARIndia.DataAccessLayer
             GeneralDepartmentMaster a = generalDepartmentModel.FromModelToEntity<GeneralDepartmentMaster>();
             //Create new Department and return it.
             GeneralDepartmentMaster departmentData = _generalDepartmentMasterRepository.Insert(a);
-            if (departmentData?.ID > 0)
+            if (departmentData?.GeneralDepartmentMasterId > 0)
             {
-                generalDepartmentModel.DepartmentId = departmentData.ID;
+                generalDepartmentModel.DepartmentId = departmentData.GeneralDepartmentMasterId;
             }
             else
             {
@@ -72,7 +72,7 @@ namespace RARIndia.DataAccessLayer
                 throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "DepartmentID"));
 
             //Get the Department Details based on id.
-            GeneralDepartmentMaster DepartmentData = _generalDepartmentMasterRepository.Table.FirstOrDefault(x => x.ID == DepartmentId);
+            GeneralDepartmentMaster DepartmentData = _generalDepartmentMasterRepository.Table.FirstOrDefault(x => x.GeneralDepartmentMasterId == DepartmentId);
             GeneralDepartmentModel GeneralDepartmentModel = DepartmentData.FromEntityToModel<GeneralDepartmentModel>();
             return GeneralDepartmentModel;
         }
@@ -118,13 +118,13 @@ namespace RARIndia.DataAccessLayer
             GeneralDepartmentListModel list = new GeneralDepartmentListModel();
             list.GeneralDepartmentList = (from a in _generalDepartmentMasterRepository.Table
                                           join b in new RARIndiaRepository<OrganisationCentrewiseDepartment>().Table
-                                          on a.ID equals b.DepartmentID
-                                          where (b.CentreCode == centreCode || centreCode == null) && a.IsDeleted == false
+                                          on a.GeneralDepartmentMasterId equals b.DepartmentId
+                                          where (b.CentreCode == centreCode || centreCode == null) 
                                           select new GeneralDepartmentModel()
                                           {
-                                              DepartmentId = a.ID,
+                                              DepartmentId = a.GeneralDepartmentMasterId,
                                               DepartmentName = a.DepartmentName,
-                                              DeptShortCode = a.DeptShortCode,
+                                              DeptShortCode = a.DepartmentShortCode,
                                               PrintShortDesc = a.PrintShortDesc
                                           })?.ToList();
             return list;

@@ -9,8 +9,6 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
@@ -24,28 +22,25 @@ namespace RARIndia.DataAccessLayer.DataEntity
             this.AdminRoleMenuDetails = new HashSet<AdminRoleMenuDetail>();
         }
     
-        public short ID { get; set; }
-        public short AdminSnPostID { get; set; }
+        public short AdminRoleMasterId { get; set; }
+        public short AdminSactionPostId { get; set; }
         public string SanctPostName { get; set; }
         public string MonitoringLevel { get; set; }
         public string AdminRoleCode { get; set; }
         public string OthCentreLevel { get; set; }
-        public Nullable<bool> IsLoginAllowFromOutside { get; set; }
-        public Nullable<bool> IsAttendaceAllowFromOutside { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsLoginAllowFromOutside { get; set; }
+        public bool IsAttendaceAllowFromOutside { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleApplicableDetail> AdminRoleApplicableDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleCentreRight> AdminRoleCentreRights { get; set; }
-        public virtual AdminSnPost AdminSnPost { get; set; }
+        public virtual AdminSactionPost AdminSactionPost { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleMenuDetail> AdminRoleMenuDetails { get; set; }
     }

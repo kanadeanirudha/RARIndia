@@ -19,5 +19,10 @@ namespace RARIndia.DropdownHelper
         {
             return new GeneralDesignationMasterBA().GetDesignations(designationID);
         }
+        public static GeneralDepartmentListModel CentreWiseDepartmentList(string centreCode)
+        {
+            GeneralDepartmentListModel list = new GeneralDepartmentMasterBA().GetDepartmentsByCentreCode(centreCode);
+            return list;
+        }
     }
 }

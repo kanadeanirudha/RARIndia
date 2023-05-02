@@ -16,5 +16,7 @@
         public const string Self = "Self";
         public const string Other = "Other";
         public const string DataTableModel = "dataTableModel";
+        public const string Regular = "Regular";
+        public const string Addon = "Addon";
     }
 }

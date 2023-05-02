@@ -9,20 +9,18 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
-
-    public partial class EmployeeDesignationMaster: RARIndiaEntityBaseModel
+    
+    public partial class EmployeeDesignationMaster : RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EmployeeDesignationMaster()
         {
-            this.AdminSnPosts = new HashSet<AdminSnPost>();
+            this.AdminSactionPosts = new HashSet<AdminSactionPost>();
         }
     
-        public short ID { get; set; }
+        public short EmployeeDesignationMasterId { get; set; }
         public string Description { get; set; }
         public Nullable<int> DesignationLevel { get; set; }
         public Nullable<int> Grade { get; set; }
@@ -35,11 +33,8 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminSnPost> AdminSnPosts { get; set; }
+        public virtual ICollection<AdminSactionPost> AdminSactionPosts { get; set; }
     }
 }

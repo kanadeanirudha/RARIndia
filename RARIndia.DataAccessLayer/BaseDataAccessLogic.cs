@@ -20,17 +20,17 @@ namespace RARIndia.DataAccessLayer
             return generalDepartmentMaster;
         }
 
-        protected OrganisationStudyCentreMaster GetOrganisationCentreDetails(string centreCode)
+        protected OrganisationCentreMaster GetOrganisationCentreDetails(string centreCode)
         {
-            OrganisationStudyCentreMaster organisationCentreMaster = new RARIndiaRepository<OrganisationStudyCentreMaster>().Table.FirstOrDefault(x=>x.CentreCode == centreCode);
+            OrganisationCentreMaster organisationCentreMaster = new RARIndiaRepository<OrganisationCentreMaster>().Table.FirstOrDefault(x=>x.CentreCode == centreCode);
             return organisationCentreMaster;
         }
 
         protected List<UserAccessibleCentreModel> OrganisationCentreList()
         {
-            List<OrganisationStudyCentreMaster> centreList = new RARIndiaRepository<OrganisationStudyCentreMaster>().Table.ToList();
+            List<OrganisationCentreMaster> centreList = new RARIndiaRepository<OrganisationCentreMaster>().Table.ToList();
             List<UserAccessibleCentreModel> organisationCentreList = new List<UserAccessibleCentreModel>();
-            foreach (OrganisationStudyCentreMaster item in centreList)
+            foreach (OrganisationCentreMaster item in centreList)
             {
                 organisationCentreList.Add(new UserAccessibleCentreModel()
                 {

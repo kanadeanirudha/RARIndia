@@ -8,7 +8,7 @@
 }
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        @if (Model.CountryId > 0)
+        @if (Model.GeneralCountryMasterId > 0)
         {
             <h3 class="content-header-title">Update Country</h3>
         }
@@ -28,9 +28,9 @@
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
                             <li>
-                                @if (Model.CountryId > 0)
+                                @if (Model.GeneralCountryMasterId > 0)
                                 {
-                                    <a href="../@controllerName/Edit?countryId=@Model.CountryId"><i class="ft-rotate-cw"></i></a>
+                                    <a href="../@controllerName/Edit?countryId=@Model.GeneralCountryMasterId"><i class="ft-rotate-cw"></i></a>
                                 }
                                 else
                                 {
@@ -49,7 +49,7 @@
                             </div>*@
                         @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
                         {
-                            @Html.HiddenFor(m => m.CountryId);
+                            @Html.HiddenFor(m => m.GeneralCountryMasterId);
                             <div class="form-body">
                                 @*<h4 class="form-section"><i class="la la-eye"></i> About User</h4>*@
                                 <div class="row">

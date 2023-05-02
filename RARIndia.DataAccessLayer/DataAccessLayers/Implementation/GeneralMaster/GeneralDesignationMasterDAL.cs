@@ -53,9 +53,9 @@ namespace RARIndia.DataAccessLayer
             EmployeeDesignationMaster a = generalDesignationModel.FromModelToEntity<EmployeeDesignationMaster>();
             //Create new Designation and return it.
             EmployeeDesignationMaster DesignationData = _generalDesignationMasterRepository.Insert(a);
-            if (DesignationData?.ID > 0)
+            if (DesignationData?.EmployeeDesignationMasterId > 0)
             {
-                generalDesignationModel.DesignationId = DesignationData.ID;
+                generalDesignationModel.DesignationId = DesignationData.EmployeeDesignationMasterId;
             }
             else
             {
@@ -72,8 +72,8 @@ namespace RARIndia.DataAccessLayer
                 throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "DesignationID"));
 
             //Get the Designation Details based on id.
-            EmployeeDesignationMaster DesignationData = _generalDesignationMasterRepository.Table.FirstOrDefault(x => x.ID == DesignationId);
-            GeneralDesignationModel GeneralDesignationModel = DesignationData.FromEntityToModel<GeneralDesignationModel>();
+            EmployeeDesignationMaster designationData = _generalDesignationMasterRepository.Table.FirstOrDefault(x => x.EmployeeDesignationMasterId == DesignationId);
+            GeneralDesignationModel GeneralDesignationModel = designationData.FromEntityToModel<GeneralDesignationModel>();
             return GeneralDesignationModel;
         }
 
@@ -117,11 +117,11 @@ namespace RARIndia.DataAccessLayer
         {
             GeneralDesignationListModel list = new GeneralDesignationListModel();
             list.GeneralDesignationList = (from a in _generalDesignationMasterRepository.Table
-                                          where a.IsDeleted == false && a.IsActive == true
+                                          where a.IsActive == true
                                           orderby a.Description ascending
                                           select new GeneralDesignationModel()
                                           {
-                                              DesignationId = a.ID,
+                                              DesignationId = a.EmployeeDesignationMasterId,
                                               Description = a.Description,
                                               ShortCode = a.ShortCode,
                                           })?.ToList();

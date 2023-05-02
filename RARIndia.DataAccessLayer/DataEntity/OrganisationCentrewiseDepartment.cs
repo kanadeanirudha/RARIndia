@@ -9,25 +9,20 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
     public partial class OrganisationCentrewiseDepartment : RARIndiaEntityBaseModel
     {
-        public short ID { get; set; }
-        public Nullable<short> DepartmentID { get; set; }
+        public short OrganisationCentrewiseDepartmentId { get; set; }
+        public short DepartmentId { get; set; }
         public string CentreCode { get; set; }
-        public Nullable<bool> ActiveFlag { get; set; }
+        public bool ActiveFlag { get; set; }
         public Nullable<int> DepartmentSeqNo { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
     
         public virtual GeneralDepartmentMaster GeneralDepartmentMaster { get; set; }
     }

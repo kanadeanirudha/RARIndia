@@ -9,14 +9,12 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
-    public partial class OrganisationStudyCentrePrintingFormat : RARIndiaEntityBaseModel
+    public partial class OrganisationCentrePrintingFormat : RARIndiaEntityBaseModel
     {
-        public short ID { get; set; }
+        public short OrganisationCentrePrintingFormatId { get; set; }
         public string CentreCode { get; set; }
         public string PrintingLine1 { get; set; }
         public string PrintingLine2 { get; set; }
@@ -28,13 +26,10 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public string LogoFileWidth { get; set; }
         public string LogoFileHeight { get; set; }
         public string LogoFileSize { get; set; }
-        public bool IsDeleted { get; set; }
+        public string PrintingLinebelowLogo { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public string PrintingLinebelowLogo { get; set; }
     }
 }

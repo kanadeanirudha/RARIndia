@@ -2,7 +2,7 @@
 {
     public class UserModuleModel : BaseModel
     {
-        public short ID { get; set; }
+        public short UserModuleMasterId { get; set; }
         public string ModuleCode { get; set; }
         public string ModuleName { get; set; }
         public int? ModuleSeqNumber { get; set; }

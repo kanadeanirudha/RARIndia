@@ -9,8 +9,6 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
@@ -19,21 +17,21 @@ namespace RARIndia.DataAccessLayer.DataEntity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OrganisationMaster()
         {
-            this.OrganisationStudyCentreMasters = new HashSet<OrganisationStudyCentreMaster>();
+            this.OrganisationCentreMasters = new HashSet<OrganisationCentreMaster>();
         }
     
-        public byte ID { get; set; }
+        public byte OrganisationMasterId { get; set; }
         public string EstablishmentCode { get; set; }
-        public string OrgName { get; set; }
+        public string OrganisationName { get; set; }
         public System.DateTime FoundationDatetime { get; set; }
         public string FounderMember { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string PlotNumber { get; set; }
         public string StreetNumber { get; set; }
-        public int LocationID { get; set; }
+        public int LocationId { get; set; }
         public string Pincode { get; set; }
-        public string EmailID { get; set; }
+        public string EmailId { get; set; }
         public string Url { get; set; }
         public string OfficeComment { get; set; }
         public string MissionStatement { get; set; }
@@ -41,18 +39,15 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public string FaxNumber { get; set; }
         public string OfficePhone1 { get; set; }
         public string OfficePhone2 { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public string OrgCode { get; set; }
+        public string OrganisationCode { get; set; }
         public string PFNumber { get; set; }
         public string ESICNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrganisationStudyCentreMaster> OrganisationStudyCentreMasters { get; set; }
+        public virtual ICollection<OrganisationCentreMaster> OrganisationCentreMasters { get; set; }
     }
 }

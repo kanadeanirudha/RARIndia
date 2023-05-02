@@ -34,12 +34,12 @@ namespace RARIndia.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!string.IsNullOrEmpty(userLoginViewModel.EmailID) && !string.IsNullOrEmpty(userLoginViewModel.Password))
+                if (!string.IsNullOrEmpty(userLoginViewModel.UserName) && !string.IsNullOrEmpty(userLoginViewModel.Password))
                 {
                     userLoginViewModel = _userMasterBA.Login(userLoginViewModel);
                     if (!userLoginViewModel.HasError)
                     {
-                        FormsAuthentication.SetAuthCookie(userLoginViewModel.EmailID, false);
+                        FormsAuthentication.SetAuthCookie(userLoginViewModel.UserName, false);
                         if (!string.IsNullOrEmpty(Request.Form["ReturnUrl"]))
                         {
                             return RedirectToAction(Request.Form["ReturnUrl"].Split('/')[2]);

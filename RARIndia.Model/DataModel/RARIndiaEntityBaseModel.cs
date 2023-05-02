@@ -1,4 +1,4 @@
-﻿namespace RARIndia.Model
+﻿namespace RARIndia.DataAccessLayer.DataEntity
 {
     public abstract class RARIndiaEntityBaseModel
     {

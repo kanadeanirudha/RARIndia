@@ -18,12 +18,12 @@ namespace RARIndia.DataAccessLayer
 	{
 		private readonly IRARIndiaRepository<AdminRoleMaster> _adminRoleMasterRepository;
 		private readonly IRARIndiaRepository<AdminRoleCentreRight> _adminRoleCentreRightsRepository;
-		private readonly IRARIndiaRepository<AdminSnPost> _adminSnPostsRepository;
+		private readonly IRARIndiaRepository<AdminSactionPost> _adminSnPostsRepository;
 		public AdminRoleMasterDAL()
 		{
 			_adminRoleMasterRepository = new RARIndiaRepository<AdminRoleMaster>();
 			_adminRoleCentreRightsRepository = new RARIndiaRepository<AdminRoleCentreRight>();
-			_adminSnPostsRepository = new RARIndiaRepository<AdminSnPost>();
+			_adminSnPostsRepository = new RARIndiaRepository<AdminSactionPost>();
 		}
 
 		public AdminRoleMasterListModel GetAdminRoleMasterList(FilterCollection filters, NameValueCollection sorts, int pagingStart, int pagingLength, string centreCode, int departmentId)
@@ -53,10 +53,10 @@ namespace RARIndia.DataAccessLayer
 				throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminRoleMasterID"));
 
 			//Get the adminRoleMaster Details based on id.
-			AdminRoleMaster adminRoleMasterData = _adminRoleMasterRepository.Table.FirstOrDefault(x => x.ID == adminRoleMasterId);
+			AdminRoleMaster adminRoleMasterData = _adminRoleMasterRepository.Table.FirstOrDefault(x => x.AdminRoleMasterId == adminRoleMasterId);
 			AdminRoleMasterModel adminRoleMasterModel = adminRoleMasterData.FromEntityToModel<AdminRoleMasterModel>();
-			adminRoleMasterModel.SelectedRoleWiseCentres = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterID == adminRoleMasterId && x.IsActive == true)?.Select(y => y.CentreCode)?.Distinct().ToList();
-			adminRoleMasterModel.SelectedCentreCodeForSelf = _adminSnPostsRepository.GetById(adminRoleMasterData.AdminSnPostID).CentreCode;
+			adminRoleMasterModel.SelectedRoleWiseCentres = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterId == adminRoleMasterId && x.IsActive == true)?.Select(y => y.CentreCode)?.Distinct().ToList();
+			adminRoleMasterModel.SelectedCentreCodeForSelf = _adminSnPostsRepository.GetById(adminRoleMasterData.AdminSactionPostId).CentreCode;
 			adminRoleMasterModel.AllCentreList = OrganisationCentreList();
 			return adminRoleMasterModel;
 		}
@@ -71,7 +71,7 @@ namespace RARIndia.DataAccessLayer
 			if (adminRoleMasterModel.AdminRoleMasterId < 1)
 				throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminRoleMasterID"));
 
-			AdminRoleMaster adminRoleMasterData = _adminRoleMasterRepository.Table.FirstOrDefault(x => x.ID == adminRoleMasterModel.AdminRoleMasterId);
+			AdminRoleMaster adminRoleMasterData = _adminRoleMasterRepository.Table.FirstOrDefault(x => x.AdminRoleMasterId == adminRoleMasterModel.AdminRoleMasterId);
 			adminRoleMasterData.MonitoringLevel = adminRoleMasterModel.MonitoringLevel;
 			adminRoleMasterData.OthCentreLevel = adminRoleMasterModel.MonitoringLevel == RARIndiaConstant.Self ? string.Empty : "Selected";
 			adminRoleMasterData.IsLoginAllowFromOutside = adminRoleMasterModel.IsLoginAllowFromOutside;
@@ -89,7 +89,7 @@ namespace RARIndia.DataAccessLayer
 			}
 
 			//update  Admin Role Centre Right
-			List<AdminRoleCentreRight> adminRoleCentreRightList = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterID == adminRoleMasterModel.AdminRoleMasterId && x.CentreCode != adminRoleMasterModel.SelectedCentreCodeForSelf)?.ToList();
+			List<AdminRoleCentreRight> adminRoleCentreRightList = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterId == adminRoleMasterModel.AdminRoleMasterId && x.CentreCode != adminRoleMasterModel.SelectedCentreCodeForSelf)?.ToList();
 
 			if (adminRoleMasterModel.MonitoringLevel == RARIndiaConstant.Self || (adminRoleMasterModel.MonitoringLevel == RARIndiaConstant.Other && adminRoleMasterModel?.SelectedRoleWiseCentres?.Count == 0))
 			{
@@ -106,15 +106,14 @@ namespace RARIndia.DataAccessLayer
 				foreach (UserAccessibleCentreModel item in adminRoleMasterModel?.AllCentreList?.Where(x => x.CentreCode != adminRoleMasterModel.SelectedCentreCodeForSelf))
 				{
 					string selectedCentreCode = adminRoleMasterModel?.SelectedRoleWiseCentres?.FirstOrDefault(x => x == item.CentreCode);
-					AdminRoleCentreRight adminRoleCentreRight = adminRoleCentreRightList?.FirstOrDefault(x => x.CentreCode == item.CentreCode && x.AdminRoleMasterID == adminRoleMasterModel.AdminRoleMasterId);
+					AdminRoleCentreRight adminRoleCentreRight = adminRoleCentreRightList?.FirstOrDefault(x => x.CentreCode == item.CentreCode && x.AdminRoleMasterId == adminRoleMasterModel.AdminRoleMasterId);
 
 					if (adminRoleCentreRight == null && !string.IsNullOrEmpty(selectedCentreCode))
 					{
 						adminRoleCentreRight = new AdminRoleCentreRight()
 						{
-							AdminRoleMasterID = adminRoleMasterModel.AdminRoleMasterId,
+							AdminRoleMasterId = adminRoleMasterModel.AdminRoleMasterId,
 							CentreCode = selectedCentreCode,
-							AdminRoleRightTypeID = 0,
 							IsActive = true,
 							CreatedBy = adminRoleMasterModel.CreatedBy,
 							ModifiedBy = adminRoleMasterModel.ModifiedBy

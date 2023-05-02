@@ -12,28 +12,16 @@ namespace RARIndia.DataAccessLayer.DataEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class UserType
+    public partial class UserType : RARIndiaEntityBaseModel
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserType()
-        {
-            this.UserMasters = new HashSet<UserMaster>();
-        }
-    
-        public short ID { get; set; }
+        public short UserTypeId { get; set; }
         public string UserType1 { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public string UserDescription { get; set; }
+        public string RelatedWith { get; set; }
+        public bool IsCommon { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
-        public string UserDescription { get; set; }
-        public string RelatedWith { get; set; }
-        public Nullable<bool> IsCommon { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserMaster> UserMasters { get; set; }
     }
 }

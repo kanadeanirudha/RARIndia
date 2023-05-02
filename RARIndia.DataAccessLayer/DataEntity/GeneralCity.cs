@@ -9,8 +9,6 @@
 
 namespace RARIndia.DataAccessLayer.DataEntity
 {
-    using RARIndia.Model;
-
     using System;
     using System.Collections.Generic;
     
@@ -19,24 +17,20 @@ namespace RARIndia.DataAccessLayer.DataEntity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GeneralCity()
         {
-            this.OrganisationStudyCentreMasters = new HashSet<OrganisationStudyCentreMaster>();
+            this.OrganisationCentreMasters = new HashSet<OrganisationCentreMaster>();
         }
     
-        public int ID { get; set; }
+        public int GeneralCityId { get; set; }
         public Nullable<bool> DefaultFlag { get; set; }
         public string Description { get; set; }
-        public string RegionCode { get; set; }
         public Nullable<int> RegionID { get; set; }
-        public Nullable<bool> IsUserDefined { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsUserDefined { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrganisationStudyCentreMaster> OrganisationStudyCentreMasters { get; set; }
+        public virtual ICollection<OrganisationCentreMaster> OrganisationCentreMasters { get; set; }
     }
 }
