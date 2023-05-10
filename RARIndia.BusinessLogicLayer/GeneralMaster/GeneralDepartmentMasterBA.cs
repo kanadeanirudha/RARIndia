@@ -46,6 +46,7 @@ namespace RARIndia.BusinessLogicLayer
         {
             try
             {
+                generalDepartmentViewModel.CreatedBy = LoginUserId();
                 GeneralDepartmentModel generalDepartmentModel = _generalDepartmentMasterDAL.CreateDepartment(generalDepartmentViewModel.ToModel<GeneralDepartmentModel>());
                 return RARIndiaHelperUtility.IsNotNull(generalDepartmentModel) ? generalDepartmentModel.ToViewModel<GeneralDepartmentViewModel>() : new GeneralDepartmentViewModel();
             }
@@ -75,6 +76,7 @@ namespace RARIndia.BusinessLogicLayer
         {
             try
             {
+                generalDepartmentViewModel.ModifiedBy = LoginUserId();
                 GeneralDepartmentModel generalDepartmentModel = _generalDepartmentMasterDAL.UpdateDepartment(generalDepartmentViewModel.ToModel<GeneralDepartmentModel>());
                 return RARIndiaHelperUtility.IsNotNull(generalDepartmentModel) ? generalDepartmentModel.ToViewModel<GeneralDepartmentViewModel>() : (GeneralDepartmentViewModel)GetViewModelWithErrorMessage(new GeneralDepartmentListViewModel(), GeneralResources.UpdateErrorMessage);
             }

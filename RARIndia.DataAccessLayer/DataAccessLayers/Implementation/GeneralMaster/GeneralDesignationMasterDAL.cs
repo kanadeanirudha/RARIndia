@@ -32,7 +32,7 @@ namespace RARIndia.DataAccessLayer
             objStoredProc.SetParameter("@Rows", pageListModel.PagingLength, ParameterDirection.Input, DbType.Int32);
             objStoredProc.SetParameter("@Order_BY", pageListModel.OrderBy, ParameterDirection.Input, DbType.String);
             objStoredProc.SetParameter("@RowsCount", pageListModel.TotalRowCount, ParameterDirection.Output, DbType.Int32);
-            List<GeneralDesignationModel> DesignationList = objStoredProc.ExecuteStoredProcedureList("RARIndia_GetDesignationList @WhereClause,@Rows,@PageNo,@Order_BY,@RowsCount OUT", 4, out pageListModel.TotalRowCount)?.ToList();
+            List<GeneralDesignationModel> DesignationList = objStoredProc.ExecuteStoredProcedureList("RARIndia_GetEmployeeDesignationList @WhereClause,@Rows,@PageNo,@Order_BY,@RowsCount OUT", 4, out pageListModel.TotalRowCount)?.ToList();
             GeneralDesignationListModel listModel = new GeneralDesignationListModel();
 
             listModel.GeneralDesignationList = DesignationList?.Count > 0 ? DesignationList : new List<GeneralDesignationModel>();
@@ -55,7 +55,7 @@ namespace RARIndia.DataAccessLayer
             EmployeeDesignationMaster DesignationData = _generalDesignationMasterRepository.Insert(a);
             if (DesignationData?.EmployeeDesignationMasterId > 0)
             {
-                generalDesignationModel.DesignationId = DesignationData.EmployeeDesignationMasterId;
+                generalDesignationModel.EmployeeDesignationMasterId = DesignationData.EmployeeDesignationMasterId;
             }
             else
             {
@@ -83,7 +83,7 @@ namespace RARIndia.DataAccessLayer
             if (RARIndiaHelperUtility.IsNull(generalDesignationModel))
                 throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
-            if (generalDesignationModel.DesignationId < 1)
+            if (generalDesignationModel.EmployeeDesignationMasterId < 1)
                 throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "DesignationID"));
 
             //Update Designation
@@ -106,7 +106,7 @@ namespace RARIndia.DataAccessLayer
             objStoredProc.SetParameter("DesignationId", parameterModel.Ids, ParameterDirection.Input, DbType.String);
             objStoredProc.SetParameter("Status", null, ParameterDirection.Output, DbType.Int32);
             int status = 0;
-            objStoredProc.ExecuteStoredProcedureList("RARIndia_DeleteDesignation @DesignationId,  @Status OUT", 1, out status);
+            objStoredProc.ExecuteStoredProcedureList("RARIndia_DeleteEmployeeDesignationMaster @DesignationId,  @Status OUT", 1, out status);
 
             return status == 1 ? true : false;
         }
@@ -121,7 +121,7 @@ namespace RARIndia.DataAccessLayer
                                           orderby a.Description ascending
                                           select new GeneralDesignationModel()
                                           {
-                                              DesignationId = a.EmployeeDesignationMasterId,
+                                              EmployeeDesignationMasterId = a.EmployeeDesignationMasterId,
                                               Description = a.Description,
                                               ShortCode = a.ShortCode,
                                           })?.ToList();

@@ -22,11 +22,11 @@ namespace RARIndia.Filters
                 return;
             }
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName?.ToLower();
-            if (!excludeFromName.Any(x => x == controllerName) && !userModel.MenuList.Any(x => x.ControllerName == controllerName))
-            {
-                filterContext.Result = new RedirectResult("~/User/Unauthorized");
-                return;
-            }
+            //if (!excludeFromName.Any(x => x == controllerName) && !userModel.MenuList.Any(x => x.ControllerName == controllerName))
+            //{
+            //    filterContext.Result = new RedirectResult("~/User/Unauthorized");
+            //    return;
+            //}
             base.OnActionExecuting(filterContext);
         }
     }

@@ -55,7 +55,7 @@ namespace RARIndia.DataAccessLayer
             GeneralDepartmentMaster departmentData = _generalDepartmentMasterRepository.Insert(a);
             if (departmentData?.GeneralDepartmentMasterId > 0)
             {
-                generalDepartmentModel.DepartmentId = departmentData.GeneralDepartmentMasterId;
+                generalDepartmentModel.GeneralDepartmentMasterId = departmentData.GeneralDepartmentMasterId;
             }
             else
             {
@@ -83,7 +83,7 @@ namespace RARIndia.DataAccessLayer
             if (RARIndiaHelperUtility.IsNull(generalDepartmentModel))
                 throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
-            if (generalDepartmentModel.DepartmentId < 1)
+            if (generalDepartmentModel.GeneralDepartmentMasterId < 1)
                 throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "DepartmentID"));
 
             //Update Department
@@ -122,9 +122,9 @@ namespace RARIndia.DataAccessLayer
                                           where (b.CentreCode == centreCode || centreCode == null) 
                                           select new GeneralDepartmentModel()
                                           {
-                                              DepartmentId = a.GeneralDepartmentMasterId,
+                                              GeneralDepartmentMasterId = a.GeneralDepartmentMasterId,
                                               DepartmentName = a.DepartmentName,
-                                              DeptShortCode = a.DepartmentShortCode,
+                                              DepartmentShortCode = a.DepartmentShortCode,
                                               PrintShortDesc = a.PrintShortDesc
                                           })?.ToList();
             return list;

@@ -6,7 +6,7 @@ namespace RARIndia.ViewModel
 {
     public class GeneralDesignationViewModel : BaseViewModel
     {
-        public Int16 DesignationId { get; set; }
+        public Int16 EmployeeDesignationMasterId { get; set; }
         [Required]
         public string Description { get; set; }
         public int DesignationLevel { get; set; }

@@ -26,7 +26,6 @@ namespace RARIndia.Controllers
             return View($"~/Views/GeneralMaster/GeneralNationalityMaster/List.cshtml", list);
         }
 
-
         [HttpGet]
         public ActionResult Create()
         {

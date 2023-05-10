@@ -4,7 +4,7 @@ namespace RARIndia.Model
 {
     public class GeneralDesignationModel : BaseModel
     {
-        public Int16 DesignationId { get; set; }
+        public Int16 EmployeeDesignationMasterId { get; set; }
         public string Description { get; set; }
         public int DesignationLevel { get; set; }
         public int Grade { get; set; }

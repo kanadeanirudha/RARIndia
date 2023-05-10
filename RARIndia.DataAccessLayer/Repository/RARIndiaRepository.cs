@@ -126,12 +126,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
                 int createdBy = Convert.ToInt32(entity.GetProperty("CreatedBy"));
                 int modifiedBy = Convert.ToInt32(entity.GetProperty("ModifiedBy"));
                 Entities.Add(entity);
-                //int _result = _context.SaveChanges(HelperMethods.GetLoginUserId(), createdBy, modifiedBy);
-                int _result = _context.SaveChanges();
-                //if (_result > 0)
-                //{
-                //    var _initializer = new Initializer<T>(entity,"Insert");
-                //}
+                int _result = _context.SaveChanges(createdBy, modifiedBy);
             }
             catch (Exception ex)
             {

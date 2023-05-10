@@ -1,6 +1,5 @@
 ﻿using RARIndia.BusinessLogicLayer;
 using RARIndia.Filters;
-using RARIndia.Model;
 using RARIndia.Model.Model;
 using RARIndia.Resources;
 using RARIndia.Utilities.Constant;
@@ -11,88 +10,88 @@ using System.Web.Mvc;
 namespace RARIndia.Controllers
 {
     [SessionTimeoutAttribute]
-    public class GeneralDepartmentMasterController : BaseController
+    public class GeneralDesignationMasterController : BaseController
     {
-        readonly GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
-        private const string createEdit = "~/Views/GeneralMaster/GeneralDepartmentMaster/CreateEdit.cshtml";
-        public GeneralDepartmentMasterController()
+        readonly GeneralDesignationMasterBA _generalDesignationMasterBA = null;
+        private const string createEdit = "~/Views/GeneralMaster/GeneralDesignationMaster/CreateEdit.cshtml";
+        public GeneralDesignationMasterController()
         {
-            _generalDepartmentMasterBA = new GeneralDepartmentMasterBA();
+            _generalDesignationMasterBA = new GeneralDesignationMasterBA();
         }
 
         public ActionResult List(DataTableModel dataTableModel)
         {
             dataTableModel = dataTableModel ?? new DataTableModel();
-            GeneralDepartmentListViewModel list = _generalDepartmentMasterBA.GetDepartmentList(dataTableModel);
+            GeneralDesignationListViewModel list = _generalDesignationMasterBA.GetDesignationList(dataTableModel);
             if (Request.IsAjaxRequest())
             {
-                return PartialView("~/Views/GeneralMaster/GeneralDepartmentMaster/_List.cshtml", list);
+                return PartialView("~/Views/GeneralMaster/GeneralDesignationMaster/_List.cshtml", list);
             }
-            return View($"~/Views/GeneralMaster/GeneralDepartmentMaster/List.cshtml", list);
+            return View($"~/Views/GeneralMaster/GeneralDesignationMaster/List.cshtml", list);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View(createEdit, new GeneralDepartmentViewModel());
+            return View(createEdit, new GeneralDesignationViewModel());
         }
 
         [HttpPost]
-        public virtual ActionResult Create(GeneralDepartmentViewModel generalDepartmentViewModel)
+        public virtual ActionResult Create(GeneralDesignationViewModel generalDesignationViewModel)
         {
             if (ModelState.IsValid)
             {
-                generalDepartmentViewModel = _generalDepartmentMasterBA.CreateDepartment(generalDepartmentViewModel);
-                if (!generalDepartmentViewModel.HasError)
+                generalDesignationViewModel = _generalDesignationMasterBA.CreateDesignation(generalDesignationViewModel);
+                if (!generalDesignationViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
-                    return RedirectToAction<GeneralDepartmentMasterController>(x => x.List(null));
+                    return RedirectToAction<GeneralDesignationMasterController>(x => x.List(null));
                 }
             }
-            SetNotificationMessage(GetErrorNotificationMessage(generalDepartmentViewModel.ErrorMessage));
-            return View(createEdit, generalDepartmentViewModel);
+            SetNotificationMessage(GetErrorNotificationMessage(generalDesignationViewModel.ErrorMessage));
+            return View(createEdit, generalDesignationViewModel);
         }
 
         [HttpGet]
-        public virtual ActionResult Edit(int DepartmentId)
+        public virtual ActionResult Edit(int DesignationId)
         {
-            GeneralDepartmentViewModel generalDepartmentViewModel = _generalDepartmentMasterBA.GetDepartment(DepartmentId);
-            return ActionView(createEdit, generalDepartmentViewModel);
+            GeneralDesignationViewModel generalDesignationViewModel = _generalDesignationMasterBA.GetDesignation(DesignationId);
+            return ActionView(createEdit, generalDesignationViewModel);
         }
 
-        //Post:Edit Department.
+        //Post:Edit Designation.
         [HttpPost]
-        public virtual ActionResult Edit(GeneralDepartmentViewModel generalDepartmentViewModel)
+        public virtual ActionResult Edit(GeneralDesignationViewModel generalDesignationViewModel)
         {
             if (ModelState.IsValid)
             {
-                bool status = _generalDepartmentMasterBA.UpdateDepartment(generalDepartmentViewModel).HasError;
+                bool status = _generalDesignationMasterBA.UpdateDesignation(generalDesignationViewModel).HasError;
                 SetNotificationMessage(status
                 ? GetErrorNotificationMessage(GeneralResources.UpdateErrorMessage)
                 : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
 
                 if (!status)
-                    return RedirectToAction<GeneralDepartmentMasterController>(x => x.List(new DataTableModel() { SortByColumn = SortKeys.ModifiedDate, SortBy = RARIndiaConstant.DESCKey }));
+                    return RedirectToAction<GeneralDesignationMasterController>(x => x.List(new DataTableModel() { SortByColumn = SortKeys.ModifiedDate, SortBy = RARIndiaConstant.DESCKey }));
             }
-            return View(createEdit, generalDepartmentViewModel);
+            return View(createEdit, generalDesignationViewModel);
         }
 
-        //Delete Department.
-        public virtual ActionResult Delete(string DepartmentIds)
+        //Delete Designation.
+        public virtual ActionResult Delete(string DesignationIds)
         {
             string message = string.Empty;
             bool status = false;
-            if (!string.IsNullOrEmpty(DepartmentIds))
+            if (!string.IsNullOrEmpty(DesignationIds))
             {
-                status = _generalDepartmentMasterBA.DeleteDepartment(DepartmentIds, out message);
+                status = _generalDesignationMasterBA.DeleteDesignation(DesignationIds, out message);
                 SetNotificationMessage(!status
                 ? GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage)
                 : GetSuccessNotificationMessage(GeneralResources.DeleteMessage));
-                return RedirectToAction<GeneralDepartmentMasterController>(x => x.List(null));
+                return RedirectToAction<GeneralDesignationMasterController>(x => x.List(null));
             }
 
             SetNotificationMessage(GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage));
-            return RedirectToAction<GeneralDepartmentMasterController>(x => x.List(null));
+            return RedirectToAction<GeneralDesignationMasterController>(x => x.List(null));
         }
     }
 }

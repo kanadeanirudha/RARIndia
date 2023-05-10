@@ -1,0 +1,242 @@
+﻿@using RARIndia.ViewModel
+@using RARIndia.Resources;
+@model OrganisationMasterViewModel
+@{
+    ViewBag.Title = "Organisation";
+    string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Organisation Details</h3>
+    </div>
+</div>
+<div class="content-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    @*<h4 class="card-title" id="horz-layout-colored-controls">Add Country</h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li>
+                                <a href="../@controllerName/GetOrganisationDetails"><i class="ft-rotate-cw"></i></a>
+                            </li>
+                            <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content collpase show">
+                    <div class="card-body">
+                        @*<div class="card-text">
+                                <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
+                            </div>*@
+                        @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
+                        {
+                            @Html.HiddenFor(m => m.OrganisationMasterId);
+                            <div class="form-body">
+                                @*<h4 class="form-section"><i class="la la-eye"></i> About User</h4>*@
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.OrganisationName, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.OrganisationName, new { @class = "form-control border-primary", @placeholder = "Organisation Name" })
+                                                @Html.ValidationMessageFor(x => x.OrganisationName, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.OrganisationCode, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.OrganisationCode, new { @class = "form-control border-primary", @placeholder = "Organisation Code" })
+                                                @Html.ValidationMessageFor(x => x.OrganisationCode, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.EstablishmentCode, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.EstablishmentCode, new { @class = "form-control border-primary", @placeholder = "Establishment Code" })
+                                                @Html.ValidationMessageFor(x => x.EstablishmentCode, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.MissionStatement, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.MissionStatement, new { @class = "form-control border-primary", @placeholder = "Mission Statement" })
+                                                @Html.ValidationMessageFor(x => x.MissionStatement, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.FounderMember, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.FounderMember, new { @class = "form-control border-primary", @placeholder = "Founder Member" })
+                                                @Html.ValidationMessageFor(x => x.FounderMember, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.FoundationDatetime, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.FoundationDatetime, new { @class = "form-control border-primary", @placeholder = "Foundation Date" })
+                                                @Html.ValidationMessageFor(x => x.FoundationDatetime, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.EmailId, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.EmailId, new { @class = "form-control border-primary", @placeholder = "Email Id" })
+                                                @Html.ValidationMessageFor(x => x.EmailId, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.Url, new { @class = "col-md-3 label-control" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.Url, new { @class = "form-control border-primary", @placeholder = "Url" })
+                                                @Html.ValidationMessageFor(x => x.Url, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.PFNumber, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.PFNumber, new { @class = "form-control border-primary", @placeholder = "PF Number" })
+                                                @Html.ValidationMessageFor(x => x.FounderMember, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.ESICNumber, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.ESICNumber, new { @class = "form-control border-primary", @placeholder = "ESIC Number" })
+                                                @Html.ValidationMessageFor(x => x.ESICNumber, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.OfficeComment, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextAreaFor(x => x.OfficeComment, new { @class = "form-control border-primary", @placeholder = "Office Comment" })
+                                                @Html.ValidationMessageFor(x => x.OfficeComment, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.Address1, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextAreaFor(x => x.Address1, new { @class = "form-control border-primary", @placeholder = "Address1" })
+                                                @Html.ValidationMessageFor(x => x.Address1, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.LocationId, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @*@Html.TextBoxFor(x => x.LocationId new { @class = "form-control border-primary", @placeholder = "LocationId" })
+                                                    @Html.ValidationMessageFor(x => x.LocationId, null, new { @class = "red" })*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.PlotNumber, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.PlotNumber, new { @class = "form-control border-primary" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.StreetNumber, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.StreetNumber, new { @class = "form-control border-primary" })
+                                                @Html.ValidationMessageFor(x => x.StreetNumber, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.Pincode, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.Pincode, new { @class = "form-control border-primary", @disabled = "disabled" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.MobileNumber, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control border-primary", @placeholder = "Mobile Number" })
+                                                @Html.ValidationMessageFor(x => x.MobileNumber, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.OfficePhone1, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.OfficePhone1, new { @class = "form-control border-primary", @placeholder = "Office Phone1" })
+                                                @Html.ValidationMessageFor(x => x.OfficePhone1, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.OfficePhone2, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.OfficePhone2, new { @class = "form-control border-primary", @placeholder = "Office Phone2" })
+                                                @Html.ValidationMessageFor(x => x.OfficePhone2, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions text-right">
+                                <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i>@GeneralResources.SaveButton</button>
+                                <a href="../@controllerName/List" class="btn btn-secondary mr-1"><i class="ft-x"></i>@GeneralResources.CancelButton</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

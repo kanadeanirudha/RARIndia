@@ -28,8 +28,8 @@ namespace RARIndia.BusinessLogicLayer
             if (!string.IsNullOrEmpty(dataTableModel.SearchBy))
             {
                 filters = new FilterCollection();
-                filters.Add("DesignationName", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
-                filters.Add("ContryCode", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
+                filters.Add("Description", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
+                filters.Add("ShortCode", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
             }
 
             NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);
@@ -46,6 +46,7 @@ namespace RARIndia.BusinessLogicLayer
         {
             try
             {
+                generalDesignationViewModel.CreatedBy = LoginUserId();
                 GeneralDesignationModel generalDesignationModel = _generalDesignationMasterDAL.CreateDesignation(generalDesignationViewModel.ToModel<GeneralDesignationModel>());
                 return RARIndiaHelperUtility.IsNotNull(generalDesignationModel) ? generalDesignationModel.ToViewModel<GeneralDesignationViewModel>() : new GeneralDesignationViewModel();
             }
@@ -75,6 +76,7 @@ namespace RARIndia.BusinessLogicLayer
         {
             try
             {
+                generalDesignationViewModel.ModifiedBy = LoginUserId();
                 GeneralDesignationModel generalDesignationModel = _generalDesignationMasterDAL.UpdateDesignation(generalDesignationViewModel.ToModel<GeneralDesignationModel>());
                 return RARIndiaHelperUtility.IsNotNull(generalDesignationModel) ? generalDesignationModel.ToViewModel<GeneralDesignationViewModel>() : (GeneralDesignationViewModel)GetViewModelWithErrorMessage(new GeneralDesignationListViewModel(), GeneralResources.UpdateErrorMessage);
             }

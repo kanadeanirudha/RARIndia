@@ -63,6 +63,8 @@
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralNationalityMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCountryMasterDAL.cs" />
     <Compile Include="Constants\StoredProcedureKeys.cs" />
+    <Compile Include="DataAccessLayers\Implementation\Organisation\OrganisationCentreMasterDAL.cs" />
+    <Compile Include="DataAccessLayers\Implementation\Organisation\OrganisationMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\User\UserMasterDAL.cs" />
     <Compile Include="DataEntity\AdminRoleApplicableDetail.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>

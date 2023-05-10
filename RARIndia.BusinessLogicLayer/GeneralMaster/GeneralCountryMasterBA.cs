@@ -47,7 +47,6 @@ namespace RARIndia.BusinessLogicLayer
             try
             {
                 generalCountryViewModel.CreatedBy = LoginUserId();
-
                 GeneralCountryModel generalCountryModel = _generalCountryMasterDAL.CreateCountry(generalCountryViewModel.ToModel<GeneralCountryModel>());
                 return RARIndiaHelperUtility.IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : new GeneralCountryViewModel();
             }

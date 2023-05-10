@@ -86,7 +86,7 @@ namespace RARIndia.DataAccessLayer
         {
             if (!userModel.IsAdminUser)
             {
-                List<AdminRoleApplicableDetail> roleList = _adminRoleApplicableDetailsRepository.Table.Where(x => x.EmployeeId == userModel.UserId && x.IsActive)?.ToList();
+                List<AdminRoleApplicableDetail> roleList = _adminRoleApplicableDetailsRepository.Table.Where(x => x.EmployeeId == userModel.UserMasterId && x.IsActive)?.ToList();
                 if (roleList?.Count() == 0)
                 {
                     throw new RARIndiaException(ErrorCodes.ContactAdministrator, null);

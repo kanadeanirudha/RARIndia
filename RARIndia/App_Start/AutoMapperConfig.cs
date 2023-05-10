@@ -26,9 +26,15 @@ namespace RARIndia
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryListModel, GeneralCountryListViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryMaster>().ReverseMap();
+
             Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralDepartmentListModel, GeneralDepartmentListViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentMaster>().ReverseMap();
+
+            Mapper.CreateMap<GeneralDesignationModel, GeneralDesignationViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralDesignationListModel, GeneralDesignationListViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralDesignationModel, EmployeeDesignationMaster>().ReverseMap();
+
             Mapper.CreateMap<GeneralNationalityModel, GeneralNationalityViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralNationalityListModel, GeneralNationalityListViewModel>().ReverseMap();
             #endregion
@@ -36,6 +42,11 @@ namespace RARIndia
             Mapper.CreateMap<UserModel, UserLoginViewModel>().ReverseMap();
             Mapper.CreateMap<UserModel, UserMaster>().ReverseMap();
             Mapper.CreateMap<UserModuleModel, UserModuleMaster>().ReverseMap();
+
+            #region Organisation
+            Mapper.CreateMap<OrganisationMasterModel, OrganisationMasterViewModel>().ReverseMap();
+            Mapper.CreateMap<OrganisationMasterModel, OrganisationMaster>().ReverseMap();
+            #endregion
         }
     }
 }

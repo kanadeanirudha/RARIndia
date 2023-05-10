@@ -51,6 +51,7 @@
     <Compile Include="Model\GeneralMaster\GeneralDesignationMaster\GeneralDesignationModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentModel.cs" />
+    <Compile Include="Model\Organisation\OrganisationMasterModel.cs" />
     <Compile Include="Model\User\UserMenuModel.cs" />
     <Compile Include="Model\User\UserBalanceSheetModel.cs" />
     <Compile Include="Model\User\UserAccessibleCentreModel.cs" />

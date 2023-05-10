@@ -4,7 +4,7 @@ namespace RARIndia.ViewModel
 {
     public class GeneralNationalityViewModel : BaseViewModel
     {
-        public int NationalityId { get; set; }
+        public int GeneralNationalityMasterId { get; set; }
         [Display(Name = "Nationality")]
         [Required]
         public string Description { get; set; }

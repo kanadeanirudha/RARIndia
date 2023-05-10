@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace RARIndia.Controllers
 {
-	//[SessionTimeoutAttribute]
+    [SessionTimeoutAttribute]
     public class GeneralCountryMasterController : BaseController
     {
         GeneralCountryMasterBA _generalCountryMasterBA = null;
@@ -68,6 +68,7 @@ namespace RARIndia.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 bool status = _generalCountryMasterBA.UpdateCountry(generalCountryViewModel).HasError;
                 SetNotificationMessage(status
                 ? GetErrorNotificationMessage(GeneralResources.UpdateErrorMessage)
