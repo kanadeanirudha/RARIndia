@@ -11,6 +11,7 @@ using System;
 using System.Collections.Specialized;
 using System.Linq;
 
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.BusinessLogicLayer
 {
     public class AdminSnPostsBA : BaseBusinessLogic
@@ -49,7 +50,7 @@ namespace RARIndia.BusinessLogicLayer
                 adminSnPostsViewModel.IsActive = true;
                 adminSnPostsViewModel.CreatedBy = LoginUserId();
                 AdminSnPostsModel adminSnPostsModel = _adminSnPostsDAL.CreateAdminSnPosts(adminSnPostsViewModel.ToModel<AdminSnPostsModel>());
-                return RARIndiaHelperUtility.IsNotNull(adminSnPostsModel) ? adminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : new AdminSnPostsViewModel();
+                return IsNotNull(adminSnPostsModel) ? adminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : new AdminSnPostsViewModel();
             }
             catch (RARIndiaException ex)
             {
@@ -79,7 +80,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 adminSnPostsViewModel.ModifiedBy = LoginUserId();
                 AdminSnPostsModel adminSnPostsModel = _adminSnPostsDAL.UpdateAdminSnPosts(adminSnPostsViewModel.ToModel<AdminSnPostsModel>());
-                return RARIndiaHelperUtility.IsNotNull(adminSnPostsModel) ? adminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : (AdminSnPostsViewModel)GetViewModelWithErrorMessage(new AdminSnPostsListViewModel(), GeneralResources.UpdateErrorMessage);
+                return IsNotNull(adminSnPostsModel) ? adminSnPostsModel.ToViewModel<AdminSnPostsViewModel>() : (AdminSnPostsViewModel)GetViewModelWithErrorMessage(new AdminSnPostsListViewModel(), GeneralResources.UpdateErrorMessage);
             }
             catch (Exception ex)
             {

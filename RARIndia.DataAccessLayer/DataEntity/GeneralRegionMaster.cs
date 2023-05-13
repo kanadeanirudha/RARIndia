@@ -16,15 +16,14 @@ namespace RARIndia.DataAccessLayer.DataEntity
     {
         public short GeneralRegionMasterId { get; set; }
         public string RegionName { get; set; }
-        public Nullable<int> CountryID { get; set; }
+        public int CountryId { get; set; }
         public string ShortName { get; set; }
-        public Nullable<bool> DefaultFlag { get; set; }
-        public string CountryCode { get; set; }
+        public bool DefaultFlag { get; set; }
+        public bool IsUserDefined { get; set; }
+        public Nullable<short> TinNumber { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public bool IsUserDefined { get; set; }
-        public Nullable<short> TinNumber { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿@using RARIndia.ViewModel
 @using RARIndia.Resources;
+@using RARIndia.Utilities.Helper;
 @model OrganisationMasterViewModel
 @{
     ViewBag.Title = "Organisation";
@@ -21,7 +22,7 @@
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
                             <li>
-                                <a href="../@controllerName/GetOrganisationDetails"><i class="ft-rotate-cw"></i></a>
+                                <a href="../@controllerName/@actionName"><i class="ft-rotate-cw"></i></a>
                             </li>
                             <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
                         </ul>
@@ -32,7 +33,7 @@
                         @*<div class="card-text">
                                 <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
                             </div>*@
-                        @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
+                        @using (Html.BeginForm("Edit", controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
                         {
                             @Html.HiddenFor(m => m.OrganisationMasterId);
                             <div class="form-body">
@@ -161,29 +162,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.LocationId, new { @class = "col-md-3 label-control required" })
+                                            @Html.LabelFor(x => x.GeneralCityMasterId, new { @class = "col-md-3 label-control required" })
                                             <div class="col-md-9 mx-auto">
-                                                @*@Html.TextBoxFor(x => x.LocationId new { @class = "form-control border-primary", @placeholder = "LocationId" })
-                                                    @Html.ValidationMessageFor(x => x.LocationId, null, new { @class = "red" })*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.PlotNumber, new { @class = "col-md-3 label-control required" })
-                                            <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.PlotNumber, new { @class = "form-control border-primary" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(x => x.StreetNumber, new { @class = "col-md-3 label-control required" })
-                                            <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.StreetNumber, new { @class = "form-control border-primary" })
-                                                @Html.ValidationMessageFor(x => x.StreetNumber, null, new { @class = "red" })
+                                                @Html.Partial("~/Views/Shared/Control/_DropdownList.cshtml", new DropdownViewModel() { DropdownType = DropdownTypeEnum.City.ToString(), DropdownName = "GeneralCityMasterId", DropdownSelectedValue = Model.GeneralCityMasterId.ToString() })
+                                                @Html.ValidationMessageFor(x => x.GeneralCityMasterId, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +175,7 @@
                                         <div class="form-group row">
                                             @Html.LabelFor(x => x.Pincode, new { @class = "col-md-3 label-control required" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.Pincode, new { @class = "form-control border-primary", @disabled = "disabled" })
+                                                @Html.TextBoxFor(x => x.Pincode, new { @class = "form-control border-primary"})
                                             </div>
                                         </div>
                                     </div>
@@ -231,7 +213,6 @@
 
                             <div class="form-actions text-right">
                                 <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i>@GeneralResources.SaveButton</button>
-                                <a href="../@controllerName/List" class="btn btn-secondary mr-1"><i class="ft-x"></i>@GeneralResources.CancelButton</a>
                             </div>
                         }
                     </div>

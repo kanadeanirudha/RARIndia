@@ -48,11 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlViewModel\DropdownViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Admin\AdminRoleMaster\AdminRoleMasterListViewModel.cs" />
     <Compile Include="ViewModel\Admin\AdminRoleMaster\AdminRoleMasterViewModel.cs" />
     <Compile Include="ViewModel\Admin\AdminSnPosts\AdminSnPostsListViewModel.cs" />
     <Compile Include="ViewModel\Admin\AdminSnPosts\AdminSnPostsViewModel.cs" />
+    <Compile Include="ViewModel\GeneralMaster\GeneralCityMaster\GeneralCityListViewModel.cs" />
+    <Compile Include="ViewModel\GeneralMaster\GeneralCityMaster\GeneralCityViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralDesignationMaster\GeneralDesignationListViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralDesignationMaster\GeneralDesignationViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentListViewModel.cs" />

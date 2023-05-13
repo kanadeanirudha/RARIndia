@@ -1,4 +1,4 @@
-﻿@model short?
+﻿@model int?
 @{
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();

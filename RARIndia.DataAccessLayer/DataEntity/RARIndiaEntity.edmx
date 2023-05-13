@@ -108,14 +108,14 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="GeneralCity">
+        <EntityType Name="GeneralCityMaster">
           <Key>
-            <PropertyRef Name="GeneralCityId" />
+            <PropertyRef Name="GeneralCityMasterId" />
           </Key>
-          <Property Name="GeneralCityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DefaultFlag" Type="bit" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" />
-          <Property Name="RegionID" Type="int" />
+          <Property Name="GeneralCityMasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DefaultFlag" Type="bit" Nullable="false" />
+          <Property Name="GeneralRegionMasterId" Type="int" Nullable="false" />
           <Property Name="IsUserDefined" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -159,24 +159,21 @@
             <PropertyRef Name="GeneralLocationMasterId" />
           </Key>
           <Property Name="GeneralLocationMasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DefaultFlag" Type="bit" />
-          <Property Name="RegionId" Type="int" />
-          <Property Name="LocationAddress" Type="nvarchar" MaxLength="200" />
-          <Property Name="PostCode" Type="char" MaxLength="10" />
-          <Property Name="CityId" Type="int" />
+          <Property Name="LocationAddress" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DefaultFlag" Type="bit" Nullable="false" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+          <Property Name="PostCode" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
           <Property Name="Latitude" Type="varchar" MaxLength="20" />
           <Property Name="Longitude" Type="varchar" MaxLength="20" />
-          <Property Name="IsUserDefined" Type="bit" />
-          <Property Name="IsProviance" Type="bit" />
-          <Property Name="IsTahsil" Type="bit" />
-          <Property Name="Accuracy" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsUserDefined" Type="bit" Nullable="false" />
+          <Property Name="IsProviance" Type="bit" Nullable="false" />
+          <Property Name="IsTahsil" Type="bit" Nullable="false" />
+          <Property Name="Accuracy" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="DeletedBy" Type="int" />
-          <Property Name="DeletedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="GeneralNationalityMaster">
           <Key>
@@ -196,17 +193,16 @@
             <PropertyRef Name="GeneralRegionMasterId" />
           </Key>
           <Property Name="GeneralRegionMasterId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RegionName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CountryID" Type="int" />
-          <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
-          <Property Name="DefaultFlag" Type="bit" />
-          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefaultFlag" Type="bit" Nullable="false" />
+          <Property Name="IsUserDefined" Type="bit" Nullable="false" />
+          <Property Name="TinNumber" Type="smallint" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="IsUserDefined" Type="bit" Nullable="false" />
-          <Property Name="TinNumber" Type="smallint" />
         </EntityType>
         <EntityType Name="GeneralTaxGroupMaster">
           <Key>
@@ -275,9 +271,7 @@
           <Property Name="RoId" Type="int" />
           <Property Name="CentreSpecialization" Type="nvarchar" MaxLength="100" />
           <Property Name="CentreAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PlotNo" Type="nvarchar" MaxLength="25" />
-          <Property Name="StreetName" Type="nvarchar" MaxLength="25" />
-          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="GeneralCityMasterId" Type="int" Nullable="false" />
           <Property Name="Pincode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailId" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="Url" Type="varchar" MaxLength="30" />
@@ -348,11 +342,8 @@
           <Property Name="OrganisationName" Type="nvarchar" MaxLength="120" Nullable="false" />
           <Property Name="FoundationDatetime" Type="datetime" Nullable="false" />
           <Property Name="FounderMember" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="Address1" Type="nvarchar" MaxLength="120" Nullable="false" />
-          <Property Name="Address2" Type="nvarchar" MaxLength="120" />
-          <Property Name="PlotNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="StreetNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="GeneralCityMasterId" Type="int" Nullable="false" />
           <Property Name="Pincode" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="EmailId" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="Url" Type="varchar" MaxLength="60" />
@@ -561,14 +552,14 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           </ReferentialConstraint>
         </Association>
         <Association Name="FKOrganisationCentreMasterCityId">
-          <End Role="GeneralCity" Type="Self.GeneralCity" Multiplicity="1" />
+          <End Role="GeneralCityMaster" Type="Self.GeneralCityMaster" Multiplicity="1" />
           <End Role="OrganisationCentreMaster" Type="Self.OrganisationCentreMaster" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GeneralCity">
-              <PropertyRef Name="GeneralCityId" />
+            <Principal Role="GeneralCityMaster">
+              <PropertyRef Name="GeneralCityMasterId" />
             </Principal>
             <Dependent Role="OrganisationCentreMaster">
-              <PropertyRef Name="CityId" />
+              <PropertyRef Name="GeneralCityMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -603,7 +594,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySet Name="AdminRoleMenuDetails" EntityType="Self.AdminRoleMenuDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminSactionPosts" EntityType="Self.AdminSactionPosts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeDesignationMaster" EntityType="Self.EmployeeDesignationMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GeneralCity" EntityType="Self.GeneralCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralCityMaster" EntityType="Self.GeneralCityMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCountryMaster" EntityType="Self.GeneralCountryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralDepartmentMaster" EntityType="Self.GeneralDepartmentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralLocationMaster" EntityType="Self.GeneralLocationMaster" Schema="dbo" store:Type="Tables" />
@@ -660,7 +651,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <End Role="GeneralTaxGroupMasterDetails" EntitySet="GeneralTaxGroupMasterDetails" />
           </AssociationSet>
           <AssociationSet Name="FKOrganisationCentreMasterCityId" Association="Self.FKOrganisationCentreMasterCityId">
-            <End Role="GeneralCity" EntitySet="GeneralCity" />
+            <End Role="GeneralCityMaster" EntitySet="GeneralCityMaster" />
             <End Role="OrganisationCentreMaster" EntitySet="OrganisationCentreMaster" />
           </AssociationSet>
           <AssociationSet Name="FKOrganisationCentreMasterOrganisationId" Association="Self.FKOrganisationCentreMasterOrganisationId">
@@ -683,7 +674,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySet Name="AdminRoleMenuDetails" EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" />
           <EntitySet Name="AdminSactionPosts" EntityType="RARIndia.EntityModel.AdminSactionPost" />
           <EntitySet Name="EmployeeDesignationMasters" EntityType="RARIndia.EntityModel.EmployeeDesignationMaster" />
-          <EntitySet Name="GeneralCities" EntityType="RARIndia.EntityModel.GeneralCity" />
+          <EntitySet Name="GeneralCityMasters" EntityType="RARIndia.EntityModel.GeneralCityMaster" />
           <EntitySet Name="GeneralCountryMasters" EntityType="RARIndia.EntityModel.GeneralCountryMaster" />
           <EntitySet Name="GeneralDepartmentMasters" EntityType="RARIndia.EntityModel.GeneralDepartmentMaster" />
           <EntitySet Name="GeneralLocationMasters" EntityType="RARIndia.EntityModel.GeneralLocationMaster" />
@@ -727,7 +718,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <End Role="AdminSactionPost" EntitySet="AdminSactionPosts" />
           </AssociationSet>
           <AssociationSet Name="FKOrganisationCentreMasterCityId" Association="RARIndia.EntityModel.FKOrganisationCentreMasterCityId">
-            <End Role="GeneralCity" EntitySet="GeneralCities" />
+            <End Role="GeneralCityMaster" EntitySet="GeneralCityMasters" />
             <End Role="OrganisationCentreMaster" EntitySet="OrganisationCentreMasters" />
           </AssociationSet>
           <AssociationSet Name="FKOrganisationCentrewiseDepartmentDepartmentId" Association="RARIndia.EntityModel.FKOrganisationCentrewiseDepartmentDepartmentId">
@@ -861,20 +852,20 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AdminSactionPosts" Relationship="RARIndia.EntityModel.FKAdminSactionPostsDesignationId" FromRole="EmployeeDesignationMaster" ToRole="AdminSactionPost" />
         </EntityType>
-        <EntityType Name="GeneralCity">
+        <EntityType Name="GeneralCityMaster">
           <Key>
-            <PropertyRef Name="GeneralCityId" />
+            <PropertyRef Name="GeneralCityMasterId" />
           </Key>
-          <Property Name="GeneralCityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DefaultFlag" Type="Boolean" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RegionID" Type="Int32" />
+          <Property Name="GeneralCityMasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultFlag" Type="Boolean" Nullable="false" />
+          <Property Name="GeneralRegionMasterId" Type="Int32" Nullable="false" />
           <Property Name="IsUserDefined" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="OrganisationCentreMasters" Relationship="RARIndia.EntityModel.FKOrganisationCentreMasterCityId" FromRole="GeneralCity" ToRole="OrganisationCentreMaster" />
+          <NavigationProperty Name="OrganisationCentreMasters" Relationship="RARIndia.EntityModel.FKOrganisationCentreMasterCityId" FromRole="GeneralCityMaster" ToRole="OrganisationCentreMaster" />
         </EntityType>
         <EntityType Name="GeneralCountryMaster">
           <Key>
@@ -915,24 +906,21 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <PropertyRef Name="GeneralLocationMasterId" />
           </Key>
           <Property Name="GeneralLocationMasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DefaultFlag" Type="Boolean" />
-          <Property Name="RegionId" Type="Int32" />
-          <Property Name="LocationAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="CityId" Type="Int32" />
+          <Property Name="LocationAddress" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultFlag" Type="Boolean" Nullable="false" />
+          <Property Name="RegionId" Type="Int32" Nullable="false" />
+          <Property Name="PostCode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
           <Property Name="Latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IsUserDefined" Type="Boolean" />
-          <Property Name="IsProviance" Type="Boolean" />
-          <Property Name="IsTahsil" Type="Boolean" />
-          <Property Name="Accuracy" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsUserDefined" Type="Boolean" Nullable="false" />
+          <Property Name="IsProviance" Type="Boolean" Nullable="false" />
+          <Property Name="IsTahsil" Type="Boolean" Nullable="false" />
+          <Property Name="Accuracy" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="DeletedBy" Type="Int32" />
-          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="GeneralNationalityMaster">
           <Key>
@@ -952,17 +940,16 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <PropertyRef Name="GeneralRegionMasterId" />
           </Key>
           <Property Name="GeneralRegionMasterId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CountryID" Type="Int32" />
-          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DefaultFlag" Type="Boolean" />
-          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="RegionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="ShortName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultFlag" Type="Boolean" Nullable="false" />
+          <Property Name="IsUserDefined" Type="Boolean" Nullable="false" />
+          <Property Name="TinNumber" Type="Int16" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="IsUserDefined" Type="Boolean" Nullable="false" />
-          <Property Name="TinNumber" Type="Int16" />
         </EntityType>
         <EntityType Name="GeneralTaxGroupMaster">
           <Key>
@@ -1035,9 +1022,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="RoId" Type="Int32" />
           <Property Name="CentreSpecialization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CentreAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PlotNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="StreetName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="GeneralCityMasterId" Type="Int32" Nullable="false" />
           <Property Name="Pincode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmailId" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -1062,7 +1047,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="GeneralCity" Relationship="RARIndia.EntityModel.FKOrganisationCentreMasterCityId" FromRole="OrganisationCentreMaster" ToRole="GeneralCity" />
+          <NavigationProperty Name="GeneralCityMaster" Relationship="RARIndia.EntityModel.FKOrganisationCentreMasterCityId" FromRole="OrganisationCentreMaster" ToRole="GeneralCityMaster" />
           <NavigationProperty Name="OrganisationMaster" Relationship="RARIndia.EntityModel.FKOrganisationCentreMasterOrganisationId" FromRole="OrganisationCentreMaster" ToRole="OrganisationMaster" />
         </EntityType>
         <EntityType Name="OrganisationCentrePrintingFormat">
@@ -1111,11 +1096,8 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="OrganisationName" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
           <Property Name="FoundationDatetime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FounderMember" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Address1" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
-          <Property Name="Address2" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
-          <Property Name="PlotNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StreetNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GeneralCityMasterId" Type="Int32" Nullable="false" />
           <Property Name="Pincode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="EmailId" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
@@ -1299,14 +1281,14 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           </ReferentialConstraint>
         </Association>
         <Association Name="FKOrganisationCentreMasterCityId">
-          <End Type="RARIndia.EntityModel.GeneralCity" Role="GeneralCity" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.GeneralCityMaster" Role="GeneralCityMaster" Multiplicity="1" />
           <End Type="RARIndia.EntityModel.OrganisationCentreMaster" Role="OrganisationCentreMaster" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GeneralCity">
-              <PropertyRef Name="GeneralCityId" />
+            <Principal Role="GeneralCityMaster">
+              <PropertyRef Name="GeneralCityMasterId" />
             </Principal>
             <Dependent Role="OrganisationCentreMaster">
-              <PropertyRef Name="CityId" />
+              <PropertyRef Name="GeneralCityMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1473,18 +1455,18 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GeneralCities">
-            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralCity">
-              <MappingFragment StoreEntitySet="GeneralCity">
+          <EntitySetMapping Name="GeneralCityMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralCityMaster">
+              <MappingFragment StoreEntitySet="GeneralCityMaster">
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="GeneralRegionMasterId" ColumnName="GeneralRegionMasterId" />
                 <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
-                <ScalarProperty Name="GeneralCityId" ColumnName="GeneralCityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="GeneralCityMasterId" ColumnName="GeneralCityMasterId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1525,13 +1507,10 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySetMapping Name="GeneralLocationMasters">
             <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralLocationMaster">
               <MappingFragment StoreEntitySet="GeneralLocationMaster">
-                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
                 <ScalarProperty Name="IsTahsil" ColumnName="IsTahsil" />
                 <ScalarProperty Name="IsProviance" ColumnName="IsProviance" />
@@ -1540,9 +1519,9 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="PostCode" ColumnName="PostCode" />
-                <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
                 <ScalarProperty Name="RegionId" ColumnName="RegionId" />
                 <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
+                <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
                 <ScalarProperty Name="GeneralLocationMasterId" ColumnName="GeneralLocationMasterId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1564,16 +1543,15 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySetMapping Name="GeneralRegionMasters">
             <EntityTypeMapping TypeName="RARIndia.EntityModel.GeneralRegionMaster">
               <MappingFragment StoreEntitySet="GeneralRegionMaster">
-                <ScalarProperty Name="TinNumber" ColumnName="TinNumber" />
-                <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="TinNumber" ColumnName="TinNumber" />
+                <ScalarProperty Name="IsUserDefined" ColumnName="IsUserDefined" />
                 <ScalarProperty Name="DefaultFlag" ColumnName="DefaultFlag" />
                 <ScalarProperty Name="ShortName" ColumnName="ShortName" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="RegionName" ColumnName="RegionName" />
                 <ScalarProperty Name="GeneralRegionMasterId" ColumnName="GeneralRegionMasterId" />
               </MappingFragment>
@@ -1664,9 +1642,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="PlotNo" ColumnName="PlotNo" />
+                <ScalarProperty Name="GeneralCityMasterId" ColumnName="GeneralCityMasterId" />
                 <ScalarProperty Name="CentreAddress" ColumnName="CentreAddress" />
                 <ScalarProperty Name="CentreSpecialization" ColumnName="CentreSpecialization" />
                 <ScalarProperty Name="RoId" ColumnName="RoId" />
@@ -1736,10 +1712,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
-                <ScalarProperty Name="PlotNumber" ColumnName="PlotNumber" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="GeneralCityMasterId" ColumnName="GeneralCityMasterId" />
                 <ScalarProperty Name="Address1" ColumnName="Address1" />
                 <ScalarProperty Name="FounderMember" ColumnName="FounderMember" />
                 <ScalarProperty Name="FoundationDatetime" ColumnName="FoundationDatetime" />

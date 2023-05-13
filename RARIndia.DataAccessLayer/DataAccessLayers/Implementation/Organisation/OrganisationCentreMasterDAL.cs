@@ -45,7 +45,7 @@ namespace RARIndia.DataAccessLayer
         ////Create Organisation Centre.
         //public GeneralCountryModel CreateOrganisationCentre(GeneralCountryModel generalCountryModel)
         //{
-        //    if (RARIndiaHelperUtility.IsNull(generalCountryModel))
+        //    if (IsNull(generalCountryModel))
         //        throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
         //    if (IsCodeAlreadyExist(generalCountryModel.CountryCode))
@@ -90,7 +90,7 @@ namespace RARIndia.DataAccessLayer
         //public GeneralCountryModel UpdateOrganisationCentre(GeneralCountryModel generalCountryModel)
         //{
         //    bool isCountryUpdated = false;
-        //    if (RARIndiaHelperUtility.IsNull(generalCountryModel))
+        //    if (IsNull(generalCountryModel))
         //        throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
         //    if (generalCountryModel.CountryId < 1)

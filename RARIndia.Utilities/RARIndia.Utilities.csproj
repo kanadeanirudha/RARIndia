@@ -55,7 +55,7 @@
     <Compile Include="Filters\FilterDataTuple.cs" />
     <Compile Include="Filters\FilterTuple.cs" />
     <Compile Include="Helper\RARIndiaCookieHelper.cs" />
-    <Compile Include="Helper\RARIndiaEntityEnum.cs" />
+    <Compile Include="Helper\RARIndiaEnum.cs" />
     <Compile Include="Helper\RARIndiaHelperUtility.cs" />
     <Compile Include="Helper\RARIndiaSetting.cs" />
     <Compile Include="Constants\RARIndiaConstant.cs" />

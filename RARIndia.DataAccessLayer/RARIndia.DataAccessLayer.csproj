@@ -58,6 +58,7 @@
     <Compile Include="BaseDataAccessLogic.cs" />
     <Compile Include="DataAccessLayers\Implementation\Admin\AdminRoleMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\Admin\AdminSnPostsDAL.cs" />
+    <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCityMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralDesignationMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralDepartmentMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralNationalityMasterDAL.cs" />
@@ -84,7 +85,7 @@
     <Compile Include="DataEntity\EmployeeDesignationMaster.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataEntity\GeneralCity.cs">
+    <Compile Include="DataEntity\GeneralCityMaster.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\GeneralCountryMaster.cs">

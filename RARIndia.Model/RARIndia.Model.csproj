@@ -51,6 +51,8 @@
     <Compile Include="Model\GeneralMaster\GeneralDesignationMaster\GeneralDesignationModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralCityMaster\GeneralCityListModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralCityMaster\GeneralCityModel.cs" />
     <Compile Include="Model\Organisation\OrganisationMasterModel.cs" />
     <Compile Include="Model\User\UserMenuModel.cs" />
     <Compile Include="Model\User\UserBalanceSheetModel.cs" />
@@ -69,6 +71,8 @@
     <Compile Include="Model\ParameterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Enum\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

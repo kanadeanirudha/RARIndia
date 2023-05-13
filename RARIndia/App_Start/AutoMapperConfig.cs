@@ -27,6 +27,10 @@ namespace RARIndia
             Mapper.CreateMap<GeneralCountryListModel, GeneralCountryListViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralCountryModel, GeneralCountryMaster>().ReverseMap();
 
+            Mapper.CreateMap<GeneralCityModel, GeneralCityViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralCityListModel, GeneralCityListViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralCityModel, GeneralCityMaster>().ReverseMap();
+
             Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralDepartmentListModel, GeneralDepartmentListViewModel>().ReverseMap();
             Mapper.CreateMap<GeneralDepartmentModel, GeneralDepartmentMaster>().ReverseMap();

@@ -155,6 +155,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GeneralCommanDataController.cs" />
+    <Compile Include="Controllers\GeneralMaster\GeneralCiryMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralDepartmentMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralDesignationMasterController.cs" />
@@ -285,10 +286,14 @@
     <Content Include="Views\Admin\AdminRoleMaster\Edit.cshtml" />
     <Content Include="Views\Admin\AdminRoleMaster\List.cshtml" />
     <Content Include="Views\Admin\AdminRoleMaster\_AdminRoleMasterSidePannel.cshtml" />
-    <Content Include="Views\OrganisationMaster\CreateEdit.cshtml" />
+    <Content Include="Views\Organisation\OrganisationMaster\CreateEdit.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralDesignationMaster\CreateEdit.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralDesignationMaster\List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralDesignationMaster\_List.cshtml" />
+    <Content Include="Views\Shared\Control\_DropdownList.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralCityMaster\_List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralCityMaster\CreateEdit.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralCityMaster\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

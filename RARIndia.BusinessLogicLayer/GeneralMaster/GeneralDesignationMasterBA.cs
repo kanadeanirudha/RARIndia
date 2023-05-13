@@ -8,10 +8,10 @@ using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.BusinessLogicLayer
 {
     public class GeneralDesignationMasterBA : BaseBusinessLogic
@@ -48,7 +48,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 generalDesignationViewModel.CreatedBy = LoginUserId();
                 GeneralDesignationModel generalDesignationModel = _generalDesignationMasterDAL.CreateDesignation(generalDesignationViewModel.ToModel<GeneralDesignationModel>());
-                return RARIndiaHelperUtility.IsNotNull(generalDesignationModel) ? generalDesignationModel.ToViewModel<GeneralDesignationViewModel>() : new GeneralDesignationViewModel();
+                return IsNotNull(generalDesignationModel) ? generalDesignationModel.ToViewModel<GeneralDesignationViewModel>() : new GeneralDesignationViewModel();
             }
             catch (RARIndiaException ex)
             {
@@ -78,7 +78,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 generalDesignationViewModel.ModifiedBy = LoginUserId();
                 GeneralDesignationModel generalDesignationModel = _generalDesignationMasterDAL.UpdateDesignation(generalDesignationViewModel.ToModel<GeneralDesignationModel>());
-                return RARIndiaHelperUtility.IsNotNull(generalDesignationModel) ? generalDesignationModel.ToViewModel<GeneralDesignationViewModel>() : (GeneralDesignationViewModel)GetViewModelWithErrorMessage(new GeneralDesignationListViewModel(), GeneralResources.UpdateErrorMessage);
+                return IsNotNull(generalDesignationModel) ? generalDesignationModel.ToViewModel<GeneralDesignationViewModel>() : (GeneralDesignationViewModel)GetViewModelWithErrorMessage(new GeneralDesignationListViewModel(), GeneralResources.UpdateErrorMessage);
             }
             catch (Exception ex)
             {

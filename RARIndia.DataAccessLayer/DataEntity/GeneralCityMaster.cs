@@ -12,18 +12,18 @@ namespace RARIndia.DataAccessLayer.DataEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class GeneralCity : RARIndiaEntityBaseModel
+    public partial class GeneralCityMaster : RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GeneralCity()
+        public GeneralCityMaster()
         {
             this.OrganisationCentreMasters = new HashSet<OrganisationCentreMaster>();
         }
     
-        public int GeneralCityId { get; set; }
-        public Nullable<bool> DefaultFlag { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> RegionID { get; set; }
+        public int GeneralCityMasterId { get; set; }
+        public string CityName { get; set; }
+        public bool DefaultFlag { get; set; }
+        public int GeneralRegionMasterId { get; set; }
         public bool IsUserDefined { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

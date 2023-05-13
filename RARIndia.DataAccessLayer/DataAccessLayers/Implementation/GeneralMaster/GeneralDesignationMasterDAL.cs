@@ -43,7 +43,7 @@ namespace RARIndia.DataAccessLayer
         //Create Designation.
         public GeneralDesignationModel CreateDesignation(GeneralDesignationModel generalDesignationModel)
         {
-            if (RARIndiaHelperUtility.IsNull(generalDesignationModel))
+            if (IsNull(generalDesignationModel))
                 throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
             if (IsCodeAlreadyExist(generalDesignationModel.Description))
@@ -80,7 +80,7 @@ namespace RARIndia.DataAccessLayer
         //Update Designation.
         public GeneralDesignationModel UpdateDesignation(GeneralDesignationModel generalDesignationModel)
         {
-            if (RARIndiaHelperUtility.IsNull(generalDesignationModel))
+            if (IsNull(generalDesignationModel))
                 throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
             if (generalDesignationModel.EmployeeDesignationMasterId < 1)

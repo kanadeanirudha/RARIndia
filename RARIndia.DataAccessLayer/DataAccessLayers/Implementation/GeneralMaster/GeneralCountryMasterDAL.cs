@@ -43,7 +43,7 @@ namespace RARIndia.DataAccessLayer
         //Create country.
         public GeneralCountryModel CreateCountry(GeneralCountryModel generalCountryModel)
         {
-            if (RARIndiaHelperUtility.IsNull(generalCountryModel))
+            if (IsNull(generalCountryModel))
                 throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
             if (IsCodeAlreadyExist(generalCountryModel.CountryCode))
@@ -81,7 +81,7 @@ namespace RARIndia.DataAccessLayer
         public GeneralCountryModel UpdateCountry(GeneralCountryModel generalCountryModel)
         {
             bool isCountryUpdated = false;
-            if (RARIndiaHelperUtility.IsNull(generalCountryModel))
+            if (IsNull(generalCountryModel))
                 throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
             if (generalCountryModel.GeneralCountryMasterId < 1)

@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
+
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.DataAccessLayer
 {
 	public class AdminRoleMasterDAL : BaseDataAccessLogic
@@ -65,7 +67,7 @@ namespace RARIndia.DataAccessLayer
 		public AdminRoleMasterModel UpdateAdminRoleMaster(AdminRoleMasterModel adminRoleMasterModel)
 		{
 			bool isAdminRoleMasterUpdated = false;
-			if (RARIndiaHelperUtility.IsNull(adminRoleMasterModel))
+			if (IsNull(adminRoleMasterModel))
 				throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
 			if (adminRoleMasterModel.AdminRoleMasterId < 1)

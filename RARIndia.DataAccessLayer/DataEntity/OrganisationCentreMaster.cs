@@ -23,9 +23,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<int> RoId { get; set; }
         public string CentreSpecialization { get; set; }
         public string CentreAddress { get; set; }
-        public string PlotNo { get; set; }
-        public string StreetName { get; set; }
-        public int CityId { get; set; }
+        public int GeneralCityMasterId { get; set; }
         public string Pincode { get; set; }
         public string EmailId { get; set; }
         public string Url { get; set; }
@@ -51,7 +49,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual GeneralCity GeneralCity { get; set; }
+        public virtual GeneralCityMaster GeneralCityMaster { get; set; }
         public virtual OrganisationMaster OrganisationMaster { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace RARIndia.DataAccessLayer
         //Create Department.
         public GeneralDepartmentModel CreateDepartment(GeneralDepartmentModel generalDepartmentModel)
         {
-            if (RARIndiaHelperUtility.IsNull(generalDepartmentModel))
+            if (IsNull(generalDepartmentModel))
                 throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
             if (IsCodeAlreadyExist(generalDepartmentModel.DepartmentName))
@@ -80,7 +80,7 @@ namespace RARIndia.DataAccessLayer
         //Update Department.
         public GeneralDepartmentModel UpdateDepartment(GeneralDepartmentModel generalDepartmentModel)
         {
-            if (RARIndiaHelperUtility.IsNull(generalDepartmentModel))
+            if (IsNull(generalDepartmentModel))
                 throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
             if (generalDepartmentModel.GeneralDepartmentMasterId < 1)

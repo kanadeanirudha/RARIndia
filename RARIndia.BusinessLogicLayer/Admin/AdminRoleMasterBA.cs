@@ -11,6 +11,7 @@ using System;
 using System.Collections.Specialized;
 using System.Linq;
 
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.BusinessLogicLayer
 {
     public class AdminRoleMasterBA : BaseBusinessLogic
@@ -52,7 +53,7 @@ namespace RARIndia.BusinessLogicLayer
                 adminRoleMasterViewModel.CreatedBy = LoginUserId();
                 adminRoleMasterViewModel.ModifiedBy = LoginUserId();
                 AdminRoleMasterModel adminRoleMasterModel = _adminRoleMasterDAL.UpdateAdminRoleMaster(adminRoleMasterViewModel.ToModel<AdminRoleMasterModel>());
-                return RARIndiaHelperUtility.IsNotNull(adminRoleMasterModel) ? adminRoleMasterModel.ToViewModel<AdminRoleMasterViewModel>() : (AdminRoleMasterViewModel)GetViewModelWithErrorMessage(new AdminRoleMasterListViewModel(), GeneralResources.UpdateErrorMessage);
+                return IsNotNull(adminRoleMasterModel) ? adminRoleMasterModel.ToViewModel<AdminRoleMasterViewModel>() : (AdminRoleMasterViewModel)GetViewModelWithErrorMessage(new AdminRoleMasterListViewModel(), GeneralResources.UpdateErrorMessage);
             }
             catch (Exception ex)
             {

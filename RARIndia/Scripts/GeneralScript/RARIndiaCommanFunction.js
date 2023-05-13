@@ -23,7 +23,6 @@
                     RARIndiaNotification.DisplayNotificationMessage("Failed to retrieve Departments.","error")
                 }
             });
-            //$('#btnCreate').hide();
         }
         else {
             $('#DataTablesDivId tbody').html('');

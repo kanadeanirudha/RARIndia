@@ -10,10 +10,7 @@ namespace RARIndia.Model
         public DateTime FoundationDatetime { get; set; }
         public string FounderMember { get; set; }
         public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string PlotNumber { get; set; }
-        public string StreetNumber { get; set; }
-        public int LocationId { get; set; }
+        public int GeneralCityMasterId { get; set; }
         public string Pincode { get; set; }
         public string EmailId { get; set; }
         public string Url { get; set; }

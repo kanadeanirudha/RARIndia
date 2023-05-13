@@ -1,7 +1,4 @@
-﻿using RARIndia.BusinessLogicLayer;
-using RARIndia.ViewModel;
-
-using System.Web.Mvc;
+﻿using RARIndia.Filters;
 
 namespace RARIndia.Controllers
 {

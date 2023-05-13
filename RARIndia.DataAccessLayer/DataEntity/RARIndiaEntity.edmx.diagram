@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="96360959c0ac4125b05e631ccb690d9e" Name="Diagram1" ZoomLevel="51">
-        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" Width="1.5" PointX="7.5" PointY="6.875" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleCentreRight" Width="1.5" PointX="7.5" PointY="3.375" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleApplicableDetail" Width="1.5" PointX="7.5" PointY="11.25" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleCentreRight" Width="1.5" PointX="7.5" PointY="7.75" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMaster" Width="1.5" PointX="5.25" PointY="7" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" Width="1.5" PointX="7.5" PointY="11.375" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" Width="1.5" PointX="7.5" PointY="3.375" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.AdminSactionPost" Width="1.5" PointX="3" PointY="7" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.EmployeeDesignationMaster" Width="1.5" PointX="0.75" PointY="2.375" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralCity" Width="1.5" PointX="9.75" PointY="3.875" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralCityMaster" Width="1.5" PointX="9.75" PointY="3.75" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralCountryMaster" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralDepartmentMaster" Width="1.5" PointX="0.75" PointY="7.625" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.GeneralLocationMaster" Width="1.5" PointX="4.75" PointY="0.75" />
@@ -24,7 +24,7 @@
         <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationCentreMaster" Width="1.5" PointX="12" PointY="1.25" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationCentrePrintingFormat" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationCentrewiseDepartment" Width="1.5" PointX="3" PointY="19.875" />
-        <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationMaster" Width="1.5" PointX="9.75" PointY="9.25" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.OrganisationMaster" Width="1.5" PointX="9.75" PointY="9.375" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.UserMainMenuMaster" Width="1.5" PointX="6.75" PointY="15.75" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.UserMaster" Width="1.5" PointX="13.75" PointY="15.75" />
         <EntityTypeShape EntityType="RARIndia.EntityModel.UserModuleMaster" Width="1.5" PointX="15.75" PointY="15.75" />

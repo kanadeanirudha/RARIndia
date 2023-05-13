@@ -7,6 +7,7 @@ using RARIndia.ViewModel;
 using System;
 using System.Collections.Specialized;
 
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.BusinessLogicLayer
 {
     public abstract class BaseBusinessLogic
@@ -34,7 +35,7 @@ namespace RARIndia.BusinessLogicLayer
         protected void SetListPagingData(PageListViewModel pageListViewModel, BaseListModel listModel, DataTableModel dataTableModel, int totalRecordCount)
         {
             pageListViewModel.Page = Convert.ToInt32(listModel.PageIndex);
-            pageListViewModel.RecordPerPage = Convert.ToInt16(listModel.PageSize);
+            pageListViewModel.RecordPerPage = Convert.ToInt32(listModel.PageSize);
             pageListViewModel.TotalPages = Convert.ToInt32(listModel.TotalPages);
             pageListViewModel.TotalResults = Convert.ToInt32(listModel.TotalResults);
             pageListViewModel.TotalRecordCount = Convert.ToInt32(totalRecordCount);
@@ -79,7 +80,7 @@ namespace RARIndia.BusinessLogicLayer
         protected string GetFromCookie(string key)
         {
             string value = RARIndiaCookieHelper.GetCookieValue<string>(key);
-            return RARIndiaHelperUtility.IsNull(value) ? string.Empty : value;
+            return IsNull(value) ? string.Empty : value;
         }
 
         /// <summary>

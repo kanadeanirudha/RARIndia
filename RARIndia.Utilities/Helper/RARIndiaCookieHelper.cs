@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 
-
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.Utilities.Helper
 {
     public static class RARIndiaCookieHelper
@@ -85,10 +85,10 @@ namespace RARIndia.Utilities.Helper
                 if (cookieExpireInMinutes != 0)
                     cookie.Expires = DateTime.Now.AddMinutes(cookieExpireInMinutes);
 
-                if (RARIndiaHelperUtility.IsNull(isCookieHttpOnly))
+                if (IsNull(isCookieHttpOnly))
                     cookie.HttpOnly = RARIndiaSetting.IsCookieHttpOnly;
 
-                if (RARIndiaHelperUtility.IsNull(isCookieSecure))
+                if (IsNull(isCookieSecure))
                     cookie.Secure = RARIndiaSetting.IsCookieSecure;
 
 
@@ -129,7 +129,7 @@ namespace RARIndia.Utilities.Helper
         /// <param name="name">Name whoose value to get</param>
         /// <returns>bool</returns>
         public static bool IsCookieExists(string name)
-                => RARIndiaHelperUtility.IsNull(GetCookie(name)) ? false : true;
+                => IsNull(GetCookie(name)) ? false : true;
 
 
 
@@ -139,7 +139,7 @@ namespace RARIndia.Utilities.Helper
         /// <param name="name">Name of cookie which need to remove</param>
         public static void RemoveCookie(string name)
         {
-            if (RARIndiaHelperUtility.IsNotNull(GetCookie(name)))
+            if (IsNotNull(GetCookie(name)))
             {
                 HttpContext.Current.Response.Cookies[name].Expires = DateTime.Now.AddDays(-1);
             }

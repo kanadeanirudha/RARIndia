@@ -13,11 +13,8 @@ namespace RARIndia.ViewModel
         public string FounderMember { get; set; }
         [Required]
         public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string PlotNumber { get; set; }
-        public string StreetNumber { get; set; }
         [Required]
-        public int LocationId { get; set; }
+        public int GeneralCityMasterId { get; set; }
         [Required]
         public string Pincode { get; set; }
         [Required]

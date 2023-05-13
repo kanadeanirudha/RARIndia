@@ -51,7 +51,7 @@ namespace RARIndia.DataAccessLayer
 		//Create adminSnPosts.
 		public AdminSnPostsModel CreateAdminSnPosts(AdminSnPostsModel adminSnPostsModel)
 		{
-			if (RARIndiaHelperUtility.IsNull(adminSnPostsModel))
+			if (IsNull(adminSnPostsModel))
 				throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
 			if (IsCodeAlreadyExist(adminSnPostsModel))
@@ -124,7 +124,7 @@ namespace RARIndia.DataAccessLayer
 		public AdminSnPostsModel UpdateAdminSnPosts(AdminSnPostsModel adminSnPostsModel)
 		{
 			bool isAdminSnPostsUpdated = false;
-			if (RARIndiaHelperUtility.IsNull(adminSnPostsModel))
+			if (IsNull(adminSnPostsModel))
 				throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
 
 			if (adminSnPostsModel.AdminSactionPostId < 1)

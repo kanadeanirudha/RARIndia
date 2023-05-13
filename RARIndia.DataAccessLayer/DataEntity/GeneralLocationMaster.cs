@@ -15,23 +15,20 @@ namespace RARIndia.DataAccessLayer.DataEntity
     public partial class GeneralLocationMaster : RARIndiaEntityBaseModel
     {
         public int GeneralLocationMasterId { get; set; }
-        public Nullable<bool> DefaultFlag { get; set; }
-        public Nullable<int> RegionId { get; set; }
         public string LocationAddress { get; set; }
+        public bool DefaultFlag { get; set; }
+        public int RegionId { get; set; }
         public string PostCode { get; set; }
-        public Nullable<int> CityId { get; set; }
+        public int CityId { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public Nullable<bool> IsUserDefined { get; set; }
-        public Nullable<bool> IsProviance { get; set; }
-        public Nullable<bool> IsTahsil { get; set; }
-        public Nullable<bool> Accuracy { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsUserDefined { get; set; }
+        public bool IsProviance { get; set; }
+        public bool IsTahsil { get; set; }
+        public bool Accuracy { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
-        public Nullable<System.DateTime> DeletedDate { get; set; }
     }
 }

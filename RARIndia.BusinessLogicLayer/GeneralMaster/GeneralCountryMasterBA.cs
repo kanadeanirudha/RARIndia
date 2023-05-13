@@ -8,10 +8,10 @@ using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.BusinessLogicLayer
 {
     public class GeneralCountryMasterBA : BaseBusinessLogic
@@ -48,7 +48,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 generalCountryViewModel.CreatedBy = LoginUserId();
                 GeneralCountryModel generalCountryModel = _generalCountryMasterDAL.CreateCountry(generalCountryViewModel.ToModel<GeneralCountryModel>());
-                return RARIndiaHelperUtility.IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : new GeneralCountryViewModel();
+                return IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : new GeneralCountryViewModel();
             }
             catch (RARIndiaException ex)
             {
@@ -78,7 +78,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 generalCountryViewModel.ModifiedBy = LoginUserId();
                 GeneralCountryModel generalCountryModel = _generalCountryMasterDAL.UpdateCountry(generalCountryViewModel.ToModel<GeneralCountryModel>());
-                return RARIndiaHelperUtility.IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : (GeneralCountryViewModel)GetViewModelWithErrorMessage(new GeneralCountryListViewModel(), GeneralResources.UpdateErrorMessage);
+                return IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : (GeneralCountryViewModel)GetViewModelWithErrorMessage(new GeneralCountryListViewModel(), GeneralResources.UpdateErrorMessage);
             }
             catch (Exception ex)
             {

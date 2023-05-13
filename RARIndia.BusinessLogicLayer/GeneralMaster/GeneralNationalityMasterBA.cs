@@ -46,7 +46,7 @@ namespace RARIndia.BusinessLogicLayer
         //    try
         //    {
         //        GeneralCountryModel generalCountryModel = _generalCountryMasterDAL.CreateCountry(generalCountryViewModel.ToModel<GeneralCountryModel>());
-        //        return RARIndiaHelperUtility.IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : new GeneralCountryViewModel();
+        //        return IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : new GeneralCountryViewModel();
         //    }
         //    catch (RARIndiaException ex)
         //    {
@@ -75,7 +75,7 @@ namespace RARIndia.BusinessLogicLayer
         //    try
         //    {
         //        GeneralCountryModel generalCountryModel = _generalCountryMasterDAL.UpdateCountry(generalCountryViewModel.ToModel<GeneralCountryModel>());
-        //        return RARIndiaHelperUtility.IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : (GeneralCountryViewModel)GetViewModelWithErrorMessage(new GeneralCountryListViewModel(), GeneralResources.UpdateErrorMessage);
+        //        return IsNotNull(generalCountryModel) ? generalCountryModel.ToViewModel<GeneralCountryViewModel>() : (GeneralCountryViewModel)GetViewModelWithErrorMessage(new GeneralCountryListViewModel(), GeneralResources.UpdateErrorMessage);
         //    }
         //    catch (Exception ex)
         //    {

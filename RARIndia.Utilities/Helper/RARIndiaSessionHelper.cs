@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.Utilities.Helper
 {
     public static class RARIndiaSessionHelper
@@ -19,7 +20,7 @@ namespace RARIndia.Utilities.Helper
             switch (GetSessionStateMode())
             {
                 case SessionStateMode.InProc:
-                    if (RARIndiaHelperUtility.IsNotNull(HttpContext.Current.Session))
+                    if (IsNotNull(HttpContext.Current.Session))
                         HttpContext.Current.Session[key] = value;
                     break;
 
@@ -66,7 +67,7 @@ namespace RARIndia.Utilities.Helper
         public static void RemoveDataFromSession(string key)
         {
             var obj = GetDataFromSession<object>(key);
-            if (RARIndiaHelperUtility.IsNull(obj)) return;
+            if (IsNull(obj)) return;
 
             HttpContext.Current.Session.Remove(key);
         }
@@ -88,7 +89,7 @@ namespace RARIndia.Utilities.Helper
             HttpContext.Current.Session[key] = sessionValue;
         }
 
-        public static SessionStateMode GetSessionStateMode() => RARIndiaHelperUtility.IsNull(HttpContext.Current?.Session) ? SessionStateMode.InProc : HttpContext.Current.Session.Mode;
+        public static SessionStateMode GetSessionStateMode() => IsNull(HttpContext.Current?.Session) ? SessionStateMode.InProc : HttpContext.Current.Session.Mode;
 
         public static bool IsSessionObjectPresent()
         {

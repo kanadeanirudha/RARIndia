@@ -8,10 +8,10 @@ using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
+using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.BusinessLogicLayer
 {
     public class GeneralDepartmentMasterBA : BaseBusinessLogic
@@ -48,7 +48,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 generalDepartmentViewModel.CreatedBy = LoginUserId();
                 GeneralDepartmentModel generalDepartmentModel = _generalDepartmentMasterDAL.CreateDepartment(generalDepartmentViewModel.ToModel<GeneralDepartmentModel>());
-                return RARIndiaHelperUtility.IsNotNull(generalDepartmentModel) ? generalDepartmentModel.ToViewModel<GeneralDepartmentViewModel>() : new GeneralDepartmentViewModel();
+                return IsNotNull(generalDepartmentModel) ? generalDepartmentModel.ToViewModel<GeneralDepartmentViewModel>() : new GeneralDepartmentViewModel();
             }
             catch (RARIndiaException ex)
             {
@@ -78,7 +78,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 generalDepartmentViewModel.ModifiedBy = LoginUserId();
                 GeneralDepartmentModel generalDepartmentModel = _generalDepartmentMasterDAL.UpdateDepartment(generalDepartmentViewModel.ToModel<GeneralDepartmentModel>());
-                return RARIndiaHelperUtility.IsNotNull(generalDepartmentModel) ? generalDepartmentModel.ToViewModel<GeneralDepartmentViewModel>() : (GeneralDepartmentViewModel)GetViewModelWithErrorMessage(new GeneralDepartmentListViewModel(), GeneralResources.UpdateErrorMessage);
+                return IsNotNull(generalDepartmentModel) ? generalDepartmentModel.ToViewModel<GeneralDepartmentViewModel>() : (GeneralDepartmentViewModel)GetViewModelWithErrorMessage(new GeneralDepartmentListViewModel(), GeneralResources.UpdateErrorMessage);
             }
             catch (Exception ex)
             {
