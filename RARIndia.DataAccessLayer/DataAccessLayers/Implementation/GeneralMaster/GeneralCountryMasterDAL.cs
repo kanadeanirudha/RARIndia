@@ -92,7 +92,7 @@ namespace RARIndia.DataAccessLayer
             if (!isCountryUpdated)
             {
                 generalCountryModel.HasError = true;
-                generalCountryModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+                generalCountryModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
             }
             return generalCountryModel;
         }

@@ -1,6 +1,8 @@
 ﻿using RARIndia.DataAccessLayer.DataEntity;
 using RARIndia.DataAccessLayer.Repository;
+using RARIndia.ExceptionManager;
 using RARIndia.Model;
+using RARIndia.Resources;
 using RARIndia.Utilities.Helper;
 
 using System.Linq;
@@ -24,5 +26,24 @@ namespace RARIndia.DataAccessLayer
             return model;
         }
 
+        //Update OrganisationMaster.
+        public OrganisationMasterModel UpdateOrganisation(OrganisationMasterModel organisationMasterModel)
+        {
+            bool isOrganisationMasterUpdated = false;
+            if (IsNull(organisationMasterModel))
+                throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
+
+            if (organisationMasterModel.OrganisationMasterId < 1)
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "OrganisationMasterID"));
+
+            //Update OrganisationMaster
+            isOrganisationMasterUpdated = _organisationMasterRepository.Update(organisationMasterModel.FromModelToEntity<OrganisationMaster>());
+            if (!isOrganisationMasterUpdated)
+            {
+                organisationMasterModel.HasError = true;
+                organisationMasterModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
+            }
+            return organisationMasterModel;
+        }
     }
 }

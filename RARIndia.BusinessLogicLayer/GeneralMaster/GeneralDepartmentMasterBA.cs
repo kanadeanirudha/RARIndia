@@ -33,10 +33,10 @@ namespace RARIndia.BusinessLogicLayer
             }
 
             NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);
-            GeneralDepartmentListModel DepartmentList = _generalDepartmentMasterDAL.GetDepartmentList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize);
-            GeneralDepartmentListViewModel listViewModel = new GeneralDepartmentListViewModel { GeneralDepartmentList = DepartmentList?.GeneralDepartmentList?.ToViewModel<GeneralDepartmentViewModel>().ToList() };
+            GeneralDepartmentListModel departmentList = _generalDepartmentMasterDAL.GetDepartmentList(filters, sortlist, dataTableModel.PageIndex, dataTableModel.PageSize);
+            GeneralDepartmentListViewModel listViewModel = new GeneralDepartmentListViewModel { GeneralDepartmentList = departmentList?.GeneralDepartmentList?.ToViewModel<GeneralDepartmentViewModel>().ToList() };
 
-            SetListPagingData(listViewModel.PageListViewModel, DepartmentList, dataTableModel, listViewModel.GeneralDepartmentList.Count);
+            SetListPagingData(listViewModel.PageListViewModel, departmentList, dataTableModel, listViewModel.GeneralDepartmentList.Count);
 
             return listViewModel;
         }

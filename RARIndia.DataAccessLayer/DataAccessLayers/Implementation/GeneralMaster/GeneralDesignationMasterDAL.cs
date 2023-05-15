@@ -91,7 +91,7 @@ namespace RARIndia.DataAccessLayer
             if (!isDesignationUpdated)
             {
                 generalDesignationModel.HasError = true;
-                generalDesignationModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+                generalDesignationModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
             }
             return generalDesignationModel;
         }

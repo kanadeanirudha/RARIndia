@@ -91,7 +91,7 @@ namespace RARIndia.DataAccessLayer
             if (!isDepartmentUpdated)
             {
                 generalDepartmentModel.HasError = true;
-                generalDepartmentModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+                generalDepartmentModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
             }
             return generalDepartmentModel;
         }

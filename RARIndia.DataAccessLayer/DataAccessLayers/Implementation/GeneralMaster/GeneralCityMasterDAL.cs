@@ -92,7 +92,7 @@ namespace RARIndia.DataAccessLayer
             if (!isCityUpdated)
             {
                 generalCityModel.HasError = true;
-                generalCityModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+                generalCityModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
             }
             return generalCityModel;
         }
