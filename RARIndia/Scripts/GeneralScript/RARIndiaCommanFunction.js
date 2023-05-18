@@ -26,6 +26,7 @@
         }
         else {
             $('#DataTablesDivId tbody').html('');
+            $("#SelectedDepartmentID").html("");
         }
     },
 }

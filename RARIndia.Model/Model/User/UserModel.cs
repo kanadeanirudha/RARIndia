@@ -35,6 +35,7 @@ namespace RARIndia.Model
         public int SelectedMenuCode { get; set; }
         public string SelectedBalanceSheet { get; set; }
         public int SelectedBalanceId { get; set; }
+        public string SelectedCentreCode { get; set; } = string.Empty;
         public List<AdminRoleModel> RoleList { get; set; }
         public List<UserModuleModel> ModuleList { get; set; }
         public List<UserMenuModel> MenuList { get; set; }

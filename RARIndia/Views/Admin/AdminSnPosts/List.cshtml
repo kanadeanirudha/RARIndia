@@ -1,10 +1,13 @@
 ﻿@using RARIndia.ViewModel
 @using RARIndia.Resources;
+@using RARIndia.Utilities.Helper;
 @model AdminSnPostsListViewModel
 @{
     ViewBag.Title = "Admin Saction Post";
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    DropdownViewModel centreDropdown = new DropdownViewModel() { DropdownType = DropdownTypeEnum.AccessibleCentre.ToString(), DropdownName = "SelectedCentreCode", DropdownSelectedValue = Model.SelectedCentreCode, ChangeEvent = "RARIndiaCommanFunction.GetDepartmentByCentreCode()" };
+    DropdownViewModel departmentDropdown = new DropdownViewModel() { DropdownType = DropdownTypeEnum.CentrewiseDepartment.ToString(), DropdownName = "SelectedDepartmentID", DropdownSelectedValue = Model.SelectedDepartmentID.ToString(), Parameter = Model.SelectedCentreCode, ChangeEvent = "AdminSnPosts.LoadList('" + @controllerName + "','" + @actionName + "')" };
 }
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12">
@@ -25,13 +28,13 @@
                                 <label>@GeneralResources.LabelCentre</label>
                             </div>
                             <div class="col-md-3">
-                                @Html.Partial("~/Views/Shared/_AccessibleCentreList.cshtml", string.Concat(Model.SelectedCentreCode, "~", "department"))
+                                @Html.Partial("~/Views/Shared/Control/_DropdownList.cshtml", centreDropdown)
                             </div>
                             <div class="col-md-1">
                                 <label>@GeneralResources.LabelDepartments</label>
                             </div>
                             <div class="col-md-3">
-                                @Html.Partial("~/Views/Shared/_DepartmentDropdown.cshtml", Model.GeneralDepartmentList)
+                                @Html.Partial("~/Views/Shared/Control/_DropdownList.cshtml", departmentDropdown)
                             </div>
                             <div class="col-md-1">
                                 <input type="button" class="btn btn-success" value="Show" id="ShowDataId" onclick="AdminSnPosts.LoadList('@controllerName','@actionName')" />

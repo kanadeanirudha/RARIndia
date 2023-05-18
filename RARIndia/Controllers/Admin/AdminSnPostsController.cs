@@ -34,11 +34,6 @@ namespace RARIndia.Controllers
             if (!string.IsNullOrEmpty(dataTableModel.SelectedCentreCode) && dataTableModel.SelectedDepartmentID > 0)
             {
                 viewModel = _adminSnPostsBA.GetAdminSnPostsList(dataTableModel, dataTableModel.SelectedCentreCode, dataTableModel.SelectedDepartmentID);
-                if (!Request.IsAjaxRequest())
-                {
-                    viewModel.GeneralDepartmentList = _generalDepartmentMasterBA.GetDepartmentsByCentreCode(dataTableModel.SelectedCentreCode, Convert.ToString(dataTableModel.SelectedDepartmentID));
-
-                }
             }
 
             viewModel.SelectedCentreCode = dataTableModel.SelectedCentreCode;
@@ -68,7 +63,7 @@ namespace RARIndia.Controllers
                 if (!adminSnPostsViewModel.HasError)
                 {
                     SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
-                    TempData[RARIndiaConstant.DataTableModel] = CreateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
+                    TempData[RARIndiaConstant.DataTableModel] = CreateActionDataTable(adminSnPostsViewModel.CentreCode, Convert.ToInt32(adminSnPostsViewModel.DepartmentID));
                     return RedirectToAction<AdminSnPostsController>(x => x.List(null));
                 }
             }
@@ -83,7 +78,7 @@ namespace RARIndia.Controllers
         {
             AdminSnPostsViewModel adminSnPostsViewModel = _adminSnPostsBA.GetAdminSnPosts(adminSnPostsId);
             adminSnPostsViewModel.SelectedCentreCode = adminSnPostsViewModel.CentreCode;
-            adminSnPostsViewModel.SelectedDepartmentID = System.Convert.ToString(adminSnPostsViewModel.DepartmentID);
+            adminSnPostsViewModel.SelectedDepartmentID = Convert.ToString(adminSnPostsViewModel.DepartmentID);
             return View("~/Views/Admin/AdminSnPosts/Edit.cshtml", adminSnPostsViewModel);
         }
 
@@ -102,7 +97,7 @@ namespace RARIndia.Controllers
 
                 if (!status)
                 {
-                    TempData[RARIndiaConstant.DataTableModel] = UpdateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, System.Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
+                    TempData[RARIndiaConstant.DataTableModel] = UpdateActionDataTable(adminSnPostsViewModel.SelectedCentreCode, Convert.ToInt32(adminSnPostsViewModel.SelectedDepartmentID));
                     return RedirectToAction<AdminSnPostsController>(x => x.List(null));
                 }
             }
@@ -114,9 +109,6 @@ namespace RARIndia.Controllers
         #region Private
         private void BindDropdown(AdminSnPostsViewModel adminSnPostsViewModel)
         {
-
-            if (!string.IsNullOrEmpty(adminSnPostsViewModel.SelectedCentreCode))
-                adminSnPostsViewModel.GeneralDepartmentList = _generalDepartmentMasterBA.GetDepartmentsByCentreCode(adminSnPostsViewModel.SelectedCentreCode, adminSnPostsViewModel.SelectedDepartmentID);
 
             List<SelectListItem> postTypeList = new List<SelectListItem>();
             postTypeList.Add(new SelectListItem { Text = "Temporary", Value = "Temporary" });

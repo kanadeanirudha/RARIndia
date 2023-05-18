@@ -12,6 +12,10 @@
 
     public enum DropdownTypeEnum
     {
-        City
+        City, 
+        AccessibleCentre,
+        CentrewiseDepartment,
+        Department,
+        Designation
     }
 }

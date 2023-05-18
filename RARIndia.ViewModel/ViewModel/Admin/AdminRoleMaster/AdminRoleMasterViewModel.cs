@@ -25,7 +25,7 @@ namespace RARIndia.ViewModel
         public Int16 AdminRoleMasterId { get; set; }
         public string AdminRoleCode { get; set; }
         [Display(Name = "Role Description")]
-        public string SactionedPostDescription { get; set; }
+        public string SanctPostName { get; set; }
 
         public List<SelectListItem> MonitoringLevelList { get; set; }
         [Display(Name = "Monitoring Level")]

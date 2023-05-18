@@ -29,7 +29,7 @@ namespace RARIndia.BusinessLogicLayer
             {
                 filters = new FilterCollection();
                 filters.Add("CountryName", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
-                filters.Add("ContryCode", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
+                filters.Add("CountryCode", ProcedureFilterOperators.Like, dataTableModel.SearchBy);
             }
 
             NameValueCollection sortlist = SortingData(dataTableModel.SortByColumn, dataTableModel.SortBy);

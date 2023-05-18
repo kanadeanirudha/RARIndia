@@ -8,9 +8,9 @@ namespace RARIndia.Model
         public Int16 DesignationId { get; set; }
         public Int16 DepartmentId { get; set; }
         public string CentreCode { get; set; }
-        public string NomenAdminRoleCode { get; set; }
+        public string SactionPostCode { get; set; }
         public string SactionedPostDescription { get; set; }
-        public Int16 NoOfPosts { get; set; }
+        public Int16 NoOfPost { get; set; }
         public string PostType { get; set; }
         public string DesignationType { get; set; }
         public bool IsActive { get; set; }

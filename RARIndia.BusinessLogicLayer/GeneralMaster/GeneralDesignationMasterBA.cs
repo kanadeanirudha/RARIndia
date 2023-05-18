@@ -112,10 +112,9 @@ namespace RARIndia.BusinessLogicLayer
             }
         }
 
-        public GeneralDesignationListModel GetDesignations(int designationID)
+        public GeneralDesignationListModel GetDesignations()
         {
             GeneralDesignationListModel list = _generalDesignationMasterDAL.GetDesignations();
-            list.SelectedDesignationID = designationID;
             return list;
         }
     }

@@ -58,7 +58,8 @@ namespace RARIndia.DataAccessLayer
 			AdminRoleMaster adminRoleMasterData = _adminRoleMasterRepository.Table.FirstOrDefault(x => x.AdminRoleMasterId == adminRoleMasterId);
 			AdminRoleMasterModel adminRoleMasterModel = adminRoleMasterData.FromEntityToModel<AdminRoleMasterModel>();
 			adminRoleMasterModel.SelectedRoleWiseCentres = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterId == adminRoleMasterId && x.IsActive == true)?.Select(y => y.CentreCode)?.Distinct().ToList();
-			adminRoleMasterModel.SelectedCentreCodeForSelf = _adminSnPostsRepository.GetById(adminRoleMasterData.AdminSactionPostId).CentreCode;
+			AdminSactionPost adminSactionPost  = _adminSnPostsRepository.GetById(adminRoleMasterData.AdminSactionPostId);
+			adminRoleMasterModel.SelectedCentreCodeForSelf= adminSactionPost.CentreCode;
 			adminRoleMasterModel.AllCentreList = OrganisationCentreList();
 			return adminRoleMasterModel;
 		}

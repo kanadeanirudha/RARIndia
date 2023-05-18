@@ -67,6 +67,7 @@ namespace RARIndia.DataAccessLayer
                 BindMenuAndModulesForAdminUser(userModel, userAllModuleList, userAllMenuList);
                 userModel.AccessibleCentreList = OrganisationCentreList();
             }
+            userModel.SelectedCentreCode = userModel.AccessibleCentreList?.FirstOrDefault().CentreCode;
             return userModel;
         }
 

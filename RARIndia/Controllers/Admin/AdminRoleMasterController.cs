@@ -15,12 +15,10 @@ namespace RARIndia.Controllers
 	[SessionTimeoutAttribute]
 	public class AdminRoleMasterController : BaseController
 	{
-		readonly GeneralDepartmentMasterBA _generalDepartmentMasterBA = null;
 		readonly AdminRoleMasterBA _adminRoleMasterBA = null;
 
 		public AdminRoleMasterController()
 		{
-			_generalDepartmentMasterBA = new GeneralDepartmentMasterBA();
 			_adminRoleMasterBA = new AdminRoleMasterBA();
 		}
 
@@ -35,10 +33,6 @@ namespace RARIndia.Controllers
 			if (!string.IsNullOrEmpty(dataTableModel.SelectedCentreCode) && dataTableModel.SelectedDepartmentID > 0)
 			{
 				viewModel = _adminRoleMasterBA.GetAdminRoleMasterList(dataTableModel, dataTableModel.SelectedCentreCode, dataTableModel.SelectedDepartmentID);
-				if (!Request.IsAjaxRequest())
-				{
-					viewModel.GeneralDepartmentList = _generalDepartmentMasterBA.GetDepartmentsByCentreCode(dataTableModel.SelectedCentreCode, Convert.ToString(dataTableModel.SelectedDepartmentID));
-				}
 			}
 
 			viewModel.SelectedCentreCode = dataTableModel.SelectedCentreCode;
@@ -98,7 +92,7 @@ namespace RARIndia.Controllers
 		{
 			adminRoleMasterViewModel.MonitoringLevelList = new List<SelectListItem>();
 			adminRoleMasterViewModel.MonitoringLevelList.Add(new SelectListItem { Text = RARIndiaConstant.Self, Value = RARIndiaConstant.Self });
-			if (adminRoleMasterViewModel?.AllCentreList?.Count > 0)
+			if (adminRoleMasterViewModel?.AllCentreList?.Count > 1)
 			{
 				adminRoleMasterViewModel.MonitoringLevelList.Add(new SelectListItem { Text = RARIndiaConstant.Other, Value = RARIndiaConstant.Other });
 			}
@@ -108,7 +102,6 @@ namespace RARIndia.Controllers
 				AdminRoleMasterViewModel viewModel = _adminRoleMasterBA.GetAdminRoleMasterDetailsById(adminRoleMasterViewModel.AdminRoleMasterId);
 				adminRoleMasterViewModel.AllCentreList = viewModel.AllCentreList;
 				adminRoleMasterViewModel.AdminRoleCode = viewModel.AdminRoleCode;
-				adminRoleMasterViewModel.SactionedPostDescription = viewModel.SactionedPostDescription;
 			}
 			adminRoleMasterViewModel.SelectedCentreNameForSelf = adminRoleMasterViewModel.AllCentreList?.FirstOrDefault(x => x.CentreCode == adminRoleMasterViewModel.SelectedCentreCodeForSelf)?.CentreName;
 			adminRoleMasterViewModel?.AllCentreList?.RemoveAll(x => x.CentreCode == adminRoleMasterViewModel.SelectedCentreCodeForSelf);

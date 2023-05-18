@@ -50,7 +50,6 @@ namespace RARIndia.BusinessLogicLayer
         {
             try
             {
-                adminRoleMasterViewModel.CreatedBy = LoginUserId();
                 adminRoleMasterViewModel.ModifiedBy = LoginUserId();
                 AdminRoleMasterModel adminRoleMasterModel = _adminRoleMasterDAL.UpdateAdminRoleMaster(adminRoleMasterViewModel.ToModel<AdminRoleMasterModel>());
                 return IsNotNull(adminRoleMasterModel) ? adminRoleMasterModel.ToViewModel<AdminRoleMasterViewModel>() : (AdminRoleMasterViewModel)GetViewModelWithErrorMessage(new AdminRoleMasterListViewModel(), GeneralResources.UpdateErrorMessage);

@@ -40,7 +40,7 @@ namespace RARIndia.DataAccessLayer
 			objStoredProc.SetParameter("@Rows", pageListModel.PagingLength, ParameterDirection.Input, DbType.Int32);
 			objStoredProc.SetParameter("@Order_BY", pageListModel.OrderBy, ParameterDirection.Input, DbType.String);
 			objStoredProc.SetParameter("@RowsCount", pageListModel.TotalRowCount, ParameterDirection.Output, DbType.Int32);
-			List<AdminSnPostsModel> adminSnPostsList = objStoredProc.ExecuteStoredProcedureList("RARIndia_GetAdminSnPostsList @CentreCode,@DepartmentId, @WhereClause,@Rows,@PageNo,@Order_BY,@RowsCount OUT", 6, out pageListModel.TotalRowCount)?.ToList();
+			List<AdminSnPostsModel> adminSnPostsList = objStoredProc.ExecuteStoredProcedureList("RARIndia_GetAdminSactionPostsList @CentreCode,@DepartmentId, @WhereClause,@Rows,@PageNo,@Order_BY,@RowsCount OUT", 6, out pageListModel.TotalRowCount)?.ToList();
 			AdminSnPostsListModel listModel = new AdminSnPostsListModel();
 
 			listModel.AdminSnPostsList = adminSnPostsList?.Count > 0 ? adminSnPostsList : new List<AdminSnPostsModel>();
@@ -62,7 +62,7 @@ namespace RARIndia.DataAccessLayer
 			EmployeeDesignationMaster employeeDesignationMaster = GetDesignationDetails(adminSnPostsModel.DesignationId);
 			GeneralDepartmentMaster generalDepartmentMaster = GetDepartmentDetails(adminSnPostsModel.DepartmentId);
 
-			adminSnPostsModel.NomenAdminRoleCode = $"{employeeDesignationMaster.ShortCode}-{generalDepartmentMaster.DepartmentShortCode}-{adminSnPostsModel.CentreCode}";
+			adminSnPostsModel.SactionPostCode = $"{employeeDesignationMaster.ShortCode}-{generalDepartmentMaster.DepartmentShortCode}-{adminSnPostsModel.CentreCode}";
 			adminSnPostsModel.SactionedPostDescription = $"{employeeDesignationMaster.Description}-{generalDepartmentMaster.DepartmentName}-{adminSnPostsModel.PostType}-{adminSnPostsModel.DesignationType}";
 			AdminSactionPost adminSnPostEntity = adminSnPostsModel.FromModelToEntity<AdminSactionPost>();
 			//Create new adminSnPosts and return it.
@@ -75,7 +75,7 @@ namespace RARIndia.DataAccessLayer
 					AdminSactionPostId = adminSnPostsModel.AdminSactionPostId,
 					SanctPostName = adminSnPostsModel.SactionedPostDescription,
 					MonitoringLevel = RARIndiaConstant.Self,
-					AdminRoleCode = adminSnPostsModel.NomenAdminRoleCode,
+					AdminRoleCode = adminSnPostsModel.SactionPostCode,
 					OthCentreLevel = string.Empty,
 					IsActive = true,
 					CreatedBy = adminSnPostsModel.CreatedBy
@@ -131,7 +131,7 @@ namespace RARIndia.DataAccessLayer
 				throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminSnPostsID"));
 
 			AdminSactionPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.AdminSactionPostId == adminSnPostsModel.AdminSactionPostId);
-			adminSnPostsData.NoOfPost = adminSnPostsModel.NoOfPosts;
+			adminSnPostsData.NoOfPost = adminSnPostsModel.NoOfPost;
 			adminSnPostsData.IsActive = adminSnPostsModel.IsActive;
 			adminSnPostsData.ModifiedBy = adminSnPostsModel.ModifiedBy;
 

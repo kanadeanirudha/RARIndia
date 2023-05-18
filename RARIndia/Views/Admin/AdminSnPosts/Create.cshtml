@@ -1,10 +1,14 @@
 ﻿@using RARIndia.ViewModel;
 @using RARIndia.Resources;
+@using RARIndia.Utilities.Helper;
 @model AdminSnPostsViewModel
 @{
     ViewBag.Title = "Add Admin Sn Post";
     string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
     string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    DropdownViewModel centreDropdown = new DropdownViewModel() { DropdownType = DropdownTypeEnum.AccessibleCentre.ToString(), DropdownName = "SelectedCentreCode", DropdownSelectedValue = Model.SelectedCentreCode, ChangeEvent = "RARIndiaCommanFunction.GetDepartmentByCentreCode()" };
+    DropdownViewModel departmentDropdown = new DropdownViewModel() { DropdownType = DropdownTypeEnum.CentrewiseDepartment.ToString(), DropdownName = "SelectedDepartmentID", DropdownSelectedValue = Convert.ToString(Model.SelectedDepartmentID), Parameter = Model.SelectedCentreCode };
+    DropdownViewModel designationDropdown = new DropdownViewModel() { DropdownType = DropdownTypeEnum.Designation.ToString(), DropdownName = "DesignationID", DropdownSelectedValue = Convert.ToString(Model.DesignationID) };
 }
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
@@ -29,8 +33,8 @@
                 <div class="card-content collpase show">
                     <div class="card-body">
                         @*<div class="card-text">
-            <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
-        </div>*@
+                                <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
+                            </div>*@
                         @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
                         {
                             <div class="form-body">
@@ -40,8 +44,7 @@
                                         <div class="form-group row">
                                             @Html.LabelFor(x => x.SelectedCentreCode, new { @class = "col-md-3 label-control" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.Partial("~/Views/Shared/_AccessibleCentreList.cshtml", string.Concat(Model.SelectedCentreCode, "~", "department"))
-                                                @Html.ValidationMessageFor(x => x.SelectedCentreCode, null, new { @class = "red" })
+                                                @Html.Partial("~/Views/Shared/Control/_DropdownList.cshtml", centreDropdown)  @Html.ValidationMessageFor(x => x.SelectedCentreCode, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +52,7 @@
                                         <div class="form-group row">
                                             @Html.LabelFor(x => x.SelectedDepartmentID, new { @class = "col-md-3 label-control required" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.Partial("~/Views/Shared/_DepartmentDropdown.cshtml", Model.GeneralDepartmentList)
+                                                @Html.Partial("~/Views/Shared/Control/_DropdownList.cshtml", departmentDropdown)
                                                 @Html.ValidationMessageFor(x => x.SelectedDepartmentID, null, new { @class = "red" })
                                             </div>
                                         </div>
@@ -60,17 +63,17 @@
                                         <div class="form-group row">
                                             @Html.LabelFor(x => x.DesignationID, new { @class = "col-md-3 label-control" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.Partial("~/Views/Shared/_DesignationDropdown.cshtml", Model.DesignationID)
+                                                @Html.Partial("~/Views/Shared/Control/_DropdownList.cshtml", designationDropdown)
                                                 @Html.ValidationMessageFor(x => x.DesignationID, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.NoOfPosts, new { @class = "col-md-3 label-control required" })
+                                            @Html.LabelFor(x => x.NoOfPost, new { @class = "col-md-3 label-control required" })
                                             <div class="col-md-9 mx-auto">
-                                                @Html.TextBoxFor(x => x.NoOfPosts, new { @class = "form-control border-primary", @placeholder = "Number Of Posts", @maxLength = "5", @type = "number" })
-                                                @Html.ValidationMessageFor(x => x.NoOfPosts, null, new { @class = "red" })
+                                                @Html.TextBoxFor(x => x.NoOfPost, new { @class = "form-control border-primary", @placeholder = "Number Of Post", @maxLength = "5", @type = "number" })
+                                                @Html.ValidationMessageFor(x => x.NoOfPost, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>

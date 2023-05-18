@@ -7,7 +7,7 @@ namespace RARIndia.Model
     {
         public Int16 AdminRoleMasterId { get; set; }
         public string AdminRoleCode { get; set; }
-        public string SactionedPostDescription { get; set; }
+        public string SanctPostName { get; set; }
         public bool IsActive { get; set; }
         public string MonitoringLevel { get; set; }
         public bool IsLoginAllowFromOutside { get; set; }

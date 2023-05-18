@@ -20,7 +20,7 @@
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
-                            <li><a href="../@controllerName/Edit?adminSnPostsId=@Model.AdminSnPostsId" title="Reset"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a href="../@controllerName/Edit?adminSnPostsId=@Model.AdminSactionPostId" title="Reset"><i class="ft-rotate-cw"></i></a></li>
                             <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
                             <li><a href="../@controllerName/List" title="Cancle"><i class="ft-x"></i></a></li>
                         </ul>
@@ -33,12 +33,12 @@
         </div>*@
                         @using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @class = "form form-horizontal" }))
                         {
-                            @Html.HiddenFor(m => m.AdminSnPostsId);
+                            @Html.HiddenFor(m => m.AdminSactionPostId);
                             @Html.HiddenFor(m => m.SelectedCentreCode);
                             @Html.HiddenFor(m => m.SelectedDepartmentID);
                             @Html.HiddenFor(m => m.CentreName);
                             @Html.HiddenFor(m => m.DepartmentName);
-                            @Html.HiddenFor(m => m.NomenAdminRoleCode);
+                            @Html.HiddenFor(m => m.SactionPostCode);
                             @Html.HiddenFor(m => m.SactionedPostDescription);
                             <div class="form-body">
                                 @*<h4 class="form-section"><i class="la la-eye"></i> About User</h4>*@
@@ -65,9 +65,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.NomenAdminRoleCode, new { @class = "col-md-4 label-control" })
+                                            @Html.LabelFor(x => x.SactionPostCode, new { @class = "col-md-4 label-control" })
                                             <div class="col-md-8 mx-auto">
-                                                @Html.DisplayFor(x => x.NomenAdminRoleCode)
+                                                @Html.DisplayFor(x => x.SactionPostCode)
                                             </div>
                                         </div>
                                     </div>
@@ -84,10 +84,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            @Html.LabelFor(x => x.NoOfPosts, new { @class = "col-md-4 label-control required" })
+                                            @Html.LabelFor(x => x.NoOfPost, new { @class = "col-md-4 label-control required" })
                                             <div class="col-md-8 mx-auto">
-                                                @Html.TextBoxFor(x => x.NoOfPosts, new { @class = "form-control border-primary", @placeholder = "Number Of Posts", @maxLength = "5", @type = "number", @min = Model.NoOfPosts })
-                                                @Html.ValidationMessageFor(x => x.NoOfPosts, null, new { @class = "red" })
+                                                @Html.TextBoxFor(x => x.NoOfPost, new { @class = "form-control border-primary", @placeholder = "Number Of Post", @maxLength = "5", @type = "number", @min = Model.NoOfPost })
+                                                @Html.ValidationMessageFor(x => x.NoOfPost, null, new { @class = "red" })
                                             </div>
                                         </div>
                                     </div>
