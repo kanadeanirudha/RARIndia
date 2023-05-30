@@ -50,6 +50,10 @@ namespace RARIndia
             #region Organisation
             Mapper.CreateMap<OrganisationMasterModel, OrganisationMasterViewModel>().ReverseMap();
             Mapper.CreateMap<OrganisationMasterModel, OrganisationMaster>().ReverseMap();
+
+            Mapper.CreateMap<OrganisationCentreModel, OrganisationCentreViewModel>().ReverseMap();
+            Mapper.CreateMap<OrganisationCentreListModel, OrganisationCentreListViewModel>().ReverseMap();
+            Mapper.CreateMap<OrganisationCentreModel, OrganisationCentreMaster>().ReverseMap();
             #endregion
         }
     }

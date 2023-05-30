@@ -4,6 +4,10 @@
     {
        CountryId
     }
+    public enum RARIndiaCentreEnum
+    {
+        organisationId
+    }
 
     public enum RARIndiaCityEnum
     {
@@ -16,6 +20,11 @@
         AccessibleCentre,
         CentrewiseDepartment,
         Department,
-        Designation
+        Designation,
+        Organisation,
+        RegionalOffice,
+        Centre
+
+
     }
 }

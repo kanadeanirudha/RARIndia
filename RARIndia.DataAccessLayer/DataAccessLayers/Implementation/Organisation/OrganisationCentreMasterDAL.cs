@@ -5,128 +5,112 @@ using RARIndia.ExceptionManager;
 using RARIndia.Model;
 using RARIndia.Resources;
 using RARIndia.Utilities.Helper;
-
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
-
 using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
-
 namespace RARIndia.DataAccessLayer
 {
-    public class OrganisationCentreMasterDAL
+    public class OrganisationCentreMasterDAL : BaseDataAccessLogic
     {
-        private readonly IRARIndiaRepository<GeneralCountryMaster> _generalCountryMasterRepository;
-
+        private readonly IRARIndiaRepository<OrganisationCentreMaster> _organisationCentreMasterRepository;
         public OrganisationCentreMasterDAL()
         {
-            _generalCountryMasterRepository = new RARIndiaRepository<GeneralCountryMaster>();
+            _organisationCentreMasterRepository = new RARIndiaRepository<OrganisationCentreMaster>();
+        }
+        public OrganisationCentreListModel GetOrganisationCentreList(FilterCollection filters, NameValueCollection sorts, int pagingStart, int pagingLength)
+        {
+            //Bind the Filter, sorts & Paging details.
+            PageListModel pageListModel = new PageListModel(filters, sorts, pagingStart, pagingLength);
+            RARIndiaViewRepository<OrganisationCentreModel> objStoredProc = new RARIndiaViewRepository<OrganisationCentreModel>();
+            objStoredProc.SetParameter("@WhereClause", pageListModel.SPWhereClause, ParameterDirection.Input, DbType.String);
+            objStoredProc.SetParameter("@PageNo", pageListModel.PagingStart, ParameterDirection.Input, DbType.Int32);
+            objStoredProc.SetParameter("@Rows", pageListModel.PagingLength, ParameterDirection.Input, DbType.Int32);
+            objStoredProc.SetParameter("@Order_BY", pageListModel.OrderBy, ParameterDirection.Input, DbType.String);
+            objStoredProc.SetParameter("@RowsCount", pageListModel.TotalRowCount, ParameterDirection.Output, DbType.Int32);
+            List<OrganisationCentreModel> organisationCentreList = objStoredProc.ExecuteStoredProcedureList("RARIndia_GetOrganisationCentreList @WhereClause,@Rows,@PageNo,@Order_BY,@RowsCount OUT", 4, out pageListModel.TotalRowCount)?.ToList();
+            OrganisationCentreListModel listModel = new OrganisationCentreListModel();
+
+            listModel.OrganisationCentreList = organisationCentreList?.Count > 0 ? organisationCentreList : new List<OrganisationCentreModel>();
+            listModel.BindPageListModel(pageListModel);
+            return listModel;
         }
 
-        //public GeneralCountryListModel GetOrganisationCentreList(FilterCollection filters, NameValueCollection sorts, int pagingStart, int pagingLength)
-        //{
-        //    //Bind the Filter, sorts & Paging details.
-        //    PageListModel pageListModel = new PageListModel(filters, sorts, pagingStart, pagingLength);
-        //    RARIndiaViewRepository<GeneralCountryModel> objStoredProc = new RARIndiaViewRepository<GeneralCountryModel>();
-        //    objStoredProc.SetParameter("@WhereClause", pageListModel.SPWhereClause, ParameterDirection.Input, DbType.String);
-        //    objStoredProc.SetParameter("@PageNo", pageListModel.PagingStart, ParameterDirection.Input, DbType.Int32);
-        //    objStoredProc.SetParameter("@Rows", pageListModel.PagingLength, ParameterDirection.Input, DbType.Int32);
-        //    objStoredProc.SetParameter("@Order_BY", pageListModel.OrderBy, ParameterDirection.Input, DbType.String);
-        //    objStoredProc.SetParameter("@RowsCount", pageListModel.TotalRowCount, ParameterDirection.Output, DbType.Int32);
-        //    List<GeneralCountryModel> countryList = objStoredProc.ExecuteStoredProcedureList("RARIndia_GetCountryList @WhereClause,@Rows,@PageNo,@Order_BY,@RowsCount OUT", 4, out pageListModel.TotalRowCount)?.ToList();
-        //    GeneralCountryListModel listModel = new GeneralCountryListModel();
+        //Create Organisation Centre.
 
-        //    listModel.GeneralCountryList = countryList?.Count > 0 ? countryList : new List<GeneralCountryModel>();
-        //    listModel.BindPageListModel(pageListModel);
-        //    return listModel;
-        //}
+        public OrganisationCentreModel CreateOrganisationCentre(OrganisationCentreModel organisationCentreModel)
+        {
+            if (IsNull(organisationCentreModel))
+                throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
-        ////Create Organisation Centre.
-        //public GeneralCountryModel CreateOrganisationCentre(GeneralCountryModel generalCountryModel)
-        //{
-        //    if (IsNull(generalCountryModel))
-        //        throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
+            if (IsCodeAlreadyExist(organisationCentreModel.CentreCode))
+            {
+                throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "Centre code"));
+            }
+            OrganisationCentreMaster organisationCentreMaster = organisationCentreModel.FromModelToEntity<OrganisationCentreMaster>();
 
-        //    if (IsCodeAlreadyExist(generalCountryModel.CountryCode))
-        //    {
-        //        throw new RARIndiaException(ErrorCodes.AlreadyExist, GeneralResources.ErrorCountryCodeExists);
-        //    }
-        //    GeneralCountryMaster a = generalCountryModel.FromModelToEntity<GeneralCountryMaster>();
-        //    //Create new country and return it.
-        //    GeneralCountryMaster countryData = _generalCountryMasterRepository.Insert(a);
-        //    if (countryData?.ID > 0)
-        //    {
-        //        generalCountryModel.CountryId = countryData.ID;
-        //    }
-        //    else
-        //    {
-        //        generalCountryModel.HasError = true;
-        //        generalCountryModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
-        //    }
-        //    return generalCountryModel;
-        //}
+            //Create new Organisation Centre  and return it.
+            OrganisationCentreMaster organisationData = _organisationCentreMasterRepository.Insert(organisationCentreMaster);
+            if (organisationData?.OrganisationCentreMasterId > 0)
+            {
+                organisationCentreModel.OrganisationCentreMasterId = organisationData.OrganisationCentreMasterId;
+            }
+            else
+            {
+                organisationCentreModel.HasError = true;
+                organisationCentreModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+            }
+            return organisationCentreModel;
+        }
 
-        ////Get Organisation Centre by OrganisationCentreid.
-        //public GeneralCountryModel GetOrganisationCentre(int countryId)
-        //{
-        //    if (countryId <= 0)
-        //        throw new RARIndiaException(ErrorCodes.IdLessThanOne, GeneralResources.ErrorCountryIdLessThanOne);
+        //Get Organisation Centre by organisationCentreId.
+        public OrganisationCentreModel GetOrganisationCentre(int organisationCentreId)
+        {
+            if (organisationCentreId <= 0)
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "organisationCentreId"));
+            //Get the organisation Details based on id.
+            OrganisationCentreMaster organisationData = _organisationCentreMasterRepository.Table.FirstOrDefault(x => x.OrganisationCentreMasterId == organisationCentreId);
+            OrganisationCentreModel organisationCentreModel = organisationData.FromEntityToModel<OrganisationCentreModel>();
+            return organisationCentreModel;
+        }
 
-        //    //Get the country Details based on id.
-        //    GeneralCountryMaster countryData = _generalCountryMasterRepository.Table.FirstOrDefault(x => x.ID == countryId);
-        //    GeneralCountryModel generalCountryModel = countryData.FromEntityToModel<GeneralCountryModel>();
-        //    return generalCountryModel;
-        //}
+        //Update Organisation Centre.
+        public OrganisationCentreModel UpdateOrganisationCentre(OrganisationCentreModel organisationCentreModel)
+        {
+            if (IsNull(organisationCentreModel))
+                throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
+            if (organisationCentreModel.OrganisationCentreMasterId < 1)
 
-        //public GeneralCountryModel GetOrganisationCentreByRoleId(bool isAdminUser, int roleId, string rightName)
-        //{
-        //    GeneralCountryMaster countryData = _generalCountryMasterRepository.Table.FirstOrDefault(x => x.ID == roleId);
-        //    GeneralCountryModel generalCountryModel = countryData.FromEntityToModel<GeneralCountryModel>();
-        //    return generalCountryModel;
-        //}
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "organisationCentreId"));
+            bool isOrganisationCentreUpdated = _organisationCentreMasterRepository.Update(organisationCentreModel.FromModelToEntity<OrganisationCentreMaster>());
+            if (!isOrganisationCentreUpdated)
+            {
+                organisationCentreModel.HasError = true;
+                organisationCentreModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
+            }
+            return organisationCentreModel;
+        }
 
-        ////Update Organisation Centre.
-        //public GeneralCountryModel UpdateOrganisationCentre(GeneralCountryModel generalCountryModel)
-        //{
-        //    bool isCountryUpdated = false;
-        //    if (IsNull(generalCountryModel))
-        //        throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ModelNotNull);
+        //Delete Organisation Centre.
+        public bool DeleteCentre(ParameterModel parameterModel)
+        {
+            if (IsNull(parameterModel) || string.IsNullOrEmpty(parameterModel.Ids))
+                throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "organisationCentreId"));
 
-        //    if (generalCountryModel.CountryId < 1)
-        //        throw new RARIndiaException(ErrorCodes.IdLessThanOne, GeneralResources.IdCanNotBeLessThanOne);
+            RARIndiaViewRepository<View_ReturnBoolean> objStoredProc = new RARIndiaViewRepository<View_ReturnBoolean>();
+            objStoredProc.SetParameter(RARIndiaCentreEnum.organisationId.ToString(), parameterModel.Ids, ParameterDirection.Input, DbType.String);
+            objStoredProc.SetParameter("Status", null, ParameterDirection.Output, DbType.Int32);
+            int status = 0;
+            objStoredProc.ExecuteStoredProcedureList("RARIndia_DeleteOrganisationCentre @organisationCentreId,  @Status OUT", 1, out status);
 
-        //    //Update country
-        //    isCountryUpdated = _generalCountryMasterRepository.Update(generalCountryModel.FromModelToEntity<GeneralCountryMaster>());
-        //    if (!isCountryUpdated)
-        //    {
-        //        generalCountryModel.HasError = true;
-        //        generalCountryModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
-        //    }
-        //    return generalCountryModel;
-        //}
+            return status == 1 ? true : false;
+        }
 
-        ////Delete Organisation Centre.
-        //public bool DeleteOrganisationCentre(ParameterModel parameterModel)
-        //{
-        //    if (IsNull(parameterModel) || string.IsNullOrEmpty(parameterModel.Ids))
-        //        throw new RARIndiaException(ErrorCodes.IdLessThanOne, GeneralResources.ErrorCountryIdLessThanOne);
-
-        //    RARIndiaViewRepository<View_ReturnBoolean> objStoredProc = new RARIndiaViewRepository<View_ReturnBoolean>();
-        //    objStoredProc.SetParameter(RARIndiaCountryEnum.CountryId.ToString(), parameterModel.Ids, ParameterDirection.Input, DbType.String);
-        //    objStoredProc.SetParameter("Status", null, ParameterDirection.Output, DbType.Int32);
-        //    int status = 0;
-        //    objStoredProc.ExecuteStoredProcedureList("RARIndia_DeleteCountry @CountryId,  @Status OUT", 1, out status);
-
-        //    return status == 1 ? true : false;
-        //}
-
-
-        //#region Private Method
-
-        ////Check if Organisation Centre code is already present or not.
-        //private bool IsCodeAlreadyExist(string countryCode)
-        // => _generalCountryMasterRepository.Table.Any(x => x.ContryCode == countryCode);
-        //#endregion
+        #region Private Method
+        //Check if Centre code is already present or not.
+        private bool IsCodeAlreadyExist(string centreCode)
+         => _organisationCentreMasterRepository.Table.Any(x => x.CentreCode == centreCode);
+        #endregion
     }
 }

@@ -291,6 +291,9 @@
     <Content Include="Views\GeneralMaster\GeneralCityMaster\_List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralCityMaster\CreateEdit.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralCityMaster\List.cshtml" />
+    <Content Include="Views\Organisation\OrganisationCentreMaster\_List.cshtml" />
+    <Content Include="Views\Organisation\OrganisationCentreMaster\List.cshtml" />
+    <Content Include="Views\Organisation\OrganisationCentreMaster\CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

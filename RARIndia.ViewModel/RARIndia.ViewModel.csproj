@@ -62,6 +62,8 @@
     <Compile Include="ViewModel\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralNationalityMaster\GeneralNationalityListViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralNationalityMaster\GeneralNationalityViewModel.cs" />
+    <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentreListViewModel.cs" />
+    <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentreViewModel.cs" />
     <Compile Include="ViewModel\Organisation\OrganisationMaster\OrganisationMasterViewModel.cs" />
     <Compile Include="ViewModel\PageListViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -82,8 +84,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Organisation\OrganisationCentre\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

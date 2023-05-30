@@ -96,6 +96,48 @@ namespace RARIndia.DropdownHelper
                     });
                 }
             }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.Organisation.ToString()))
+            {
+                OrganisationMasterViewModel item
+                    = new OrganisationMasterBA().GetOrganisationDetails();
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = item.OrganisationName,
+                    Value = item.OrganisationMasterId.ToString(),
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(item.OrganisationMasterId)
+                });
+            }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.RegionalOffice.ToString()))
+            {
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = "Centre",
+                    Value = "CO",
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
+                });
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = "Head Office",
+                    Value = "HO",
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
+                });
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = "Regional Office",
+                    Value = "RO",
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
+                });
+
+            }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.Centre.ToString()))
+            {
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = "Centre",
+                    Value = "CO",
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
+                });
+            }
             dropdownViewModel.DropdownList = dropdownList;
             return dropdownViewModel;
         }
