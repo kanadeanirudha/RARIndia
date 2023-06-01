@@ -49,6 +49,7 @@
     <Compile Include="GeneralMaster\GeneralDepartmentMasterBA.cs" />
     <Compile Include="GeneralMaster\GeneralNationalityMasterBA.cs" />
     <Compile Include="GeneralMaster\GeneralCountryMasterBA.cs" />
+    <Compile Include="GeneralMaster\GeneralTaxMasterBA.cs" />
     <Compile Include="Organisation\OrganisationCentreMasterBA.cs" />
     <Compile Include="Organisation\OrganisationMasterBA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,6 +14,11 @@
         CityId
     }
 
+    public enum RARIndiaTaxMasterEnum
+    {
+        TaxMasterId
+    }
+
     public enum DropdownTypeEnum
     {
         City, 

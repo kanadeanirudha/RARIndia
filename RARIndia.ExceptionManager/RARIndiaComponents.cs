@@ -11,7 +11,9 @@
             AdminSnPosts = 5,
             AdminRoleMaster = 6,
             City = 7,
-            OrganisationCentre = 8
+            OrganisationCentre = 8,
+            TaxMaster = 9,
+
         }
     }
 }

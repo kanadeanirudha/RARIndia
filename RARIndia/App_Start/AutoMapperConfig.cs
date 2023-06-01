@@ -47,6 +47,10 @@ namespace RARIndia
             Mapper.CreateMap<UserModel, UserMaster>().ReverseMap();
             Mapper.CreateMap<UserModuleModel, UserModuleMaster>().ReverseMap();
 
+            Mapper.CreateMap<GeneralTaxMasterModel, GeneralTaxMasterViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralTaxMasterListModel, GeneralTaxMasterListViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralTaxMasterModel, GeneralTaxMaster>().ReverseMap();
+
             #region Organisation
             Mapper.CreateMap<OrganisationMasterModel, OrganisationMasterViewModel>().ReverseMap();
             Mapper.CreateMap<OrganisationMasterModel, OrganisationMaster>().ReverseMap();

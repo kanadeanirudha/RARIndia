@@ -54,6 +54,8 @@
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCityMaster\GeneralCityListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCityMaster\GeneralCityModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterListModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterModel.cs" />
     <Compile Include="Model\Organisation\OrganisationCentre\OrganisationCentreListModel.cs" />
     <Compile Include="Model\Organisation\OrganisationCentre\OrganisationCentreModel.cs" />
     <Compile Include="Model\Organisation\OrganisationMaster\OrganisationMasterModel.cs" />
