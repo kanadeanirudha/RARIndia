@@ -1,6 +1,6 @@
-﻿using RARIndia.BusinessLogicLayer;
-using RARIndia.Filters;
-using RARIndia.Model;
+﻿using RARIndia.Filters;
+using RARIndia.Utilities.Helper;
+using RARIndia.ViewModel;
 
 using System.Web.Mvc;
 
@@ -13,5 +13,16 @@ namespace RARIndia.Controllers
         {
         }
 
+        //Get Departments By CentreCode
+        public ActionResult GetDepartmentsByCentreCode(string centreCode)
+        {
+            DropdownViewModel departmentDropdown = new DropdownViewModel()
+            {
+                DropdownType = DropdownTypeEnum.CentrewiseDepartment.ToString(),
+                DropdownName = "SelectedDepartmentID",
+                Parameter = centreCode,
+            };
+            return PartialView("~/Views/Shared/Control/_DropdownList.cshtml", departmentDropdown);
+        }
     }
 }
