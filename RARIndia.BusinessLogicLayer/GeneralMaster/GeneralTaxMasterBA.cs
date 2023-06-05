@@ -7,6 +7,7 @@ using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
 using RARIndia.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
@@ -105,6 +106,12 @@ namespace RARIndia.BusinessLogicLayer
                 errorMessage = GeneralResources.ErrorFailedToDelete;
                 return false;
             }
+        }
+        // it will return get all tax list from database 
+        public GeneralTaxMasterListModel GetAllTaxList()
+        {
+            GeneralTaxMasterListModel taxMasterList = _generalTaxMasterDAL.GetTaxMasterList(null, null, 1, int.MaxValue);
+            return taxMasterList?.GeneralTaxMasterList?.Count > 0 ? taxMasterList : new GeneralTaxMasterListModel();
         }
     }
 }

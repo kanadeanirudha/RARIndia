@@ -156,6 +156,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GeneralCommanDataController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCiryMasterController.cs" />
+    <Compile Include="Controllers\GeneralMaster\GeneralTaxGroupMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralTaxMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralDepartmentMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
@@ -298,6 +299,9 @@
     <Content Include="Views\GeneralMaster\GeneralTaxMaster\_List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralTaxMaster\List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralTaxMaster\CreateEdit.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\_List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

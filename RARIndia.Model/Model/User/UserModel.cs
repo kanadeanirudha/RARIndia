@@ -41,5 +41,6 @@ namespace RARIndia.Model
         public List<UserMenuModel> MenuList { get; set; }
         public List<UserBalanceSheetModel> BalanceSheetList { get; set; }
         public List<UserAccessibleCentreModel> AccessibleCentreList { get; set; }
+        public List<GeneralTaxGroupMasterModel> TaxGroupMasterList { get; set; }
     }
 }

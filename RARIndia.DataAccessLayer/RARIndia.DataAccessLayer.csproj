@@ -59,6 +59,7 @@
     <Compile Include="DataAccessLayers\Implementation\Admin\AdminRoleMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\Admin\AdminSnPostsDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCityMasterDAL.cs" />
+    <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralTaxGroupMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralTaxMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralDesignationMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralDepartmentMasterDAL.cs" />

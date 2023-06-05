@@ -17,6 +17,10 @@ namespace RARIndia.DropdownHelper
         {
             return RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession)?.AccessibleCentreList;
         }
+        public static List<GeneralTaxGroupMasterModel> TaxGroupMasterList()
+        {
+            return RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession)?.TaxGroupMasterList;
+        }
 
         public static DropdownViewModel GeneralDropdownList(DropdownViewModel dropdownViewModel)
         {
@@ -129,18 +133,22 @@ namespace RARIndia.DropdownHelper
                 });
 
             }
-            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.Centre.ToString()))
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.TaxGroup.ToString()))
             {
-                dropdownList.Add(new SelectListItem()
+                GeneralTaxGroupMasterListViewModel list = new GeneralTaxGroupMasterBA().GetTaxGroupMasterList(new DataTableModel() { PageSize = int.MaxValue });
+                dropdownList.Add(new SelectListItem() { Value = "", Text = "-------Select Tax Group-------" });
+                foreach (var item in list.GeneralTaxGroupMasterList)
                 {
-                    Text = "Centre",
-                    Value = "CO",
-                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
-                });
+                    dropdownList.Add(new SelectListItem()
+                    {
+                        Text = string.Concat(item.TaxGroupName, " (", item.GeneralTaxMasterIds, ")"),
+                        Value = Convert.ToString(item.GeneralTaxGroupMasterId),
+                        Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(item.GeneralTaxGroupMasterId)
+                    });
+                }
             }
             dropdownViewModel.DropdownList = dropdownList;
             return dropdownViewModel;
         }
-
     }
 }

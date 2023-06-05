@@ -19,6 +19,10 @@
         TaxMasterId
     }
 
+    public enum RARIndiaTaxGroupMasterEnum
+    {
+        TaxGroupMasterId
+    }
     public enum DropdownTypeEnum
     {
         City, 
@@ -28,8 +32,7 @@
         Designation,
         Organisation,
         RegionalOffice,
-        Centre
-
-
+        Centre,
+        TaxGroup
     }
 }
