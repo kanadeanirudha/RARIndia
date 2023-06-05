@@ -4,7 +4,7 @@ namespace RARIndia.ViewModel
 {
     public class GeneralTaxMasterViewModel : BaseViewModel
     {
-        public short GeneralTaxMasterId { get; set; }
+        public byte GeneralTaxMasterId { get; set; }
         [MaxLength(50)]
         [Required]
         [Display(Name = "Tax Name")]

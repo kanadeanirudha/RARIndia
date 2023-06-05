@@ -5,10 +5,13 @@ using RARIndia.ExceptionManager;
 using RARIndia.Model;
 using RARIndia.Resources;
 using RARIndia.Utilities.Helper;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
+
 using static RARIndia.Utilities.Helper.RARIndiaHelperUtility;
 namespace RARIndia.DataAccessLayer
 {
@@ -16,10 +19,12 @@ namespace RARIndia.DataAccessLayer
     {
         private readonly IRARIndiaRepository<GeneralTaxMaster> _generalTaxMasterRepository;
         private readonly IRARIndiaRepository<GeneralTaxGroupMaster> _generalTaxGroupMasterRepository;
+        private readonly IRARIndiaRepository<GeneralTaxGroupMasterDetail> _generalTaxGroupMasterDetailRepository;
         public GeneralTaxGroupMasterDAL()
         {
             _generalTaxGroupMasterRepository = new RARIndiaRepository<GeneralTaxGroupMaster>();
             _generalTaxMasterRepository = new RARIndiaRepository<GeneralTaxMaster>();
+            _generalTaxGroupMasterDetailRepository = new RARIndiaRepository<GeneralTaxGroupMasterDetail>();
         }
 
         public GeneralTaxGroupMasterListModel GetTaxGroupMasterList(FilterCollection filters, NameValueCollection sorts, int pagingStart, int pagingLength)
@@ -48,15 +53,28 @@ namespace RARIndia.DataAccessLayer
             {
                 throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "Tax Group Name"));
             }
-           
-           //_generalTaxMasterRepository.Table.Where(x => generalTaxGroupMasterModel.GeneralTaxMasterIds.Contains(x.GeneralTaxMasterId)).ToList().Sum
-            GeneralTaxGroupMaster generalTaxGroupMaster = generalTaxGroupMasterModel.FromModelToEntity<GeneralTaxGroupMaster>();
+
+            decimal? taxGroupRate = _generalTaxMasterRepository.Table.Where(x => generalTaxGroupMasterModel.GeneralTaxMasterIds.Contains(x.GeneralTaxMasterId.ToString())).Sum(y => y.TaxRate);
+            GeneralTaxGroupMaster generalTaxGroupMaster = new GeneralTaxGroupMaster()
+            {
+                TaxGroupName = generalTaxGroupMasterModel.TaxGroupName,
+                TaxGroupRate = taxGroupRate
+            };
 
             //Create new Tax Group Master and return it.
             GeneralTaxGroupMaster taxGroupMasterData = _generalTaxGroupMasterRepository.Insert(generalTaxGroupMaster);
             if (taxGroupMasterData?.GeneralTaxGroupMasterId > 0)
             {
                 generalTaxGroupMasterModel.GeneralTaxGroupMasterId = taxGroupMasterData.GeneralTaxGroupMasterId;
+                foreach (string genTaxMasterId in generalTaxGroupMasterModel.GeneralTaxMasterIds)
+                {
+                    GeneralTaxGroupMasterDetail generalTaxGroupMasterDetail = new GeneralTaxGroupMasterDetail()
+                    {
+                        GenTaxGroupMasterId = generalTaxGroupMasterModel.GeneralTaxGroupMasterId,
+                        GenTaxMasterId = Convert.ToInt16(genTaxMasterId)
+                    };
+                    _generalTaxGroupMasterDetailRepository.Insert(generalTaxGroupMasterDetail);
+                }
             }
             else
             {
@@ -75,6 +93,7 @@ namespace RARIndia.DataAccessLayer
             //Get the Tax Master Details based on id.
             GeneralTaxGroupMaster taxGroupMasterData = _generalTaxGroupMasterRepository.Table.FirstOrDefault(x => x.GeneralTaxGroupMasterId == taxGroupMasterId);
             GeneralTaxGroupMasterModel generalTaxGroupMasterModel = taxGroupMasterData.FromEntityToModel<GeneralTaxGroupMasterModel>();
+            generalTaxGroupMasterModel.GeneralTaxMasterIds = _generalTaxGroupMasterDetailRepository.Table.Where(x => x.GenTaxGroupMasterId == taxGroupMasterId)?.Select(y => y.GenTaxMasterId.ToString())?.ToList();
             return generalTaxGroupMasterModel;
         }
 
@@ -86,8 +105,34 @@ namespace RARIndia.DataAccessLayer
 
             if (generalTaxGroupMasterModel.GeneralTaxGroupMasterId < 1)
                 throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "TaxGroupMasterId"));
-            bool isTaxGroupMasterUpdated = _generalTaxGroupMasterRepository.Update(generalTaxGroupMasterModel.FromModelToEntity<GeneralTaxGroupMaster>());
-            if (!isTaxGroupMasterUpdated)
+
+            decimal? taxGroupRate = _generalTaxMasterRepository.Table.Where(x => generalTaxGroupMasterModel.GeneralTaxMasterIds.Contains(x.GeneralTaxMasterId.ToString())).Sum(y => y.TaxRate);
+            GeneralTaxGroupMaster generalTaxGroupMaster = new GeneralTaxGroupMaster()
+            {
+                GeneralTaxGroupMasterId = generalTaxGroupMasterModel.GeneralTaxGroupMasterId,
+                TaxGroupName = generalTaxGroupMasterModel.TaxGroupName,
+                TaxGroupRate = taxGroupRate
+            };
+
+            bool isTaxGroupMasterUpdated = _generalTaxGroupMasterRepository.Update(generalTaxGroupMaster);
+            if (isTaxGroupMasterUpdated)
+            {
+                List<GeneralTaxGroupMasterDetail> list = _generalTaxGroupMasterDetailRepository.Table.Where(x => x.GenTaxGroupMasterId == generalTaxGroupMasterModel.GeneralTaxGroupMasterId)?.ToList();
+                if (list?.Count > 0)
+                {
+                    _generalTaxGroupMasterDetailRepository.Delete(list);
+                    foreach (string genTaxMasterId in generalTaxGroupMasterModel.GeneralTaxMasterIds)
+                    {
+                        GeneralTaxGroupMasterDetail generalTaxGroupMasterDetail = new GeneralTaxGroupMasterDetail()
+                        {
+                            GenTaxGroupMasterId = generalTaxGroupMasterModel.GeneralTaxGroupMasterId,
+                            GenTaxMasterId = Convert.ToInt16(genTaxMasterId)
+                        };
+                        _generalTaxGroupMasterDetailRepository.Insert(generalTaxGroupMasterDetail);
+                    }
+                }
+            }
+            else
             {
                 generalTaxGroupMasterModel.HasError = true;
                 generalTaxGroupMasterModel.ErrorMessage = GeneralResources.UpdateErrorMessage;

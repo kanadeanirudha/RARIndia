@@ -72,7 +72,7 @@ namespace RARIndia.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool status = _generalTaxGroupMasterBA.CreateTaxGroupMaster(generalTaxGroupMasterViewModel).HasError;
+                bool status = _generalTaxGroupMasterBA.UpdateTaxGroupMaster(generalTaxGroupMasterViewModel).HasError;
                 SetNotificationMessage(status
                 ? GetErrorNotificationMessage(GeneralResources.UpdateErrorMessage)
                 : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
