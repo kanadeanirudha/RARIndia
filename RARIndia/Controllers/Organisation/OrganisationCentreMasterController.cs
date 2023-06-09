@@ -4,6 +4,8 @@ using RARIndia.Model.Model;
 using RARIndia.Resources;
 using RARIndia.Utilities.Constant;
 using RARIndia.ViewModel;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 namespace RARIndia.Controllers
 {
@@ -12,6 +14,7 @@ namespace RARIndia.Controllers
     {
         OrganisationCentreMasterBA _organisationCentreMasterBA = null;
         private const string createEdit = "~/Views/Organisation/OrganisationCentreMaster/CreateEdit.cshtml";
+        private const string OrganisationCentrePrintingFormat = "~/Views/Organisation/OrganisationCentreMaster/OrganisationCentrePrintingFormat.cshtml";
         public OrganisationCentreMasterController()
         {
             _organisationCentreMasterBA = new OrganisationCentreMasterBA();
@@ -96,6 +99,56 @@ namespace RARIndia.Controllers
             SetNotificationMessage(GetErrorNotificationMessage(GeneralResources.DeleteErrorMessage));
             return RedirectToAction<OrganisationCentreMasterController>(x => x.List(null));
         }
+
+        #region
+        //Get: Printing Format
+        [HttpGet]
+        public virtual ActionResult PrintingFormat(string centreCode)
+        {
+            OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel = _organisationCentreMasterBA.GetPrintingFormat(centreCode);
+            return ActionView(OrganisationCentrePrintingFormat, organisationCentrePrintingFormatViewModel);
+            return ActionView(OrganisationCentrePrintingFormat, organisationCentrePrintingFormatViewModel);
+        }
+
+        //Post: Organisation Centre Printing Format .
+        [HttpPost]
+        public virtual ActionResult PrintingFormat(OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                bool status = _organisationCentreMasterBA.UpdatePrintingFormat(organisationCentrePrintingFormatViewModel).HasError;
+                SetNotificationMessage(status
+                ? GetErrorNotificationMessage(GeneralResources.UpdateErrorMessage)
+                : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
+
+                if (!status)
+                {
+                    TempData[RARIndiaConstant.DataTableModel] = UpdateActionDataTable();
+                    return RedirectToAction<OrganisationCentreMasterController>(x => x.List(null));
+                }
+            }
+            return View(OrganisationCentrePrintingFormat, organisationCentrePrintingFormatViewModel);
+        }
+        #endregion
+        #region
+        //Logo :Printing Format
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View(OrganisationCentrePrintingFormat, new OrganisationCentrePrintingFormatViewModel());
+        }
+
+        [HttpPost]
+        public virtual ActionResult Index(OrganisationCentrePrintingFormatViewModel file)
+        {
+            string path = Server.MapPath("~/Images");
+            string fileName = Path.GetFileName(file.LogoFilename);
+            string fullPath = Path.Combine(path + fileName);
+            file.SaveAs(fullPath);
+            return View();
+        }
+        #endregion
     }
 }
 

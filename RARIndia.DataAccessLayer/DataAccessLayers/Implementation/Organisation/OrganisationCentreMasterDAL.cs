@@ -15,9 +15,11 @@ namespace RARIndia.DataAccessLayer
     public class OrganisationCentreMasterDAL : BaseDataAccessLogic
     {
         private readonly IRARIndiaRepository<OrganisationCentreMaster> _organisationCentreMasterRepository;
+        private readonly IRARIndiaRepository<OrganisationCentrePrintingFormat> _organisationCentrePrintingFormatRepository;
         public OrganisationCentreMasterDAL()
         {
             _organisationCentreMasterRepository = new RARIndiaRepository<OrganisationCentreMaster>();
+            _organisationCentrePrintingFormatRepository = new RARIndiaRepository<OrganisationCentrePrintingFormat>();
         }
         public OrganisationCentreListModel GetOrganisationCentreList(FilterCollection filters, NameValueCollection sorts, int pagingStart, int pagingLength)
         {
@@ -106,6 +108,35 @@ namespace RARIndia.DataAccessLayer
 
             return status == 1 ? true : false;
         }
+        #region
+        //Get Organisation Centre Printing Format by PrintingFormatId.
+        public OrganisationCentrePrintingFormatModel GetPrintingFormat(string centreCode)
+        {
+            if (IsNull(centreCode))
+                throw new RARIndiaException(ErrorCodes.InvalidData, string.Format(GeneralResources.ErrorCodeExists, "centreCode"));
+            //Get the organisation Centre Printing Format Details based on id.
+            OrganisationCentrePrintingFormat organisationCentrePrintingFormatData = _organisationCentrePrintingFormatRepository.Table.FirstOrDefault(x => x.CentreCode == centreCode);
+            OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel = organisationCentrePrintingFormatData.FromEntityToModel<OrganisationCentrePrintingFormatModel>();
+            return organisationCentrePrintingFormatModel;
+        }
+
+        //Update Organisation Centre printing Format.
+        public OrganisationCentrePrintingFormatModel UpdatePrintingFormat(OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel)
+        {
+            if (IsNull(organisationCentrePrintingFormatModel))
+                throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ErrorCodeExists);
+            if (organisationCentrePrintingFormatModel.OrganisationCentrePrintingFormatId > 0)
+
+                throw new RARIndiaException(ErrorCodes.NullModel, string.Format(GeneralResources.ErrorCodeExists, "centreCode"));
+            bool isOrganisationCentrePrintingFormatUpdated = _organisationCentrePrintingFormatRepository.Update(organisationCentrePrintingFormatModel.FromModelToEntity<OrganisationCentrePrintingFormat>());
+            if (!isOrganisationCentrePrintingFormatUpdated)
+            {
+                organisationCentrePrintingFormatModel.HasError = true;
+                organisationCentrePrintingFormatModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
+            }
+            return organisationCentrePrintingFormatModel;
+        }
+        #endregion
 
         #region Private Method
         //Check if Centre code is already present or not.

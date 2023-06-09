@@ -1,0 +1,122 @@
+﻿@using RARIndia.ViewModel
+@using RARIndia.Resources;
+@using RARIndia.Utilities.Helper;
+@model OrganisationCentrePrintingFormatViewModel
+@{
+    ViewBag.Title = "Organisation Centre Printing Format";
+    string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Organisation Printing format </h3>
+    </div>
+</div>
+<div class="content-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    @*<h4 class="card-title" id="horz-layout-colored-controls">Add Country</h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>*@
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li>
+                                <a href="../@controllerName/@actionName"><i class="ft-rotate-cw"></i></a>
+                            </li>
+                            <li><a data-action="expand" title="Maximize"><i class="ft-maximize"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content collpase show">
+                    <div class="card-body">
+                        @*<div class="card-text">
+                                <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
+                            </div>*@
+                        @using (Html.BeginForm("Index", "OrganisationCentreMaster", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(m => m.OrganisationCentrePrintingFormatId);
+                            <div class="form-body">
+                                @*<h4 class="form-section"><i class="la la-eye"></i> About User</h4>*@
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.CentreName, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.CentreName, new { @class = "form-control border-primary", @placeholder = "Centre Name", @disabled = "disabled" })
+                                                @Html.ValidationMessageFor(x => x.CentreName, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.CentreCode, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextBoxFor(x => x.CentreCode, new { @class = "form-control border-primary", @placeholder = "Centre Code", @disabled = "disabled" })
+                                                @Html.ValidationMessageFor(x => x.CentreCode, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.PrintingLine1, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextAreaFor(x => x.PrintingLine1, new { @class = "form-control border-primary", @placeholder = "Printing Line 1" })
+                                                @Html.ValidationMessageFor(x => x.PrintingLine1, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.PrintingLine2, new { @class = "col-md-3 label-control" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextAreaFor(x => x.PrintingLine2, new { @class = "form-control border-primary", @placeholder = "Printing Line 2" })
+                                                @Html.ValidationMessageFor(x => x.PrintingLine2, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.PrintingLine3, new { @class = "col-md-3 label-control required" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextAreaFor(x => x.PrintingLine3, new { @class = "form-control border-primary", @placeholder = "Printing Line 3" })
+                                                @Html.ValidationMessageFor(x => x.PrintingLine3, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(x => x.PrintingLine4, new { @class = "col-md-3 label-control" })
+                                            <div class="col-md-9 mx-auto">
+                                                @Html.TextAreaFor(x => x.PrintingLine4, new { @class = "form-control border-primary", @placeholder = "Printing Line 4" })
+                                                @Html.ValidationMessageFor(x => x.PrintingLine4, null, new { @class = "red" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(x => x.Logo, new { @class = "col-md-3 label-control required" })
+                                        <div class="col-md-9 mx-auto">
+                                            <input type="file" / name=" LogoFileName">
+                                            <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i>@GeneralResources.SaveButton</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions text-right">
+                                @* <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i>@GeneralResources.SaveButton</button>*@
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

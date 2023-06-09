@@ -18,8 +18,8 @@
         <table class="table table-striped table-bordered column-rendering dataTable" id="DataTables_Table_1" role="grid" aria-describedby="DataTables_Table_1_info" style="width: 1223px;">
             <thead>
                 <tr role="row">
-                    <th class="sorting" data-columnname="CentreCode">Centre Code</th>
                     <th class="sorting" data-columnname="CentreName">Centre Name</th>
+                    <th class="sorting" data-columnname="CentreCode">Centre Code</th>
                     <th class="sorting" data-columnname="HoCoRoScFlag">Office Type</th>
                     <th style="width:10%;">Action</th>
                 </tr>
@@ -28,12 +28,13 @@
                 @foreach (var item in Model?.OrganisationCentreList)
                 {
                     <tr>
-                        <td>@item.CentreCode</td>
                         <td>@item.CentreName</td>
+                        <td>@item.CentreCode</td>
                         <td>@item.HoCoRoScFlag</td>
                         <td style="text-align:center">
-                            <a href="../@controllerName/Edit?organisationCentreId=@item.OrganisationCentreMasterId" title="Update"><i class="ft-edit-1"></i></a>  |
-                            <a href="../@controllerName/Delete?organisationCentreId=@item.OrganisationCentreMasterId" title="Delete"><i class="ft-delete"></i></a>
+                            <a href="../@controllerName/Edit?organisationCentreId=@item.OrganisationCentreMasterId" title="Edit"><i class="ft-edit-1"></i></a>  |
+                            <a href="../@controllerName/PrintingFormat?centreCode=@item.CentreCode" title="Update"><i class="ft-printer"></i></a>
+                            @*<a href="../@controllerName/Delete?organisationCentreId=@item.OrganisationCentreMasterId" title="Delete"><i class="ft-delete"></i></a>*@
                         </td>
                     </tr>
                 }

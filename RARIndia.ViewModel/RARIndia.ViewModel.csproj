@@ -67,6 +67,8 @@
     <Compile Include="ViewModel\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterListViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterViewModel.cs" />
     <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentreListViewModel.cs" />
+    <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentrePrintingFormatViewMode.cs" />
+    <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentrePrintingListViewModel.cs" />
     <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentreViewModel.cs" />
     <Compile Include="ViewModel\Organisation\OrganisationMaster\OrganisationMasterViewModel.cs" />
     <Compile Include="ViewModel\PageListViewModel.cs" />

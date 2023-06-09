@@ -302,9 +302,11 @@
     <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\_List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\CreateEdit.cshtml" />
+    <Content Include="Views\Organisation\OrganisationCentreMaster\OrganisationCentrePrintingFormat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\organisationCentrePrintingFormat\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

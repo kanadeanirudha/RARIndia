@@ -107,6 +107,28 @@ namespace RARIndia.BusinessLogicLayer
                 return false;
             }
         }
+        #region
+
+        //Get Organisation Centre Printing Format by OrganisationPrintingFormatId.
+        public OrganisationCentrePrintingFormatViewModel GetPrintingFormat(string centreCode)
+            => _organisationCentreMasterDAL.GetPrintingFormat(centreCode).ToViewModel<OrganisationCentrePrintingFormatViewModel>();
+
+        //Update Organisation Centre Printing Format.
+        public OrganisationCentrePrintingFormatViewModel UpdatePrintingFormat(OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel)
+        {
+            try
+            {
+                organisationCentrePrintingFormatViewModel.ModifiedBy = LoginUserId();
+                OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel = _organisationCentreMasterDAL.UpdatePrintingFormat(organisationCentrePrintingFormatViewModel.ToModel<OrganisationCentrePrintingFormatModel>());
+                return IsNotNull(organisationCentrePrintingFormatModel) ? organisationCentrePrintingFormatModel.ToViewModel<OrganisationCentrePrintingFormatViewModel>() : (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(new OrganisationCentreListViewModel(), GeneralResources.UpdateErrorMessage);
+            }
+            catch (Exception ex)
+            {
+                RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.OrganisationCentrePrintingFormat.ToString());
+                return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, GeneralResources.UpdateErrorMessage);
+            }
+        }
+        #endregion
     }
 }
 

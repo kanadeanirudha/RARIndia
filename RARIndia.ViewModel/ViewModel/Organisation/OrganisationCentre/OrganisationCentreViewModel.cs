@@ -9,8 +9,8 @@ namespace RARIndia.ViewModel
         [Required]
         [Display(Name = "Centre Code")]
         public string CentreCode { get; set; }
-        [Display(Name = "Centre Name")]
         [Required]
+        [Display(Name = "Centre Name")]
         public string CentreName { get; set; }
         public string HoCoRoScFlag { get; set; }
         public int? HoId { get; set; }
@@ -18,19 +18,19 @@ namespace RARIndia.ViewModel
         public int? RoId { get; set; }
         [Display(Name = "Centre Specialization")]
         public string CentreSpecialization { get; set; }
-        [Display(Name = "Address")]
         [Required]
+        [Display(Name = "Address")]
         public string CentreAddress { get; set; }
         [Display(Name = "City")]
         public int GeneralCityMasterId { get; set; }
         [Required]
         public string Pincode { get; set; }
-        [Display(Name = "Email Address")]
         [Required]
+        [Display(Name = "Email Address")]
         public string EmailId { get; set; }
         public string Url { get; set; }
-        [Display(Name = "Mobile Number")]
         [Required]
+        [Display(Name = "Mobile Number")]
         public string CellPhone { get; set; }
         [Display(Name = "Fax Number")]
         public string FaxNumber { get; set; }
@@ -38,8 +38,8 @@ namespace RARIndia.ViewModel
         public string PhoneNumberOffice { get; set; }
         [Display(Name = "Establishment Date")]
         public DateTime? CentreEstablishmentDatetime { get; set; }
-        [Display(Name = "Organisation Name")]
         [Required]
+        [Display(Name = "Organisation Name")]
         public byte OrganisationId { get; set; }
         [Display(Name = "Centre Login Number")]
         public int? CentreLoginNumber { get; set; }
