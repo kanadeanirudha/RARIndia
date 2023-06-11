@@ -32,8 +32,9 @@
                         <td>@item.CentreCode</td>
                         <td>@item.HoCoRoScFlag</td>
                         <td style="text-align:center">
-                            <a href="../@controllerName/Edit?organisationCentreId=@item.OrganisationCentreMasterId" title="Edit"><i class="ft-edit-1"></i></a>  |
+                            <a href="../@controllerName/Edit?organisationCentreId=@item.OrganisationCentreMasterId" title="Edit"><i class="ft-edit-1"></i></a>
                             <a href="../@controllerName/PrintingFormat?centreCode=@item.CentreCode" title="Update"><i class="ft-printer"></i></a>
+                            @*<a href="../@controllerName/OrganisationPrintingFormat?centreName=@item.CentreName" title="Update"><i class="ft-printer"></i></a>*@
                             @*<a href="../@controllerName/Delete?organisationCentreId=@item.OrganisationCentreMasterId" title="Delete"><i class="ft-delete"></i></a>*@
                         </td>
                     </tr>

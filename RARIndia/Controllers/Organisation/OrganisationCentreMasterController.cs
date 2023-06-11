@@ -1,9 +1,11 @@
 ﻿using RARIndia.BusinessLogicLayer;
+using RARIndia.DataAccessLayer.DataEntity;
 using RARIndia.Filters;
 using RARIndia.Model.Model;
 using RARIndia.Resources;
 using RARIndia.Utilities.Constant;
 using RARIndia.ViewModel;
+using System;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
@@ -12,9 +14,13 @@ namespace RARIndia.Controllers
     [SessionTimeoutAttribute]
     public class OrganisationCentreMasterController : BaseController
     {
+        RARIndiaEntities db = new RARIndiaEntities();
+
         OrganisationCentreMasterBA _organisationCentreMasterBA = null;
         private const string createEdit = "~/Views/Organisation/OrganisationCentreMaster/CreateEdit.cshtml";
         private const string OrganisationCentrePrintingFormat = "~/Views/Organisation/OrganisationCentreMaster/OrganisationCentrePrintingFormat.cshtml";
+        private readonly string organisationCentrePrintingFormatViewModel;
+
         public OrganisationCentreMasterController()
         {
             _organisationCentreMasterBA = new OrganisationCentreMasterBA();
@@ -100,14 +106,11 @@ namespace RARIndia.Controllers
             return RedirectToAction<OrganisationCentreMasterController>(x => x.List(null));
         }
 
-        #region
-        //Get: Printing Format
+        //Get: Organisation Centre Printing Format.
         [HttpGet]
-        public virtual ActionResult PrintingFormat(string centreCode)
+        public ActionResult PrintingFormat(string centreCode)
         {
-            OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel = _organisationCentreMasterBA.GetPrintingFormat(centreCode);
-            return ActionView(OrganisationCentrePrintingFormat, organisationCentrePrintingFormatViewModel);
-            return ActionView(OrganisationCentrePrintingFormat, organisationCentrePrintingFormatViewModel);
+            return View(OrganisationCentrePrintingFormat, new OrganisationCentrePrintingFormatViewModel());
         }
 
         //Post: Organisation Centre Printing Format .
@@ -116,21 +119,42 @@ namespace RARIndia.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                bool status = _organisationCentreMasterBA.UpdatePrintingFormat(organisationCentrePrintingFormatViewModel).HasError;
-                SetNotificationMessage(status
-                ? GetErrorNotificationMessage(GeneralResources.UpdateErrorMessage)
-                : GetSuccessNotificationMessage(GeneralResources.UpdateMessage));
-
-                if (!status)
+                organisationCentrePrintingFormatViewModel = _organisationCentreMasterBA.GetPrintingFormat(organisationCentrePrintingFormatViewModel);
+                if (!organisationCentrePrintingFormatViewModel.HasError)
                 {
-                    TempData[RARIndiaConstant.DataTableModel] = UpdateActionDataTable();
+                    SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
+                    TempData[RARIndiaConstant.DataTableModel] = CreateActionDataTable();
                     return RedirectToAction<OrganisationCentreMasterController>(x => x.List(null));
                 }
             }
+            SetNotificationMessage(GetErrorNotificationMessage(organisationCentrePrintingFormatViewModel.ErrorMessage));
             return View(OrganisationCentrePrintingFormat, organisationCentrePrintingFormatViewModel);
         }
-        #endregion
+        ////centreName
+
+        //[HttpGet]
+        //public ActionResult OrganisationPrintingFormat(string centreName )
+        //{
+        //    return View(OrganisationCentrePrintingFormat, new OrganisationCentrePrintingFormatViewModel());
+        //}
+
+        //[HttpPost]
+        //public virtual ActionResult OrganisationPrintingFormat(OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        organisationCentrePrintingFormatViewModel = _organisationCentreMasterBA.GetOrganisationPrintingFormat(organisationCentrePrintingFormatViewModel);
+        //        if (!organisationCentrePrintingFormatViewModel.HasError)
+        //        {
+        //            SetNotificationMessage(GetSuccessNotificationMessage(GeneralResources.RecordCreationSuccessMessage));
+        //            TempData[RARIndiaConstant.DataTableModel] = CreateActionDataTable();
+        //            return RedirectToAction<OrganisationCentreMasterController>(x => x.List(null));
+        //        }
+        //    }
+        //    SetNotificationMessage(GetErrorNotificationMessage(organisationCentrePrintingFormatViewModel.ErrorMessage));
+        //    return View(OrganisationCentrePrintingFormat, organisationCentrePrintingFormatViewModel);
+        //}
+
         #region
         //Logo :Printing Format
         [HttpGet]
@@ -140,17 +164,64 @@ namespace RARIndia.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Index(OrganisationCentrePrintingFormatViewModel file)
+        public ActionResult Index(tbl_data d, HttpPostedFileBase imgfile)
         {
-            string path = Server.MapPath("~/Images");
-            string fileName = Path.GetFileName(file.LogoFilename);
-            string fullPath = Path.Combine(path + fileName);
-            file.SaveAs(fullPath);
-            return View();
+            tbl_data di = new tbl_data();
+            string path = uploadimage(imgfile);
+            if (path.Equals("-1"))
+            {
+
+            }
+            else
+            {
+                di.Logo = path;
+                db.SaveChanges();
+            }
+            return View(OrganisationCentrePrintingFormat, new OrganisationCentrePrintingFormatViewModel());
         }
-        #endregion
+        public string uploadimage(HttpPostedFileBase imgfile)
+        {
+            Random r = new Random();
+            string path = "-1";
+            int random = r.Next();
+            if (imgfile != null && imgfile.ContentLength > 0)
+            {
+                string extension = Path.GetExtension(imgfile.FileName);
+                if (extension.ToLower().Equals(".jpg") || extension.ToLower().Equals(".jpeg") || extension.ToLower().Equals(".png"))
+                {
+                    try
+                    {
+                        path = Path.Combine(Server.MapPath("~/Images/organisationCentrePrintingFormat"), random + Path.GetFileName(imgfile.FileName));
+                        imgfile.SaveAs(path);
+                        path = "~/Images/organisationCentrePrintingFormat/" + random + Path.GetFileName(imgfile.FileName);
+                        ViewBag.Message = "File uploaded successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                        path = "-1";
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('Only jpg ,jpeg or png formats are acceptable....'); </script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Please select a file'); </script>");
+                path = "-1";
+            }
+            return path;
+        }
+    }
+    #endregion
+    public class tbl_data
+    {
+        internal string Logo;
     }
 }
+
+
 
 
 

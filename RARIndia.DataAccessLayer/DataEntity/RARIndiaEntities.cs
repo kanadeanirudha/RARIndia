@@ -19,7 +19,10 @@ namespace RARIndia.DataAccessLayer.DataEntity
         private string CreatedBy = "CreatedBy";
         private string ModifiedDate = "ModifiedDate";
         private string ModifiedBy = "ModifiedBy";
-        #endregion      
+        public object tbl_data = "tbl_data";
+
+
+        #endregion
 
 
         #region Public Methods      

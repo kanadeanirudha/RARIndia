@@ -107,28 +107,58 @@ namespace RARIndia.BusinessLogicLayer
                 return false;
             }
         }
-        #region
 
-        //Get Organisation Centre Printing Format by OrganisationPrintingFormatId.
-        public OrganisationCentrePrintingFormatViewModel GetPrintingFormat(string centreCode)
-            => _organisationCentreMasterDAL.GetPrintingFormat(centreCode).ToViewModel<OrganisationCentrePrintingFormatViewModel>();
-
-        //Update Organisation Centre Printing Format.
-        public OrganisationCentrePrintingFormatViewModel UpdatePrintingFormat(OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel)
+        //Create Organisation Printing Format CentreCode.
+        public OrganisationCentrePrintingFormatViewModel GetPrintingFormat(OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel)
         {
             try
             {
-                organisationCentrePrintingFormatViewModel.ModifiedBy = LoginUserId();
-                OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel = _organisationCentreMasterDAL.UpdatePrintingFormat(organisationCentrePrintingFormatViewModel.ToModel<OrganisationCentrePrintingFormatModel>());
-                return IsNotNull(organisationCentrePrintingFormatModel) ? organisationCentrePrintingFormatModel.ToViewModel<OrganisationCentrePrintingFormatViewModel>() : (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(new OrganisationCentreListViewModel(), GeneralResources.UpdateErrorMessage);
+                organisationCentrePrintingFormatViewModel.CreatedBy = LoginUserId();
+                OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel = _organisationCentreMasterDAL.GetPrintingFormat(organisationCentrePrintingFormatViewModel.ToModel<OrganisationCentrePrintingFormatModel>());
+                return IsNotNull(organisationCentrePrintingFormatModel) ? organisationCentrePrintingFormatModel.ToViewModel<OrganisationCentrePrintingFormatViewModel>() : new OrganisationCentrePrintingFormatViewModel();
+            }
+            catch (RARIndiaException ex)
+            {
+                switch (ex.ErrorCode)
+                {
+                    case ErrorCodes.AlreadyExist:
+                        return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, ex.ErrorMessage);
+                    default:
+                        return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, GeneralResources.ErrorFailedToCreate);
+                }
             }
             catch (Exception ex)
             {
                 RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.OrganisationCentrePrintingFormat.ToString());
-                return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, GeneralResources.UpdateErrorMessage);
+                return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, GeneralResources.ErrorFailedToCreate);
             }
         }
-        #endregion
+
+        //Create Organisation Centre.
+        //public OrganisationCentrePrintingFormatViewModel GetOrganisationPrintingFormat(OrganisationCentrePrintingFormatViewModel organisationCentrePrintingFormatViewModel)
+        //{
+        //    try
+        //    {
+        //        organisationCentrePrintingFormatViewModel.CreatedBy = LoginUserId();
+        //        OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel = _organisationCentreMasterDAL.GetOrganisationPrintingFormat(organisationCentrePrintingFormatViewModel.ToModel<OrganisationCentrePrintingFormatModel>());
+        //        return IsNotNull(organisationCentrePrintingFormatModel) ? organisationCentrePrintingFormatModel.ToViewModel<OrganisationCentrePrintingFormatViewModel>() : new OrganisationCentrePrintingFormatViewModel();
+        //    }
+        //    catch (RARIndiaException ex)
+        //    {
+        //        switch (ex.ErrorCode)
+        //        {
+        //            case ErrorCodes.AlreadyExist:
+        //                return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, ex.ErrorMessage);
+        //            default:
+        //                return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, GeneralResources.ErrorFailedToCreate);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        RARIndiaFileLogging.LogMessage(ex.Message, RARIndiaComponents.Components.OrganisationCentrePrintingFormat.ToString());
+        //        return (OrganisationCentrePrintingFormatViewModel)GetViewModelWithErrorMessage(organisationCentrePrintingFormatViewModel, GeneralResources.ErrorFailedToCreate);
+        //    }
+        //}
     }
 }
 

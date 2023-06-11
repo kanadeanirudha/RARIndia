@@ -108,36 +108,60 @@ namespace RARIndia.DataAccessLayer
 
             return status == 1 ? true : false;
         }
-        #region
-        //Get Organisation Centre Printing Format by PrintingFormatId.
-        public OrganisationCentrePrintingFormatModel GetPrintingFormat(string centreCode)
-        {
-            if (IsNull(centreCode))
-                throw new RARIndiaException(ErrorCodes.InvalidData, string.Format(GeneralResources.ErrorCodeExists, "centreCode"));
-            //Get the organisation Centre Printing Format Details based on id.
-            OrganisationCentrePrintingFormat organisationCentrePrintingFormatData = _organisationCentrePrintingFormatRepository.Table.FirstOrDefault(x => x.CentreCode == centreCode);
-            OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel = organisationCentrePrintingFormatData.FromEntityToModel<OrganisationCentrePrintingFormatModel>();
-            return organisationCentrePrintingFormatModel;
-        }
 
-        //Update Organisation Centre printing Format.
-        public OrganisationCentrePrintingFormatModel UpdatePrintingFormat(OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel)
+        // Organisation Centre Printing Format CentreCode.
+
+        public OrganisationCentrePrintingFormatModel GetPrintingFormat(OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel)
         {
             if (IsNull(organisationCentrePrintingFormatModel))
-                throw new RARIndiaException(ErrorCodes.InvalidData, GeneralResources.ErrorCodeExists);
-            if (organisationCentrePrintingFormatModel.OrganisationCentrePrintingFormatId > 0)
+                throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
 
-                throw new RARIndiaException(ErrorCodes.NullModel, string.Format(GeneralResources.ErrorCodeExists, "centreCode"));
-            bool isOrganisationCentrePrintingFormatUpdated = _organisationCentrePrintingFormatRepository.Update(organisationCentrePrintingFormatModel.FromModelToEntity<OrganisationCentrePrintingFormat>());
-            if (!isOrganisationCentrePrintingFormatUpdated)
+            if (IsCodeAlreadyExist(organisationCentrePrintingFormatModel.CentreCode))
+            {
+                throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "Centre code"));
+            }
+            OrganisationCentrePrintingFormat organisationCentrePrintingFormat = organisationCentrePrintingFormatModel.FromModelToEntity<OrganisationCentrePrintingFormat>();
+
+            //Create new Organisation Printing Format Centre  and return it.
+            OrganisationCentrePrintingFormat organisationCentrePrintingFormatData = _organisationCentrePrintingFormatRepository.Insert(organisationCentrePrintingFormat);
+            if (organisationCentrePrintingFormatData?.OrganisationCentrePrintingFormatId > 0)
+            {
+                organisationCentrePrintingFormatModel.OrganisationCentrePrintingFormatId = organisationCentrePrintingFormatData.OrganisationCentrePrintingFormatId;
+            }
+            else
             {
                 organisationCentrePrintingFormatModel.HasError = true;
-                organisationCentrePrintingFormatModel.ErrorMessage = GeneralResources.UpdateErrorMessage;
+                organisationCentrePrintingFormatModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
             }
             return organisationCentrePrintingFormatModel;
         }
-        #endregion
 
+        // Organisation Printing format CentreName.
+
+        //public OrganisationCentrePrintingFormatModel GetOrganisationPrintingFormat(OrganisationCentrePrintingFormatModel organisationCentrePrintingFormatModel)
+        //{
+        //    if (IsNull(organisationCentrePrintingFormatModel))
+        //        throw new RARIndiaException(ErrorCodes.NullModel, GeneralResources.ModelNotNull);
+
+        //    if (IsCodeAlreadyExist(organisationCentrePrintingFormatModel.CentreName))
+        //    {
+        //        throw new RARIndiaException(ErrorCodes.AlreadyExist, string.Format(GeneralResources.ErrorCodeExists, "Centre Name"));
+        //    }
+        //    OrganisationCentrePrintingFormat organisationCentrePrintingFormat = organisationCentrePrintingFormatModel.FromModelToEntity<OrganisationCentrePrintingFormat>();
+
+        //    //Create new Organisation Centre  and return it.
+        //    OrganisationCentrePrintingFormat organisationCentrePrintingFormatData = _organisationCentrePrintingFormatRepository.Insert(organisationCentrePrintingFormat);
+        //    if (organisationCentrePrintingFormatData?.OrganisationCentrePrintingFormatId > 0)
+        //    {
+        //        organisationCentrePrintingFormatModel.OrganisationCentrePrintingFormatId = organisationCentrePrintingFormatData.OrganisationCentrePrintingFormatId;
+        //    }
+        //    else
+        //    {
+        //        organisationCentrePrintingFormatModel.HasError = true;
+        //        organisationCentrePrintingFormatModel.ErrorMessage = GeneralResources.ErrorFailedToCreate;
+        //    }
+        //    return organisationCentrePrintingFormatModel;
+        //}
         #region Private Method
         //Check if Centre code is already present or not.
         private bool IsCodeAlreadyExist(string centreCode)

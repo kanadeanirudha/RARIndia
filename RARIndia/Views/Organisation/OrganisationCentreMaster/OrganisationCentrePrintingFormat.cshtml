@@ -33,6 +33,7 @@
                         @*<div class="card-text">
                                 <p>This is 2-columns horizontal form with labels on left and form controls on right in one line. Add <code>.form-horizontal</code> class to the form tag to have horizontal form styling. User can also change the border color and background color of the form control. Add <code>border-*</code> class to change border color and <code>bg-*</code> class to change background color of the form control.</p>
                             </div>*@
+
                         @using (Html.BeginForm("Index", "OrganisationCentreMaster", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                         {
                             @Html.HiddenFor(m => m.OrganisationCentrePrintingFormatId);
@@ -104,7 +105,7 @@
                                     <div class="form-group row">
                                         @Html.LabelFor(x => x.Logo, new { @class = "col-md-3 label-control required" })
                                         <div class="col-md-9 mx-auto">
-                                            <input type="file" / name=" LogoFileName">
+                                            <input type="file" / id="imgfile" name="imgfile">
                                             <button type="submit" class="btn btn-success"><i class="la la-check-square-o"></i>@GeneralResources.SaveButton</button>
                                         </div>
                                     </div>
