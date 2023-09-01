@@ -17,6 +17,10 @@ namespace RARIndia.DropdownHelper
         {
             return RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession)?.AccessibleCentreList;
         }
+        public static List<GeneralTaxGroupMasterModel> TaxGroupMasterList()
+        {
+            return RARIndiaSessionHelper.GetDataFromSession<UserModel>(RARIndiaConstant.UserDataSession)?.TaxGroupMasterList;
+        }
 
         public static DropdownViewModel GeneralDropdownList(DropdownViewModel dropdownViewModel)
         {
@@ -96,9 +100,55 @@ namespace RARIndia.DropdownHelper
                     });
                 }
             }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.Organisation.ToString()))
+            {
+                OrganisationMasterViewModel item
+                    = new OrganisationMasterBA().GetOrganisationDetails();
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = item.OrganisationName,
+                    Value = item.OrganisationMasterId.ToString(),
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(item.OrganisationMasterId)
+                });
+            }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.RegionalOffice.ToString()))
+            {
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = "Centre",
+                    Value = "CO",
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
+                });
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = "Head Office",
+                    Value = "HO",
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
+                });
+                dropdownList.Add(new SelectListItem()
+                {
+                    Text = "Regional Office",
+                    Value = "RO",
+                    Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(dropdownViewModel.Parameter)
+                });
+
+            }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.TaxGroup.ToString()))
+            {
+                GeneralTaxGroupMasterListViewModel list = new GeneralTaxGroupMasterBA().GetTaxGroupMasterList(new DataTableModel() { PageSize = int.MaxValue });
+                dropdownList.Add(new SelectListItem() { Value = "", Text = "-------Select Tax Group-------" });
+                foreach (var item in list.GeneralTaxGroupMasterList)
+                {
+                    dropdownList.Add(new SelectListItem()
+                    {
+                        Text = string.Concat(item.TaxGroupName, " (", item.GeneralTaxMasterIds, ")"),
+                        Value = Convert.ToString(item.GeneralTaxGroupMasterId),
+                        Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(item.GeneralTaxGroupMasterId)
+                    });
+                }
+            }
             dropdownViewModel.DropdownList = dropdownList;
             return dropdownViewModel;
         }
-
     }
 }

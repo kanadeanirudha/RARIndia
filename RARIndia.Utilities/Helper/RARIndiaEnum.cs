@@ -4,18 +4,35 @@
     {
        CountryId
     }
+    public enum RARIndiaCentreEnum
+    {
+        organisationId
+    }
 
     public enum RARIndiaCityEnum
     {
         CityId
     }
 
+    public enum RARIndiaTaxMasterEnum
+    {
+        TaxMasterId
+    }
+
+    public enum RARIndiaTaxGroupMasterEnum
+    {
+        TaxGroupMasterId
+    }
     public enum DropdownTypeEnum
     {
         City, 
         AccessibleCentre,
         CentrewiseDepartment,
         Department,
-        Designation
+        Designation,
+        Organisation,
+        RegionalOffice,
+        Centre,
+        TaxGroup
     }
 }

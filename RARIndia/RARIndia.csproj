@@ -156,6 +156,8 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GeneralCommanDataController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCiryMasterController.cs" />
+    <Compile Include="Controllers\GeneralMaster\GeneralTaxGroupMasterController.cs" />
+    <Compile Include="Controllers\GeneralMaster\GeneralTaxMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralDepartmentMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralDesignationMasterController.cs" />
@@ -291,6 +293,15 @@
     <Content Include="Views\GeneralMaster\GeneralCityMaster\_List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralCityMaster\CreateEdit.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralCityMaster\List.cshtml" />
+    <Content Include="Views\Organisation\OrganisationCentreMaster\_List.cshtml" />
+    <Content Include="Views\Organisation\OrganisationCentreMaster\List.cshtml" />
+    <Content Include="Views\Organisation\OrganisationCentreMaster\CreateEdit.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxMaster\_List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxMaster\List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxMaster\CreateEdit.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\_List.cshtml" />
+    <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

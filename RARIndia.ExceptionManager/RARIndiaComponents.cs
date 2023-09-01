@@ -9,8 +9,12 @@
             Department = 3,
             Designation = 4,
             AdminSnPosts = 5,
-            AdminRoleMaster=6,
-            City= 7
+            AdminRoleMaster = 6,
+            City = 7,
+            OrganisationCentre = 8,
+            TaxMaster = 9,
+            TaxGroupMaster = 10
+
         }
     }
 }

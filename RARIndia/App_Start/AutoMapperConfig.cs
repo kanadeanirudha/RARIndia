@@ -47,9 +47,21 @@ namespace RARIndia
             Mapper.CreateMap<UserModel, UserMaster>().ReverseMap();
             Mapper.CreateMap<UserModuleModel, UserModuleMaster>().ReverseMap();
 
+            Mapper.CreateMap<GeneralTaxMasterModel, GeneralTaxMasterViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralTaxMasterListModel, GeneralTaxMasterListViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralTaxMasterModel, GeneralTaxMaster>().ReverseMap();
+
+            Mapper.CreateMap<GeneralTaxGroupMasterModel, GeneralTaxGroupMasterViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralTaxGroupMasterListModel, GeneralTaxGroupMasterListViewModel>().ReverseMap();
+            Mapper.CreateMap<GeneralTaxGroupMasterModel, GeneralTaxGroupMaster>().ReverseMap();
+
             #region Organisation
             Mapper.CreateMap<OrganisationMasterModel, OrganisationMasterViewModel>().ReverseMap();
             Mapper.CreateMap<OrganisationMasterModel, OrganisationMaster>().ReverseMap();
+
+            Mapper.CreateMap<OrganisationCentreModel, OrganisationCentreViewModel>().ReverseMap();
+            Mapper.CreateMap<OrganisationCentreListModel, OrganisationCentreListViewModel>().ReverseMap();
+            Mapper.CreateMap<OrganisationCentreModel, OrganisationCentreMaster>().ReverseMap();
             #endregion
         }
     }

@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,7 +54,13 @@
     <Compile Include="Model\GeneralMaster\GeneralDepartmentMaster\GeneralDepartmentModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCityMaster\GeneralCityListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralCityMaster\GeneralCityModel.cs" />
-    <Compile Include="Model\Organisation\OrganisationMasterModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralTaxGroupMaster\GeneralTaxGroupMasterListModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralTaxGroupMaster\GeneralTaxGroupMasterModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterListModel.cs" />
+    <Compile Include="Model\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterModel.cs" />
+    <Compile Include="Model\Organisation\OrganisationCentre\OrganisationCentreListModel.cs" />
+    <Compile Include="Model\Organisation\OrganisationCentre\OrganisationCentreModel.cs" />
+    <Compile Include="Model\Organisation\OrganisationMaster\OrganisationMasterModel.cs" />
     <Compile Include="Model\User\UserMenuModel.cs" />
     <Compile Include="Model\User\UserBalanceSheetModel.cs" />
     <Compile Include="Model\User\UserAccessibleCentreModel.cs" />
