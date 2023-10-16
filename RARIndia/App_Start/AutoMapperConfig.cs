@@ -16,7 +16,7 @@ namespace RARIndia
             #region Admin
             Mapper.CreateMap<AdminSnPostsModel, AdminSnPostsViewModel>().ReverseMap();
             Mapper.CreateMap<AdminSnPostsListModel, AdminSnPostsListViewModel>().ReverseMap();
-            Mapper.CreateMap<AdminSnPostsModel, AdminSactionPost>().ReverseMap();
+            Mapper.CreateMap<AdminSnPostsModel, AdminSanctionPost>().ReverseMap();
             Mapper.CreateMap<AdminRoleMasterModel, AdminRoleMasterViewModel>().ReverseMap();
             Mapper.CreateMap<AdminRoleMasterListModel, AdminRoleMasterListViewModel>().ReverseMap();
             Mapper.CreateMap<AdminRoleMasterModel, AdminRoleMaster>().ReverseMap();

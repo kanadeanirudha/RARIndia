@@ -20,12 +20,12 @@ namespace RARIndia.DataAccessLayer
 	{
 		private readonly IRARIndiaRepository<AdminRoleMaster> _adminRoleMasterRepository;
 		private readonly IRARIndiaRepository<AdminRoleCentreRight> _adminRoleCentreRightsRepository;
-		private readonly IRARIndiaRepository<AdminSactionPost> _adminSnPostsRepository;
+		private readonly IRARIndiaRepository<AdminSanctionPost> _adminSnPostsRepository;
 		public AdminRoleMasterDAL()
 		{
 			_adminRoleMasterRepository = new RARIndiaRepository<AdminRoleMaster>();
 			_adminRoleCentreRightsRepository = new RARIndiaRepository<AdminRoleCentreRight>();
-			_adminSnPostsRepository = new RARIndiaRepository<AdminSactionPost>();
+			_adminSnPostsRepository = new RARIndiaRepository<AdminSanctionPost>();
 		}
 
 		public AdminRoleMasterListModel GetAdminRoleMasterList(FilterCollection filters, NameValueCollection sorts, int pagingStart, int pagingLength, string centreCode, int departmentId)
@@ -58,7 +58,7 @@ namespace RARIndia.DataAccessLayer
 			AdminRoleMaster adminRoleMasterData = _adminRoleMasterRepository.Table.FirstOrDefault(x => x.AdminRoleMasterId == adminRoleMasterId);
 			AdminRoleMasterModel adminRoleMasterModel = adminRoleMasterData.FromEntityToModel<AdminRoleMasterModel>();
 			adminRoleMasterModel.SelectedRoleWiseCentres = _adminRoleCentreRightsRepository.Table.Where(x => x.AdminRoleMasterId == adminRoleMasterId && x.IsActive == true)?.Select(y => y.CentreCode)?.Distinct().ToList();
-			AdminSactionPost adminSactionPost  = _adminSnPostsRepository.GetById(adminRoleMasterData.AdminSactionPostId);
+			AdminSanctionPost adminSactionPost  = _adminSnPostsRepository.GetById(adminRoleMasterData.AdminSanctionPostId);
 			adminRoleMasterModel.SelectedCentreCodeForSelf= adminSactionPost.CentreCode;
 			adminRoleMasterModel.AllCentreList = OrganisationCentreList();
 			return adminRoleMasterModel;

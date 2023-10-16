@@ -15,7 +15,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
     public partial class AdminRoleMenuDetail : RARIndiaEntityBaseModel
     {
         public int AdminRoleMenuDetailId { get; set; }
-        public short AdminRoleMasterId { get; set; }
+        public int AdminRoleMasterId { get; set; }
         public string AdminRoleCode { get; set; }
         public string MenuCode { get; set; }
         public Nullable<System.DateTime> EnableDate { get; set; }

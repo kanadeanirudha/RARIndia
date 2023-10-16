@@ -15,7 +15,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
     public partial class AdminRoleCentreRight : RARIndiaEntityBaseModel
     {
         public int AdminRoleCentreRightId { get; set; }
-        public short AdminRoleMasterId { get; set; }
+        public int AdminRoleMasterId { get; set; }
         public string CentreCode { get; set; }
         public bool IsActive { get; set; }
         public Nullable<int> CreatedBy { get; set; }

@@ -17,14 +17,13 @@ namespace RARIndia.DataAccessLayer.DataEntity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AdminRoleMaster()
         {
-            this.AdminRoleApplicableDetails = new HashSet<AdminRoleApplicableDetail>();
             this.AdminRoleCentreRights = new HashSet<AdminRoleCentreRight>();
             this.AdminRoleMenuDetails = new HashSet<AdminRoleMenuDetail>();
         }
     
-        public short AdminRoleMasterId { get; set; }
-        public short AdminSactionPostId { get; set; }
-        public string SanctPostName { get; set; }
+        public int AdminRoleMasterId { get; set; }
+        public int AdminSanctionPostId { get; set; }
+        public string SanctionPostName { get; set; }
         public string MonitoringLevel { get; set; }
         public string AdminRoleCode { get; set; }
         public string OthCentreLevel { get; set; }
@@ -37,10 +36,8 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminRoleApplicableDetail> AdminRoleApplicableDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleCentreRight> AdminRoleCentreRights { get; set; }
-        public virtual AdminSactionPost AdminSactionPost { get; set; }
+        public virtual AdminSanctionPost AdminSanctionPost { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdminRoleMenuDetail> AdminRoleMenuDetails { get; set; }
     }

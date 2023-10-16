@@ -12,24 +12,24 @@ namespace RARIndia.DataAccessLayer.DataEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminSactionPost : RARIndiaEntityBaseModel
+    public partial class AdminSanctionPost : RARIndiaEntityBaseModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdminSactionPost()
+        public AdminSanctionPost()
         {
             this.AdminRoleMasters = new HashSet<AdminRoleMaster>();
         }
     
-        public short AdminSactionPostId { get; set; }
+        public int AdminSanctionPostId { get; set; }
         public short DesignationId { get; set; }
         public short NoOfPost { get; set; }
         public short DepartmentId { get; set; }
         public bool IsActive { get; set; }
         public string CentreCode { get; set; }
         public string DesignationType { get; set; }
-        public string SactionPostCode { get; set; }
+        public string SanctionPostCode { get; set; }
         public string PostType { get; set; }
-        public string SactionedPostDescription { get; set; }
+        public string SanctionedPostDescription { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }

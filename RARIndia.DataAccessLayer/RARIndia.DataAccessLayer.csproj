@@ -81,7 +81,7 @@
     <Compile Include="DataEntity\AdminRoleMenuDetail.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataEntity\AdminSactionPost.cs">
+    <Compile Include="DataEntity\AdminSanctionPost.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\EmployeeDesignationMaster.cs">

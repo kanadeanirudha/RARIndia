@@ -155,7 +155,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GeneralCommanDataController.cs" />
-    <Compile Include="Controllers\GeneralMaster\GeneralCiryMasterController.cs" />
+    <Compile Include="Controllers\GeneralMaster\GeneralCityMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralTaxGroupMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralTaxMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralDepartmentMasterController.cs" />

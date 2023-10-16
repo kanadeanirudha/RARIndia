@@ -17,7 +17,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EmployeeDesignationMaster()
         {
-            this.AdminSactionPosts = new HashSet<AdminSactionPost>();
+            this.AdminSanctionPosts = new HashSet<AdminSanctionPost>();
         }
     
         public short EmployeeDesignationMasterId { get; set; }
@@ -35,6 +35,6 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminSactionPost> AdminSactionPosts { get; set; }
+        public virtual ICollection<AdminSanctionPost> AdminSanctionPosts { get; set; }
     }
 }

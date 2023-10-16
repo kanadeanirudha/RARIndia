@@ -70,8 +70,8 @@ namespace RARIndia.DataAccessLayer
                 {
                     GeneralTaxGroupMasterDetail generalTaxGroupMasterDetail = new GeneralTaxGroupMasterDetail()
                     {
-                        GenTaxGroupMasterId = generalTaxGroupMasterModel.GeneralTaxGroupMasterId,
-                        GenTaxMasterId = Convert.ToInt16(genTaxMasterId)
+                        GeneralTaxGroupMasterId = generalTaxGroupMasterModel.GeneralTaxGroupMasterId,
+                        GeneralTaxMasterId = Convert.ToInt16(genTaxMasterId)
                     };
                     _generalTaxGroupMasterDetailRepository.Insert(generalTaxGroupMasterDetail);
                 }
@@ -93,7 +93,7 @@ namespace RARIndia.DataAccessLayer
             //Get the Tax Master Details based on id.
             GeneralTaxGroupMaster taxGroupMasterData = _generalTaxGroupMasterRepository.Table.FirstOrDefault(x => x.GeneralTaxGroupMasterId == taxGroupMasterId);
             GeneralTaxGroupMasterModel generalTaxGroupMasterModel = taxGroupMasterData.FromEntityToModel<GeneralTaxGroupMasterModel>();
-            generalTaxGroupMasterModel.GeneralTaxMasterIds = _generalTaxGroupMasterDetailRepository.Table.Where(x => x.GenTaxGroupMasterId == taxGroupMasterId)?.Select(y => y.GenTaxMasterId.ToString())?.ToList();
+            generalTaxGroupMasterModel.GeneralTaxMasterIds = _generalTaxGroupMasterDetailRepository.Table.Where(x => x.GeneralTaxGroupMasterId == taxGroupMasterId)?.Select(y => y.GeneralTaxMasterId.ToString())?.ToList();
             return generalTaxGroupMasterModel;
         }
 
@@ -117,7 +117,7 @@ namespace RARIndia.DataAccessLayer
             bool isTaxGroupMasterUpdated = _generalTaxGroupMasterRepository.Update(generalTaxGroupMaster);
             if (isTaxGroupMasterUpdated)
             {
-                List<GeneralTaxGroupMasterDetail> list = _generalTaxGroupMasterDetailRepository.Table.Where(x => x.GenTaxGroupMasterId == generalTaxGroupMasterModel.GeneralTaxGroupMasterId)?.ToList();
+                List<GeneralTaxGroupMasterDetail> list = _generalTaxGroupMasterDetailRepository.Table.Where(x => x.GeneralTaxGroupMasterId == generalTaxGroupMasterModel.GeneralTaxGroupMasterId)?.ToList();
                 if (list?.Count > 0)
                 {
                     _generalTaxGroupMasterDetailRepository.Delete(list);
@@ -125,8 +125,8 @@ namespace RARIndia.DataAccessLayer
                     {
                         GeneralTaxGroupMasterDetail generalTaxGroupMasterDetail = new GeneralTaxGroupMasterDetail()
                         {
-                            GenTaxGroupMasterId = generalTaxGroupMasterModel.GeneralTaxGroupMasterId,
-                            GenTaxMasterId = Convert.ToInt16(genTaxMasterId)
+                            GeneralTaxGroupMasterId = generalTaxGroupMasterModel.GeneralTaxGroupMasterId,
+                            GeneralTaxMasterId = Convert.ToInt16(genTaxMasterId)
                         };
                         _generalTaxGroupMasterDetailRepository.Insert(generalTaxGroupMasterDetail);
                     }

@@ -17,13 +17,13 @@ namespace RARIndia.DataAccessLayer
 {
 	public class AdminSnPostsDAL : BaseDataAccessLogic
 	{
-		private readonly IRARIndiaRepository<AdminSactionPost> _adminSnPostsRepository;
+		private readonly IRARIndiaRepository<AdminSanctionPost> _adminSnPostsRepository;
 		private readonly IRARIndiaRepository<AdminRoleMaster> _adminRoleMasterRepository;
 		private readonly IRARIndiaRepository<AdminRoleCentreRight> _adminRoleCentreRightsRepository;
 
 		public AdminSnPostsDAL()
 		{
-			_adminSnPostsRepository = new RARIndiaRepository<AdminSactionPost>();
+			_adminSnPostsRepository = new RARIndiaRepository<AdminSanctionPost>();
 			_adminRoleMasterRepository = new RARIndiaRepository<AdminRoleMaster>();
 			_adminRoleCentreRightsRepository = new RARIndiaRepository<AdminRoleCentreRight>();
 		}
@@ -64,16 +64,16 @@ namespace RARIndia.DataAccessLayer
 
 			adminSnPostsModel.SactionPostCode = $"{employeeDesignationMaster.ShortCode}-{generalDepartmentMaster.DepartmentShortCode}-{adminSnPostsModel.CentreCode}";
 			adminSnPostsModel.SactionedPostDescription = $"{employeeDesignationMaster.Description}-{generalDepartmentMaster.DepartmentName}-{adminSnPostsModel.PostType}-{adminSnPostsModel.DesignationType}";
-			AdminSactionPost adminSnPostEntity = adminSnPostsModel.FromModelToEntity<AdminSactionPost>();
+			AdminSanctionPost adminSnPostEntity = adminSnPostsModel.FromModelToEntity<AdminSanctionPost>();
 			//Create new adminSnPosts and return it.
-			AdminSactionPost adminSnPostsData = _adminSnPostsRepository.Insert(adminSnPostEntity);
-			if (adminSnPostsData?.AdminSactionPostId > 0)
+			AdminSanctionPost adminSnPostsData = _adminSnPostsRepository.Insert(adminSnPostEntity);
+			if (adminSnPostsData?.AdminSanctionPostId > 0)
 			{
-				adminSnPostsModel.AdminSactionPostId = adminSnPostsData.AdminSactionPostId;
+				adminSnPostsModel.AdminSactionPostId = adminSnPostsData.AdminSanctionPostId;
 				AdminRoleMaster adminRoleMaster = new AdminRoleMaster()
 				{
-					AdminSactionPostId = adminSnPostsModel.AdminSactionPostId,
-					SanctPostName = adminSnPostsModel.SactionedPostDescription,
+					AdminSanctionPostId = adminSnPostsModel.AdminSactionPostId,
+					SanctionPostName = adminSnPostsModel.SactionedPostDescription,
 					MonitoringLevel = RARIndiaConstant.Self,
 					AdminRoleCode = adminSnPostsModel.SactionPostCode,
 					OthCentreLevel = string.Empty,
@@ -109,7 +109,7 @@ namespace RARIndia.DataAccessLayer
 				throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminSnPostsID"));
 
 			//Get the adminSnPosts Details based on id.
-			AdminSactionPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.AdminSactionPostId == adminSactionPostId);
+			AdminSanctionPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.AdminSanctionPostId == adminSactionPostId);
 			AdminSnPostsModel adminSnPostsModel = adminSnPostsData.FromEntityToModel<AdminSnPostsModel>();
 			if (IsNotNull(adminSnPostsModel))
 			{
@@ -130,7 +130,7 @@ namespace RARIndia.DataAccessLayer
 			if (adminSnPostsModel.AdminSactionPostId < 1)
 				throw new RARIndiaException(ErrorCodes.IdLessThanOne, string.Format(GeneralResources.ErrorIdLessThanOne, "AdminSnPostsID"));
 
-			AdminSactionPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.AdminSactionPostId == adminSnPostsModel.AdminSactionPostId);
+			AdminSanctionPost adminSnPostsData = _adminSnPostsRepository.Table.FirstOrDefault(x => x.AdminSanctionPostId == adminSnPostsModel.AdminSactionPostId);
 			adminSnPostsData.NoOfPost = adminSnPostsModel.NoOfPost;
 			adminSnPostsData.IsActive = adminSnPostsModel.IsActive;
 			adminSnPostsData.ModifiedBy = adminSnPostsModel.ModifiedBy;

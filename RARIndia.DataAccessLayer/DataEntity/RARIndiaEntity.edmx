@@ -10,9 +10,9 @@
             <PropertyRef Name="AdminRoleApplicableDetailId" />
           </Key>
           <Property Name="AdminRoleApplicableDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AdminRoleMasterId" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleMasterId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
-          <Property Name="DesignationId" Type="int" Nullable="false" />
+          <Property Name="DesignationId" Type="smallint" Nullable="false" />
           <Property Name="WorkFromDate" Type="datetime" />
           <Property Name="WorkToDate" Type="datetime" />
           <Property Name="RoleType" Type="varchar" MaxLength="10" Nullable="false" />
@@ -28,7 +28,7 @@
             <PropertyRef Name="AdminRoleCentreRightId" />
           </Key>
           <Property Name="AdminRoleCentreRightId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AdminRoleMasterId" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleMasterId" Type="int" Nullable="false" />
           <Property Name="CentreCode" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
@@ -40,9 +40,9 @@
           <Key>
             <PropertyRef Name="AdminRoleMasterId" />
           </Key>
-          <Property Name="AdminRoleMasterId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AdminSactionPostId" Type="smallint" Nullable="false" />
-          <Property Name="SanctPostName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AdminRoleMasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminSanctionPostId" Type="int" Nullable="false" />
+          <Property Name="SanctionPostName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MonitoringLevel" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="AdminRoleCode" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="OthCentreLevel" Type="nvarchar" MaxLength="30" />
@@ -59,7 +59,7 @@
             <PropertyRef Name="AdminRoleMenuDetailId" />
           </Key>
           <Property Name="AdminRoleMenuDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AdminRoleMasterId" Type="smallint" Nullable="false" />
+          <Property Name="AdminRoleMasterId" Type="int" Nullable="false" />
           <Property Name="AdminRoleCode" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="MenuCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EnableDate" Type="datetime" />
@@ -71,20 +71,20 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="AdminSactionPosts">
+        <EntityType Name="AdminSanctionPost">
           <Key>
-            <PropertyRef Name="AdminSactionPostId" />
+            <PropertyRef Name="AdminSanctionPostId" />
           </Key>
-          <Property Name="AdminSactionPostId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminSanctionPostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DesignationId" Type="smallint" Nullable="false" />
           <Property Name="NoOfPost" Type="smallint" Nullable="false" />
           <Property Name="DepartmentId" Type="smallint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CentreCode" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="DesignationType" Type="nvarchar" MaxLength="15" Nullable="false" />
-          <Property Name="SactionPostCode" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SanctionPostCode" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="PostType" Type="nvarchar" MaxLength="15" Nullable="false" />
-          <Property Name="SactionedPostDescription" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SanctionedPostDescription" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
@@ -221,8 +221,8 @@
             <PropertyRef Name="GeneralTaxGroupMasterDetailsId" />
           </Key>
           <Property Name="GeneralTaxGroupMasterDetailsId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GenTaxGroupMasterId" Type="tinyint" Nullable="false" />
-          <Property Name="GenTaxMasterId" Type="smallint" Nullable="false" />
+          <Property Name="GeneralTaxGroupMasterId" Type="tinyint" Nullable="false" />
+          <Property Name="GeneralTaxMasterId" Type="smallint" Nullable="false" />
           <Property Name="IsOtherState" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -387,6 +387,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsDefaultModuleAction" Type="bit" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -455,15 +456,15 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterId">
-          <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="1" />
-          <End Role="AdminRoleApplicableDetails" Type="Self.AdminRoleApplicableDetails" Multiplicity="*" />
+        <Association Name="FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails">
+          <End Role="AdminRoleApplicableDetails" Type="Self.AdminRoleApplicableDetails" Multiplicity="1" />
+          <End Role="AdminRoleApplicableDetails1" Type="Self.AdminRoleApplicableDetails" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="AdminRoleMaster">
-              <PropertyRef Name="AdminRoleMasterId" />
+            <Principal Role="AdminRoleApplicableDetails">
+              <PropertyRef Name="AdminRoleApplicableDetailId" />
             </Principal>
-            <Dependent Role="AdminRoleApplicableDetails">
-              <PropertyRef Name="AdminRoleMasterId" />
+            <Dependent Role="AdminRoleApplicableDetails1">
+              <PropertyRef Name="AdminRoleApplicableDetailId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -479,15 +480,15 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKAdminRoleMasterAdminSactionPostId">
-          <End Role="AdminSactionPosts" Type="Self.AdminSactionPosts" Multiplicity="1" />
+        <Association Name="FKAdminRoleMasterAdminSanctionPostId">
+          <End Role="AdminSanctionPost" Type="Self.AdminSanctionPost" Multiplicity="1" />
           <End Role="AdminRoleMaster" Type="Self.AdminRoleMaster" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AdminSactionPosts">
-              <PropertyRef Name="AdminSactionPostId" />
+            <Principal Role="AdminSanctionPost">
+              <PropertyRef Name="AdminSanctionPostId" />
             </Principal>
             <Dependent Role="AdminRoleMaster">
-              <PropertyRef Name="AdminSactionPostId" />
+              <PropertyRef Name="AdminSanctionPostId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -503,31 +504,31 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKAdminSactionPostsDepartmentId">
+        <Association Name="FKAdminSanctionPostDepartmentId">
           <End Role="GeneralDepartmentMaster" Type="Self.GeneralDepartmentMaster" Multiplicity="1" />
-          <End Role="AdminSactionPosts" Type="Self.AdminSactionPosts" Multiplicity="*" />
+          <End Role="AdminSanctionPost" Type="Self.AdminSanctionPost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GeneralDepartmentMaster">
               <PropertyRef Name="GeneralDepartmentMasterId" />
             </Principal>
-            <Dependent Role="AdminSactionPosts">
+            <Dependent Role="AdminSanctionPost">
               <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKAdminSactionPostsDesignationId">
+        <Association Name="FKAdminSanctionPostDesignationId">
           <End Role="EmployeeDesignationMaster" Type="Self.EmployeeDesignationMaster" Multiplicity="1" />
-          <End Role="AdminSactionPosts" Type="Self.AdminSactionPosts" Multiplicity="*" />
+          <End Role="AdminSanctionPost" Type="Self.AdminSanctionPost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EmployeeDesignationMaster">
               <PropertyRef Name="EmployeeDesignationMasterId" />
             </Principal>
-            <Dependent Role="AdminSactionPosts">
+            <Dependent Role="AdminSanctionPost">
               <PropertyRef Name="DesignationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId">
+        <Association Name="FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId">
           <End Role="GeneralTaxGroupMaster" Type="Self.GeneralTaxGroupMaster" Multiplicity="1" />
           <End Role="GeneralTaxGroupMasterDetails" Type="Self.GeneralTaxGroupMasterDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -535,11 +536,11 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
               <PropertyRef Name="GeneralTaxGroupMasterId" />
             </Principal>
             <Dependent Role="GeneralTaxGroupMasterDetails">
-              <PropertyRef Name="GenTaxGroupMasterId" />
+              <PropertyRef Name="GeneralTaxGroupMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKGeneralTaxGroupMasterDetailsGenTaxMasterId">
+        <Association Name="FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId">
           <End Role="GeneralTaxMaster" Type="Self.GeneralTaxMaster" Multiplicity="1" />
           <End Role="GeneralTaxGroupMasterDetails" Type="Self.GeneralTaxGroupMasterDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -547,7 +548,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
               <PropertyRef Name="GeneralTaxMasterId" />
             </Principal>
             <Dependent Role="GeneralTaxGroupMasterDetails">
-              <PropertyRef Name="GenTaxMasterId" />
+              <PropertyRef Name="GeneralTaxMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -592,7 +593,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySet Name="AdminRoleCentreRights" EntityType="Self.AdminRoleCentreRights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleMaster" EntityType="Self.AdminRoleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleMenuDetails" EntityType="Self.AdminRoleMenuDetails" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdminSactionPosts" EntityType="Self.AdminSactionPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminSanctionPost" EntityType="Self.AdminSanctionPost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeDesignationMaster" EntityType="Self.EmployeeDesignationMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCityMaster" EntityType="Self.GeneralCityMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralCountryMaster" EntityType="Self.GeneralCountryMaster" Schema="dbo" store:Type="Tables" />
@@ -618,35 +619,35 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
     [UserNotificationCount].[NotificationCount] AS [NotificationCount]
     FROM [dbo].[UserNotificationCount] AS [UserNotificationCount]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FkAdminRoleApplicableDetailsAdminRoleMasterId" Association="Self.FkAdminRoleApplicableDetailsAdminRoleMasterId">
-            <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
+          <AssociationSet Name="FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails" Association="Self.FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails">
             <End Role="AdminRoleApplicableDetails" EntitySet="AdminRoleApplicableDetails" />
+            <End Role="AdminRoleApplicableDetails1" EntitySet="AdminRoleApplicableDetails" />
           </AssociationSet>
           <AssociationSet Name="FKAdminRoleCentreRightsAdminRoleMasterId" Association="Self.FKAdminRoleCentreRightsAdminRoleMasterId">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
             <End Role="AdminRoleCentreRights" EntitySet="AdminRoleCentreRights" />
           </AssociationSet>
-          <AssociationSet Name="FKAdminRoleMasterAdminSactionPostId" Association="Self.FKAdminRoleMasterAdminSactionPostId">
-            <End Role="AdminSactionPosts" EntitySet="AdminSactionPosts" />
+          <AssociationSet Name="FKAdminRoleMasterAdminSanctionPostId" Association="Self.FKAdminRoleMasterAdminSanctionPostId">
+            <End Role="AdminSanctionPost" EntitySet="AdminSanctionPost" />
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
           </AssociationSet>
           <AssociationSet Name="FkAdminRoleMenuDetailsAdminRoleMasterId" Association="Self.FkAdminRoleMenuDetailsAdminRoleMasterId">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMaster" />
             <End Role="AdminRoleMenuDetails" EntitySet="AdminRoleMenuDetails" />
           </AssociationSet>
-          <AssociationSet Name="FKAdminSactionPostsDepartmentId" Association="Self.FKAdminSactionPostsDepartmentId">
+          <AssociationSet Name="FKAdminSanctionPostDepartmentId" Association="Self.FKAdminSanctionPostDepartmentId">
             <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMaster" />
-            <End Role="AdminSactionPosts" EntitySet="AdminSactionPosts" />
+            <End Role="AdminSanctionPost" EntitySet="AdminSanctionPost" />
           </AssociationSet>
-          <AssociationSet Name="FKAdminSactionPostsDesignationId" Association="Self.FKAdminSactionPostsDesignationId">
+          <AssociationSet Name="FKAdminSanctionPostDesignationId" Association="Self.FKAdminSanctionPostDesignationId">
             <End Role="EmployeeDesignationMaster" EntitySet="EmployeeDesignationMaster" />
-            <End Role="AdminSactionPosts" EntitySet="AdminSactionPosts" />
+            <End Role="AdminSanctionPost" EntitySet="AdminSanctionPost" />
           </AssociationSet>
-          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId" Association="Self.FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId">
+          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId" Association="Self.FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId">
             <End Role="GeneralTaxGroupMaster" EntitySet="GeneralTaxGroupMaster" />
             <End Role="GeneralTaxGroupMasterDetails" EntitySet="GeneralTaxGroupMasterDetails" />
           </AssociationSet>
-          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGenTaxMasterId" Association="Self.FKGeneralTaxGroupMasterDetailsGenTaxMasterId">
+          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId" Association="Self.FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId">
             <End Role="GeneralTaxMaster" EntitySet="GeneralTaxMaster" />
             <End Role="GeneralTaxGroupMasterDetails" EntitySet="GeneralTaxGroupMasterDetails" />
           </AssociationSet>
@@ -672,7 +673,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySet Name="AdminRoleCentreRights" EntityType="RARIndia.EntityModel.AdminRoleCentreRight" />
           <EntitySet Name="AdminRoleMasters" EntityType="RARIndia.EntityModel.AdminRoleMaster" />
           <EntitySet Name="AdminRoleMenuDetails" EntityType="RARIndia.EntityModel.AdminRoleMenuDetail" />
-          <EntitySet Name="AdminSactionPosts" EntityType="RARIndia.EntityModel.AdminSactionPost" />
+          <EntitySet Name="AdminSanctionPosts" EntityType="RARIndia.EntityModel.AdminSanctionPost" />
           <EntitySet Name="EmployeeDesignationMasters" EntityType="RARIndia.EntityModel.EmployeeDesignationMaster" />
           <EntitySet Name="GeneralCityMasters" EntityType="RARIndia.EntityModel.GeneralCityMaster" />
           <EntitySet Name="GeneralCountryMasters" EntityType="RARIndia.EntityModel.GeneralCountryMaster" />
@@ -693,29 +694,29 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySet Name="UserModuleMasters" EntityType="RARIndia.EntityModel.UserModuleMaster" />
           <EntitySet Name="UserTypes" EntityType="RARIndia.EntityModel.UserType" />
           <EntitySet Name="UserNotificationCounts" EntityType="RARIndia.EntityModel.UserNotificationCount" />
-          <AssociationSet Name="FkAdminRoleApplicableDetailsAdminRoleMasterId" Association="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterId">
-            <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
+          <AssociationSet Name="FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails" Association="RARIndia.EntityModel.FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails">
             <End Role="AdminRoleApplicableDetail" EntitySet="AdminRoleApplicableDetails" />
+            <End Role="AdminRoleApplicableDetail1" EntitySet="AdminRoleApplicableDetails" />
           </AssociationSet>
           <AssociationSet Name="FKAdminRoleCentreRightsAdminRoleMasterId" Association="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleMasterId">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
             <End Role="AdminRoleCentreRight" EntitySet="AdminRoleCentreRights" />
           </AssociationSet>
-          <AssociationSet Name="FKAdminRoleMasterAdminSactionPostId" Association="RARIndia.EntityModel.FKAdminRoleMasterAdminSactionPostId">
-            <End Role="AdminSactionPost" EntitySet="AdminSactionPosts" />
+          <AssociationSet Name="FKAdminRoleMasterAdminSanctionPostId" Association="RARIndia.EntityModel.FKAdminRoleMasterAdminSanctionPostId">
+            <End Role="AdminSanctionPost" EntitySet="AdminSanctionPosts" />
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
           </AssociationSet>
           <AssociationSet Name="FkAdminRoleMenuDetailsAdminRoleMasterId" Association="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterId">
             <End Role="AdminRoleMaster" EntitySet="AdminRoleMasters" />
             <End Role="AdminRoleMenuDetail" EntitySet="AdminRoleMenuDetails" />
           </AssociationSet>
-          <AssociationSet Name="FKAdminSactionPostsDepartmentId" Association="RARIndia.EntityModel.FKAdminSactionPostsDepartmentId">
+          <AssociationSet Name="FKAdminSanctionPostDepartmentId" Association="RARIndia.EntityModel.FKAdminSanctionPostDepartmentId">
             <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMasters" />
-            <End Role="AdminSactionPost" EntitySet="AdminSactionPosts" />
+            <End Role="AdminSanctionPost" EntitySet="AdminSanctionPosts" />
           </AssociationSet>
-          <AssociationSet Name="FKAdminSactionPostsDesignationId" Association="RARIndia.EntityModel.FKAdminSactionPostsDesignationId">
+          <AssociationSet Name="FKAdminSanctionPostDesignationId" Association="RARIndia.EntityModel.FKAdminSanctionPostDesignationId">
             <End Role="EmployeeDesignationMaster" EntitySet="EmployeeDesignationMasters" />
-            <End Role="AdminSactionPost" EntitySet="AdminSactionPosts" />
+            <End Role="AdminSanctionPost" EntitySet="AdminSanctionPosts" />
           </AssociationSet>
           <AssociationSet Name="FKOrganisationCentreMasterCityId" Association="RARIndia.EntityModel.FKOrganisationCentreMasterCityId">
             <End Role="GeneralCityMaster" EntitySet="GeneralCityMasters" />
@@ -725,11 +726,11 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <End Role="GeneralDepartmentMaster" EntitySet="GeneralDepartmentMasters" />
             <End Role="OrganisationCentrewiseDepartment" EntitySet="OrganisationCentrewiseDepartments" />
           </AssociationSet>
-          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId" Association="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId">
+          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId" Association="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId">
             <End Role="GeneralTaxGroupMaster" EntitySet="GeneralTaxGroupMasters" />
             <End Role="GeneralTaxGroupMasterDetail" EntitySet="GeneralTaxGroupMasterDetails" />
           </AssociationSet>
-          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGenTaxMasterId" Association="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGenTaxMasterId">
+          <AssociationSet Name="FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId" Association="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId">
             <End Role="GeneralTaxMaster" EntitySet="GeneralTaxMasters" />
             <End Role="GeneralTaxGroupMasterDetail" EntitySet="GeneralTaxGroupMasterDetails" />
           </AssociationSet>
@@ -743,9 +744,9 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <PropertyRef Name="AdminRoleApplicableDetailId" />
           </Key>
           <Property Name="AdminRoleApplicableDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminRoleMasterId" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleMasterId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="DesignationId" Type="Int32" Nullable="false" />
+          <Property Name="DesignationId" Type="Int16" Nullable="false" />
           <Property Name="WorkFromDate" Type="DateTime" Precision="3" />
           <Property Name="WorkToDate" Type="DateTime" Precision="3" />
           <Property Name="RoleType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -755,14 +756,15 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AdminRoleMaster" Relationship="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterId" FromRole="AdminRoleApplicableDetail" ToRole="AdminRoleMaster" />
+          <NavigationProperty Name="AdminRoleApplicableDetails1" Relationship="RARIndia.EntityModel.FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails" FromRole="AdminRoleApplicableDetail" ToRole="AdminRoleApplicableDetail1" />
+          <NavigationProperty Name="AdminRoleApplicableDetail1" Relationship="RARIndia.EntityModel.FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails" FromRole="AdminRoleApplicableDetail1" ToRole="AdminRoleApplicableDetail" />
         </EntityType>
         <EntityType Name="AdminRoleCentreRight">
           <Key>
             <PropertyRef Name="AdminRoleCentreRightId" />
           </Key>
           <Property Name="AdminRoleCentreRightId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminRoleMasterId" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleMasterId" Type="Int32" Nullable="false" />
           <Property Name="CentreCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" />
@@ -775,9 +777,9 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Key>
             <PropertyRef Name="AdminRoleMasterId" />
           </Key>
-          <Property Name="AdminRoleMasterId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminSactionPostId" Type="Int16" Nullable="false" />
-          <Property Name="SanctPostName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdminRoleMasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminSanctionPostId" Type="Int32" Nullable="false" />
+          <Property Name="SanctionPostName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MonitoringLevel" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="AdminRoleCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="OthCentreLevel" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -788,9 +790,8 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AdminRoleApplicableDetails" Relationship="RARIndia.EntityModel.FkAdminRoleApplicableDetailsAdminRoleMasterId" FromRole="AdminRoleMaster" ToRole="AdminRoleApplicableDetail" />
           <NavigationProperty Name="AdminRoleCentreRights" Relationship="RARIndia.EntityModel.FKAdminRoleCentreRightsAdminRoleMasterId" FromRole="AdminRoleMaster" ToRole="AdminRoleCentreRight" />
-          <NavigationProperty Name="AdminSactionPost" Relationship="RARIndia.EntityModel.FKAdminRoleMasterAdminSactionPostId" FromRole="AdminRoleMaster" ToRole="AdminSactionPost" />
+          <NavigationProperty Name="AdminSanctionPost" Relationship="RARIndia.EntityModel.FKAdminRoleMasterAdminSanctionPostId" FromRole="AdminRoleMaster" ToRole="AdminSanctionPost" />
           <NavigationProperty Name="AdminRoleMenuDetails" Relationship="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterId" FromRole="AdminRoleMaster" ToRole="AdminRoleMenuDetail" />
         </EntityType>
         <EntityType Name="AdminRoleMenuDetail">
@@ -798,7 +799,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <PropertyRef Name="AdminRoleMenuDetailId" />
           </Key>
           <Property Name="AdminRoleMenuDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminRoleMasterId" Type="Int16" Nullable="false" />
+          <Property Name="AdminRoleMasterId" Type="Int32" Nullable="false" />
           <Property Name="AdminRoleCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="MenuCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EnableDate" Type="DateTime" Precision="3" />
@@ -811,27 +812,27 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AdminRoleMaster" Relationship="RARIndia.EntityModel.FkAdminRoleMenuDetailsAdminRoleMasterId" FromRole="AdminRoleMenuDetail" ToRole="AdminRoleMaster" />
         </EntityType>
-        <EntityType Name="AdminSactionPost">
+        <EntityType Name="AdminSanctionPost">
           <Key>
-            <PropertyRef Name="AdminSactionPostId" />
+            <PropertyRef Name="AdminSanctionPostId" />
           </Key>
-          <Property Name="AdminSactionPostId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminSanctionPostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DesignationId" Type="Int16" Nullable="false" />
           <Property Name="NoOfPost" Type="Int16" Nullable="false" />
           <Property Name="DepartmentId" Type="Int16" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CentreCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="DesignationType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="SactionPostCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SanctionPostCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="PostType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="SactionedPostDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SanctionedPostDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AdminRoleMasters" Relationship="RARIndia.EntityModel.FKAdminRoleMasterAdminSactionPostId" FromRole="AdminSactionPost" ToRole="AdminRoleMaster" />
-          <NavigationProperty Name="GeneralDepartmentMaster" Relationship="RARIndia.EntityModel.FKAdminSactionPostsDepartmentId" FromRole="AdminSactionPost" ToRole="GeneralDepartmentMaster" />
-          <NavigationProperty Name="EmployeeDesignationMaster" Relationship="RARIndia.EntityModel.FKAdminSactionPostsDesignationId" FromRole="AdminSactionPost" ToRole="EmployeeDesignationMaster" />
+          <NavigationProperty Name="AdminRoleMasters" Relationship="RARIndia.EntityModel.FKAdminRoleMasterAdminSanctionPostId" FromRole="AdminSanctionPost" ToRole="AdminRoleMaster" />
+          <NavigationProperty Name="GeneralDepartmentMaster" Relationship="RARIndia.EntityModel.FKAdminSanctionPostDepartmentId" FromRole="AdminSanctionPost" ToRole="GeneralDepartmentMaster" />
+          <NavigationProperty Name="EmployeeDesignationMaster" Relationship="RARIndia.EntityModel.FKAdminSanctionPostDesignationId" FromRole="AdminSanctionPost" ToRole="EmployeeDesignationMaster" />
         </EntityType>
         <EntityType Name="EmployeeDesignationMaster">
           <Key>
@@ -850,7 +851,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AdminSactionPosts" Relationship="RARIndia.EntityModel.FKAdminSactionPostsDesignationId" FromRole="EmployeeDesignationMaster" ToRole="AdminSactionPost" />
+          <NavigationProperty Name="AdminSanctionPosts" Relationship="RARIndia.EntityModel.FKAdminSanctionPostDesignationId" FromRole="EmployeeDesignationMaster" ToRole="AdminSanctionPost" />
         </EntityType>
         <EntityType Name="GeneralCityMaster">
           <Key>
@@ -898,7 +899,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AdminSactionPosts" Relationship="RARIndia.EntityModel.FKAdminSactionPostsDepartmentId" FromRole="GeneralDepartmentMaster" ToRole="AdminSactionPost" />
+          <NavigationProperty Name="AdminSanctionPosts" Relationship="RARIndia.EntityModel.FKAdminSanctionPostDepartmentId" FromRole="GeneralDepartmentMaster" ToRole="AdminSanctionPost" />
           <NavigationProperty Name="OrganisationCentrewiseDepartments" Relationship="RARIndia.EntityModel.FKOrganisationCentrewiseDepartmentDepartmentId" FromRole="GeneralDepartmentMaster" ToRole="OrganisationCentrewiseDepartment" />
         </EntityType>
         <EntityType Name="GeneralLocationMaster">
@@ -962,22 +963,22 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="GeneralTaxGroupMasterDetails" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId" FromRole="GeneralTaxGroupMaster" ToRole="GeneralTaxGroupMasterDetail" />
+          <NavigationProperty Name="GeneralTaxGroupMasterDetails" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId" FromRole="GeneralTaxGroupMaster" ToRole="GeneralTaxGroupMasterDetail" />
         </EntityType>
         <EntityType Name="GeneralTaxGroupMasterDetail">
           <Key>
             <PropertyRef Name="GeneralTaxGroupMasterDetailsId" />
           </Key>
           <Property Name="GeneralTaxGroupMasterDetailsId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GenTaxGroupMasterId" Type="Byte" Nullable="false" />
-          <Property Name="GenTaxMasterId" Type="Int16" Nullable="false" />
+          <Property Name="GeneralTaxGroupMasterId" Type="Byte" Nullable="false" />
+          <Property Name="GeneralTaxMasterId" Type="Int16" Nullable="false" />
           <Property Name="IsOtherState" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="GeneralTaxGroupMaster" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId" FromRole="GeneralTaxGroupMasterDetail" ToRole="GeneralTaxGroupMaster" />
-          <NavigationProperty Name="GeneralTaxMaster" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGenTaxMasterId" FromRole="GeneralTaxGroupMasterDetail" ToRole="GeneralTaxMaster" />
+          <NavigationProperty Name="GeneralTaxGroupMaster" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId" FromRole="GeneralTaxGroupMasterDetail" ToRole="GeneralTaxGroupMaster" />
+          <NavigationProperty Name="GeneralTaxMaster" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId" FromRole="GeneralTaxGroupMasterDetail" ToRole="GeneralTaxMaster" />
         </EntityType>
         <EntityType Name="GeneralTaxMaster">
           <Key>
@@ -994,7 +995,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="IsOtherState" Type="Boolean" />
-          <NavigationProperty Name="GeneralTaxGroupMasterDetails" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGenTaxMasterId" FromRole="GeneralTaxMaster" ToRole="GeneralTaxGroupMasterDetail" />
+          <NavigationProperty Name="GeneralTaxGroupMasterDetails" Relationship="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId" FromRole="GeneralTaxMaster" ToRole="GeneralTaxGroupMasterDetail" />
         </EntityType>
         <EntityType Name="GeneralTitleMaster">
           <Key>
@@ -1142,6 +1143,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDefaultModuleAction" Type="Boolean" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -1208,15 +1210,15 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="NotificationCount" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FkAdminRoleApplicableDetailsAdminRoleMasterId">
-          <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="1" />
-          <End Type="RARIndia.EntityModel.AdminRoleApplicableDetail" Role="AdminRoleApplicableDetail" Multiplicity="*" />
+        <Association Name="FK_AdminRoleApplicableDetails_AdminRoleApplicableDetails">
+          <End Type="RARIndia.EntityModel.AdminRoleApplicableDetail" Role="AdminRoleApplicableDetail" Multiplicity="1" />
+          <End Type="RARIndia.EntityModel.AdminRoleApplicableDetail" Role="AdminRoleApplicableDetail1" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="AdminRoleMaster">
-              <PropertyRef Name="AdminRoleMasterId" />
+            <Principal Role="AdminRoleApplicableDetail">
+              <PropertyRef Name="AdminRoleApplicableDetailId" />
             </Principal>
-            <Dependent Role="AdminRoleApplicableDetail">
-              <PropertyRef Name="AdminRoleMasterId" />
+            <Dependent Role="AdminRoleApplicableDetail1">
+              <PropertyRef Name="AdminRoleApplicableDetailId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1232,15 +1234,15 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKAdminRoleMasterAdminSactionPostId">
-          <End Type="RARIndia.EntityModel.AdminSactionPost" Role="AdminSactionPost" Multiplicity="1" />
+        <Association Name="FKAdminRoleMasterAdminSanctionPostId">
+          <End Type="RARIndia.EntityModel.AdminSanctionPost" Role="AdminSanctionPost" Multiplicity="1" />
           <End Type="RARIndia.EntityModel.AdminRoleMaster" Role="AdminRoleMaster" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AdminSactionPost">
-              <PropertyRef Name="AdminSactionPostId" />
+            <Principal Role="AdminSanctionPost">
+              <PropertyRef Name="AdminSanctionPostId" />
             </Principal>
             <Dependent Role="AdminRoleMaster">
-              <PropertyRef Name="AdminSactionPostId" />
+              <PropertyRef Name="AdminSanctionPostId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1256,26 +1258,26 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKAdminSactionPostsDepartmentId">
+        <Association Name="FKAdminSanctionPostDepartmentId">
           <End Type="RARIndia.EntityModel.GeneralDepartmentMaster" Role="GeneralDepartmentMaster" Multiplicity="1" />
-          <End Type="RARIndia.EntityModel.AdminSactionPost" Role="AdminSactionPost" Multiplicity="*" />
+          <End Type="RARIndia.EntityModel.AdminSanctionPost" Role="AdminSanctionPost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GeneralDepartmentMaster">
               <PropertyRef Name="GeneralDepartmentMasterId" />
             </Principal>
-            <Dependent Role="AdminSactionPost">
+            <Dependent Role="AdminSanctionPost">
               <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKAdminSactionPostsDesignationId">
+        <Association Name="FKAdminSanctionPostDesignationId">
           <End Type="RARIndia.EntityModel.EmployeeDesignationMaster" Role="EmployeeDesignationMaster" Multiplicity="1" />
-          <End Type="RARIndia.EntityModel.AdminSactionPost" Role="AdminSactionPost" Multiplicity="*" />
+          <End Type="RARIndia.EntityModel.AdminSanctionPost" Role="AdminSanctionPost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EmployeeDesignationMaster">
               <PropertyRef Name="EmployeeDesignationMasterId" />
             </Principal>
-            <Dependent Role="AdminSactionPost">
+            <Dependent Role="AdminSanctionPost">
               <PropertyRef Name="DesignationId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1304,7 +1306,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKGeneralTaxGroupMasterDetailsGenTaxGroupMasterId">
+        <Association Name="FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId">
           <End Type="RARIndia.EntityModel.GeneralTaxGroupMaster" Role="GeneralTaxGroupMaster" Multiplicity="1" />
           <End Type="RARIndia.EntityModel.GeneralTaxGroupMasterDetail" Role="GeneralTaxGroupMasterDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1312,11 +1314,11 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
               <PropertyRef Name="GeneralTaxGroupMasterId" />
             </Principal>
             <Dependent Role="GeneralTaxGroupMasterDetail">
-              <PropertyRef Name="GenTaxGroupMasterId" />
+              <PropertyRef Name="GeneralTaxGroupMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKGeneralTaxGroupMasterDetailsGenTaxMasterId">
+        <Association Name="FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId">
           <End Type="RARIndia.EntityModel.GeneralTaxMaster" Role="GeneralTaxMaster" Multiplicity="1" />
           <End Type="RARIndia.EntityModel.GeneralTaxGroupMasterDetail" Role="GeneralTaxGroupMasterDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1324,7 +1326,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
               <PropertyRef Name="GeneralTaxMasterId" />
             </Principal>
             <Dependent Role="GeneralTaxGroupMasterDetail">
-              <PropertyRef Name="GenTaxMasterId" />
+              <PropertyRef Name="GeneralTaxMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1392,8 +1394,8 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
                 <ScalarProperty Name="OthCentreLevel" ColumnName="OthCentreLevel" />
                 <ScalarProperty Name="AdminRoleCode" ColumnName="AdminRoleCode" />
                 <ScalarProperty Name="MonitoringLevel" ColumnName="MonitoringLevel" />
-                <ScalarProperty Name="SanctPostName" ColumnName="SanctPostName" />
-                <ScalarProperty Name="AdminSactionPostId" ColumnName="AdminSactionPostId" />
+                <ScalarProperty Name="SanctionPostName" ColumnName="SanctionPostName" />
+                <ScalarProperty Name="AdminSanctionPostId" ColumnName="AdminSanctionPostId" />
                 <ScalarProperty Name="AdminRoleMasterId" ColumnName="AdminRoleMasterId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1416,23 +1418,23 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AdminSactionPosts">
-            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminSactionPost">
-              <MappingFragment StoreEntitySet="AdminSactionPosts">
+          <EntitySetMapping Name="AdminSanctionPosts">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.AdminSanctionPost">
+              <MappingFragment StoreEntitySet="AdminSanctionPost">
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="SactionedPostDescription" ColumnName="SactionedPostDescription" />
+                <ScalarProperty Name="SanctionedPostDescription" ColumnName="SanctionedPostDescription" />
                 <ScalarProperty Name="PostType" ColumnName="PostType" />
-                <ScalarProperty Name="SactionPostCode" ColumnName="SactionPostCode" />
+                <ScalarProperty Name="SanctionPostCode" ColumnName="SanctionPostCode" />
                 <ScalarProperty Name="DesignationType" ColumnName="DesignationType" />
                 <ScalarProperty Name="CentreCode" ColumnName="CentreCode" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="NoOfPost" ColumnName="NoOfPost" />
                 <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
-                <ScalarProperty Name="AdminSactionPostId" ColumnName="AdminSactionPostId" />
+                <ScalarProperty Name="AdminSanctionPostId" ColumnName="AdminSanctionPostId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1578,8 +1580,8 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsOtherState" ColumnName="IsOtherState" />
-                <ScalarProperty Name="GenTaxMasterId" ColumnName="GenTaxMasterId" />
-                <ScalarProperty Name="GenTaxGroupMasterId" ColumnName="GenTaxGroupMasterId" />
+                <ScalarProperty Name="GeneralTaxMasterId" ColumnName="GeneralTaxMasterId" />
+                <ScalarProperty Name="GeneralTaxGroupMasterId" ColumnName="GeneralTaxGroupMasterId" />
                 <ScalarProperty Name="GeneralTaxGroupMasterDetailsId" ColumnName="GeneralTaxGroupMasterDetailsId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1725,6 +1727,7 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySetMapping Name="UserMainMenuMasters">
             <EntityTypeMapping TypeName="RARIndia.EntityModel.UserMainMenuMaster">
               <MappingFragment StoreEntitySet="UserMainMenuMaster">
+                <ScalarProperty Name="IsDefaultModuleAction" ColumnName="IsDefaultModuleAction" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

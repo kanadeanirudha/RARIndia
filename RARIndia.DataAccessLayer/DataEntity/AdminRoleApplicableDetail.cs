@@ -15,9 +15,9 @@ namespace RARIndia.DataAccessLayer.DataEntity
     public partial class AdminRoleApplicableDetail : RARIndiaEntityBaseModel
     {
         public int AdminRoleApplicableDetailId { get; set; }
-        public short AdminRoleMasterId { get; set; }
+        public int AdminRoleMasterId { get; set; }
         public int EmployeeId { get; set; }
-        public int DesignationId { get; set; }
+        public short DesignationId { get; set; }
         public Nullable<System.DateTime> WorkFromDate { get; set; }
         public Nullable<System.DateTime> WorkToDate { get; set; }
         public string RoleType { get; set; }
@@ -28,6 +28,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual AdminRoleMaster AdminRoleMaster { get; set; }
+        public virtual AdminRoleApplicableDetail AdminRoleApplicableDetails1 { get; set; }
+        public virtual AdminRoleApplicableDetail AdminRoleApplicableDetail1 { get; set; }
     }
 }

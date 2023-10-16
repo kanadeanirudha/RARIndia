@@ -29,7 +29,7 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public virtual DbSet<AdminRoleCentreRight> AdminRoleCentreRights { get; set; }
         public virtual DbSet<AdminRoleMaster> AdminRoleMasters { get; set; }
         public virtual DbSet<AdminRoleMenuDetail> AdminRoleMenuDetails { get; set; }
-        public virtual DbSet<AdminSactionPost> AdminSactionPosts { get; set; }
+        public virtual DbSet<AdminSanctionPost> AdminSanctionPosts { get; set; }
         public virtual DbSet<EmployeeDesignationMaster> EmployeeDesignationMasters { get; set; }
         public virtual DbSet<GeneralCityMaster> GeneralCityMasters { get; set; }
         public virtual DbSet<GeneralCountryMaster> GeneralCountryMasters { get; set; }
