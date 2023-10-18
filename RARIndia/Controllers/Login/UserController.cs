@@ -1,4 +1,5 @@
 ﻿using RARIndia.BusinessLogicLayer;
+using RARIndia.DataAccessLayer.DataEntity;
 using RARIndia.Model;
 using RARIndia.Utilities.Constant;
 using RARIndia.Utilities.Helper;
@@ -46,7 +47,7 @@ namespace RARIndia.Controllers
                         }
                         else
                         {
-                            return RedirectToAction<DashboardController>(x => x.Index());
+                            return RedirectToAction<GymUserRegistrationController>(x => x.List(null));
                         }
                     }
                     ModelState.AddModelError("ErrorMessage", userLoginViewModel.ErrorMessage);

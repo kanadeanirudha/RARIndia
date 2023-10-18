@@ -50,5 +50,11 @@ namespace RARIndia.DataAccessLayer.DataEntity
         public virtual DbSet<UserModuleMaster> UserModuleMasters { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<UserNotificationCount> UserNotificationCounts { get; set; }
+        public virtual DbSet<GymMembershipPlanDurationDetail> GymMembershipPlanDurationDetails { get; set; }
+        public virtual DbSet<GymMembershipPlanMaster> GymMembershipPlanMasters { get; set; }
+        public virtual DbSet<GymPaymentTypeMaster> GymPaymentTypeMasters { get; set; }
+        public virtual DbSet<GymPlanDurationMaster> GymPlanDurationMasters { get; set; }
+        public virtual DbSet<GymUserRegistration> GymUserRegistrations { get; set; }
+        public virtual DbSet<GymUserTransactionDetail> GymUserTransactionDetails { get; set; }
     }
 }

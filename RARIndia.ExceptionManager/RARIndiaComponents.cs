@@ -13,8 +13,8 @@
             City = 7,
             OrganisationCentre = 8,
             TaxMaster = 9,
-            TaxGroupMaster = 10
-
+            TaxGroupMaster = 10,
+            GymUserRegistration = 11
         }
     }
 }

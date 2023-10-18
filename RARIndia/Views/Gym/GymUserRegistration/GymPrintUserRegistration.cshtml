@@ -1,0 +1,90 @@
+﻿@using RARIndia.Model;
+@using RARIndia.Resources;
+@using RARIndia.Utilities.Helper;
+@model GymUserRegistrationPrintModel
+@{
+    ViewBag.Title = "Client Registration Receipt";
+    string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    string tdstyle = "border-width: 1px; border-color: #000000; border-style: solid; padding: 5px;";
+}
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Print Client Registration Receipt</h3>
+    </div>
+</div>
+<div class="content-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-content collpase show">
+                    <div class="card-body">
+                        <div id="PrintClientRegistrationReceiptId">
+                            <table class="PrintClientRegistrationReceipt" style="width: 800px; border-collapse: collapse; border-width: 1px; border-color: #000000; border-style: solid; color: #000000;">
+                                <thead>
+                                    <tr style=" text-align:center">
+                                        <th colspan="2" style=" border-width: 1px; border-color: #000000; border-style: solid; padding: 3px; height: 50px; font-size: 20px; ">Powered Athletes Centre for holistic Health and Sports</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="@tdstyle width: 400px">Date</td>
+                                        <td style="@tdstyle">@Model.TransactionDate</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Name</td>
+                                        <td style="@tdstyle">@Model.FullName</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Contact Number</td>
+                                        <td style="@tdstyle">@Model.ContactNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Membership Plan</td>
+                                        <td style="@tdstyle">@Model.MembershipPlanName</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Duration</td>
+                                        <td style="@tdstyle">@Model.PlanDuration</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Membership Plan Amount Paid</td>
+                                        <td style="@tdstyle">@Model.AmountPaid/-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Pre Launch/Special Offer Amount</td>
+                                        <td style="@tdstyle">@Model.PreLaunchSpecialOfferAmount/-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Total Amount Paid</td>
+                                        <td style="@tdstyle">@Model.TotalAmountPaid/-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="@tdstyle">Reciept Prepared By</td>
+                                        <td style="@tdstyle">@Model.RecieptPreparedBy</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-actions text-left mt-3">
+                            <button type="submit" class="btn btn-success" onclick="PrintDiv();"><i class="la la-check-square-o"></i>Print</button>
+                            <a href="../@controllerName/List" class="btn btn-secondary mr-1"><i class="ft-x"></i>@GeneralResources.CancelButton</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function PrintDiv() {
+        var divContents = document.getElementById("PrintClientRegistrationReceiptId").innerHTML;
+        var printWindow = window.open('', '', 'height=200,width=400');
+        printWindow.document.write('<html><head><title>Receipt</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(divContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+</script>

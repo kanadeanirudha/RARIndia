@@ -14,7 +14,7 @@
                         <i class="la la-home"></i><span data-i18n="Dashboard">Dashboard</span>
                     </a>
                 </li>
-                @foreach (UserMenuModel itemParent in menuList.Where(x => x.ParentMenuID == 0).OrderBy(y => y.MenuDisplaySeqNo))
+                @*@foreach (UserMenuModel itemParent in menuList.Where(x => x.ParentMenuID == 0).OrderBy(y => y.MenuDisplaySeqNo))
                 {
                     <li class="dropdown nav-item" data-menu="dropdown">
                         <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
@@ -31,7 +31,7 @@
                             }
                         </ul>
                     </li>
-                }
+                }*@
             </ul>
         </div>
     </div>

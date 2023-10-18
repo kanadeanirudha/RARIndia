@@ -66,6 +66,7 @@
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralNationalityMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\GeneralMaster\GeneralCountryMasterDAL.cs" />
     <Compile Include="Constants\StoredProcedureKeys.cs" />
+    <Compile Include="DataAccessLayers\Implementation\Gym\GymUserRegistrationDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\Organisation\OrganisationCentreMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\Organisation\OrganisationMasterDAL.cs" />
     <Compile Include="DataAccessLayers\Implementation\User\UserMasterDAL.cs" />
@@ -115,6 +116,24 @@
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\GeneralTitleMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GymMembershipPlanDurationDetail.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GymMembershipPlanMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GymPaymentTypeMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GymPlanDurationMaster.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GymUserRegistration.cs">
+      <DependentUpon>RARIndiaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\GymUserTransactionDetail.cs">
       <DependentUpon>RARIndiaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\IDBContext.cs" />

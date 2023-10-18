@@ -51,6 +51,7 @@
     <Compile Include="GeneralMaster\GeneralCountryMasterBA.cs" />
     <Compile Include="GeneralMaster\GeneralTaxGroupMasterBA.cs" />
     <Compile Include="GeneralMaster\GeneralTaxMasterBA.cs" />
+    <Compile Include="Gym\GymUserRegistrationBA.cs" />
     <Compile Include="Organisation\OrganisationCentreMasterBA.cs" />
     <Compile Include="Organisation\OrganisationMasterBA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -147,6 +147,48 @@ namespace RARIndia.DropdownHelper
                     });
                 }
             }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.GymPaymentType.ToString()))
+            {
+                List<GymPaymentTypeModel> list = new GymUserRegistrationBA().GetAllGymPaymentTypes();
+                dropdownList.Add(new SelectListItem() { Value = "", Text = "-------Select Payment Type-------" });
+                foreach (var item in list)
+                {
+                    dropdownList.Add(new SelectListItem()
+                    {
+                        Text = string.Concat(item.PaymentType),
+                        Value = Convert.ToString(item.PaymentTypeMasterId),
+                        Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(item.PaymentTypeMasterId)
+                    });
+                }
+            }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.GymMembershipPlan.ToString()))
+            {
+                List<GymMembershipPlanModel> list = new GymUserRegistrationBA().GetAllGymMembershipPlan();
+                dropdownList.Add(new SelectListItem() { Value = "", Text = "-------Select Membership Plan-------" });
+                foreach (var item in list)
+                {
+                    dropdownList.Add(new SelectListItem()
+                    {
+                        Text = string.Concat(item.MembershipPlanName),
+                        Value = Convert.ToString(item.GymMembershipPlanMasterId),
+                        Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(item.GymMembershipPlanMasterId)
+                    });
+                }
+            }
+            else if (Equals(dropdownViewModel.DropdownType, DropdownTypeEnum.GymPlanDuration.ToString()))
+            {
+                List<GymPlanDurationModel> list = new GymUserRegistrationBA().GetAllGymPlanDuration();
+                dropdownList.Add(new SelectListItem() { Value = "", Text = "-------Select Duration-------" });
+                foreach (var item in list)
+                {
+                    dropdownList.Add(new SelectListItem()
+                    {
+                        Text = string.Concat(item.PlanDuration),
+                        Value = Convert.ToString(item.GymPlanDurationMasterId),
+                        Selected = dropdownViewModel.DropdownSelectedValue == Convert.ToString(item.GymPlanDurationMasterId)
+                    });
+                }
+            }
             dropdownViewModel.DropdownList = dropdownList;
             return dropdownViewModel;
         }

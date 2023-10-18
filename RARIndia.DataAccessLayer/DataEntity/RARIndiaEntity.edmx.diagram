@@ -41,6 +41,12 @@
         <AssociationConnector Association="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxGroupMasterId" />
         <AssociationConnector Association="RARIndia.EntityModel.FKGeneralTaxGroupMasterDetailsGeneralTaxMasterId" />
         <AssociationConnector Association="RARIndia.EntityModel.FKOrganisationCentreMasterOrganisationId" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GymMembershipPlanDurationDetail" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GymMembershipPlanMaster" Width="1.5" PointX="17.375" PointY="4.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GymPaymentTypeMaster" Width="1.5" PointX="17.375" PointY="8.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GymPlanDurationMaster" Width="1.5" PointX="10.375" PointY="17.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GymUserRegistration" Width="1.5" PointX="17.375" PointY="11.75" />
+        <EntityTypeShape EntityType="RARIndia.EntityModel.GymUserTransactionDetail" Width="1.5" PointX="17.375" PointY="17.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

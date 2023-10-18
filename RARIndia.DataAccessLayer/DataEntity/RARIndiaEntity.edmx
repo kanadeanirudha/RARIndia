@@ -258,6 +258,96 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="GymMembershipPlanDurationDetails">
+          <Key>
+            <PropertyRef Name="GymMembershipPlanDurationDetailId" />
+          </Key>
+          <Property Name="GymMembershipPlanDurationDetailId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GymMembershipPlanMasterId" Type="smallint" Nullable="false" />
+          <Property Name="GymPlanDurationMasterId" Type="smallint" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GymMembershipPlanMaster">
+          <Key>
+            <PropertyRef Name="GymMembershipPlanMasterId" />
+          </Key>
+          <Property Name="GymMembershipPlanMasterId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipPlanName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GymPaymentTypeMaster">
+          <Key>
+            <PropertyRef Name="PaymentTypeMasterId" />
+          </Key>
+          <Property Name="PaymentTypeMasterId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GymPlanDurationMaster">
+          <Key>
+            <PropertyRef Name="GymPlanDurationMasterId" />
+          </Key>
+          <Property Name="GymPlanDurationMasterId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanDuration" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GymUserRegistration">
+          <Key>
+            <PropertyRef Name="GymUserRegistrationId" />
+          </Key>
+          <Property Name="GymUserRegistrationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AadhaarCardNumber" Type="varchar" MaxLength="12" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="Age" Type="smallint" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="PastInjuries" Type="varchar" MaxLength="200" />
+          <Property Name="MedicalHistory" Type="varchar" MaxLength="500" />
+          <Property Name="PreLaunchOrSpecialOffer" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GymUserTransactionDetails">
+          <Key>
+            <PropertyRef Name="GymUserTransactionDetailId" />
+          </Key>
+          <Property Name="GymUserTransactionDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GymUserRegistrationId" Type="int" Nullable="false" />
+          <Property Name="GymMembershipPlanMasterId" Type="smallint" Nullable="false" />
+          <Property Name="GymPlanDurationMasterId" Type="smallint" Nullable="false" />
+          <Property Name="AmountPaid" Type="money" Nullable="false" />
+          <Property Name="PreLaunchSpecialOfferAmount" Type="money" Nullable="false" />
+          <Property Name="TotalAmountPaid" Type="money" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentTypeMasterId" Type="tinyint" Nullable="false" />
+          <Property Name="TransactionReference" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="OrganisationCentreMaster">
           <Key>
             <PropertyRef Name="OrganisationCentreMasterId" />
@@ -433,7 +523,7 @@
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'RARIndiaGym.dbo.UserNotificationCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserNotificationCount">
           <Key>
             <PropertyRef Name="UserId" />
@@ -605,6 +695,12 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
           <EntitySet Name="GeneralTaxGroupMasterDetails" EntityType="Self.GeneralTaxGroupMasterDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralTaxMaster" EntityType="Self.GeneralTaxMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralTitleMaster" EntityType="Self.GeneralTitleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymMembershipPlanDurationDetails" EntityType="Self.GymMembershipPlanDurationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymMembershipPlanMaster" EntityType="Self.GymMembershipPlanMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymPaymentTypeMaster" EntityType="Self.GymPaymentTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymPlanDurationMaster" EntityType="Self.GymPlanDurationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymUserRegistration" EntityType="Self.GymUserRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymUserTransactionDetails" EntityType="Self.GymUserTransactionDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrganisationCentreMaster" EntityType="Self.OrganisationCentreMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrganisationCentrePrintingFormat" EntityType="Self.OrganisationCentrePrintingFormat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrganisationCentrewiseDepartment" EntityType="Self.OrganisationCentrewiseDepartment" Schema="dbo" store:Type="Tables" />
@@ -738,6 +834,12 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             <End Role="OrganisationMaster" EntitySet="OrganisationMasters" />
             <End Role="OrganisationCentreMaster" EntitySet="OrganisationCentreMasters" />
           </AssociationSet>
+          <EntitySet Name="GymMembershipPlanDurationDetails" EntityType="RARIndia.EntityModel.GymMembershipPlanDurationDetail" />
+          <EntitySet Name="GymMembershipPlanMasters" EntityType="RARIndia.EntityModel.GymMembershipPlanMaster" />
+          <EntitySet Name="GymPaymentTypeMasters" EntityType="RARIndia.EntityModel.GymPaymentTypeMaster" />
+          <EntitySet Name="GymPlanDurationMasters" EntityType="RARIndia.EntityModel.GymPlanDurationMaster" />
+          <EntitySet Name="GymUserRegistrations" EntityType="RARIndia.EntityModel.GymUserRegistration" />
+          <EntitySet Name="GymUserTransactionDetails" EntityType="RARIndia.EntityModel.GymUserTransactionDetail" />
         </EntityContainer>
         <EntityType Name="AdminRoleApplicableDetail">
           <Key>
@@ -1342,6 +1444,96 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GymMembershipPlanDurationDetail">
+          <Key>
+            <PropertyRef Name="GymMembershipPlanDurationDetailId" />
+          </Key>
+          <Property Name="GymMembershipPlanDurationDetailId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GymMembershipPlanMasterId" Type="Int16" Nullable="false" />
+          <Property Name="GymPlanDurationMasterId" Type="Int16" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="GymMembershipPlanMaster">
+          <Key>
+            <PropertyRef Name="GymMembershipPlanMasterId" />
+          </Key>
+          <Property Name="GymMembershipPlanMasterId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipPlanName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="GymPaymentTypeMaster">
+          <Key>
+            <PropertyRef Name="PaymentTypeMasterId" />
+          </Key>
+          <Property Name="PaymentTypeMasterId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="GymPlanDurationMaster">
+          <Key>
+            <PropertyRef Name="GymPlanDurationMasterId" />
+          </Key>
+          <Property Name="GymPlanDurationMasterId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlanDuration" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="GymUserRegistration">
+          <Key>
+            <PropertyRef Name="GymUserRegistrationId" />
+          </Key>
+          <Property Name="GymUserRegistrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AadhaarCardNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="Age" Type="Int16" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PastInjuries" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MedicalHistory" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PreLaunchOrSpecialOffer" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="GymUserTransactionDetail">
+          <Key>
+            <PropertyRef Name="GymUserTransactionDetailId" />
+          </Key>
+          <Property Name="GymUserTransactionDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GymUserRegistrationId" Type="Int32" Nullable="false" />
+          <Property Name="GymMembershipPlanMasterId" Type="Int16" Nullable="false" />
+          <Property Name="GymPlanDurationMasterId" Type="Int16" Nullable="false" />
+          <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PreLaunchSpecialOfferAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TotalAmountPaid" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentTypeMasterId" Type="Byte" Nullable="false" />
+          <Property Name="TransactionReference" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1818,6 +2010,102 @@ warning 6002: The table/view 'RARIndia.dbo.UserNotificationCount' does not have 
               <MappingFragment StoreEntitySet="UserNotificationCount">
                 <ScalarProperty Name="NotificationCount" ColumnName="NotificationCount" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymMembershipPlanDurationDetails">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GymMembershipPlanDurationDetail">
+              <MappingFragment StoreEntitySet="GymMembershipPlanDurationDetails">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="GymPlanDurationMasterId" ColumnName="GymPlanDurationMasterId" />
+                <ScalarProperty Name="GymMembershipPlanMasterId" ColumnName="GymMembershipPlanMasterId" />
+                <ScalarProperty Name="GymMembershipPlanDurationDetailId" ColumnName="GymMembershipPlanDurationDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymMembershipPlanMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GymMembershipPlanMaster">
+              <MappingFragment StoreEntitySet="GymMembershipPlanMaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MembershipPlanName" ColumnName="MembershipPlanName" />
+                <ScalarProperty Name="GymMembershipPlanMasterId" ColumnName="GymMembershipPlanMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymPaymentTypeMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GymPaymentTypeMaster">
+              <MappingFragment StoreEntitySet="GymPaymentTypeMaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="PaymentTypeMasterId" ColumnName="PaymentTypeMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymPlanDurationMasters">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GymPlanDurationMaster">
+              <MappingFragment StoreEntitySet="GymPlanDurationMaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+                <ScalarProperty Name="GymPlanDurationMasterId" ColumnName="GymPlanDurationMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymUserRegistrations">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GymUserRegistration">
+              <MappingFragment StoreEntitySet="GymUserRegistration">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="PreLaunchOrSpecialOffer" ColumnName="PreLaunchOrSpecialOffer" />
+                <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
+                <ScalarProperty Name="PastInjuries" ColumnName="PastInjuries" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="AadhaarCardNumber" ColumnName="AadhaarCardNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RegistrationCode" ColumnName="RegistrationCode" />
+                <ScalarProperty Name="GymUserRegistrationId" ColumnName="GymUserRegistrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymUserTransactionDetails">
+            <EntityTypeMapping TypeName="RARIndia.EntityModel.GymUserTransactionDetail">
+              <MappingFragment StoreEntitySet="GymUserTransactionDetails">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TransactionReference" ColumnName="TransactionReference" />
+                <ScalarProperty Name="PaymentTypeMasterId" ColumnName="PaymentTypeMasterId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TotalAmountPaid" ColumnName="TotalAmountPaid" />
+                <ScalarProperty Name="PreLaunchSpecialOfferAmount" ColumnName="PreLaunchSpecialOfferAmount" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="GymPlanDurationMasterId" ColumnName="GymPlanDurationMasterId" />
+                <ScalarProperty Name="GymMembershipPlanMasterId" ColumnName="GymMembershipPlanMasterId" />
+                <ScalarProperty Name="GymUserRegistrationId" ColumnName="GymUserRegistrationId" />
+                <ScalarProperty Name="GymUserTransactionDetailId" ColumnName="GymUserTransactionDetailId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

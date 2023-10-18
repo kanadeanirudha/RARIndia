@@ -63,6 +63,12 @@ namespace RARIndia
             Mapper.CreateMap<OrganisationCentreListModel, OrganisationCentreListViewModel>().ReverseMap();
             Mapper.CreateMap<OrganisationCentreModel, OrganisationCentreMaster>().ReverseMap();
             #endregion
+
+            #region Gym
+            Mapper.CreateMap<GymUserRegistrationModel, GymUserRegistrationViewModel>().ReverseMap();
+            Mapper.CreateMap<GymUserRegistrationListModel, GymUserRegistrationListViewModel>().ReverseMap();
+            Mapper.CreateMap<GymUserRegistrationModel, GymUserRegistration>().ReverseMap();
+            #endregion
         }
     }
 }

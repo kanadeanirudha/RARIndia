@@ -33,6 +33,9 @@
         Organisation,
         RegionalOffice,
         Centre,
-        TaxGroup
+        TaxGroup,
+        GymPaymentType,
+        GymMembershipPlan,
+        GymPlanDuration
     }
 }

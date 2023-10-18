@@ -58,6 +58,12 @@
     <Compile Include="Model\GeneralMaster\GeneralTaxGroupMaster\GeneralTaxGroupMasterModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterListModel.cs" />
     <Compile Include="Model\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterModel.cs" />
+    <Compile Include="Model\Gym\GymUserRegistration\GymUserRegistrationPrintModel.cs" />
+    <Compile Include="Model\Gym\GymUserRegistration\GymMembershipPlanModel.cs" />
+    <Compile Include="Model\Gym\GymUserRegistration\GymPlanDurationModel.cs" />
+    <Compile Include="Model\Gym\GymUserRegistration\GymPaymentTypeModel.cs" />
+    <Compile Include="Model\Gym\GymUserRegistration\GymUserRegistrationListModel.cs" />
+    <Compile Include="Model\Gym\GymUserRegistration\GymUserRegistrationModel.cs" />
     <Compile Include="Model\Organisation\OrganisationCentre\OrganisationCentreListModel.cs" />
     <Compile Include="Model\Organisation\OrganisationCentre\OrganisationCentreModel.cs" />
     <Compile Include="Model\Organisation\OrganisationMaster\OrganisationMasterModel.cs" />

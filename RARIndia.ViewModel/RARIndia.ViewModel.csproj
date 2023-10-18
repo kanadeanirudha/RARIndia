@@ -66,6 +66,8 @@
     <Compile Include="ViewModel\GeneralMaster\GeneralTaxGroupMaster\GeneralTaxGroupMasterViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterListViewModel.cs" />
     <Compile Include="ViewModel\GeneralMaster\GeneralTaxMaster\GeneralTaxMasterViewModel.cs" />
+    <Compile Include="ViewModel\Gym\GymUserRegistration\GymUserRegistrationListViewModel.cs" />
+    <Compile Include="ViewModel\Gym\GymUserRegistration\GymUserRegistrationViewModel.cs" />
     <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentreListViewModel.cs" />
     <Compile Include="ViewModel\Organisation\OrganisationCentre\OrganisationCentreViewModel.cs" />
     <Compile Include="ViewModel\Organisation\OrganisationMaster\OrganisationMasterViewModel.cs" />

@@ -162,6 +162,7 @@
     <Compile Include="Controllers\GeneralMaster\GeneralCountryMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralDesignationMasterController.cs" />
     <Compile Include="Controllers\GeneralMaster\GeneralNationalityMasterController.cs" />
+    <Compile Include="Controllers\Gym\GymUserRegistraionController.cs" />
     <Compile Include="Controllers\Login\UserController.cs" />
     <Compile Include="Controllers\Organisation\OrganisationCentreMasterController.cs" />
     <Compile Include="Controllers\Organisation\OrganisationMasterController.cs" />
@@ -194,6 +195,7 @@
     <Content Include="Scripts\GeneralScript\RARIndiaCommanFunction.js" />
     <Content Include="Scripts\GeneralScript\RARIndiaNotification.js" />
     <Content Include="Scripts\GeneralScript\RARIndiaDataTable.js" />
+    <Content Include="Scripts\RARIndia\GymUserRegistration.js" />
     <Content Include="Scripts\RARIndia\AdminRoleMaster.js" />
     <Content Include="Scripts\RARIndia\AdminSnPosts.js" />
     <Content Include="Scripts\Theme\app-menu.min.js" />
@@ -302,6 +304,10 @@
     <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\_List.cshtml" />
     <Content Include="Views\GeneralMaster\GeneralTaxGroupMaster\CreateEdit.cshtml" />
+    <Content Include="Views\Gym\GymUserRegistration\CreateEdit.cshtml" />
+    <Content Include="Views\Gym\GymUserRegistration\List.cshtml" />
+    <Content Include="Views\Gym\GymUserRegistration\_List.cshtml" />
+    <Content Include="Views\Gym\GymUserRegistration\GymPrintUserRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
